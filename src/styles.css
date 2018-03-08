@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.custom-overlay-pane-class .mat-dialog-container{
+  padding: 0;
+}
+.mat-dialog-container{
+  box-shadow: none;
+  min-height: 100vh;
+}
+
+.cdk-global-overlay-wrapper{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.75);
+  height: 100%;
+  overflow: hidden;
+}

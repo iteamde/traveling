@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {MaterialModule} from '../material.module';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -15,7 +16,9 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
   exports: [
     RouterModule,
     HeaderComponent,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    CommonModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {

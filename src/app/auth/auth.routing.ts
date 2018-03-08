@@ -1,15 +1,9 @@
-import { LoginRoutes } from './login/login.routing';
 import { AuthComponent } from './auth.component';
-import {RegisterRoutes} from './register/register.routing';
 
 
 export const AuthRoutes = [
-  {
-    path: '',
-    component: AuthComponent,
-    children: [
-      ...LoginRoutes,
-      ...RegisterRoutes
-    ]
-  }
+  { path: '', component: AuthComponent },
+  { path: 'login', component: AuthComponent },
+  { path: 'signup', component: AuthComponent },
+  { path: 'signup/step2', component: AuthComponent }
 ];

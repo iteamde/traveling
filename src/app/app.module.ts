@@ -9,6 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {StoreModule} from '@ngrx/store';
 import {reducers} from './core/reducers';
 
+import {AuthEffects} from './auth/effects/auth.effects';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthService} from './auth/services/auth.service';
+import {HttpClientModule} from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -17,12 +23,14 @@ import {reducers} from './core/reducers';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     routing,
     AuthModule,
     SharedModule,
+    EffectsModule.forRoot([AuthEffects]),
     StoreModule.forRoot(reducers)
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

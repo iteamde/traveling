@@ -1,6 +1,6 @@
 <div class="modal-dialog sign-up-style" role="document">
     <div class="modal-content">
-      <button type="button" class="close" mat-button  [mat-dialog-close]="true" (click)="backClicked()">
+      <button type="button" class="close" mat-button  [mat-dialog-close]="true" routerLink="/" >
         <span >&times;</span>
       </button>
       <div class="modal-body">
@@ -45,7 +45,7 @@
       </div>
       <div class="modal-footer">
         <p class="foot-txt">You are not a member yet?</p>
-        <button type="button" class="btn btn-grey">Sign Up</button>
+        <button type="button"  routerLink="signup" class="btn btn-grey">Sign Up</button>
       </div>
     </div>
   </div>

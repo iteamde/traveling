@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+import {getLoggedUser, State} from '../../core/reducers';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  protected registrationStep$: Observable<any>;
+
+  constructor(private store: Store<State>) {
+    this.registrationStep$ = store.select(getLoggedUser);
+  }
 
   ngOnInit() {
+
   }
 
 }

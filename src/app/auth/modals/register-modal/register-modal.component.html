@@ -1,0 +1,66 @@
+<div class="modal-dialog sign-up-style" >
+  <div class="modal-content">
+    <button type="button" class="close"  mat-button  [mat-dialog-close]="true" routerLink="/">
+      <span >&times;</span>
+    </button>
+    <div class="modal-body body-create">
+      <div class="top-layer">
+        <a href="#" class="logo-wrap">
+          <img src="./assets/image/main-logo.png" alt="">
+        </a>
+        <h4 class="title">Create a free account</h4>
+        <p *ngIf="" class="sub-ttl error-message">Please fill the required fields</p>
+      </div>
+      <!--TODO USE FUCKING REACTIVE FORMS -->
+      <form class="login-form" name="signupForm1" #f="ngForm" (ngSubmit)="f.form.valid && register()" novalidate>
+        <div class="step-1">
+          <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !username.valid }">
+            <input type="text" class="form-control" [(ngModel)]="user.username" #username="ngModel" name="username"  placeholder="Username" required>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !email.valid }">
+            <input type="email" class="form-control" [(ngModel)]="user.email" #email="ngModel" name="mail"  placeholder="Email address" required>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !password.valid }">
+            <input type="password" name="password" [(ngModel)]="user.password" #password="ngModel" class="form-control"   placeholder="Password" required>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-danger': f.submitted && !cpassword.valid }">
+            <input type="password" name="cpassword" [(ngModel)]="user.password_confirmation" #cpassword="ngModel" class="form-control"   placeholder="Password" required>
+          </div>
+          <div class="form-margin"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Continue</button>
+          </div>
+          <div class="form-group">
+            <p class="simple-txt">Or</p>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary">
+              <i class="fa fa-facebook side-icon"></i>
+              Continue with Facebook</button>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-info">
+              <i class="fa fa-twitter side-icon"></i>
+              Continue with Twitter</button>
+          </div>
+        </div>
+        <div class="form-group bottom-txt-group">
+          <p class="bottom-txt">Creating an account means you're okay with</p>
+          <ul class="link-list">
+            <li><b>Travooo's</b></li>
+            <li>
+              <a href="#"> Terms of Service,</a>
+            </li>
+            <li>
+              <a href="#"> Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <p class="foot-txt">Already a member?</p>
+      <button type="button" routerLink="login" class="btn btn-grey">Log In</button>
+    </div>
+  </div>
+</div>

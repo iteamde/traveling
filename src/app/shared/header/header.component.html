@@ -10,11 +10,11 @@
 
       <!--  PROGRESS SECTION START -->
 
-      <div class="progress-block signUpProgress">
+      <div class="progress-block signUpProgress" *ngIf="(registrationStep$ | async)">
         <div class="progress-wrapper">
           <div class="progress-point">Start</div>
           <div class="progress">
-            <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="1" aria-valuemin="0" aria-valuemax="100" [style.width]="10"></div>
+            <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="1" aria-valuemin="0" aria-valuemax="6" [style.width]="1"></div>
           </div>
           <div class="progress-point">Finish</div>
         </div>

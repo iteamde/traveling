@@ -5,6 +5,7 @@ import {createSelector} from 'reselect';
 
 // Imports from reducers
 import * as fromCore from './core.reducer';
+import * as fromAuth from '../../auth/reducers/auth.reducer';
 
 
 /**
@@ -12,12 +13,14 @@ import * as fromCore from './core.reducer';
  */
 export interface State {
   core: fromCore.State;
+  auth: fromAuth.State;
 }
 
 
 // Map of the reducers
 export const reducers: ActionReducerMap<State> = {
   core: fromCore.reducer,
+  auth: fromAuth.reducer,
 };
 
 /**
@@ -25,6 +28,10 @@ export const reducers: ActionReducerMap<State> = {
  */
 
 export const getCoreState = (state: State) => state.core;
+export const getAuthState = (state: State) => state.auth;
+
+export const getLoggedUser = createSelector(getAuthState, fromAuth.getLoggedUser);
+export const getRegistationStep = createSelector(getAuthState, fromAuth.getRegistrationStep);
 
 
 
