@@ -1,0 +1,51 @@
+<div class="modal-dialog sign-up-style" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" mat-button  [mat-dialog-close]="true" (click)="backClicked()">
+        <span >&times;</span>
+      </button>
+      <div class="modal-body">
+        <div class="top-layer">
+          <a href="#" class="logo-wrap">
+            <img src="./assets/image/main-logo.png" alt="">
+          </a>
+          <h4 class="title">Login to your account</h4>
+          <p class="sub-ttl">and write a text here</p>
+          <p class="sub-ttl error-message">The password is incorrect!</p>
+        </div>
+        <div class="login-form">
+          <div class="form-group">
+            <input type="email" class="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Email address">
+          </div>
+          <!-- <div class="form-group">
+            <input type="password" class="form-control" id="password" aria-describedby="pass" placeholder="Password">
+          </div> -->
+          <div class="form-group has-danger">
+            <input type="password" class="form-control" id="password" aria-describedby="pass" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <a href="#" class="forget-password-link">Forget your password?</a>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary">Log In</button>
+          </div>
+          <div class="form-group">
+            <p class="simple-txt">Or</p>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary">
+              <i class="fa fa-facebook side-icon"></i>
+              Continue with Facebook</button>
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-info">
+              <i class="fa fa-twitter side-icon"></i>
+              Continue with Twitter</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p class="foot-txt">You are not a member yet?</p>
+        <button type="button" class="btn btn-grey">Sign Up</button>
+      </div>
+    </div>
+  </div>
