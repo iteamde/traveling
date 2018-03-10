@@ -7,6 +7,7 @@ import {EffectsModule} from '@ngrx/effects';
 
 import {CoreEffects} from './effects/core.effects';
 import {SharedModule} from '../shared/shared.module';
+import {ValidationService} from './services/validation';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import {SharedModule} from '../shared/shared.module';
 
     EffectsModule.forFeature([CoreEffects])
   ],
-  providers: [],
+  providers: [ValidationService],
   declarations: [],
   exports: []
 })

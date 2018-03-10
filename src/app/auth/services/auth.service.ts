@@ -16,10 +16,12 @@ export class AuthService {
     private router: Router,
   ) {}
 
-  register(details) {
-
-    console.log("TRIGERRED");
+  register(details): Observable<any> {
       return this.http.post(environment.apiUrl + 'users/create', details);
+  }
+
+  register_step2(details): Observable<any> {
+    return this.http.post(environment.apiUrl + 'users/create/step2', details);
   }
 
 }

@@ -32,6 +32,8 @@ export const getAuthState = (state: State) => state.auth;
 
 export const getLoggedUser = createSelector(getAuthState, fromAuth.getLoggedUser);
 export const getRegistationStep = createSelector(getAuthState, fromAuth.getRegistrationStep);
+export const getAuthModalRef = createSelector(getAuthState, fromAuth.getAuthModalRef);
+export const getAuthError = createSelector(getAuthState, fromAuth.getAuthError);
 
 
 

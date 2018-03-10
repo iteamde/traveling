@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
-import {getLoggedUser, State} from '../../core/reducers';
+import {getLoggedUser, getRegistationStep, State} from '../../core/reducers';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   protected registrationStep$: Observable<any>;
 
   constructor(private store: Store<State>) {
-    this.registrationStep$ = store.select(getLoggedUser);
+    this.registrationStep$ = store.select(getRegistationStep);
   }
 
   ngOnInit() {

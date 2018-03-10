@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {RegisterAction} from '../../actions/auth.actions';
 import {Store} from '@ngrx/store';
-import {State} from '../../../core/reducers';
+import {getAuthError, State} from '../../../core/reducers';
+import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
+import {ValidationService} from '../../../core/services/validation';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -11,16 +14,59 @@ import {State} from '../../../core/reducers';
   styleUrls: ['./register-modal.component.css']
 })
 export class RegisterModalComponent implements OnInit {
-  public user: any = {};
-  constructor( private store: Store<State> ) { }
+  protected authError$: Observable<any>;
+  public userForm: FormGroup;
+  public user: any = {
+    username: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  };
+  public formErrors = {
+    username: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  };
+
+  constructor( private store: Store<State>, private fb: FormBuilder , public validation: ValidationService) {
+    this.authError$ = store.select(getAuthError);
+  }
 
   ngOnInit() {
+    this.buildForm();
+  }
 
+  buildForm() {
+    this.userForm = this.fb.group({
+      username: [this.user.username, [
+        Validators.required,
+        nameValidator
+
+      ]],
+      email: [this.user.email, [
+        Validators.required,
+        emailValidator
+      ]],
+      password: [this.user.password, [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]],
+      password_confirmation: [this.user.password_confirmation, [
+        Validators.required
+      ]]
+    }, {validator: matchPasswordValidator});
+
+     this.userForm.valueChanges
+      .subscribe(() => {
+        this.formErrors = this.validation.onValueChange(this.userForm, this.formErrors, false);
+      });
   }
 
 
+
   register() {
-    console.log("Form Submitted" , this.user);
-    this.store.dispatch(new RegisterAction(this.user));
+    this.store.dispatch(new RegisterAction(this.userForm.value));
   }
 }
