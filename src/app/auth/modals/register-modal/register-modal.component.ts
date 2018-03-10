@@ -67,6 +67,10 @@ export class RegisterModalComponent implements OnInit {
 
 
   register() {
-    this.store.dispatch(new RegisterAction(this.userForm.value));
+    this.store.dispatch(new RegisterAction({
+      data: {...this.userForm.value},
+      queryUrl : 'users/create',
+      urlTo : 'signup/step2'
+    }));
   }
 }

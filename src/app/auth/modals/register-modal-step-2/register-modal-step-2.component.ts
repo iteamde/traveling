@@ -6,6 +6,7 @@ import 'rxjs/add/operator/take';
 import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ValidationService} from '../../../core/services/validation';
+import {RegisterAction} from '../../actions/auth.actions';
 
 
 @Component({
@@ -64,5 +65,15 @@ export class RegisterModalStep2Component implements OnInit {
       .subscribe(() => {
         this.formErrors = this.validation.onValueChange(this.userForm, this.formErrors, false);
       });
+  }
+
+  register() {
+    this.user$.take(1).subscribe(user => {
+      this.store.dispatch(new RegisterAction({
+        data: {...this.userForm.value, ...{user_id: (user && user.data) || 116} },
+        queryUrl : 'users/create/step2',
+        urlTo : 'signup/step3'
+      }));
+    });
   }
 }
