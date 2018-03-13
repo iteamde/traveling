@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { getResetPasswordStatus, State} from '../../../core/reducers';
+import {getAuthModalRef, getResetPasswordStatus, State} from '../../../core/reducers';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {ValidationService} from '../../../core/services/validation';
 import {emailValidator, nameValidator} from '../../../core/validators/custom-validators';
-import {LoginAction, ResetPasswordAction} from '../../actions/auth.actions';
+import {LoginAction, RemoveModalRef, ResetPasswordAction} from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-forgot-password',
@@ -28,6 +28,11 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit() {
     this.isInit = true;
     this.buildForm();
+    this.store.select(getAuthModalRef).take(1).subscribe(res => {
+      if ( res ) {
+        res.close();
+      }
+    });
   }
 
   buildForm() {

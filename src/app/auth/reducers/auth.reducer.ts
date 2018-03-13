@@ -35,7 +35,7 @@ export function reducer(state: State = INIT_STATE, action: auth.Actions) {
       return {...state, user : action.payload.data, isLoggedIn: true};
 
     case auth.LOGIN_FAILED:
-      return {...state, authError : action.payload};
+      return {...state, authError : action.payload.data.message};
 
     case auth.OPEN_MODAL:
       return {...state, authModalRef : action.payload.ref};
