@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {getAuthModalRef, getLoggedUser, State} from '../core/reducers';
-import {SetRegistrationStep, OpenModalAction, RemoveModalRef} from './actions/auth.actions';
+import { getLoggedUser, State} from '../core/reducers';
+import {SetRegistrationStep, OpenModalAction} from './actions/auth.actions';
 import {MatDialog} from '@angular/material';
 import {routeRelations} from './helpers/relation';
-import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/skipLast';
-
+import 'rxjs/add/operator/takeLast';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/first';
 
 
 @Component({
@@ -17,12 +18,9 @@ import 'rxjs/add/operator/skipLast';
 })
 export class AuthComponent implements OnInit {
   private path = '';
-  private user$: any;
 
   constructor( private router: Router , private store: Store<State>, private dialog: MatDialog) {
     this.path = router.url;
-    this.user$ = store.select(getLoggedUser);
-    router.events.subscribe( () => this.dialog.closeAll());
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, ObservableInput} from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 import {Actions, Effect} from '@ngrx/effects';
 
 import * as auth from '../actions/auth.actions';
@@ -13,9 +13,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import {Router} from '@angular/router';
-import {Action, Store} from '@ngrx/store';
-import {getRegistationStep, State} from '../../core/reducers';
-import {RESET_PASSWORD} from '../actions/auth.actions';
+
 
 
 @Injectable()
