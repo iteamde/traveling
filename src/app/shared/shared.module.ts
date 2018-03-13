@@ -5,20 +5,26 @@ import { RouterModule } from '@angular/router';
 import {MaterialModule} from '../material.module';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import { ScrollEventModule } from 'ngx-scroll-event';
+import {PlatformService} from '../core/services/platform.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollEventModule],
   exports: [
     RouterModule,
     HeaderComponent,
     MaterialModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    FooterComponent,
+    ScrollEventModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {
@@ -27,7 +33,8 @@ import {FormsModule} from '@angular/forms';
         backdropClass: 'custom-modal-backdrop',
         maxWidth: 'auto'
       }
-    }
+    },
+    PlatformService
   ]
 })
 

@@ -47,11 +47,12 @@ export class ValidationService {
       if (control  && (fromContinueButton || control.dirty) && !control.valid) {
         let message = validationMessages[field];
         for (let key in control.errors) {
-          console.log("Control Errors" , control.errors, key,  field);
           formErrors[field] += message[key] + ' ';
         }
       }
     }
+
+    console.log(formErrors);
 
     return formErrors;
   }

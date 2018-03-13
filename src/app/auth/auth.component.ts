@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginModalComponent} from './modals/login-modal/login-modal.component';
-import {ActivatedRoute} from '@angular/router';
-import {RegisterModalComponent} from './modals/register-modal/register-modal.component';
-import {RegisterModalStep2Component} from './modals/register-modal-step-2/register-modal-step-2.component';
+import {Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {getAuthError, getAuthModalRef, getLoggedUser, State} from '../core/reducers';
+import {getAuthModalRef, getLoggedUser, State} from '../core/reducers';
 import {SetRegistrationStep, OpenModalAction, RemoveModalRef} from './actions/auth.actions';
 import {MatDialog} from '@angular/material';
-import {Observable} from 'rxjs/Observable';
+import {routeRelations} from './helpers/relation';
+
 
 
 @Component({
@@ -16,20 +14,16 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  private str: string;
-  private hashTable: any = {
-    login : LoginModalComponent,
-    signup : RegisterModalComponent,
-    signupstep2 : RegisterModalStep2Component
-  };
+  private path = '';
+  private user$: any;
 
-
-  constructor(route: ActivatedRoute, private store: Store<State>, private dialog: MatDialog) {
-    this.str = route.snapshot.url.join('');
-
+  constructor( private router: Router , private store: Store<State>, private dialog: MatDialog) {
+    this.path = router.url;
+    this.user$ = store.select(getLoggedUser);
   }
 
   ngOnInit() {
+    this.user$.subscribe(res => console.log("Its user after login " , res));
 
     this.store.select(getAuthModalRef).take(1).subscribe(res => {
       if ( res ) {
@@ -38,21 +32,21 @@ export class AuthComponent implements OnInit {
           this.store.dispatch(new RemoveModalRef());
           this.openModal();
         });
-       } else this.openModal();
+       } else {
+        this.openModal();
+      }
     });
   }
 
-  openModal(){
+  openModal() {
      setTimeout(() => {
         let step = 0;
 
-        if ( this.str ) {
-          if (this.str.includes('signup')) {
-             step = +this.str.replace( /^\D+/g, '') || 1;
-          }
-          this.store.dispatch(new OpenModalAction({ref: this.dialog.open(this.hashTable[this.str], {id: this.str})}));
+        if ( this.path && this.path !== '/') {
+          step = routeRelations[this.path].step;
+          this.store.dispatch(new OpenModalAction({ref: this.dialog.open(routeRelations[this.path].component)}));
         }
-         this.store.dispatch(new SetRegistrationStep(step));
+       this.store.dispatch(new SetRegistrationStep(step));
     } , 1);
   }
 }

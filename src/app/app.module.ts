@@ -11,8 +11,9 @@ import {reducers} from './core/reducers';
 
 import {AuthEffects} from './auth/effects/auth.effects';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthService} from './auth/services/auth.service';
+import {ApiService} from './core/services/api.service';
 import {HttpClientModule} from '@angular/common/http';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 
 
@@ -28,9 +29,10 @@ import {HttpClientModule} from '@angular/common/http';
     AuthModule,
     SharedModule,
     EffectsModule.forRoot([AuthEffects]),
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

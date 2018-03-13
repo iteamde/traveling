@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
-import {getLoggedUser, getRegistationStep, State} from '../../core/reducers';
+import {getRegistationStep, State} from '../../core/reducers';
 
 @Component({
   selector: 'app-header',

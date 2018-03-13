@@ -1,12 +1,54 @@
 import {Action} from '@ngrx/store';
 
 export const REGISTER = '[Auth] Register user';
-export const REGISTER2 = '[Auth] Register user step 2';
 export const OPEN_MODAL = '[Auth] Open modal';
 export const REMOVE_MODAL_REF = '[Auth] Remove modal ref';
 export const SET_REGISTRATION_STEP = '[Auth] set registration step';
 export const REGISTRATION_SUCCESS = '[Auth] registration success';
 export const REGISTRATION_FAILED = '[Auth] registration failed';
+export const LOGIN = '[Auth] login user';
+export const LOGIN_SUCCESS = '[Auth] login success';
+export const LOGIN_FAILED = '[Auth] login failed';
+export const RESET_PASSWORD = '[Auth] reset password email request';
+export const RESET_PASSWORD_SUCCESS = '[Auth] reset password email request success';
+export const RESET_PASSWORD_ERROR = '[Auth] reset password email request error';
+
+
+
+
+/**
+ * Registers new user. (Currently just with given email and password)
+ */
+export class LoginAction implements Action {
+  readonly type = LOGIN;
+
+  /**
+   * Default constructor
+   * @param payload
+   */
+  constructor(public payload: {data: any, queryUrl: string, urlTo: string}) {}
+}
+
+export class LoginSuccessAction implements Action {
+  readonly type = LOGIN_SUCCESS;
+
+  /**
+   * Default constructor
+   * @param payload
+   */
+  constructor(public payload) {}
+}
+
+export class LoginFailedAction implements Action {
+  readonly type = LOGIN_FAILED;
+
+  /**
+   * Default constructor
+   * @param payload
+   */
+  constructor(public payload) {}
+}
+
 
 /**
  * Registers new user. (Currently just with given email and password)
@@ -18,18 +60,9 @@ export class RegisterAction implements Action {
    * Default constructor
    * @param payload
    */
-  constructor(public payload) {}
+  constructor(public payload: {data: any, queryUrl: string, urlTo: string}) {}
 }
 
-export class RegisterAction2 implements Action {
-  readonly type = REGISTER2;
-
-  /**
-   * Default constructor
-   * @param payload
-   */
-  constructor(public payload) {}
-}
 /**
  * Registration success action
  */
@@ -74,13 +107,36 @@ export class SetRegistrationStep implements Action {
   constructor(public payload: number) {}
 }
 
+export class ResetPasswordAction implements Action {
+  readonly type = RESET_PASSWORD;
+
+  constructor(public payload: {data: any, queryUrl: string}) {}
+}
+
+export class ResetPasswordSuccessAction implements Action {
+  readonly type = RESET_PASSWORD_SUCCESS;
+
+  constructor(public payload) {}
+}
+export class ResetPasswordFailedAction implements Action {
+  readonly type = RESET_PASSWORD_ERROR;
+
+  constructor(public payload) {}
+}
+
+
 
 export type Actions = RegisterAction
   | OpenModalAction
   | RemoveModalRef
   | SetRegistrationStep
-  | RegisterAction2
   | RegistrationFailedAction
+  | LoginAction
+  | LoginSuccessAction
+  | LoginFailedAction
+  | ResetPasswordAction
+  | ResetPasswordSuccessAction
+  | ResetPasswordFailedAction
   | RegistrationSuccessAction;
 
 
