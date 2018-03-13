@@ -12,6 +12,6 @@ export class AppComponent {
   title = 'app';
 
   constructor( private router: Router, private dialog: MatDialog) {
-    combineLatest(router.events, this.dialog.afterOpen).subscribe(() => this.dialog.closeAll());
+    router.events.subscribe(() => this.dialog.closeAll());
   }
 }
