@@ -28,11 +28,6 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit() {
     this.isInit = true;
     this.buildForm();
-    this.store.select(getAuthModalRef).take(1).subscribe(res => {
-      if ( res ) {
-        res.close();
-      }
-    });
   }
 
   buildForm() {

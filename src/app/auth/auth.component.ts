@@ -5,6 +5,8 @@ import {getAuthModalRef, getLoggedUser, State} from '../core/reducers';
 import {SetRegistrationStep, OpenModalAction, RemoveModalRef} from './actions/auth.actions';
 import {MatDialog} from '@angular/material';
 import {routeRelations} from './helpers/relation';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import 'rxjs/add/operator/skipLast';
 
 
 
@@ -20,29 +22,18 @@ export class AuthComponent implements OnInit {
   constructor( private router: Router , private store: Store<State>, private dialog: MatDialog) {
     this.path = router.url;
     this.user$ = store.select(getLoggedUser);
+    router.events.subscribe( () => this.dialog.closeAll());
   }
 
   ngOnInit() {
-    this.user$.subscribe(res => console.log("Its user after login " , res));
-
-    this.store.select(getAuthModalRef).take(1).subscribe(res => {
-      if ( res ) {
-        res.close();
-        res.afterClosed().subscribe( () => {
-          this.store.dispatch(new RemoveModalRef());
-          this.openModal();
-        });
-       } else {
-        this.openModal();
-      }
-    });
+    this.openModal();
   }
 
   openModal() {
      setTimeout(() => {
         let step = 0;
 
-        if ( this.path && this.path !== '/') {
+        if ( Object.keys(routeRelations).includes(this.path)) {
           step = routeRelations[this.path].step;
           this.store.dispatch(new OpenModalAction({ref: this.dialog.open(routeRelations[this.path].component)}));
         }
