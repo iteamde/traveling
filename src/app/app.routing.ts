@@ -5,10 +5,6 @@ import {AuthRoutes} from './auth/auth.routing';
 import {TripPlannerRoutes} from './trip-planner/trip-planner.routing';
 
 
-const routes: Routes = [
-  { path: '', component: AppComponent},
-];
-
 const appRoutes = [
   {
     path: '',

@@ -1,16 +1,9 @@
-import {CreateTripPlanModalComponent} from './modals/create-trip-plan-modal/create-trip-plan-modal.component';
-import {AddPlaceToTripModalComponent} from './modals/add-place-to-trip-modal/add-place-to-trip-modal.component';
-import {AddCityToTripModalComponent} from './modals/add-city-to-trip-modal/add-city-to-trip-modal.component';
-import {AppComponent} from "../app.component";
+import {TripPlannerComponent} from './trip-planner.component';
 
 export const TripPlannerRoutes = [
-  {
-    path: 'trip',
-    component: AppComponent,
-    children: [
-      { path: '', component: CreateTripPlanModalComponent },
-      { path: ':id/cities', component: AddPlaceToTripModalComponent },
-      { path: ':id/places', component: AddCityToTripModalComponent  }
-    ]
-  },
+
+  { path: 'trip', component: TripPlannerComponent },
+  { path: 'trip/new', component: TripPlannerComponent },
+  { path: 'trip/:id/cities', component: TripPlannerComponent },
+  { path: 'trip/:id/places', component: TripPlannerComponent },
 ];

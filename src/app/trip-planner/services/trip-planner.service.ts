@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
+import {ApiService} from '../../core/services/api.service';
 
 @Injectable()
 export class TripPlannerService {
 
-  /**
-   * Default constructor
-   * @param http
-   */
   constructor(
-    private http: HttpClient
+    private api: ApiService
   ) {}
 
   /**
@@ -19,7 +15,7 @@ export class TripPlannerService {
    * @param details
    */
   createTrip(details): Observable<any> {
-    return this.http.post(environment.apiUrl + 'trips/new', details);
+    return this.api.post( details,  'trips/new');
   }
 
   /**
@@ -28,8 +24,14 @@ export class TripPlannerService {
    */
   getCities(query): Observable<any> {
     const details = {query, language_id: 1, page: 1, page_size: 10};
-    return this.http.post(environment.apiUrl + 'cities/search', details);
+    return this.api.post(details,  'cities/search');
   }
+
+  getPlaces(query): Observable<any> {
+    const details = {query, language_id: 1, page: 1, page_size: 10};
+    return this.api.post(details,  'places/search');
+  }
+
 
   /**
    * Create trip plan - step 2 submit
@@ -37,7 +39,7 @@ export class TripPlannerService {
    * @param details
    */
   addCity(tripId, details): Observable<any> {
-    return this.http.post(environment.apiUrl + `trips/${tripId}/add_city`, details)
+    return this.api.post(details, `trips/${tripId}/add_city`)
   }
 
   /**
@@ -46,7 +48,7 @@ export class TripPlannerService {
    * @param details
    */
   addPlace(tripId, details): Observable<any> {
-    return this.http.post(environment.apiUrl + `trips/${tripId}/add_place`, details)
+    return this.api.post(details ,  `trips/${tripId}/add_place`)
   }
 
 }

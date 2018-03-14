@@ -1,6 +1,6 @@
 <!-- add place popup -->
-<div class="modal fade white-style" data-backdrop="false" id="addPlacePopup">
-  <button class="modal-close" type="button" data-dismiss="modal" aria-label="Close">
+<div class="modal-wrapper">
+  <button class="modal-close" type="button" mat-button  [mat-dialog-close]="true" routerLink="trip">
     <i class="trav-close-icon"></i>
   </button>
   <div class="modal-dialog modal-custom-style modal-650" role="document">
@@ -9,228 +9,20 @@
         <h3 class="place-title">What is your next destination in <b>Nagoya</b></h3>
         <div class="search-block-wrap">
           <div class="search-block-inner">
-            <div class="search-block">
-              <input type="text" class="" placeholder="Search..." id="placeSearchInput">
-            </div>
-            <div class="search-drop-place">
-              <div class="top-layer">
-                <div class="top-ttl">All Results</div>
-                <div class="filter-slider-block">
-                  <ul class="filter-list" id="searchFilterList">
-                    <li>
-                      <a href="#">
-                        <i class="trav-building-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-heart-beat-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-library-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-hot-cup-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-cutlery-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-p-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-spruce-tree-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-movie-arrow-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-angle-plane-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-railway-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-credit-card-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-bus-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-shop-cart-icon"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <i class="trav-broken-building-icon"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="results-block-wrap">
-                <div class="sugg-inner">
-                  <div class="suggestion-block">
-                    <div class="img-wrap">
-                      <img src="http://placehold.it/60x60" alt="image">
-                    </div>
-                    <div class="sugg-content">
-                      <div class="sugg-place">Nagoya castle</div>
-                      <div class="sugg-place-info">Monument</div>
-                      <div class="com-star-block">
-                        <ul class="com-star-list">
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                        </ul>
-                        <span class="count">
-                            <b>4.8</b>
-                          </span>
-                        <span>from 26 Reviews</span>
-                      </div>
-                    </div>
-                    <div class="sugg-btn-wrap">
-                      <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-                    </div>
-                  </div>
-                  <div class="suggestion-block">
-                    <div class="img-wrap">
-                      <img src="http://placehold.it/60x60" alt="image">
-                    </div>
-                    <div class="sugg-content">
-                      <div class="sugg-place">Port of nagoya public aquarium</div>
-                      <div class="sugg-place-info">Aquarium</div>
-                      <div class="com-star-block">
-                        <ul class="com-star-list">
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                        </ul>
-                        <span class="count">
-                            <b>4.8</b>
-                          </span>
-                        <span>from 26 Reviews</span>
-                      </div>
-                    </div>
-                    <div class="sugg-btn-wrap">
-                      <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-                    </div>
-                  </div>
-                  <div class="suggestion-block">
-                    <div class="img-wrap">
-                      <img src="http://placehold.it/60x60" alt="image">
-                    </div>
-                    <div class="sugg-content">
-                      <div class="sugg-place">Nagoya TV tower</div>
-                      <div class="sugg-place-info">Tower</div>
-                      <div class="com-star-block">
-                        <ul class="com-star-list">
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                        </ul>
-                        <span class="count">
-                            <b>4.8</b>
-                          </span>
-                        <span>from 26 Reviews</span>
-                      </div>
-                    </div>
-                    <div class="sugg-btn-wrap">
-                      <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-                    </div>
-                  </div>
-                  <div class="suggestion-block">
-                    <div class="img-wrap">
-                      <img src="http://placehold.it/60x60" alt="image">
-                    </div>
-                    <div class="sugg-content">
-                      <div class="sugg-place">Nagoya city science museum</div>
-                      <div class="sugg-place-info">Museum</div>
-                      <div class="com-star-block">
-                        <ul class="com-star-list">
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                        </ul>
-                        <span class="count">
-                            <b>4.8</b>
-                          </span>
-                        <span>from 26 Reviews</span>
-                      </div>
-                    </div>
-                    <div class="sugg-btn-wrap">
-                      <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-                    </div>
-                  </div>
-                  <div class="suggestion-block">
-                    <div class="img-wrap">
-                      <img src="http://placehold.it/60x60" alt="image">
-                    </div>
-                    <div class="sugg-content">
-                      <div class="sugg-place">Nagoya city science museum</div>
-                      <div class="sugg-place-info">Museum</div>
-                      <div class="com-star-block">
-                        <ul class="com-star-list">
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                          <li><i class="trav-star-icon"></i></li>
-                        </ul>
-                        <span class="count">
-                            <b>4.8</b>
-                          </span>
-                        <span>from 26 Reviews</span>
-                      </div>
-                    </div>
-                    <div class="sugg-btn-wrap">
-                      <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="search-block" [formGroup]="form">
+              <input type="text" class="" placeholder="Search..." id="placeSearchInput" formControlName="place">
             </div>
           </div>
         </div>
         <div class="suggestion-wrapper">
           <p class="sugg-ttl">Suggestions</p>
           <div class="sugg-inner">
-            <div class="suggestion-block">
+            <div class="suggestion-block" *ngFor="let place of places">
               <div class="img-wrap">
                 <img src="http://placehold.it/60x60" alt="image">
               </div>
               <div class="sugg-content">
-                <div class="sugg-place">Nagoya castle</div>
+                <div class="sugg-place">{{place.name}}</div>
                 <div class="sugg-place-info">Monument</div>
                 <div class="com-star-block">
                   <ul class="com-star-list">
@@ -247,88 +39,15 @@
                 </div>
               </div>
               <div class="sugg-btn-wrap">
-                <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-              </div>
-            </div>
-            <div class="suggestion-block">
-              <div class="img-wrap">
-                <img src="http://placehold.it/60x60" alt="image">
-              </div>
-              <div class="sugg-content">
-                <div class="sugg-place">Port of nagoya public aquarium</div>
-                <div class="sugg-place-info">Aquarium</div>
-                <div class="com-star-block">
-                  <ul class="com-star-list">
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                  </ul>
-                  <span class="count">
-                      <b>4.8</b>
-                    </span>
-                  <span>from 26 Reviews</span>
-                </div>
-              </div>
-              <div class="sugg-btn-wrap">
-                <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-              </div>
-            </div>
-            <div class="suggestion-block">
-              <div class="img-wrap">
-                <img src="http://placehold.it/60x60" alt="image">
-              </div>
-              <div class="sugg-content">
-                <div class="sugg-place">Nagoya TV tower</div>
-                <div class="sugg-place-info">Tower</div>
-                <div class="com-star-block">
-                  <ul class="com-star-list">
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                  </ul>
-                  <span class="count">
-                      <b>4.8</b>
-                    </span>
-                  <span>from 26 Reviews</span>
-                </div>
-              </div>
-              <div class="sugg-btn-wrap">
-                <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
-              </div>
-            </div>
-            <div class="suggestion-block">
-              <div class="img-wrap">
-                <img src="http://placehold.it/60x60" alt="image">
-              </div>
-              <div class="sugg-content">
-                <div class="sugg-place">Nagoya city science museum</div>
-                <div class="sugg-place-info">Museum</div>
-                <div class="com-star-block">
-                  <ul class="com-star-list">
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                  </ul>
-                  <span class="count">
-                      <b>4.8</b>
-                    </span>
-                  <span>from 26 Reviews</span>
-                </div>
-              </div>
-              <div class="sugg-btn-wrap">
-                <button type="button" class="btn btn-light-primary btn-bordered" (click)="onAddClick()"><span>+</span> Add</button>
+                <button type="button" (click)="onAddClick(place.id)" [routerLink]="['trip', trip_id, 'show']" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
               </div>
             </div>
           </div>
+          <div class="error-layer" *ngIf="(error$ | async)">
+            <p class="sub-ttl error-message">{{error$ | async}}</p>
+          </div>
         </div>
       </div>
-      <p class="sub-ttl error-message" *ngIf="error$ | async">{{error$ | async}}</p>
     </div>
   </div>
 </div>

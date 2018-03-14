@@ -6,20 +6,27 @@ import { AddCityToTripModalComponent } from './modals/add-city-to-trip-modal/add
 import { AddPlaceToTripModalComponent } from './modals/add-place-to-trip-modal/add-place-to-trip-modal.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {TripPlannerService} from "./services/trip-planner.service";
+import {SharedModule} from '../shared/shared.module';
+import {CoreModule} from '../core/core.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
+    CoreModule,
   ],
   declarations: [
     TripPlannerComponent,
     CreateTripPlanModalComponent,
     AddCityToTripModalComponent,
-    AddPlaceToTripModalComponent
+    AddPlaceToTripModalComponent,
   ],
   providers: [
     TripPlannerService
-  ]
+  ],
+  entryComponents: [CreateTripPlanModalComponent,
+    AddCityToTripModalComponent,
+    AddPlaceToTripModalComponent]
 })
 export class TripPlannerModule { }

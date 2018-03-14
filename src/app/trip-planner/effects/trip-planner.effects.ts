@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {Actions, Effect} from '@ngrx/effects';
 
 import * as tripPlanner from '../actions/trip-planner.actions';
@@ -7,9 +6,6 @@ import * as tripPlanner from '../actions/trip-planner.actions';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
-import {Action} from '@ngrx/store';
-import {of} from 'rxjs/observable/of';
-import {go} from '../../core/actions/router.actions';
 import {TripPlannerService} from '../services/trip-planner.service';
 import {Router} from '@angular/router';
 

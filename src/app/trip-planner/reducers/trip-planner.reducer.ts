@@ -2,7 +2,6 @@ import * as tripPlanner from '../actions/trip-planner.actions';
 
 export interface State {
   trip_id: number;
-  /*authModalRef: any;*/
   tripPlannerError: any;
 }
 

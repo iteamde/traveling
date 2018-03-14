@@ -1,6 +1,6 @@
 <!-- would visit place popup -->
-<div [formGroup]="form" class="modal-dialog" id="login" tabindex="-1" role="dialog">
-  <button class="modal-close" type="button" data-dismiss="modal" aria-label="Close">
+<div [formGroup]="form" (ngSubmit)="form.valid && submit()" class="modal-wrapper" >
+  <button class="modal-close" type="button" mat-button  [mat-dialog-close]="true" routerLink="trip">
     <i class="trav-close-icon"></i>
   </button>
   <div class="modal-dialog modal-custom-style modal-750" role="document">
@@ -9,13 +9,13 @@
         <div class="plan-head">
           <h4 class="ttl">Trip Planner</h4>
           <div class="head-btn-wrap">
-            <button type="button" class="btn btn-light-primary btn-bordered" (click)="onNextStepClick()">Next step</button>
+            <button type="submit" class="btn btn-light-primary btn-bordered" (click)="validation.onValueChange(form, formErrors, true)">Next step</button>
           </div>
         </div>
         <div class="create-trip-block">
           <div class="form-row">
             <div class="field-label">What you want to call your trip?</div>
-            <div class="field-item">
+            <div class="field-item" [ngClass]="{ 'has-danger': formErrors.title }">
               <input type="text" placeholder="From Morocco to Japan in 16 Days" formControlName="title">
             </div>
           </div>
@@ -33,7 +33,7 @@
             <p>You decide who can see your Trip Plan, you changed this at any time.</p>
           </div>
           <div class="create-footer">
-            <button type="button" class="btn btn-light-primary btn-bordered">
+            <button type="button" class="btn  btn-bordered" [ngClass]="{'btn-light-primary': privacy === 1, 'btn-transp': privacy !== 1}" (click)="privacy = 1">
               <div class="icon-wrap">
                 <i class="trav-earth"></i>
               </div>
@@ -41,9 +41,9 @@
                 <div class="ttl">Public</div>
                 <div class="sub-ttl">Everyone can see this</div>
               </div>
-              <input type="radio" value="1" formControlName="privacy">
+              <input type="radio" [value]="1" formControlName="privacy" [ngModel]="privacy" >
             </button>
-            <button type="button" class="btn btn-transp btn-bordered">
+            <button type="button" class="btn btn-transp btn-bordered" (click)="privacy = 2" [ngClass]="{'btn-light-primary': privacy === 2, 'btn-transp': privacy !== 2}" >
               <div class="icon-wrap">
                 <i class="trav-friends-icon"></i>
               </div>
@@ -51,9 +51,9 @@
                 <div class="ttl">Friends</div>
                 <div class="sub-ttl">Only visible to friends</div>
               </div>
-              <input type="radio" value="2" formControlName="privacy">
+              <input type="radio" [value]="2"  formControlName="privacy" >
             </button>
-            <button type="button" class="btn btn-transp btn-bordered">
+            <button type="button" class="btn btn-transp btn-bordered"  (click)="privacy = 3" [ngClass]="{'btn-light-primary': privacy === 3, 'btn-transp': privacy !== 3}" >
               <div class="icon-wrap">
                 <i class="trav-lock-icon"></i>
               </div>
@@ -61,12 +61,15 @@
                 <div class="ttl">Private</div>
                 <div class="sub-ttl">Visible only to me</div>
               </div>
-              <input type="radio" value="3" formControlName="privacy">
+              <input type="radio" [value]="3"  formControlName="privacy" >
             </button>
+          </div>
+          <div class="error-layer" *ngIf="(error$ | async) || formErrors.title">
+            <p class="sub-ttl error-message text-center" *ngIf="formErrors.title">{{formErrors.title}}</p>
+            <p class="sub-ttl error-message" *ngIf="error$ | async">{{error$ | async}}</p>
           </div>
         </div>
       </div>
-      <p class="sub-ttl error-message" *ngIf="error$ | async">{{error$ | async}}</p>
     </div>
   </div>
 </div>

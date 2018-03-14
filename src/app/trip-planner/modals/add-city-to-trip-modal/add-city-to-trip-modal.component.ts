@@ -8,6 +8,8 @@ import {TripPlannerService} from '../../services/trip-planner.service';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-add-city-to-trip-modal',
@@ -15,6 +17,7 @@ import 'rxjs/add/operator/debounceTime';
   styleUrls: ['add-city-to-trip-modal.component.scss']
 })
 export class AddCityToTripModalComponent implements OnInit, OnDestroy {
+  public trip_id: number;
 
   /**
    * Trip planner error
@@ -43,11 +46,18 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
    */
   constructor(private store: Store<State>,
               private fb: FormBuilder,
-              private tripPlannerService: TripPlannerService) {
+              private tripPlannerService: TripPlannerService)
+  {
     this.error$ = store.select(getTripPlannerError);
+    this.store.select(getTripId).take(1)
+      .subscribe(tripId =>  {
+        this.trip_id = tripId || 171;
+        console.log(this.trip_id);
+      });
   }
 
   ngOnInit() {
+
     this.cityForm = this.fb.group({
       city: ''
     });
@@ -61,9 +71,9 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
   /**
    * Next step button clicked
    */
-  onAddClick() {
+  onAddClick(id) {
     this.store.select(getTripId)
-      .subscribe(tripId => this.store.dispatch(new AddCityAction(tripId, this.cityForm.value)));
+      .subscribe(tripId => this.store.dispatch(new AddCityAction(tripId || this.trip_id, {city_id : id})));
   }
 
   getCities(query) {
