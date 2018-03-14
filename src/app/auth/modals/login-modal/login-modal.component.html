@@ -5,7 +5,7 @@
       </button>
       <div class="modal-body">
         <div class="top-layer">
-          <a href="#" class="logo-wrap">
+          <a routerLink="/" class="logo-wrap">
             <img src="./assets/image/main-logo.png" alt="">
           </a>
           <h4 class="title">Login to your account</h4>
@@ -23,7 +23,7 @@
             <input type="password" class="form-control" formControlName="password" id="password"  placeholder="Password">
           </div>
           <div class="form-group">
-            <a href="#"  routerLink="forgot-password" class="forget-password-link">Forget your password?</a>
+            <a routerLink="/forgot-password" class="forget-password-link">Forget your password?</a>
           </div>
           <div class="form-group">
             <button type="submit" (click)="validation.onValueChange(userForm, formErrors, true)" class="btn btn-primary">Log In</button>

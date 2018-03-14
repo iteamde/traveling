@@ -14,9 +14,10 @@ import { RegisterModalStep4Component } from './modals/register-modal-step-4/regi
 import { RegisterModalStep5Component } from './modals/register-modal-step-5/register-modal-step-5.component';
 import { SignupDoneComponent } from './modals/signup-done/signup-done.component';
 import {FacebookService} from './services/facebook.service';
-import {RegistrationGuard} from './gurds/registration.guard';
+import {RegistrationGuard} from './guards/registration.guard';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import {AuthGuard} from './guards/can-activate.guard';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,12 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     CoreModule,
     ScrollEventModule
   ],
-  providers: [ValidationService, FacebookService, RegistrationGuard],
+  providers: [
+    AuthGuard,
+    ValidationService,
+    FacebookService,
+    RegistrationGuard
+  ],
   entryComponents: [
     RegisterModalComponent,
     LoginModalComponent,

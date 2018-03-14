@@ -6,11 +6,11 @@ import {getRegistationStep, State} from '../../core/reducers';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
-  protected registrationStep$: Observable<any>;
+  public registrationStep$: Observable<any>;
 
   constructor(private store: Store<State>) {
     this.registrationStep$ = store.select(getRegistationStep);

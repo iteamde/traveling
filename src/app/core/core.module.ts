@@ -9,6 +9,8 @@ import {CoreEffects} from './effects/core.effects';
 import {SharedModule} from '../shared/shared.module';
 import {ValidationService} from './services/validation';
 import {ModalManager} from './services/modal-manager.service';
+import {TermsOfServiceComponent} from './components/terms-of-service/terms-of-service.component';
+import {PrivacyPolicyComponent} from './components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   imports: [
@@ -19,8 +21,14 @@ import {ModalManager} from './services/modal-manager.service';
 
     EffectsModule.forFeature([CoreEffects])
   ],
-  providers: [ValidationService, ModalManager],
-  declarations: [],
+  providers: [
+    ValidationService,
+    ModalManager
+  ],
+  declarations: [
+    TermsOfServiceComponent,
+    PrivacyPolicyComponent
+  ],
   exports: []
 })
 export class CoreModule {

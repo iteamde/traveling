@@ -1,5 +1,5 @@
 import { AuthComponent } from './auth.component';
-import {RegistrationGuard} from './gurds/registration.guard';
+import {RegistrationGuard} from './guards/registration.guard';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 

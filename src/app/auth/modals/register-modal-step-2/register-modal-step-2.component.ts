@@ -15,8 +15,8 @@ import {RegisterAction} from '../../actions/auth.actions';
   styleUrls: ['./register-modal-step-2.component.css']
 })
 export class RegisterModalStep2Component implements OnInit {
-  protected user$: Observable<any>;
-  protected authError$: Observable<any>;
+  public user$: Observable<any>;
+  public authError$: Observable<any>;
   public ageArray: Array<number>;
   public userForm;
   public user = {

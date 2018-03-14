@@ -15,7 +15,7 @@ import {LoginAction, SetRegistrationStep} from '../../actions/auth.actions';
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent implements OnInit {
-  protected authError$: Observable<any>;
+  public authError$: Observable<any>;
   public userForm: FormGroup;
   public user: any = {
     email: "",

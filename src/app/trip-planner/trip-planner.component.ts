@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {CreateTripPlanModalComponent} from "./modals/create-trip-plan-modal/create-trip-plan-modal.component";
-import {AddCityToTripModalComponent} from "./modals/add-city-to-trip-modal/add-city-to-trip-modal.component";
-import {AddPlaceToTripModalComponent} from "./modals/add-place-to-trip-modal/add-place-to-trip-modal.component";
-import {Store} from "@ngrx/store";
-import {State} from "../core/reducers/index";
+import {CreateTripPlanModalComponent} from './modals/create-trip-plan-modal/create-trip-plan-modal.component';
+import {AddCityToTripModalComponent} from './modals/add-city-to-trip-modal/add-city-to-trip-modal.component';
+import {AddPlaceToTripModalComponent} from './modals/add-place-to-trip-modal/add-place-to-trip-modal.component';
 import {ModalManager} from '../core/services/modal-manager.service';
-import { Router, ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-trip-planner',
@@ -21,7 +19,7 @@ export class TripPlannerComponent implements OnInit {
   };
 
 
-  constructor(private store: Store<State>, private modalManager: ModalManager, private  route: Router, private active: ActivatedRoute) {
+  constructor(private modalManager: ModalManager, private  route: Router) {
     this.path = route.url.split('/').pop();
   }
 

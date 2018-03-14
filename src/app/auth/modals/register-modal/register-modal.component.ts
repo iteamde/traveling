@@ -16,7 +16,7 @@ import {LoginModalComponent} from '../login-modal/login-modal.component';
   styleUrls: ['./register-modal.component.css']
 })
 export class RegisterModalComponent implements OnInit {
-  protected authError$: Observable<any>;
+  public authError$: Observable<any>;
   public userForm: FormGroup;
   public user: any = {
     username: "",
@@ -31,7 +31,10 @@ export class RegisterModalComponent implements OnInit {
     password_confirmation: "",
   };
 
-  constructor( private store: Store<State>, private fb: FormBuilder , public validation: ValidationService, private modalManager: ModalManager) {
+  constructor( private store: Store<State>,
+               private fb: FormBuilder ,
+               public validation: ValidationService,
+               private modalManager: ModalManager) {
     this.authError$ = store.select(getAuthError);
   }
 

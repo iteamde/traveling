@@ -76,10 +76,6 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
       .subscribe(tripId => this.store.dispatch(new AddCityAction(tripId || this.trip_id, {city_id : id})));
   }
 
-  getCities(query) {
-    return this.tripPlannerService.getCities(query);
-  }
-
   ngOnDestroy() {
     this.searchCitySubscription$.unsubscribe();
   }

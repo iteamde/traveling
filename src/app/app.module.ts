@@ -18,6 +18,8 @@ import {TripPlannerModule} from './trip-planner/trip-planner.module';
 import {TripPlannerEffects} from './trip-planner/effects/trip-planner.effects';
 import {RouterEffects} from './core/effects/router.effects';
 import {HomeModule} from './home/home.module';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
 
 const effectsArr = [
   AuthEffects,
@@ -42,7 +44,14 @@ const effectsArr = [
     Ng4LoadingSpinnerModule.forRoot(),
     TripPlannerModule
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
