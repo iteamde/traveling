@@ -1,0 +1,80 @@
+<!-- would visit place popup -->
+<div class="modal-dialog" id="login" tabindex="-1" role="dialog">
+  <button class="modal-close" type="button" data-dismiss="modal" aria-label="Close">
+    <i class="trav-close-icon"></i>
+  </button>
+  <div class="modal-dialog modal-custom-style modal-650" role="document">
+    <div class="modal-custom-block">
+      <div class="post-block post-modal-add-place">
+        <h3 class="place-title">Which country or city would you like to visit?</h3>
+        <div class="search-block-wrap">
+          <div class="search-block-inner">
+            <div class="search-block" [formGroup]="cityForm">
+              <input type="text" class="" placeholder="Search..." id="placeSearchInput2" formControlName="city">
+            </div>
+            <div class="search-drop-place">
+              <div class="results-block-wrap">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="suggestion-wrapper">
+          <p class="sugg-ttl">Suggestions</p>
+          <div class="sugg-inner">
+            <div class="suggestion-block">
+              <div class="img-wrap">
+                <img src="http://placehold.it/60x60" alt="image">
+              </div>
+              <div class="sugg-content">
+                <div class="sugg-place">Nagoya castle</div>
+                <div class="sugg-place-info">Monument</div>
+                <div class="com-star-block">
+                  <ul class="com-star-list">
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                  </ul>
+                  <span class="count">
+                      <b>4.8</b>
+                    </span>
+                  <span>from 26 Reviews</span>
+                </div>
+              </div>
+              <div class="sugg-btn-wrap">
+                <button type="button" class="btn btn-light-primary btn-bordered"><span>+</span> Add</button>
+              </div>
+            </div>
+            <div class="suggestion-block" *ngFor="let city of cities">
+              <div class="img-wrap">
+                <img src="http://placehold.it/60x60" alt="image">
+              </div>
+              <div class="sugg-content">
+                <div class="sugg-place">{{city.title}}</div>
+                <div class="sugg-place-info">Aquarium</div>
+                <div class="com-star-block">
+                  <ul class="com-star-list">
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                    <li><i class="trav-star-icon"></i></li>
+                  </ul>
+                  <span class="count">
+                      <b>4.8</b>
+                    </span>
+                  <span>from 26 Reviews</span>
+                </div>
+              </div>
+              <div class="sugg-btn-wrap">
+                <button type="button" class="btn btn-light-primary btn-bordered" routerLink="/trips/${city.trip_id}/add_place"><span>+</span> Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sub-ttl error-message" *ngIf="error$ | async">{{error$ | async}}</p>
+    </div>
+  </div>
+</div>

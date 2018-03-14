@@ -71,3 +71,4 @@ export const getRegistrationStep = (state: State) => state.registrationStep;
 export const getAuthModalRef = (state: State) => state.authModalRef;
 export const getAuthError = (state: State) => state.authError;
 export const getResetPasswordStatus = (state: State) => state.resetPasswordStatus;
+export const getUserId = (state: State) => state.user.user_id;

@@ -14,8 +14,15 @@ import {EffectsModule} from '@ngrx/effects';
 import {ApiService} from './core/services/api.service';
 import {HttpClientModule} from '@angular/common/http';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import {TripPlannerModule} from './trip-planner/trip-planner.module';
+import {TripPlannerEffects} from './trip-planner/effects/trip-planner.effects';
+import {RouterEffects} from './core/effects/router.effects';
 
-
+const effectsArr = [
+  AuthEffects,
+  TripPlannerEffects,
+  RouterEffects
+];
 
 @NgModule({
   declarations: [
@@ -28,9 +35,10 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     routing,
     AuthModule,
     SharedModule,
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot(effectsArr),
     StoreModule.forRoot(reducers),
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    TripPlannerModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
