@@ -1,7 +1,8 @@
-import {ModuleWithProviders, NgModule} from '@angular/core';
+import {ModuleWithProviders} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import {AuthRoutes} from './auth/auth.routing';
+import {TripPlannerRoutes} from './trip-planner/trip-planner.routing';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const appRoutes = [
     component: AppComponent,
     children: [
       ...AuthRoutes,
-
+      ...TripPlannerRoutes
     ]
   }
 ];
