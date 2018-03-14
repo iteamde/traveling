@@ -64,7 +64,7 @@ export class LoginModalComponent implements OnInit {
  }
 
  login() {
-   this.store.dispatch(new LoginAction({data : this.userForm.value, urlTo: '/' , queryUrl: 'users/login'}));
+   this.store.dispatch(new LoginAction({data : this.userForm.value, urlTo: '/home' , queryUrl: 'users/login'}));
  }
 
 }

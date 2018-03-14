@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import {AuthRoutes} from './auth/auth.routing';
 import {TripPlannerRoutes} from './trip-planner/trip-planner.routing';
+import {HomeRoutes} from './home/home.routing';
 
 
 const appRoutes = [
@@ -11,7 +12,8 @@ const appRoutes = [
     component: AppComponent,
     children: [
       ...AuthRoutes,
-      ...TripPlannerRoutes
+      ...TripPlannerRoutes,
+      ...HomeRoutes
     ]
   }
 ];

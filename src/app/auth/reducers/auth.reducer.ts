@@ -51,8 +51,18 @@ export function reducer(state: State = INIT_STATE, action: auth.Actions) {
 
     case auth.RESET_PASSWORD_SUCCESS:
       return {...state, resetPasswordStatus : 'emailSent'};
+
     case auth.RESET_PASSWORD_ERROR:
       return {...state, resetPasswordStatus : 'error'};
+
+    case auth.SET_PASSWORD_SUCCESS:
+      return {...state, resetPasswordStatus : 'success'};
+
+    case auth.SET_PASSWORD_ERROR:
+      return {...state, resetPasswordStatus : 'error'};
+
+    case auth.CLEAR_PASSWORD_STATUS:
+      return {...state, resetPasswordStatus : ''};
 
     default :
       return state;

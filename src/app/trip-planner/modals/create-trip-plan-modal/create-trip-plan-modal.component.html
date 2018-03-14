@@ -1,5 +1,5 @@
 <!-- would visit place popup -->
-<div [formGroup]="form" (ngSubmit)="form.valid && submit()" class="modal-wrapper" >
+<form [formGroup]="form" (ngSubmit)="form.valid && submit()" class="modal-wrapper" >
   <button class="modal-close" type="button" mat-button  [mat-dialog-close]="true" routerLink="trip">
     <i class="trav-close-icon"></i>
   </button>
@@ -66,10 +66,10 @@
           </div>
           <div class="error-layer" *ngIf="(error$ | async) || formErrors.title">
             <p class="sub-ttl error-message text-center" *ngIf="formErrors.title">{{formErrors.title}}</p>
-            <p class="sub-ttl error-message" *ngIf="error$ | async">{{error$ | async}}</p>
+            <p class="sub-ttl error-messagetext-center" *ngIf="error$ | async">{{(error$ | async)}}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</form>

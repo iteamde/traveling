@@ -13,6 +13,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import {Router} from '@angular/router';
+import {SetPasswordSuccessAction} from '../actions/auth.actions';
 
 
 
@@ -64,10 +65,26 @@ export class AuthEffects {
     .map(response => {
       if(response && response.success){
         console.log("RESET RESPONSE" , response);
-        return new auth.LoginSuccessAction(response);
+        return new auth.ResetPasswordSuccessAction(response);
       } else {
         console.log("RESSET RESPONSE ERROR" , response);
-        return  new auth.LoginFailedAction(response);
+        return  new auth.ResetPasswordFailedAction(response);
+      }
+    });
+
+
+  @Effect()
+  setPassword$ = this.actions$.ofType(auth.SET_PASSWORD)
+    .switchMap((action: auth.SetPasswordAction) => {
+      return this.ApiService.post({...action.payload.data} , action.payload.queryUrl);
+    })
+    .map(response => {
+      if(response && response.success){
+        console.log("SET RESPONSE" , response);
+        return new auth.SetPasswordSuccessAction(response);
+      } else {
+        console.log("SET RESPONSE ERROR" , response);
+        return  new auth.SetPasswordErrorAction(response);
       }
     });
   /**

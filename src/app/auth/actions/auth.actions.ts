@@ -10,8 +10,10 @@ export const LOGIN_FAILED = '[Auth] login failed';
 export const RESET_PASSWORD = '[Auth] reset password email request';
 export const RESET_PASSWORD_SUCCESS = '[Auth] reset password email request success';
 export const RESET_PASSWORD_ERROR = '[Auth] reset password email request error';
-
-
+export const SET_PASSWORD = '[Auth] set password';
+export const SET_PASSWORD_SUCCESS = '[Auth] set password success';
+export const SET_PASSWORD_ERROR = '[Auth] set password error';
+export const CLEAR_PASSWORD_STATUS = '[Auth] clear password status';
 
 
 /**
@@ -93,6 +95,29 @@ export class ResetPasswordAction implements Action {
   constructor(public payload: {data: any, queryUrl: string}) {}
 }
 
+export class SetPasswordAction implements Action {
+  readonly type = SET_PASSWORD;
+
+  constructor(public payload: {data: any, queryUrl: string}) {}
+}
+export class SetPasswordSuccessAction implements Action {
+  readonly type = SET_PASSWORD_SUCCESS;
+
+  constructor(public payload: {data: any, queryUrl: string}) {}
+}
+
+export class ClearPasswordStatus implements Action {
+  readonly type = CLEAR_PASSWORD_STATUS;
+
+}
+
+export class SetPasswordErrorAction implements Action {
+  readonly type = SET_PASSWORD_ERROR;
+
+  constructor(public payload: {data: any, queryUrl: string}) {}
+}
+
+
 export class ResetPasswordSuccessAction implements Action {
   readonly type = RESET_PASSWORD_SUCCESS;
 
@@ -115,6 +140,10 @@ export type Actions = RegisterAction
   | ResetPasswordAction
   | ResetPasswordSuccessAction
   | ResetPasswordFailedAction
+  | SetPasswordAction
+  | SetPasswordSuccessAction
+  | SetPasswordErrorAction
+  | ClearPasswordStatus
   | RegistrationSuccessAction;
 
 

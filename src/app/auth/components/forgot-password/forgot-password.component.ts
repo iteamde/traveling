@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {ValidationService} from '../../../core/services/validation';
 import {emailValidator} from '../../../core/validators/custom-validators';
-import { ResetPasswordAction} from '../../actions/auth.actions';
+import {ClearPasswordStatus, ResetPasswordAction} from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +14,6 @@ import { ResetPasswordAction} from '../../actions/auth.actions';
 export class ForgotPasswordComponent implements OnInit {
   public resetPasswordStatus$:any;
   public userForm: FormGroup;
-  public isInit: boolean ;
   public user: any = {
     email: "",
   };
@@ -26,7 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isInit = true;
+    this.store.dispatch(new ClearPasswordStatus());
     this.buildForm();
   }
 
@@ -45,7 +44,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   reset() {
-    console.log("Called");
     this.store.dispatch(new ResetPasswordAction({data : this.userForm.value, queryUrl: 'users/forgot'}));
   }
 }

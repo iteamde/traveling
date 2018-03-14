@@ -17,6 +17,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {TripPlannerModule} from './trip-planner/trip-planner.module';
 import {TripPlannerEffects} from './trip-planner/effects/trip-planner.effects';
 import {RouterEffects} from './core/effects/router.effects';
+import {HomeModule} from './home/home.module';
 
 const effectsArr = [
   AuthEffects,
@@ -34,6 +35,7 @@ const effectsArr = [
     HttpClientModule,
     routing,
     AuthModule,
+    HomeModule,
     SharedModule,
     EffectsModule.forRoot(effectsArr),
     StoreModule.forRoot(reducers),
