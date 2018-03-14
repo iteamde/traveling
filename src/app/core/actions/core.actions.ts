@@ -1,15 +1,19 @@
 import {Action} from '@ngrx/store';
 
-export const FINISH_LOADING = '[Core] finish loading';
+export const OPEN_MODAL = '[Core] Open modal';
 
-export class SaveToStoreAction implements Action {
-  readonly type = FINISH_LOADING;
+/**
+ * Open  modal
+ */
+
+export class OpenModalAction implements Action {
+  readonly type = OPEN_MODAL;
 
   /**
    * Default constructor
    * @param payload
    */
-  constructor(public payload: {isLoad?: boolean; }) {}
+  constructor(public payload) {}
 }
 
-export type Actions = SaveToStoreAction;
+export type Actions = OpenModalAction;

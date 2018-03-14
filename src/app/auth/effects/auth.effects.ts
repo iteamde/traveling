@@ -18,7 +18,7 @@ import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
-   private urlTo:string;
+   private urlTo: string;
   /**
    * Registers user with given dataconstructor(puauth: fromAuth.reducer,blic payload) {}
    */
@@ -38,16 +38,6 @@ export class AuthEffects {
         return  new auth.RegistrationFailedAction(response);
       }
     });
-
-  /**
-   * Registers user with given dataconstructor(puauth: fromAuth.reducer,blic payload) {}
-   */
-  @Effect()
-  openModal$ = this.actions$.ofType(auth.OPEN_MODAL)
-    .switchMap((action: auth.OpenModalAction) => {
-      return  Observable.of({type: 'REGISTRATION111_FAILED'});
-    });
-
   @Effect()
   login$ = this.actions$.ofType(auth.LOGIN)
     .switchMap((action: auth.LoginAction) => {

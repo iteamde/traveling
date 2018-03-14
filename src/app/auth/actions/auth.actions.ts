@@ -1,8 +1,6 @@
 import {Action} from '@ngrx/store';
 
 export const REGISTER = '[Auth] Register user';
-export const OPEN_MODAL = '[Auth] Open modal';
-export const REMOVE_MODAL_REF = '[Auth] Remove modal ref';
 export const SET_REGISTRATION_STEP = '[Auth] set registration step';
 export const REGISTRATION_SUCCESS = '[Auth] registration success';
 export const REGISTRATION_FAILED = '[Auth] registration failed';
@@ -83,24 +81,6 @@ export class RegistrationFailedAction implements Action {
   constructor(public payload) {}
 }
 
-/**
- * Open auth modal
- */
-
-export class OpenModalAction implements Action {
-  readonly type = OPEN_MODAL;
-
-  /**
-   * Default constructor
-   * @param payload
-   */
-  constructor(public payload) {}
-}
-
-export class RemoveModalRef implements Action {
-  readonly type = REMOVE_MODAL_REF;
-}
-
 export class SetRegistrationStep implements Action {
   readonly type = SET_REGISTRATION_STEP;
 
@@ -127,8 +107,6 @@ export class ResetPasswordFailedAction implements Action {
 
 
 export type Actions = RegisterAction
-  | OpenModalAction
-  | RemoveModalRef
   | SetRegistrationStep
   | RegistrationFailedAction
   | LoginAction

@@ -37,12 +37,6 @@ export function reducer(state: State = INIT_STATE, action: auth.Actions) {
     case auth.LOGIN_FAILED:
       return {...state, authError : action.payload.data.message};
 
-    case auth.OPEN_MODAL:
-      return {...state, authModalRef : action.payload.ref};
-
-    case auth.REMOVE_MODAL_REF:
-      return {...state, authModalRef : null};
-
     case auth.SET_REGISTRATION_STEP:
       return {...state, registrationStep : action.payload};
 
@@ -68,6 +62,5 @@ export function reducer(state: State = INIT_STATE, action: auth.Actions) {
 
 export const getLoggedUser = (state: State) => state.user;
 export const getRegistrationStep = (state: State) => state.registrationStep;
-export const getAuthModalRef = (state: State) => state.authModalRef;
 export const getAuthError = (state: State) => state.authError;
 export const getResetPasswordStatus = (state: State) => state.resetPasswordStatus;

@@ -6,6 +6,8 @@ import {getAuthError, State} from '../../../core/reducers';
 import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
 import {ValidationService} from '../../../core/services/validation';
 import {Observable} from 'rxjs/Observable';
+import {ModalManager} from '../../../core/services/modal-manager.service';
+import {LoginModalComponent} from '../login-modal/login-modal.component';
 
 
 @Component({
@@ -29,7 +31,7 @@ export class RegisterModalComponent implements OnInit {
     password_confirmation: "",
   };
 
-  constructor( private store: Store<State>, private fb: FormBuilder , public validation: ValidationService) {
+  constructor( private store: Store<State>, private fb: FormBuilder , public validation: ValidationService, private modalManager: ModalManager) {
     this.authError$ = store.select(getAuthError);
   }
 
@@ -72,5 +74,9 @@ export class RegisterModalComponent implements OnInit {
       queryUrl : 'users/create',
       urlTo : 'signup/step2'
     }));
+  }
+
+  open() {
+    this.modalManager.openModal(LoginModalComponent);
   }
 }

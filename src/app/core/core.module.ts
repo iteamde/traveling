@@ -8,6 +8,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {CoreEffects} from './effects/core.effects';
 import {SharedModule} from '../shared/shared.module';
 import {ValidationService} from './services/validation';
+import {ModalManager} from './services/modal-manager.service';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import {ValidationService} from './services/validation';
 
     EffectsModule.forFeature([CoreEffects])
   ],
-  providers: [ValidationService],
+  providers: [ValidationService, ModalManager],
   declarations: [],
   exports: []
 })

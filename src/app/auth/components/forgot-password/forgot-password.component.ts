@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {getAuthModalRef, getResetPasswordStatus, State} from '../../../core/reducers';
+import { getResetPasswordStatus, State} from '../../../core/reducers';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {ValidationService} from '../../../core/services/validation';
-import {emailValidator, nameValidator} from '../../../core/validators/custom-validators';
-import {LoginAction, RemoveModalRef, ResetPasswordAction} from '../../actions/auth.actions';
+import {emailValidator} from '../../../core/validators/custom-validators';
+import { ResetPasswordAction} from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-forgot-password',

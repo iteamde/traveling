@@ -52,8 +52,6 @@ export class ValidationService {
       }
     }
 
-    console.log(formErrors);
-
     return formErrors;
   }
 

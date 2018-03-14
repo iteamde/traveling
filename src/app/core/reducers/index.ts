@@ -30,9 +30,11 @@ export const reducers: ActionReducerMap<State> = {
 export const getCoreState = (state: State) => state.core;
 export const getAuthState = (state: State) => state.auth;
 
+
+export const getOpenedModalRef = createSelector(getCoreState, fromCore.getOpenedModalRef);
+
 export const getLoggedUser = createSelector(getAuthState, fromAuth.getLoggedUser);
 export const getRegistationStep = createSelector(getAuthState, fromAuth.getRegistrationStep);
-export const getAuthModalRef = createSelector(getAuthState, fromAuth.getAuthModalRef);
 export const getAuthError = createSelector(getAuthState, fromAuth.getAuthError);
 export const getResetPasswordStatus = createSelector(getAuthState, fromAuth.getResetPasswordStatus);
 

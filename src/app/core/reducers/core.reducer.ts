@@ -1,14 +1,15 @@
 import * as core from '../actions/core.actions';
 import {ActionReducer} from '@ngrx/store';
-import {FINISH_LOADING} from '../actions/core.actions';
+import {OPEN_MODAL} from '../actions/core.actions';
+
 
 
 export interface State {
-   isLoad: boolean;
+  openedModalRef: any;
 }
 
 export const INIT_STATE: State = {
-  isLoad: false
+  openedModalRef: null
 };
 
 /**
@@ -18,16 +19,16 @@ export const INIT_STATE: State = {
  */
 export function reducer(state: State = INIT_STATE, action: core.Actions) {
   switch (action.type) {
-    case FINISH_LOADING:
-      return {
-        isLoad: true
-      };
+    case OPEN_MODAL:
+      return {...state, openedModalRef : action.payload.ref};
 
     default: {
       return state;
     }
   }
 }
+
+export const getOpenedModalRef = (state: State) => state.openedModalRef;
 
 
 
