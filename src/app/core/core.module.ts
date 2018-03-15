@@ -11,6 +11,7 @@ import {ValidationService} from './services/validation';
 import {ModalManager} from './services/modal-manager.service';
 import {TermsOfServiceComponent} from './components/terms-of-service/terms-of-service.component';
 import {PrivacyPolicyComponent} from './components/privacy-policy/privacy-policy.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {PrivacyPolicyComponent} from './components/privacy-policy/privacy-policy
   ],
   declarations: [
     TermsOfServiceComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    ErrorComponent
   ],
   exports: []
 })

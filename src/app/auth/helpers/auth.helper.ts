@@ -1,13 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
-import {TokenStorage} from './token.storage';
-import * as jwtDecode from 'jwt-decode';
 
-export const TOKEN_NAME = 'token';
+export const TOKEN_NAME = 'currentUser';
 
 @Injectable()
 export class AuthHelper {
 
-  constructor(@Inject('TokenStorage') private storage: TokenStorage) {
+  constructor( ) {
   }
 
   /**
@@ -15,7 +13,7 @@ export class AuthHelper {
    * @return {string|null}
    */
   public getAuthToken() {
-    return this.storage.getItem(TOKEN_NAME);
+    return localStorage.getItem(TOKEN_NAME);
   }
 
   /**
@@ -23,27 +21,11 @@ export class AuthHelper {
    * @param token
    */
   public setAuthToken(token: string) {
-    this.storage.setItem(TOKEN_NAME, token);
+    localStorage.setItem(TOKEN_NAME, token);
   }
 
-  /**
-   * Returns audience encoded in token
-   * @param token
-   * @return {string|string|any|string}
-   */
-  public getTokenAudience(token: string) {
-    return jwtDecode(token).aud;
-  }
-
-  /**
-   * Returns if audience is private
-   * @param audience
-   */
-  public isPrivateAudience(audience: string) {
-    return audience.indexOf('private') == 0;
-  }
 
   public clearAuthToken(){
-    this.storage.removeItem(TOKEN_NAME);
+    localStorage.removeItem(TOKEN_NAME);
   }
 }

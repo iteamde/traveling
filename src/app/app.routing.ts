@@ -6,6 +6,7 @@ import {TripPlannerRoutes} from './trip-planner/trip-planner.routing';
 import {HomeRoutes} from './home/home.routing';
 import {PrivacyPolicyComponent} from './core/components/privacy-policy/privacy-policy.component';
 import {TermsOfServiceComponent} from './core/components/terms-of-service/terms-of-service.component';
+import {ErrorComponent} from './core/components/error/error.component';
 
 
 const appRoutes = [
@@ -25,6 +26,10 @@ const appRoutes = [
   {
     path: 'terms-of-service',
     component: TermsOfServiceComponent
+  },
+  {
+    path: 'error',
+    component: ErrorComponent
   },
   {
     path: '**',

@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CreateTripAction} from '../../actions/trip-planner.actions';
 import {Observable} from 'rxjs/Observable';
 import {ValidationService} from '../../../core/services/validation';
+import {IMyDpOptions} from 'mydatepicker';
 
 @Component({
   selector: 'app-create-trip-plan-modal',
@@ -26,7 +27,13 @@ export class CreateTripPlanModalComponent implements OnInit {
   public form: FormGroup;
 
   public formErrors = {
-    title : ''
+    title : '',
+    date : ''
+  };
+
+  public myDatePickerOptions: IMyDpOptions = {
+    // other options...
+    dateFormat: 'dd mmm yyyy'
   };
 
   /**
@@ -45,16 +52,19 @@ export class CreateTripPlanModalComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(255)
       ]],
-      date: new Date(),
+      date: [ null, [
+        Validators.required,
+      ]],
       privacy: this.privacy
     });
   }
+
 
   /**
    * Next step button clicked
    */
   submit() {
-    this.store.dispatch(new CreateTripAction({user_id: 1, ...this.form.value}));
+    this.store.dispatch(new CreateTripAction({user_id: 1, ...this.form.value,  ...{date : this.form.get('date').value.jsdate}}));
     /*this.store.select(getUserId)
       .subscribe(userId => this.store.dispatch(new CreateTripAction({userId, ...this.form.value})));*/
   }

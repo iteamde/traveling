@@ -14,6 +14,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import {Router} from '@angular/router';
 import {SetPasswordSuccessAction} from '../actions/auth.actions';
+import * as tripPlanner from '../../trip-planner/actions/trip-planner.actions';
+import {AuthHelper} from '../helpers/auth.helper';
 
 
 
@@ -27,74 +29,59 @@ export class AuthEffects {
   register$ = this.actions$.ofType(auth.REGISTER)
     .switchMap((action: auth.RegisterAction) => {
        this.urlTo = action.payload.urlTo;
-       return this.ApiService.post({...action.payload.data} , action.payload.queryUrl);
+       return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map(response => {
-      if(response && response.success){
-        console.log("REGISTRATION RESPONSE" , response);
-        this.router.navigate([this.urlTo]);
-        return new auth.RegistrationSuccessAction(response);
-      } else {
-        console.log("REGISTRATION RESPONSE ERROR" , response);
-        return  new auth.RegistrationFailedAction(response);
-      }
-    });
+    .map( res => this.responseHandler(res, this.urlTo, auth.RegistrationSuccessAction , auth.RegistrationFailedAction) ) ;
+
   @Effect()
   login$ = this.actions$.ofType(auth.LOGIN)
     .switchMap((action: auth.LoginAction) => {
       this.urlTo = action.payload.urlTo;
-      return this.ApiService.post({...action.payload.data} , action.payload.queryUrl);
+      return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map(response => {
-      if(response && response.success){
-        console.log("LOGIN RESPONSE" , response);
-        this.router.navigate([this.urlTo]);
-        return new auth.LoginSuccessAction(response);
-      } else {
-        console.log("LOGIN RESPONSE ERROR" , response);
-        return  new auth.LoginFailedAction(response);
-      }
-    });
+    .map( res => this.responseHandler(res, this.urlTo, auth.LoginSuccessAction , auth.LoginFailedAction) ) ;
 
+  @Effect()
+  loginSuccess$ = this.actions$.ofType(auth.LOGIN_SUCCESS)
+  .map((action: auth.LoginAction) => {
+    this.authHelper.setAuthToken(action.payload.data.token);
+    return new auth.EmptyAction();
+  } );
 
   @Effect()
   reset$ = this.actions$.ofType(auth.RESET_PASSWORD)
     .switchMap((action: auth.ResetPasswordAction) => {
-      return this.ApiService.post({...action.payload.data} , action.payload.queryUrl);
+      return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map(response => {
-      if(response && response.success){
-        console.log("RESET RESPONSE" , response);
-        return new auth.ResetPasswordSuccessAction(response);
-      } else {
-        console.log("RESSET RESPONSE ERROR" , response);
-        return  new auth.ResetPasswordFailedAction(response);
-      }
-    });
+    .map( res => this.responseHandler(res, this.urlTo, auth.ResetPasswordSuccessAction , auth.ResetPasswordFailedAction) ) ;
 
 
   @Effect()
   setPassword$ = this.actions$.ofType(auth.SET_PASSWORD)
     .switchMap((action: auth.SetPasswordAction) => {
-      return this.ApiService.post({...action.payload.data} , action.payload.queryUrl);
+      return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map(response => {
-      if(response && response.success){
-        console.log("SET RESPONSE" , response);
-        return new auth.SetPasswordSuccessAction(response);
-      } else {
-        console.log("SET RESPONSE ERROR" , response);
-        return  new auth.SetPasswordErrorAction(response);
-      }
-    });
+    .map( res => this.responseHandler(res, this.urlTo, auth.SetPasswordSuccessAction , auth.SetPasswordErrorAction) ) ;
+
   /**
    * Default constructor
    * @param actions$
    * @param ApiService
    */
   constructor(private actions$: Actions,
-              private ApiService: ApiService,
+              private apiService: ApiService,
               private router: Router,
-             ) {
+              private authHelper: AuthHelper
+             ) {}
+
+  responseHandler(res, urlTo,  suc , error) {
+    if (res && res.success) {
+      console.log("SUCCES RESPONSE" , res);
+      this.router.navigate([urlTo]);
+      return new suc(res);
+    } else {
+      console.log("ERROR RESPONSE" , res);
+      return new error(res);
+    }
   }
 }

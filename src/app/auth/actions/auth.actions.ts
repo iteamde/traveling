@@ -49,6 +49,10 @@ export class LoginFailedAction implements Action {
   constructor(public payload) {}
 }
 
+export class EmptyAction implements Action {
+  readonly type = "Empty";
+}
+
 
 /**
  * Registers new user. (Currently just with given email and password)
@@ -144,6 +148,7 @@ export type Actions = RegisterAction
   | SetPasswordSuccessAction
   | SetPasswordErrorAction
   | ClearPasswordStatus
+  | EmptyAction
   | RegistrationSuccessAction;
 
 

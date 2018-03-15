@@ -26,7 +26,6 @@ export class SearchBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Its settings" , this.settings);
     this.getItems(false);
   }
 

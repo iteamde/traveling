@@ -18,6 +18,7 @@ import {RegistrationGuard} from './guards/registration.guard';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import {AuthGuard} from './guards/can-activate.guard';
+import {AuthHelper} from './helpers/auth.helper';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {AuthGuard} from './guards/can-activate.guard';
     AuthGuard,
     ValidationService,
     FacebookService,
-    RegistrationGuard
+    RegistrationGuard,
+    AuthHelper
   ],
   entryComponents: [
     RegisterModalComponent,

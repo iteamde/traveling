@@ -57,7 +57,7 @@ export class TripPlannerEffects {
    */
   constructor(private actions$: Actions,
               private tripPlannerService: TripPlannerService,
-              private router: Router
+              private router: Router,
   ) {
   }
 

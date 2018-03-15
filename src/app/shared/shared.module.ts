@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import { ScrollEventModule } from 'ngx-scroll-event';
 import {PlatformService} from '../core/services/platform.service';
 import { FooterComponent } from './footer/footer.component';
+import {MyDatePickerModule} from 'mydatepicker';
 
 
 
@@ -16,7 +17,7 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [CommonModule, ScrollEventModule],
+  imports: [CommonModule, ScrollEventModule, MyDatePickerModule],
   exports: [
     RouterModule,
     HeaderComponent,
@@ -24,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     CommonModule,
     FooterComponent,
-    ScrollEventModule
+    ScrollEventModule,
+    MyDatePickerModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {

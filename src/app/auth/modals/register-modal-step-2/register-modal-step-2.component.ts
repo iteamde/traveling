@@ -7,6 +7,7 @@ import {emailValidator, matchPasswordValidator, nameValidator} from '../../../co
 import {FormBuilder, Validators} from '@angular/forms';
 import {ValidationService} from '../../../core/services/validation';
 import {RegisterAction} from '../../actions/auth.actions';
+import range from 'lodash/range'
 
 
 @Component({
@@ -17,7 +18,7 @@ import {RegisterAction} from '../../actions/auth.actions';
 export class RegisterModalStep2Component implements OnInit {
   public user$: Observable<any>;
   public authError$: Observable<any>;
-  public ageArray: Array<number>;
+  public ageArray = range(13, 81);
   public userForm;
   public user = {
     name: '',
@@ -33,12 +34,6 @@ export class RegisterModalStep2Component implements OnInit {
   constructor(private store: Store<State>, private fb: FormBuilder, public validation: ValidationService) {
     this.user$ = store.select(getLoggedUser);
     this.authError$ = store.select(getAuthError);
-
-    this.ageArray = [];
-
-    for (let i = 13; i < 81; i++) {
-      this.ageArray.push(i);
-    }
   }
 
   ngOnInit() {

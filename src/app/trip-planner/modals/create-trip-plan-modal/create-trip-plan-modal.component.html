@@ -20,11 +20,15 @@
             </div>
           </div>
           <div class="form-row">
+
+          </div>
+          <div class="form-row">
             <div class="field-label">What you are intending to go to this trip?</div>
             <div class="field-item">
               <div class="field-ttl">Date</div>
               <div class="date-inner">
-                19 October 2017
+                <my-date-picker name="date" [options]="myDatePickerOptions"
+                                formControlName="date"></my-date-picker>
               </div>
             </div>
           </div>
@@ -64,9 +68,10 @@
               <input type="radio" [value]="3"  formControlName="privacy" >
             </button>
           </div>
-          <div class="error-layer" *ngIf="(error$ | async) || formErrors.title">
+          <div class="error-layer">
             <p class="sub-ttl error-message text-center" *ngIf="formErrors.title">{{formErrors.title}}</p>
             <p class="sub-ttl error-messagetext-center" *ngIf="error$ | async">{{(error$ | async)}}</p>
+            <p class="sub-ttl error-message text-center" *ngIf="formErrors.date">{{formErrors.date}}</p>
           </div>
         </div>
       </div>

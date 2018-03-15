@@ -33,7 +33,11 @@ const   validationMessages = {
     required: "Title is required",
     minlength: "Title should be at least 3 characters",
     maxlength: "Title should be less than 255 symbols"
-  }
+  },
+  date: {
+    required: "Date is required",
+  },
+
 };
 
 @Injectable()

@@ -23,6 +23,10 @@ export class ApiService {
       return this.http.post(environment.apiUrl + url, details).map((res) => {
         this.spinnerService.hide();
         return res;
-      } );
+      } ).catch( err => {
+        if (err) {
+          this.spinnerService.hide();
+          return this.router.navigate(['/error']);
+        }});
     }
 }
