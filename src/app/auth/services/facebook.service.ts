@@ -14,7 +14,7 @@ import {PlatformService} from '../../core/services/platform.service';
 /// TEMP
 declare var FB: any;
 
-let JSScript: HTMLScriptElement
+let JSScript: HTMLScriptElement;
 
 @Injectable()
 export class FacebookService {
@@ -29,26 +29,26 @@ export class FacebookService {
   // Shows if FB SDK is laoded or not
   // Can be used outside the module to draw Loading status of button
   public FBLoadStatus$ = (): Observable<any> => {
-    if (this.platformService.isServer()) return never();
+    if (this.platformService.isServer()) { return never(); }
     const fn = (d: any, s: any, id: any): Promise<any> => {
       return new Promise((resolve, reject) => {
-        if (JSScript) return resolve({loaded: true, loading: false, error: undefined})
+        if (JSScript) { return resolve({loaded: true, loading: false, error: undefined}); }
         let js: HTMLScriptElement;
         const fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return };
+        if (d.getElementById(id)) { return; }
         js = d.createElement(s); js.id = id;
         js.src = '//connect.facebook.net/en_US/all.js';
         fjs.parentNode.insertBefore(js, fjs);
         js.onload = (ev) => this.zone.run(() => {
-          JSScript = js
+          JSScript = js;
           this.initFB().then(
             () => resolve({ loaded: true, loading: false, error: undefined })
           );
-        })
-        js.onerror = (err) => resolve({ loaded: false, loading: false, error: err})
-      })
-    }
-    const promise = fn(document, 'script', 'facebook-jssdk')
+        });
+        js.onerror = (err) => resolve({ loaded: false, loading: false, error: err});
+      });
+    };
+    const promise = fn(document, 'script', 'facebook-jssdk');
     return fromPromise(promise);
   }
 
@@ -57,7 +57,7 @@ export class FacebookService {
     return new Promise( (resolve, reject) => {
       window['fbAsyncInit'] = () => {
         window['FB'].init({
-          appId: '2029488243999596', // App ID
+          appId: '171887576639276', // App ID
           version: 'v2.9'
         });
 
@@ -82,16 +82,21 @@ export class FacebookService {
 
 
   login() {
+    return new Promise( (resolve, reject) => {
       this.FBLoadStatus$().takeUntil(this.unsubscribe).subscribe( e =>
-      FB.login(response => {
-      if (response.authResponse) {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function (res) {
-          console.log('Good to see you', res);
-        });
-      } else {
-        console.log('User cancelled login or did not fully authorize.');
-      }
-    }
-    ))}
+        FB.login(function(response) {
+          if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me?fields=id,first_name,email,last_name', function (res) {
+              console.log('Good to see you', res, res.email);
+              resolve({ fbuid: res.id, email: res.email });
+            });
+          }/* else {
+            reject(response);
+          }*/
+        }, {scope: 'email'}));
+
+    });
+
+  }
 }

@@ -1,8 +1,8 @@
 <div class="modal-body">
   <div class="search-block-wrap">
-    <div class="search-block">
+    <div class="search-block" [formGroup]="form">
       <a class="search-btn"><i class="fa fa-search"></i></a>
-      <input type="text" (change)="queryChange()" [(ngModel)]="query" placeholder="Item or city...">
+      <input type="text" formControlName="query" placeholder="Item or city...">
     </div>
   </div>
   <div class="check-block-wrap" detect-scroll (onScroll)="handleScroll($event)" [bottomOffset]="1" [topOffset]="0">

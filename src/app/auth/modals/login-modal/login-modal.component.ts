@@ -60,7 +60,10 @@ export class LoginModalComponent implements OnInit {
   }
 
  facebookLogin() {
-   this.facebookService.login();
+   this.facebookService.login().then(res =>
+     this.store.dispatch(new LoginAction({data : res, urlTo: '/home' , queryUrl: 'users/create/facebook'}))
+   );
+
  }
 
  login() {

@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {Actions, Effect} from '@ngrx/effects';
 
 import * as auth from '../actions/auth.actions';
@@ -13,8 +12,6 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import {Router} from '@angular/router';
-import {SetPasswordSuccessAction} from '../actions/auth.actions';
-import * as tripPlanner from '../../trip-planner/actions/trip-planner.actions';
 import {AuthHelper} from '../helpers/auth.helper';
 
 

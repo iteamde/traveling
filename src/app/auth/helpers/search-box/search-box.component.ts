@@ -1,31 +1,43 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ScrollEvent} from 'ngx-scroll-event';
 import {ApiService} from '../../../core/services/api.service';
 import {RegisterAction} from '../../actions/auth.actions';
 import {getLoggedUser, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
+import {Subscription} from 'rxjs/Subscription';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.css']
 })
-export class SearchBoxComponent implements OnInit {
+export class SearchBoxComponent implements OnInit , OnDestroy{
   protected user$: Observable<any>;
   public items: Array<any> = [];
   public choosenItems: Array<any> = [];
-  public query: string = '';
   public itemToChoose = 5;
   private  limit: number = 20;
   private  offset: number = 0;
+  private searchItemSubscription$: Subscription;
+  public form: FormGroup;
   @Input() settings:any;
 
-  constructor(private ApiService: ApiService, private store: Store<State> ) {
+  constructor(private apiService: ApiService,
+              private store: Store<State>,
+              private fb: FormBuilder) {
     this.user$ = store.select(getLoggedUser);
   }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      query: ''
+    });
+
+    this.searchItemSubscription$ = this.form.valueChanges
+      .debounceTime(500)
+      .subscribe(res => this.getItems(false));
     this.getItems(false);
   }
 
@@ -56,20 +68,15 @@ export class SearchBoxComponent implements OnInit {
     }
   }
 
-  public queryChange() {
-    console.log("queryChange", this.query);
-    this.getItems(false);
-  }
-
   private getItems(fromScrollEvent){
     let details = {
-      query: this.query,
+      query: this.form.get('query').value,
       limit: this.limit,
       offset: this.offset,
       language_id: 1
     };
 
-    this.ApiService.post(details, this.settings.getDataUrl).take(1).subscribe(res => {
+    this.apiService.post(details, this.settings.getDataUrl).take(1).subscribe(res => {
       fromScrollEvent ? this.items = [...this.items, ...res.data] : this.items = res.data;
     });
   }
@@ -82,6 +89,10 @@ export class SearchBoxComponent implements OnInit {
         urlTo : this.settings.urlTo
       }));
     });
+  }
+
+  ngOnDestroy() {
+    this.searchItemSubscription$.unsubscribe();
   }
 
 }
