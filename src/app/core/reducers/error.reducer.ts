@@ -1,5 +1,5 @@
 import * as error from '../actions/error.actions';
-import {ADD_ERROR, REMOVE_ERROR} from '../actions/core.actions';
+import {ADD_ERROR, REMOVE_ERROR} from '../actions/error.actions';
 
 
 

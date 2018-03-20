@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {State, getTripId, getTripPlannerError} from '../../../core/reducers/index';
+import {State, getTripId} from '../../../core/reducers/index';
 import {AddPlaceAction} from '../../actions/trip-planner.actions';
 import {Observable} from 'rxjs';
 import {Subscription} from 'rxjs/Subscription';
 import {TripPlannerService} from '../../services/trip-planner.service';
+import {getErrorFromServer} from '../../../core/reducers';
 
 @Component({
   selector: 'app-add-place-to-trip-modal',
@@ -44,7 +45,7 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.error$ = this.store.select(getTripPlannerError);
+    this.error$ = this.store.select(getErrorFromServer);
     this.form = this.fb.group({
       place: '',
     });

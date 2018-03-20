@@ -1,7 +1,7 @@
 import {Action} from '@ngrx/store';
 
-export const ADD_ERROR = '[Core] Add error';
-export const REMOVE_ERROR = '[Core] Remove error';
+export const ADD_ERROR = '[Error] Add error';
+export const REMOVE_ERROR = '[Error] Remove error';
 
 /**
  * Add error from server

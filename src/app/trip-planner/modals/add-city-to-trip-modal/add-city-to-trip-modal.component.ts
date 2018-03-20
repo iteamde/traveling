@@ -1,14 +1,13 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State, getTripId, getTripPlannerError} from '../../../core/reducers/index';
+import {State, getTripId, getErrorFromServer} from '../../../core/reducers/index';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AddCityAction} from '../../actions/trip-planner.actions';
 import {Subscription} from 'rxjs/Subscription';
 import {TripPlannerService} from '../../services/trip-planner.service';
-
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+
 
 
 @Component({
@@ -48,7 +47,7 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
               private fb: FormBuilder,
               private tripPlannerService: TripPlannerService)
   {
-    this.error$ = store.select(getTripPlannerError);
+    this.error$ = store.select(getErrorFromServer);
     this.store.select(getTripId).take(1)
       .subscribe(tripId =>  {
         this.trip_id = tripId || 171;
@@ -73,7 +72,8 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
    */
   onAddClick(id) {
     this.store.select(getTripId)
-      .subscribe(tripId => this.store.dispatch(new AddCityAction(tripId || this.trip_id, {city_id : id})));
+      .subscribe(tripId =>
+        this.store.dispatch(new AddCityAction(tripId || this.trip_id, {city_id : id, order : 1}, `/trip/${this.trip_id}/places` )));
   }
 
   ngOnDestroy() {

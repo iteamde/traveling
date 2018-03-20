@@ -7,7 +7,7 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/skipLast';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/takeLast';
-import {Router} from '@angular/router';
+import {NavigationStart, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {RemoveErrorAction} from '../actions/error.actions';
 
@@ -16,7 +16,8 @@ import {RemoveErrorAction} from '../actions/error.actions';
 export class ModalManager {
   private modalRef$: Observable<any>;
   constructor(private dialog: MatDialog, private router: Router, private store: Store<State>) {
-    router.events.subscribe(() => {
+    router.events.filter(event => event instanceof NavigationStart).subscribe(() => {
+      console.log("rOUTER SUBSCRIPTION HERE");
       this.store.dispatch(new RemoveErrorAction());
       return this.dialog.closeAll();
     });

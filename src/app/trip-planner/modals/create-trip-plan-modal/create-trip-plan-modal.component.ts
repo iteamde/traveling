@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State, getUserId, getTripPlannerError} from '../../../core/reducers/index';
+import {State, getUserId} from '../../../core/reducers/index';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CreateTripAction} from '../../actions/trip-planner.actions';
 import {Observable} from 'rxjs/Observable';
 import {ValidationService} from '../../../core/services/validation';
 import {IMyDpOptions} from 'mydatepicker';
+import {getErrorFromServer} from '../../../core/reducers';
 
 @Component({
   selector: 'app-create-trip-plan-modal',
@@ -45,7 +46,7 @@ export class CreateTripPlanModalComponent implements OnInit {
 
   ngOnInit() {
 
-    this.error$ = this.store.select(getTripPlannerError);
+    this.error$ = this.store.select(getErrorFromServer);
     this.form = this.fb.group({
       title: ['', [
         Validators.required,

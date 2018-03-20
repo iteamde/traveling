@@ -40,14 +40,14 @@ export class CreateTripSuccessAction implements Action {
 export class AddCityAction implements Action {
   readonly type = ADD_CITY;
 
-  public payload: {trip_id: string, details: Object};
+  public payload: {trip_id: string, details: Object, urlTo: string};
   /**
    * Default constructor
    * @param trip_id,
    * @param details
    */
-  constructor(private trip_id, private details) {
-    this.payload = {trip_id, details};
+  constructor(private trip_id, private details, private urlTo) {
+    this.payload = {trip_id, details, urlTo};
   }
 }
 
@@ -83,18 +83,8 @@ export class AddPlaceSuccessAction implements Action {
   readonly type = ADD_PLACE_SUCCESS;
 }
 
-/**
- * Trip planner failed
- */
-export class TripPlannerFailedAction implements Action {
-  readonly type = TRIP_PLANNER_FAILED;
 
-  /**
-   * Default constructor
-   * @param payload
-   */
-  constructor(public payload) {}
-}
+
 
 export type Actions
   = CreateTripAction
@@ -102,6 +92,5 @@ export type Actions
   | AddCityAction
   | AddCitySuccessAction
   | AddPlaceAction
-  | AddPlaceSuccessAction
-  | TripPlannerFailedAction;
+  | AddPlaceSuccessAction;
 

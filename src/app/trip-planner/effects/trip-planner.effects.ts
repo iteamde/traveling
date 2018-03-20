@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
-
+import * as error from '../../core/actions/error.actions';
 import * as tripPlanner from '../actions/trip-planner.actions';
 
 import 'rxjs/add/operator/switchMap';
@@ -13,23 +13,26 @@ import {Router} from '@angular/router';
 @Injectable()
 export class TripPlannerEffects {
 
+  private urlTo: string;
+
   /**
    * Creates trip plan
    */
   @Effect()
   createTrip$ = this.actions$.ofType(tripPlanner.CREATE_TRIP)
     .switchMap((action: tripPlanner.CreateTripAction) => this.tripPlannerService.createTrip({...action.payload}))
-    .map(response => this.responseHandler(response));
+    .map(response => this.responseHandler(response, tripPlanner.CreateTripSuccessAction , `/trip/${response.data.trip_id}/cities`));
 
   /**
    * Add city to trip
    */
   @Effect()
   addCity$ = this.actions$.ofType(tripPlanner.ADD_CITY)
-    .switchMap((action: tripPlanner.AddCityAction) => this.tripPlannerService.addCity(action.payload.trip_id, action.payload.details)
-      .map(response => response.success ?
-        new tripPlanner.AddCitySuccessAction() :
-        new tripPlanner.TripPlannerFailedAction(response)));
+    .switchMap((action: tripPlanner.AddCityAction) => {
+      this.urlTo = action.payload.urlTo;
+      return this.tripPlannerService.addCity(action.payload.trip_id, action.payload.details);
+    })
+    .map(response => this.responseHandler(response, tripPlanner.CreateTripSuccessAction , this.urlTo));
 
   /**
    * Add place to trip
@@ -37,18 +40,9 @@ export class TripPlannerEffects {
   @Effect()
   addPlace$ = this.actions$.ofType(tripPlanner.ADD_PLACE)
     .switchMap((action: tripPlanner.AddPlaceAction) => this.tripPlannerService.addPlace(action.payload.trip_id, action.payload.details)
-      .map(response => response.success ?
-        new tripPlanner.AddPlaceSuccessAction() :
-        new tripPlanner.TripPlannerFailedAction(response)));
+      .map(response => this.responseHandler(response, tripPlanner.CreateTripSuccessAction , false)));
 
-  /**
-   * Open modal window
-   */
-  /*@Effect()
-  openModal$ = this.actions$.ofType(auth.OPEN_MODAL)
-    .switchMap((action: auth.OpenModalAction) => {
-      return  Observable.of({type: 'REGISTRATION111_FAILED'});
-    });*/
+
   /**
    * Default constructor
    * @param actions$
@@ -61,12 +55,12 @@ export class TripPlannerEffects {
   ) {
   }
 
-  responseHandler(res) {
+  responseHandler(res, onSucces, urlTo) {
     if (res.success) {
-      this.router.navigate([`/trip/${res.data.trip_id}/cities`]);
+      if (urlTo) this.router.navigate([ urlTo]);
       /*go(`/trip/${res.data.trip_id}/cities`);*/
-      return new tripPlanner.CreateTripSuccessAction(res.data.trip_id)
+      return new tripPlanner.CreateTripSuccessAction(res);
     }
-      return new tripPlanner.TripPlannerFailedAction(res)
+      return new error.AddErrorAction(res.data.message);
   }
 }
