@@ -60,7 +60,7 @@ export const getUserId = createSelector(getAuthState, fromAuth.getUserId);
  * Trip planner selectors
  */
 export const getTripId = createSelector(getTripPlannerState, fromTripPlanner.getTripId);
-export const getTripPlannerError = createSelector(getTripPlannerState, fromTripPlanner.getTripPlannerError);
+
 
 
 
