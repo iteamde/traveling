@@ -1,22 +1,7 @@
 import {Action} from '@ngrx/store';
 
-export const OPEN_MODAL = '[Core] Open modal';
 export const ADD_ERROR = '[Core] Add error';
 export const REMOVE_ERROR = '[Core] Remove error';
-
-/**
- * Open  modal
- */
-
-export class OpenModalAction implements Action {
-  readonly type = OPEN_MODAL;
-
-  /**
-   * Default constructor
-   * @param payload
-   */
-  constructor(public payload) {}
-}
 
 /**
  * Add error from server
@@ -43,11 +28,9 @@ export class RemoveErrorAction implements Action {
    * Default constructor
    * @param payload
    */
-  constructor(public payload) {}
 }
 
 export type Actions
-  = OpenModalAction
-  | AddErrorAction
+  = AddErrorAction
   | RemoveErrorAction
   ;

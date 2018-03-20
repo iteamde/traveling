@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 
 import * as auth from '../actions/auth.actions';
+import * as error from '../../core/actions/error.actions';
 import {ApiService} from '../../core/services/api.service';
 
 import 'rxjs/add/operator/switchMap';
@@ -28,7 +29,7 @@ export class AuthEffects {
        this.urlTo = action.payload.urlTo;
        return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map( res => this.responseHandler(res, this.urlTo, auth.RegistrationSuccessAction , auth.RegistrationFailedAction) ) ;
+    .map( res => this.responseHandler(res, this.urlTo, auth.RegistrationSuccessAction , error.AddErrorAction) ) ;
 
   @Effect()
   login$ = this.actions$.ofType(auth.LOGIN)
@@ -36,7 +37,7 @@ export class AuthEffects {
       this.urlTo = action.payload.urlTo;
       return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map( res => this.responseHandler(res, this.urlTo, auth.LoginSuccessAction , auth.LoginFailedAction) ) ;
+    .map( res => this.responseHandler(res, this.urlTo, auth.LoginSuccessAction , error.AddErrorAction) ) ;
 
   @Effect()
   loginSuccess$ = this.actions$.ofType(auth.LOGIN_SUCCESS)
@@ -71,14 +72,14 @@ export class AuthEffects {
               private authHelper: AuthHelper
              ) {}
 
-  responseHandler(res, urlTo,  suc , error) {
+  responseHandler(res, urlTo,  suc , onError) {
     if (res && res.success) {
       console.log("SUCCES RESPONSE" , res);
       this.router.navigate([urlTo]);
       return new suc(res);
     } else {
       console.log("ERROR RESPONSE" , res);
-      return new error(res);
+      return new onError(res.data);
     }
   }
 }

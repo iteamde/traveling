@@ -1,6 +1,5 @@
 import * as core from '../actions/core.actions';
-import {ActionReducer} from '@ngrx/store';
-import {OPEN_MODAL} from '../actions/core.actions';
+import { OPEN_MODAL } from '../actions/core.actions';
 
 
 
@@ -29,6 +28,7 @@ export function reducer(state: State = INIT_STATE, action: core.Actions) {
 }
 
 export const getOpenedModalRef = (state: State) => state.openedModalRef;
+
 
 
 

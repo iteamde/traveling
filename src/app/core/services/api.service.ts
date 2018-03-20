@@ -6,6 +6,9 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+import {RemoveErrorAction} from '../actions/error.actions';
+import {Store} from '@ngrx/store';
+import {State} from '../reducers';
 
 
 
@@ -14,19 +17,21 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private spinnerService: Ng4LoadingSpinnerService
+    private spinnerService: Ng4LoadingSpinnerService,
+    private store: Store<State>
   ) {}
 
 
-    post(details , url , config?): Observable<any> {
-      this.spinnerService.show();
-      return this.http.post(environment.apiUrl + url, details).map((res) => {
+  post(details , url , config?): Observable<any> {
+    this.store.dispatch(new RemoveErrorAction());
+    this.spinnerService.show();
+    return this.http.post(environment.apiUrl + url, details).map((res) => {
+      this.spinnerService.hide();
+      return res;
+    } ).catch( err => {
+      if (err) {
         this.spinnerService.hide();
-        return res;
-      } ).catch( err => {
-        if (err) {
-          this.spinnerService.hide();
-          return this.router.navigate(['/error']);
-        }});
-    }
+        return this.router.navigate(['/error']);
+      }});
+  }
 }

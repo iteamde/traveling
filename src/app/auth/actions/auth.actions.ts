@@ -3,10 +3,8 @@ import {Action} from '@ngrx/store';
 export const REGISTER = '[Auth] Register user';
 export const SET_REGISTRATION_STEP = '[Auth] set registration step';
 export const REGISTRATION_SUCCESS = '[Auth] registration success';
-export const REGISTRATION_FAILED = '[Auth] registration failed';
 export const LOGIN = '[Auth] login user';
-export const LOGIN_SUCCESS = '[Auth] login success';
-export const LOGIN_FAILED = '[Auth] login failed';
+export const LOGIN_SUCCESS = '[Auth] login su  ccess';
 export const RESET_PASSWORD = '[Auth] reset password email request';
 export const RESET_PASSWORD_SUCCESS = '[Auth] reset password email request success';
 export const RESET_PASSWORD_ERROR = '[Auth] reset password email request error';
@@ -39,15 +37,6 @@ export class LoginSuccessAction implements Action {
   constructor(public payload) {}
 }
 
-export class LoginFailedAction implements Action {
-  readonly type = LOGIN_FAILED;
-
-  /**
-   * Default constructor
-   * @param payload
-   */
-  constructor(public payload) {}
-}
 
 export class EmptyAction implements Action {
   readonly type = "Empty";
@@ -73,16 +62,6 @@ export class RegisterAction implements Action {
 
 export class RegistrationSuccessAction implements Action {
   readonly type = REGISTRATION_SUCCESS;
-
-  constructor(public payload) {}
-}
-
-/**
- * Registration failed action
- */
-
-export class RegistrationFailedAction implements Action {
-  readonly type = REGISTRATION_FAILED;
 
   constructor(public payload) {}
 }
@@ -137,10 +116,8 @@ export class ResetPasswordFailedAction implements Action {
 
 export type Actions = RegisterAction
   | SetRegistrationStep
-  | RegistrationFailedAction
   | LoginAction
   | LoginSuccessAction
-  | LoginFailedAction
   | ResetPasswordAction
   | ResetPasswordSuccessAction
   | ResetPasswordFailedAction

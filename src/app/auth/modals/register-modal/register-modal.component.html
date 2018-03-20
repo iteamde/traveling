@@ -15,7 +15,7 @@
         <p *ngIf="formErrors.password" class="sub-ttl error-message">{{ formErrors.password }}</p>
         <p *ngIf="formErrors.password_confirmation" class="sub-ttl error-message">{{ formErrors.password_confirmation }}</p>
         <div *ngIf="(authError$ | async)">
-          <p  *ngFor="let err of  (authError$ | async).data" class="sub-ttl error-message">{{ err }}</p>
+          <p  *ngFor="let err of  (authError$ | async)" class="sub-ttl error-message">{{ err }}</p>
         </div>
       </div>
 

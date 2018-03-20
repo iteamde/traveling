@@ -13,7 +13,7 @@
         <p *ngIf="formErrors.age" class="sub-ttl error-message">{{ formErrors.age }}</p>
         <p *ngIf="formErrors.gender" class="sub-ttl error-message">{{ formErrors.gender }}</p>
         <div *ngIf="(authError$ | async)">
-          <p  *ngFor="let err of  (authError$ | async).data" class="sub-ttl error-message">{{ err }}</p>
+          <p  *ngFor="let err of  (authError$ | async)" class="sub-ttl error-message">{{ err }}</p>
         </div>
       </div>
       <form class="login-form" name="signupForm2" [formGroup]="userForm" (ngSubmit)="userForm.valid && register()" >

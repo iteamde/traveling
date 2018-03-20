@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {RegisterAction} from '../../actions/auth.actions';
 import {Store} from '@ngrx/store';
-import {getAuthError, State} from '../../../core/reducers';
+import {getErrorFromServer, State} from '../../../core/reducers';
 import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
 import {ValidationService} from '../../../core/services/validation';
 import {Observable} from 'rxjs/Observable';
@@ -35,7 +35,7 @@ export class RegisterModalComponent implements OnInit {
                private fb: FormBuilder ,
                public validation: ValidationService,
                private modalManager: ModalManager) {
-    this.authError$ = store.select(getAuthError);
+    this.authError$ = store.select(getErrorFromServer);
   }
 
   ngOnInit() {

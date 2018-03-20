@@ -1,13 +1,13 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import {Location} from '@angular/common';
 import {FacebookService} from '../../services/facebook.service';
-import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
+import {emailValidator} from '../../../core/validators/custom-validators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../../core/services/validation';
 import {Observable} from 'rxjs/Observable';
-import {getAuthError, State} from '../../../core/reducers';
+import {getErrorFromServer, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
-import {LoginAction, SetRegistrationStep} from '../../actions/auth.actions';
+import {LoginAction} from '../../actions/auth.actions';
 
 @Component({
   selector: 'app-login-modal',
@@ -18,12 +18,12 @@ export class LoginModalComponent implements OnInit {
   public authError$: Observable<any>;
   public userForm: FormGroup;
   public user: any = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
   public formErrors = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   constructor(
@@ -32,7 +32,7 @@ export class LoginModalComponent implements OnInit {
     public facebookService: FacebookService,
     private fb: FormBuilder ,
     public validation: ValidationService) {
-    this.authError$ = store.select(getAuthError);
+    this.authError$ = store.select(getErrorFromServer);
   }
 
   ngOnInit() {

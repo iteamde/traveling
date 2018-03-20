@@ -12,7 +12,7 @@
           <p *ngIf="formErrors.email" class="sub-ttl error-message">{{ formErrors.email }}</p>
           <p *ngIf="formErrors.password" class="sub-ttl error-message">{{ formErrors.password }}</p>
           <div *ngIf="(authError$ | async)">
-            <p   class="sub-ttl error-message">{{(authError$ | async)}}</p>
+            <p   class="sub-ttl error-message">{{(authError$ | async).message}}</p>
           </div>
         </div>
         <form class="login-form" [formGroup]="userForm" (ngSubmit)="userForm.valid && login()">

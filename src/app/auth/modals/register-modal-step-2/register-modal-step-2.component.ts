@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State, getLoggedUser, getAuthError} from '../../../core/reducers';
+import {State, getLoggedUser, getErrorFromServer} from '../../../core/reducers';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
-import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
+import {nameValidator} from '../../../core/validators/custom-validators';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ValidationService} from '../../../core/services/validation';
 import {RegisterAction} from '../../actions/auth.actions';
-import range from 'lodash/range'
+import * as range from 'lodash/range';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class RegisterModalStep2Component implements OnInit {
 
   constructor(private store: Store<State>, private fb: FormBuilder, public validation: ValidationService) {
     this.user$ = store.select(getLoggedUser);
-    this.authError$ = store.select(getAuthError);
+    this.authError$ = store.select(getErrorFromServer);
   }
 
   ngOnInit() {
