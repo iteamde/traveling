@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getResetPasswordStatus, State} from '../../../core/reducers';
+import {getErrorFromServer, getResetPasswordStatus, State} from '../../../core/reducers';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {ValidationService} from '../../../core/services/validation';
@@ -13,6 +13,7 @@ import {ClearPasswordStatus, ResetPasswordAction} from '../../actions/auth.actio
 })
 export class ForgotPasswordComponent implements OnInit {
   public resetPasswordStatus$:any;
+  public errorFromServer$:any;
   public userForm: FormGroup;
   public user: any = {
     email: "",
@@ -22,6 +23,7 @@ export class ForgotPasswordComponent implements OnInit {
   };
   constructor(private store: Store<State>, private fb: FormBuilder, public validation: ValidationService) {
     this.resetPasswordStatus$ = store.select(getResetPasswordStatus);
+    this.errorFromServer$ = store.select(getErrorFromServer);
   }
 
   ngOnInit() {

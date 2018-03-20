@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {getResetPasswordStatus, State} from '../../../core/reducers';
+import {getErrorFromServer, getResetPasswordStatus, State} from '../../../core/reducers';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {ValidationService} from '../../../core/services/validation';
@@ -15,6 +15,7 @@ import {ActivatedRoute, Params} from '@angular/router';
 export class ResetPasswordComponent implements OnInit {
   public userForm: FormGroup;
   public resetPasswordStatus$;
+  public errorFromServer$;
   public token : string;
   public user: any = {
     password: "",
@@ -30,6 +31,7 @@ export class ResetPasswordComponent implements OnInit {
       this.token = params['token'];
     });
     this.resetPasswordStatus$ = store.select(getResetPasswordStatus);
+    this.errorFromServer$ = store.select(getErrorFromServer);
   }
 
   ngOnInit() {

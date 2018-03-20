@@ -51,7 +51,7 @@ export class AuthEffects {
     .switchMap((action: auth.ResetPasswordAction) => {
       return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map( res => this.responseHandler(res, this.urlTo, auth.ResetPasswordSuccessAction , auth.ResetPasswordFailedAction) ) ;
+    .map( res => this.responseHandler(res, false, auth.ResetPasswordSuccessAction , error.AddErrorAction) ) ;
 
 
   @Effect()
@@ -59,7 +59,7 @@ export class AuthEffects {
     .switchMap((action: auth.SetPasswordAction) => {
       return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
     })
-    .map( res => this.responseHandler(res, this.urlTo, auth.SetPasswordSuccessAction , auth.SetPasswordErrorAction) ) ;
+    .map( res => this.responseHandler(res, false, auth.SetPasswordSuccessAction , error.AddErrorAction) ) ;
 
   /**
    * Default constructor
@@ -75,7 +75,7 @@ export class AuthEffects {
   responseHandler(res, urlTo,  suc , onError) {
     if (res && res.success) {
       console.log("SUCCES RESPONSE" , res);
-      this.router.navigate([urlTo]);
+      if (urlTo) this.router.navigate([urlTo]);
       return new suc(res);
     } else {
       console.log("ERROR RESPONSE" , res);
