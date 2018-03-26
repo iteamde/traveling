@@ -57,4 +57,5 @@ export function reducer(state: State = INIT_STATE, action: auth.Actions) {
 export const getLoggedUser = (state: State) => state.user;
 export const getRegistrationStep = (state: State) => state.registrationStep;
 export const getResetPasswordStatus = (state: State) => state.resetPasswordStatus;
+export const getLoginStatus = (state: State) => state.isLoggedIn;
 export const getUserId = (state: State) => state.user.user_id;

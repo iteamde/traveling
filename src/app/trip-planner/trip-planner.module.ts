@@ -8,6 +8,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {TripPlannerService} from "./services/trip-planner.service";
 import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
+import { TripPlannerInfoComponent } from './components/trip-planner-info/trip-planner-info.component';
+import {DndModule} from 'ng2-dnd';
 
 @NgModule({
   imports: [
@@ -15,12 +17,14 @@ import {CoreModule} from '../core/core.module';
     ReactiveFormsModule,
     SharedModule,
     CoreModule,
+    DndModule.forRoot()
   ],
   declarations: [
     TripPlannerComponent,
     CreateTripPlanModalComponent,
     AddCityToTripModalComponent,
     AddPlaceToTripModalComponent,
+    TripPlannerInfoComponent,
   ],
   providers: [
     TripPlannerService

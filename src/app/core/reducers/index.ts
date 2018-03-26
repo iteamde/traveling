@@ -54,6 +54,7 @@ export const getErrorFromServer = createSelector(getErrorState, fromError.getErr
 export const getLoggedUser = createSelector(getAuthState, fromAuth.getLoggedUser);
 export const getRegistationStep = createSelector(getAuthState, fromAuth.getRegistrationStep);
 export const getResetPasswordStatus = createSelector(getAuthState, fromAuth.getResetPasswordStatus);
+export const getLoginStatus = createSelector(getAuthState, fromAuth.getLoginStatus);
 export const getUserId = createSelector(getAuthState, fromAuth.getUserId);
 
 /**

@@ -28,7 +28,7 @@ export class FacebookService {
 
   // Shows if FB SDK is laoded or not
   // Can be used outside the module to draw Loading status of button
-  public FBLoadStatus$ = (): Observable<any> => {
+  public FBLoadStatus$ = () => {
     if (this.platformService.isServer()) { return never(); }
     const fn = (d: any, s: any, id: any): Promise<any> => {
       return new Promise((resolve, reject) => {
@@ -41,15 +41,14 @@ export class FacebookService {
         fjs.parentNode.insertBefore(js, fjs);
         js.onload = (ev) => this.zone.run(() => {
           JSScript = js;
-          this.initFB().then(
-            () => resolve({ loaded: true, loading: false, error: undefined })
-          );
+          this.initFB();
+           resolve({ loaded: true, loading: false, error: undefined });
         });
         js.onerror = (err) => resolve({ loaded: false, loading: false, error: err});
       });
     };
     const promise = fn(document, 'script', 'facebook-jssdk');
-    return fromPromise(promise);
+    return Observable.fromPromise(promise);
   }
 
   private initFB() {
@@ -58,7 +57,8 @@ export class FacebookService {
       window['fbAsyncInit'] = () => {
         window['FB'].init({
           appId: '171887576639276', // App ID
-          version: 'v2.9'
+          version: 'v2.7',
+          status: true
         });
 
         resolve();
@@ -75,6 +75,8 @@ export class FacebookService {
   constructor(private zone: NgZone, private platformService: PlatformService) {
   }
 
+
+
   /**
    * Log in using facebook
    */
@@ -82,19 +84,14 @@ export class FacebookService {
 
 
   login() {
-    return new Promise( (resolve, reject) => {
-      this.FBLoadStatus$().takeUntil(this.unsubscribe).subscribe( e =>
+    return new Promise((resolve, reject) => {
         FB.login(function(response) {
           if (response.authResponse) {
-            console.log('Welcome!  Fetching your information.... ');
             FB.api('/me?fields=id,first_name,email,last_name', function (res) {
-              console.log('Good to see you', res, res.email);
-              resolve({ fbuid: res.id, email: res.email });
+              res.error ? reject() : resolve({ fbuid: res.id, email: res.email });
             });
-          }/* else {
-            reject(response);
-          }*/
-        }, {scope: 'email'}));
+          }
+        }, {scope: 'email'});
 
     });
 

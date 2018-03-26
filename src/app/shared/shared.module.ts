@@ -33,7 +33,9 @@ import {MyDatePickerModule} from 'mydatepicker';
         hasBackdrop: true,
         panelClass: 'custom-overlay-pane-class',
         backdropClass: 'custom-modal-backdrop',
-        maxWidth: 'auto'
+        maxWidth: 'auto',
+        disableClose: true,
+        closeOnNavigation: true
       }
     },
     PlatformService
