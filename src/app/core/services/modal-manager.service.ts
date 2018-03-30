@@ -27,9 +27,9 @@ export class ModalManager {
     });
   }
 
-  openModalFromLCH(component) {
+  openModalFromLCH(component, data?) {
     setTimeout(() => {
-      this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component)}));
+      this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component, {data})}));
     } , 1);
   }
 

@@ -31,8 +31,11 @@
 
 .custom-modal-backdrop {
   min-height: 100vh;
-  margin-top: -100vh;
   background-color: rgba(0,0,0,0.65);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
 }
 .cdk-global-overlay-wrapper{
   position: absolute;
@@ -40,6 +43,7 @@
   top: 0;
   width: 100%;
   overflow-y: auto;
+  z-index: 2000;
 }
 .modal-wrapper .modal-close {
   width: 37px;
@@ -80,7 +84,7 @@ p.sub-ttl.error-message {
 /* Draggable*/
 
 .drag-border {
-  border: #ff525b dashed 2px;
+  border: #ff525b dashed 1px;
 }
 
 .drag-handle {
@@ -88,9 +92,6 @@ p.sub-ttl.error-message {
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
-}
-.trip-side-block{
-  border: 1px dashed red;
 }
 
 .drag-handle:active {
@@ -102,7 +103,7 @@ p.sub-ttl.error-message {
 /* Droppable */
 
 .drag-hint-border {
-  border: #3c763d dashed 2px;
+  border: #3c763d dashed 1px;
 }
 
 .drag-over-border {
@@ -112,3 +113,33 @@ p.sub-ttl.error-message {
 .drag-transit {
   border: #3500FF dashed 2px;
 }
+
+
+.date-inner .mydp{
+  border: none;
+}
+.mydp  input.selection{
+  font-size: 16px;
+  line-height: 19px;
+  color: #1a1a1a;
+  font-family: 'Circular Std Book';
+}
+.create-trip-wrapper .adding-place-block .add-form .form-row .field-style .flex-field .flex-item .time-count input[type=number] {
+  padding: 0;
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  color: #1a1a1a;
+  font-family: 'Circular Std Book';
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.create-trip-wrapper .adding-place-block .add-form .form-row .field-style .flex-field .flex-item.amount-input input[type=number]{
+  min-width: 110px;
+}
+

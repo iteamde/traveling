@@ -65,14 +65,14 @@ export class AddPlaceAction implements Action {
   readonly type = ADD_PLACE;
 
 
-  public payload: {trip_id: string, details: Object};
+  public payload: {trip_id: string, details: Object, urlTo: string};
   /**
    * Default constructor
    * @param trip_id,
    * @param details
    */
-  constructor(private trip_id, private details) {
-    this.payload = {trip_id, details};
+  constructor(private trip_id, private details,  private urlTo) {
+    this.payload = {trip_id, details, urlTo};
   }
 }
 

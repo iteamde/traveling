@@ -1,6 +1,6 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
+import { RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
 
@@ -12,6 +12,8 @@ import {ModalManager} from './services/modal-manager.service';
 import {TermsOfServiceComponent} from './components/terms-of-service/terms-of-service.component';
 import {PrivacyPolicyComponent} from './components/privacy-policy/privacy-policy.component';
 import { ErrorComponent } from './components/error/error.component';
+import { ModalWrapperComponent } from './components/modal-wrapper/modal-wrapper.component';
+import { ConfirmComponent } from './components/modals/confirm/confirm.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,6 @@ import { ErrorComponent } from './components/error/error.component';
     RouterModule,
     FormsModule,
     SharedModule,
-
     EffectsModule.forFeature([CoreEffects])
   ],
   providers: [
@@ -29,7 +30,9 @@ import { ErrorComponent } from './components/error/error.component';
   declarations: [
     TermsOfServiceComponent,
     PrivacyPolicyComponent,
-    ErrorComponent
+    ErrorComponent,
+    ModalWrapperComponent,
+    ConfirmComponent
   ],
   exports: []
 })

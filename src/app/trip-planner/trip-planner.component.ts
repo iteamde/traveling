@@ -11,23 +11,12 @@ import {Router} from '@angular/router';
   styleUrls: ['trip-planner.component.scss']
 })
 export class TripPlannerComponent implements OnInit {
-  private path: string;
-  private hashTable: any = {
-    new : CreateTripPlanModalComponent,
-    cities : AddCityToTripModalComponent,
-    places : AddPlaceToTripModalComponent
-  };
 
 
-  constructor(private modalManager: ModalManager, private  route: Router) {
-    this.path = route.url.split('/').pop();
+  constructor() {
   }
 
   ngOnInit() {
-    //TODO WORST WAY EVER , WILL CHANGE IT SOON
-    if( Object.keys(this.hashTable).includes(this.path) ){
-      this.modalManager.openModalFromLCH(this.hashTable[this.path]);
-    }
 
   }
 

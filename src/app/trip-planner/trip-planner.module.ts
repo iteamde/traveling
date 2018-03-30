@@ -10,6 +10,9 @@ import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
 import { TripPlannerInfoComponent } from './components/trip-planner-info/trip-planner-info.component';
 import {DndModule} from 'ng2-dnd';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import {TripInfoResolver} from './services/trip-info-resolver';
+import {ConfirmComponent} from '../core/components/modals/confirm/confirm.component';
 
 @NgModule({
   imports: [
@@ -17,7 +20,8 @@ import {DndModule} from 'ng2-dnd';
     ReactiveFormsModule,
     SharedModule,
     CoreModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+    AmazingTimePickerModule
   ],
   declarations: [
     TripPlannerComponent,
@@ -27,10 +31,17 @@ import {DndModule} from 'ng2-dnd';
     TripPlannerInfoComponent,
   ],
   providers: [
-    TripPlannerService
-  ],
-  entryComponents: [CreateTripPlanModalComponent,
+    TripPlannerService,
+    TripInfoResolver,
+    CreateTripPlanModalComponent,
     AddCityToTripModalComponent,
-    AddPlaceToTripModalComponent]
+    AddPlaceToTripModalComponent,
+    Location
+  ],
+  entryComponents: [
+    CreateTripPlanModalComponent,
+    AddCityToTripModalComponent,
+    AddPlaceToTripModalComponent,
+    ConfirmComponent]
 })
 export class TripPlannerModule { }

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {State, getTripId} from '../../../core/reducers/index';
@@ -7,6 +7,8 @@ import {Observable} from 'rxjs';
 import {Subscription} from 'rxjs/Subscription';
 import {TripPlannerService} from '../../services/trip-planner.service';
 import {getErrorFromServer} from '../../../core/reducers';
+import {MAT_DIALOG_DATA} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-place-to-trip-modal',
@@ -16,6 +18,7 @@ import {getErrorFromServer} from '../../../core/reducers';
 export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
 
   public trip_id: number;
+  public closeLink: string;
 
   public searchPlaceSubscription$: Subscription;
 
@@ -36,12 +39,12 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
    * @param store
    * @param fb
    */
-  constructor(private store: Store<State>, private fb: FormBuilder, private tripPlannerService: TripPlannerService) {
-    this.store.select(getTripId).take(1)
-      .subscribe(tripId =>  {
-        this.trip_id = tripId || 171;
-        console.log(this.trip_id);
-      });
+  constructor(private store: Store<State>, private fb: FormBuilder,
+              private tripPlannerService: TripPlannerService,
+              @Inject(MAT_DIALOG_DATA) public routeParams: any,
+              private route: Router) {
+    this.closeLink = this.route.routerState.snapshot.url.endsWith('info') ? this.route.routerState.snapshot.url : 'trip/new';
+
   }
 
   ngOnInit() {
@@ -52,7 +55,7 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
 
     this.searchPlaceSubscription$ = this.form.valueChanges
       .debounceTime(500)
-      .switchMap(form => this.tripPlannerService.getPlaces(form.city))
+      .switchMap(form => this.tripPlannerService.getPlaces(form.place))
       .subscribe(res => this.places = res.data);
   }
 
@@ -60,8 +63,7 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
    * Add button clicked
    */
   onAddClick(id) {
-    this.store.select(getTripId)
-      .subscribe(tripId => this.store.dispatch(new AddPlaceAction(tripId || this.trip_id, {place_id : id})));
+     this.store.dispatch(new AddPlaceAction( this.routeParams.id, {place_id : id}, `/trip/${this.routeParams.id}/info`));
   }
 
   ngOnDestroy() {

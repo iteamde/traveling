@@ -24,8 +24,22 @@ export class ApiService {
 
   post(details , url , config?): Observable<any> {
     this.store.dispatch(new RemoveErrorAction());
+    console.log("ITS HERE", details , url);
     this.spinnerService.show();
     return this.http.post(environment.apiUrl + url, details).map((res) => {
+      this.spinnerService.hide();
+      return res;
+    } ).catch( err => {
+      if (err) {
+        this.spinnerService.hide();
+        return this.router.navigate(['/error']);
+      }});
+  }
+
+  get(url , config?): Observable<any> {
+    this.store.dispatch(new RemoveErrorAction());
+    this.spinnerService.show();
+    return this.http.get(environment.apiUrl + url).map((res) => {
       this.spinnerService.hide();
       return res;
     } ).catch( err => {

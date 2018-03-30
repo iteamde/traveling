@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Observable';
 import {getErrorFromServer, getLoginStatus, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {LoginAction} from '../../actions/auth.actions';
+import {ApiService} from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -32,7 +33,8 @@ export class LoginModalComponent implements OnInit {
     private store: Store<State>,
     public facebookService: FacebookService,
     private fb: FormBuilder ,
-    public validation: ValidationService) {
+    public validation: ValidationService,
+    private api: ApiService) {
 
     this.authError$ = store.select(getErrorFromServer);
     this.loginStatus$ = store.select(getLoginStatus);
@@ -69,8 +71,36 @@ export class LoginModalComponent implements OnInit {
      .then(res => this.store.dispatch(new LoginAction({data: res, urlTo: '/home', queryUrl: 'users/create/facebook'})));
  }
 
+  twitterLogin() {
+    this.popupCenter('http://uat.travooo.com/api/users/create/twitter/login', 'Twitter', '900', '600');
+  }
+
  login() {
    this.store.dispatch(new LoginAction({data : this.userForm.value, urlTo: '/home' , queryUrl: 'users/login'}));
  }
+
+
+  popupCenter(url, title, w, h) {
+    // Fixes dual-screen position                         Most browsers      Firefox
+    const dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+    const dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    const left = ((width / 2) - (w / 2)) + dualScreenLeft;
+    const top = ((height / 2) - (h / 2)) + dualScreenTop;
+    const newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+    // Puts focus on the newWindow
+    if (window.focus) {
+      newWindow.focus();
+    }
+
+
+    newWindow.onfocus = function() {
+      console.log("HEre is this", this);
+    }
+  }
 
 }

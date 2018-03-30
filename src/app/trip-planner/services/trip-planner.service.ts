@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {ApiService} from '../../core/services/api.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class TripPlannerService {
@@ -32,6 +33,29 @@ export class TripPlannerService {
     return this.api.post(details,  'places/search');
   }
 
+  getPlacesInfo(tripId): Observable<any> {
+    return this.api.get(`trips/${tripId}/places?language_id=1`);
+  }
+
+  saveCityInfo(details, url): Observable<any> {
+    return this.api.post(details, url);
+  }
+  savePlaceInfo(details, url): Observable<any> {
+    return this.api.post(details, url);
+  }
+  removeCityInfo(details, url): Observable<any> {
+    return this.api.post(details, url);
+  }
+  removePlaceInfo(details, url): Observable<any> {
+    return this.api.post(details, url);
+  }
+  publishTrip(details, url): Observable<any> {
+    return this.api.post(details, url);
+  }
+  cancelTrip(details, url): Observable<any> {
+    return this.api.post(details, url);
+  }
+
 
   /**
    * Create trip plan - step 2 submit
@@ -39,7 +63,7 @@ export class TripPlannerService {
    * @param details
    */
   addCity(tripId, details): Observable<any> {
-    return this.api.post(details, `trips/${tripId}/add_city`)
+    return this.api.post(details, `trips/${tripId}/add_city`);
   }
 
   /**
@@ -48,7 +72,7 @@ export class TripPlannerService {
    * @param details
    */
   addPlace(tripId, details): Observable<any> {
-    return this.api.post(details ,  `trips/${tripId}/add_place`)
+    return this.api.post(details ,  `trips/${tripId}/add_place`);
   }
 
 }

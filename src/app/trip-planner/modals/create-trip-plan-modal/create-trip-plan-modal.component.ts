@@ -33,7 +33,6 @@ export class CreateTripPlanModalComponent implements OnInit {
   };
 
   public myDatePickerOptions: IMyDpOptions = {
-    // other options...
     dateFormat: 'dd mmm yyyy'
   };
 
@@ -66,8 +65,6 @@ export class CreateTripPlanModalComponent implements OnInit {
    */
   submit() {
     this.store.dispatch(new CreateTripAction({user_id: 1, ...this.form.value,  ...{date : this.form.get('date').value.jsdate}}));
-    /*this.store.select(getUserId)
-      .subscribe(userId => this.store.dispatch(new CreateTripAction({userId, ...this.form.value})));*/
   }
 
 }
