@@ -24,12 +24,12 @@ export class TripPlannerService {
    * @param query
    */
   getCities(query): Observable<any> {
-    const details = {query, language_id: 1, page: 1, page_size: 10};
+    const details = {query, language_id: 1, offset: 0, limit: 10};
     return this.api.post(details,  'cities/search');
   }
 
   getPlaces(query): Observable<any> {
-    const details = {query, language_id: 1, page: 1, page_size: 10};
+    const details = {query, language_id: 1, offset: 0, limit: 10};
     return this.api.post(details,  'places/search');
   }
 

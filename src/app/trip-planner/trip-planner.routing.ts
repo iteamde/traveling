@@ -31,6 +31,6 @@ export const TripPlannerRoutes = [
       resolve: { placesInfo : TripInfoResolver}
     }
   ],
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   }
 ];

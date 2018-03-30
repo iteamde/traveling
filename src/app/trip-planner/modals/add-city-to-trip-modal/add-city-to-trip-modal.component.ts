@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State, getTripId, getErrorFromServer} from '../../../core/reducers/index';
+import {State, getErrorFromServer, getOpenedModalRef} from '../../../core/reducers/index';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AddCityAction} from '../../actions/trip-planner.actions';
 import {Subscription} from 'rxjs/Subscription';
@@ -9,6 +9,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Router} from '@angular/router';
+
 
 
 
@@ -26,6 +27,7 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
    * Trip planner error
    */
   public error$: Observable<string>;
+  public modalRef$: Observable<any>;
 
   /**
    * Cities data holder
@@ -51,11 +53,12 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
               private fb: FormBuilder,
               private tripPlannerService: TripPlannerService,
               @Inject(MAT_DIALOG_DATA) public routeParams: any,
-              private route: Router
+              private route: Router,
               )
   {
     this.closeLink = this.route.routerState.snapshot.url.endsWith('info') ? this.route.routerState.snapshot.url : 'trip/new';
     this.error$ = store.select(getErrorFromServer);
+    this.modalRef$ = this.store.select(getOpenedModalRef);
   }
 
   ngOnInit() {
@@ -72,12 +75,17 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
   /**
    * Next step button clicked
    */
-  onAddClick(id) {
-        this.store.dispatch(new AddCityAction(this.routeParams.id, {city_id : id, order : 1}, `/trip/${this.routeParams.id}/places` ));
+  onAddClick(city) {
+    if(this.route.routerState.snapshot.url.endsWith('info')){
+      this.modalRef$.take(1).subscribe(res => res.close(city));
+      return;
+    }
+    this.store.dispatch(new AddCityAction(this.routeParams.id, {city_id : city.cId, order : 1}, `/trip/${this.routeParams.id}/places` ));
   }
 
   ngOnDestroy() {
     this.searchCitySubscription$.unsubscribe();
+    //this.modalRef$.unsubscribe();
   }
 
 }

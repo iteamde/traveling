@@ -21,31 +21,6 @@
         <div class="suggestion-wrapper">
           <p class="sugg-ttl">Suggestions</p>
           <div class="sugg-inner">
-            <!--<div class="suggestion-block">
-              <div class="img-wrap">
-                <img src="http://placehold.it/60x60" alt="image">
-              </div>
-              <div class="sugg-content">
-                <div class="sugg-place">Nagoya castle</div>
-                <div class="sugg-place-info">Monument</div>
-                <div class="com-star-block">
-                  <ul class="com-star-list">
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                    <li><i class="trav-star-icon"></i></li>
-                  </ul>
-                  <span class="count">
-                      <b>4.8</b>
-                    </span>
-                  <span>from 26 Reviews</span>
-                </div>
-              </div>
-              <div class="sugg-btn-wrap">
-                <button type="button" class="btn btn-light-primary btn-bordered" routerLink="/trips/171/add_place"><span>+</span> Add</button>
-              </div>
-            </div>-->
             <div class="suggestion-block" *ngFor="let city of cities">
               <div class="img-wrap">
                 <img src="http://placehold.it/60x60" alt="image">
@@ -68,7 +43,7 @@
                 </div>
               </div>
               <div class="sugg-btn-wrap">
-                <button type="button" class="btn btn-light-primary btn-bordered" (click)="onAddClick(city.cId)"><span>+</span> Add </button>
+                <button type="button" class="btn btn-light-primary btn-bordered" (click)="onAddClick(city)"><span>+</span> Add </button>
               </div>
             </div>
           </div>

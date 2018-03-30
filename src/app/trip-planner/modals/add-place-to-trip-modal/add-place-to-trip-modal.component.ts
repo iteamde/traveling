@@ -1,12 +1,12 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import {State, getTripId} from '../../../core/reducers/index';
+import {State} from '../../../core/reducers/index';
 import {AddPlaceAction} from '../../actions/trip-planner.actions';
 import {Observable} from 'rxjs';
 import {Subscription} from 'rxjs/Subscription';
 import {TripPlannerService} from '../../services/trip-planner.service';
-import {getErrorFromServer} from '../../../core/reducers';
+import {getErrorFromServer, getOpenedModalRef} from '../../../core/reducers';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Router} from '@angular/router';
 
@@ -28,6 +28,7 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
    * Trip planner error
    */
   public error$: Observable<string>;
+  public modalRef$: Observable<any>;
 
   /**
    * Holds trip data
@@ -49,6 +50,7 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.error$ = this.store.select(getErrorFromServer);
+    this.modalRef$ = this.store.select(getOpenedModalRef);
     this.form = this.fb.group({
       place: '',
     });
@@ -56,14 +58,18 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
     this.searchPlaceSubscription$ = this.form.valueChanges
       .debounceTime(500)
       .switchMap(form => this.tripPlannerService.getPlaces(form.place))
-      .subscribe(res => this.places = res.data);
+      .subscribe(res => this.places = res.data.places);
   }
 
   /**
    * Add button clicked
    */
-  onAddClick(id) {
-     this.store.dispatch(new AddPlaceAction( this.routeParams.id, {place_id : id}, `/trip/${this.routeParams.id}/info`));
+  onAddClick(place) {
+    if(this.route.routerState.snapshot.url.endsWith('info')){
+      this.modalRef$.take(1).subscribe(res => res.close(place));
+      return;
+    }
+     this.store.dispatch(new AddPlaceAction( this.routeParams.id, {place_id : place.id}, `/trip/${this.routeParams.id}/info`));
   }
 
   ngOnDestroy() {

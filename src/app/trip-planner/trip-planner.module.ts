@@ -36,7 +36,6 @@ import {ConfirmComponent} from '../core/components/modals/confirm/confirm.compon
     CreateTripPlanModalComponent,
     AddCityToTripModalComponent,
     AddPlaceToTripModalComponent,
-    Location
   ],
   entryComponents: [
     CreateTripPlanModalComponent,
