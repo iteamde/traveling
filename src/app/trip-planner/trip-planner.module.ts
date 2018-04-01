@@ -13,6 +13,7 @@ import {DndModule} from 'ng2-dnd';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import {TripInfoResolver} from './services/trip-info-resolver';
 import {ConfirmComponent} from '../core/components/modals/confirm/confirm.component';
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   imports: [
@@ -21,7 +22,10 @@ import {ConfirmComponent} from '../core/components/modals/confirm/confirm.compon
     SharedModule,
     CoreModule,
     DndModule.forRoot(),
-    AmazingTimePickerModule
+    AmazingTimePickerModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAXf0rOLWAEcQn2pAqRyZeighQ_y8NtNYY'
+    })
   ],
   declarations: [
     TripPlannerComponent,

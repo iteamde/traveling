@@ -14,6 +14,7 @@ import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-trip-planner-info',
+  styleUrls: ['./trip-planner-info.component.scss'],
   templateUrl: './trip-planner-info.component.html',
 })
 export class TripPlannerInfoComponent implements  OnInit{
@@ -198,6 +199,14 @@ export class TripPlannerInfoComponent implements  OnInit{
   setDragOperation(e) {
     if (this.isDragling) return;
     this.dragOperation = e;
+  }
+
+  getLat() {
+    return +this.activeCity.places[0].lat
+  }
+
+  getLng() {
+    return +this.activeCity.places[0].lng
   }
 
   setActiveCity(x) {

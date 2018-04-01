@@ -10,14 +10,16 @@ import {PlatformService} from '../core/services/platform.service';
 import { FooterComponent } from './footer/footer.component';
 import {MyDatePickerModule} from 'mydatepicker';
 
-
-
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent
   ],
-  imports: [CommonModule, ScrollEventModule, MyDatePickerModule],
+  imports: [
+    CommonModule,
+    ScrollEventModule,
+    MyDatePickerModule
+  ],
   exports: [
     RouterModule,
     HeaderComponent,
