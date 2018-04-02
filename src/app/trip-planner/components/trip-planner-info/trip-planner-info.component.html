@@ -36,7 +36,7 @@
   <div class="create-trip-wrapper">
     <div class="trip-side">
       <div class="trip-side-content"  >
-        <div class="box3-wrapper" dnd-sortable-container [sortableData]="data.cities" [dropZones]="['city-dropZone']">
+      <!-- <div class="box3-wrapper" dnd-sortable-container [sortableData]="data.cities" [dropZones]="['city-dropZone']">
           <div class="trip-side-block airplane" *ngFor="let city of data.cities; let y = index" [dragEnabled]="!dragOperation" dnd-sortable [sortableIndex]="y"
                (onDragStart)="itemDragged(y);"  (onDragEnd)="itemSwapped(y)" >
             <div *ngIf="city.hasSavedPlace">
@@ -187,9 +187,9 @@
       </div>
     </div>
   </div>
-       </div>
+       </div>-->
 
-       <div class="trip-side-block add-place" *ngFor="let city of data.cities; let i = index">
+       <div class="trip-side-block add-place" *ngFor="let city of (citiesInfo$ | async).cities; let i = index">
           <div class="trip-side-layer-wrap" *ngIf="!city.saved">
             <form class="adding-place-block arrow-left" #form="ngForm" (ngSubmit)="saveCity(city)">
               <div class="add-form" >
@@ -266,7 +266,7 @@
       <div class="trip-side-button-block">
         <button class="btn btn-transp btn-bordered" (click)="openPlaceModal()">
           <i class="trav-add-place-icon"></i>
-          <span>Add a Place in {{activeCity.trans[0].title}}</span>
+          <span>Add a Place in </span>
         </button>
         <button class="btn btn-transp btn-bordered"  (click)="openCityModal()">
           <i class="trav-move-new-icon"></i>
@@ -326,9 +326,9 @@
           <button class="btn btn-light-bg-grey btn-bordered">Next Day</button>
         </div>
       </div>
-      <agm-map [latitude]="getLat()" [longitude]="getLng()">
-        <agm-marker [latitude]="getLat()" [longitude]="getLng()"></agm-marker>
-      </agm-map>
+      <!--<agm-map [latitude]="(citiesInfo$ | async).cities.activeCity.places[0].lat" [longitude]="(citiesInfo$ | async).cities.activeCity.places[0].lng">
+        <agm-marker [latitude]="(citiesInfo$ | async).cities.activeCity.places[0].lat" [longitude]="(citiesInfo$ | async).cities.activeCity.places[0].lng"></agm-marker>
+      </agm-map>-->
       <!--<div class="trip-map-layer">
         <img src="./assets/image/create-trip-plan-map.jpg" alt="">
         <div class="trip-map-filter-block">

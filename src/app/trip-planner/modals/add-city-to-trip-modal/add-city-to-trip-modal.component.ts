@@ -10,9 +10,6 @@ import 'rxjs/add/operator/debounceTime';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Router} from '@angular/router';
 
-
-
-
 @Component({
   selector: 'app-add-city-to-trip-modal',
   templateUrl: 'add-city-to-trip-modal.component.html',
@@ -76,13 +73,23 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
    * Next step button clicked
    */
   onAddClick(city) {
+    console.log("ADd CITYT", city);
     if(this.route.routerState.snapshot.url.endsWith('info')){
-      this.modalRef$.take(1).subscribe(res => res.close(city));
-      return;
+      this.modalRef$.take(1).subscribe(res => res.close());
     }
-    this.store.dispatch(new AddCityAction(this.routeParams.id, {city_id : city.cId, order : 1}, `/trip/${this.routeParams.id}/places` ));
-  }
+    const urlTo = `/trip/${this.routeParams.id}/${this.route.routerState.snapshot.url.endsWith('info') ? 'info' : 'places'}`;
 
+    const transformedCity = {
+      id : city.cId,
+      trans: [{title: city.title}],
+      lat: city.lat,
+      lng: city.lng,
+      order: 0,
+    };
+
+    console.log("urlTo" , urlTo);
+    this.store.dispatch(new AddCityAction(this.routeParams.id, transformedCity, urlTo ));
+  }
   ngOnDestroy() {
     this.searchCitySubscription$.unsubscribe();
     //this.modalRef$.unsubscribe();

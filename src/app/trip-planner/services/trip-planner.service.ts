@@ -63,7 +63,7 @@ export class TripPlannerService {
    * @param details
    */
   addCity(tripId, details): Observable<any> {
-    return this.api.post(details, `trips/${tripId}/add_city`);
+    return this.api.post({city_id: details.id, order: details.order}, `trips/${tripId}/add_city`);
   }
 
   /**
@@ -72,7 +72,7 @@ export class TripPlannerService {
    * @param details
    */
   addPlace(tripId, details): Observable<any> {
-    return this.api.post(details ,  `trips/${tripId}/add_place`);
+    return this.api.post( details,  `trips/${tripId}/add_place`);
   }
 
 }

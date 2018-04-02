@@ -14,7 +14,7 @@ import {AddCitySuccessAction} from '../actions/trip-planner.actions';
 @Injectable()
 export class TripPlannerEffects {
 
-  private urlTo: string;
+  private payload: any;
 
   /**
    * Creates trip plan
@@ -30,21 +30,21 @@ export class TripPlannerEffects {
   @Effect()
   addCity$ = this.actions$.ofType(tripPlanner.ADD_CITY)
     .switchMap((action: tripPlanner.AddCityAction) => {
-      this.urlTo = action.payload.urlTo;
-      return this.tripPlannerService.addCity(action.payload.trip_id, action.payload.details);
+      this.payload = action.payload;
+      return this.tripPlannerService.addCity(action.payload.trip_id, action.payload.details );
     })
-    .map(response => this.responseHandler(response, tripPlanner.AddCitySuccessAction , this.urlTo));
+    .map(response => this.responseHandler(response, tripPlanner.AddCitySuccessAction , this.payload.urlTo, this.payload.details));
 
   /**
-   * Add place to trip
+   * Add place to tripzxczxcxz
    */
   @Effect()
   addPlace$ = this.actions$.ofType(tripPlanner.ADD_PLACE)
     .switchMap((action: tripPlanner.AddPlaceAction) => {
-      this.urlTo = action.payload.urlTo;
+      this.payload = action.payload;
       return this.tripPlannerService.addPlace(action.payload.trip_id, action.payload.details);
     })
-      .map(response => this.responseHandler(response, tripPlanner.AddPlaceSuccessAction , this.urlTo));
+      .map(response => this.responseHandler(response, tripPlanner.AddPlaceSuccessAction , this.payload.urlTo));
 
 
   /**
@@ -59,10 +59,10 @@ export class TripPlannerEffects {
   ) {
   }
 
-  responseHandler(res, onSuccess, urlTo) {
+  responseHandler(res, onSuccess, urlTo, hook?) {
     if (res.success) {
       if (urlTo) this.router.navigate([ urlTo]);
-      return new onSuccess(res);
+      return new onSuccess(hook || res);
     }
       return new error.AddErrorAction(res.data.message);
   }

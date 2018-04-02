@@ -7,6 +7,7 @@ export const ADD_CITY_SUCCESS = '[Trip-planner] add city to trip success';
 export const ADD_PLACE = '[Trip-planner] add place to trip';
 export const ADD_PLACE_SUCCESS = '[Trip-planner] add place to trip success';
 export const TRIP_PLANNER_FAILED = '[Trip-planner] failed';
+export const SET_CITY_INFO = '[Trip-planner] set city info';
 
 /**
  * Creates new trip
@@ -40,7 +41,7 @@ export class CreateTripSuccessAction implements Action {
 export class AddCityAction implements Action {
   readonly type = ADD_CITY;
 
-  public payload: {trip_id: string, details: Object, urlTo: string};
+  public payload: {trip_id: string, details: any, urlTo: string};
   /**
    * Default constructor
    * @param trip_id,
@@ -56,6 +57,9 @@ export class AddCityAction implements Action {
  */
 export class AddCitySuccessAction implements Action {
   readonly type = ADD_CITY_SUCCESS;
+
+  constructor(public payload) {
+  }
 }
 
 /**
@@ -84,6 +88,16 @@ export class AddPlaceSuccessAction implements Action {
 }
 
 
+export class SetCityInfo implements Action {
+  readonly type = SET_CITY_INFO;
+
+  /**
+   * Default constructor
+   * @param payload
+   */
+  constructor(public payload) { }
+}
+
 
 
 export type Actions
@@ -92,5 +106,6 @@ export type Actions
   | AddCityAction
   | AddCitySuccessAction
   | AddPlaceAction
-  | AddPlaceSuccessAction;
+  | AddPlaceSuccessAction
+  | SetCityInfo;
 

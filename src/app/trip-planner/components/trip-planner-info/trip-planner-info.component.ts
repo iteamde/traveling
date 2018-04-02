@@ -7,10 +7,11 @@ import {AddPlaceToTripModalComponent} from '../../modals/add-place-to-trip-modal
 import {ApiService} from '../../../core/services/api.service';
 import {TripPlannerService} from '../../services/trip-planner.service';
 import {IMyDpOptions} from 'mydatepicker';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfirmComponent} from '../../../core/components/modals/confirm/confirm.component';
-import {getOpenedModalRef, State} from '../../../core/reducers';
+import {getCitiesInfo, getOpenedModalRef, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
+import {AddCityAction, SetCityInfo} from '../../actions/trip-planner.actions';
+
 
 @Component({
   selector: 'app-trip-planner-info',
@@ -18,7 +19,6 @@ import {Store} from '@ngrx/store';
   templateUrl: './trip-planner-info.component.html',
 })
 export class TripPlannerInfoComponent implements  OnInit{
-  public tripData: Array<string> = ['Trip one TITLE', 'Trip two TITLE'];
   public data = {
     cities : [],
   };
@@ -31,6 +31,7 @@ export class TripPlannerInfoComponent implements  OnInit{
   public showMessage = true;
   public activeCity;
   private modalRef$;
+  public citiesInfo$;
 
 
   public myDatePickerOptions: IMyDpOptions = {
@@ -47,42 +48,16 @@ export class TripPlannerInfoComponent implements  OnInit{
               private store: Store<State>
   ){
             this.routeParams = this.route.snapshot.params;
-    this.modalRef$ = this.store.select(getOpenedModalRef);
+            this.modalRef$ = this.store.select(getOpenedModalRef);
+            this.citiesInfo$ = this.store.select(getCitiesInfo);
+    this.citiesInfo$.subscribe( res => console.log("Its city info", res));
   }
 
   ngOnInit() {
-    this.modalRef$.subscribe(res => {
-      if (res) {
-        res.afterClosed().take(1).subscribe(res1 => {
-
-          console.log("Resss 111" , res1);
-          if (res1 && res1.cId) {
-           this.data.cities.push({
-             id: res1.cId,
-             trans: [{title: res1.title}],
-             places: []
-           });
-            this.activeCity = this.data.cities[this.data.cities.length - 1];
-          }
-
-          if (res1 && res1.id && !res1.cId) {
-            this.activeCity.places.push({
-              id: res1.id,
-              trans: [{title: res1.name}],
-              pivot: {}
-            });
-          }
-        });
-        console.log("Cities 111" , this.data.cities);
-      }
-    });
-
     setTimeout( () => this.showMessage = false , 5000);
 
     const dataFromBack = this.route.snapshot.data.placesInfo.data;
-    console.log("DATA FROM SERVER", dataFromBack);
-    if (dataFromBack.error) this.router.navigate(['/error']);
-
+    if (dataFromBack.error) return this.router.navigate(['/error']);
     //TODO REMOVE THIS WORST CODE EVER
     let cCity;
 
@@ -121,8 +96,7 @@ export class TripPlannerInfoComponent implements  OnInit{
       }
 
     });
-    this.activeCity = this.data.cities[0];
-    console.log("Transformed data" , this.data.cities);
+    this.store.dispatch(new SetCityInfo({cities: this.data.cities , activeCity: this.data.cities[0]}));
   }
 
   itemDragged(i) {
