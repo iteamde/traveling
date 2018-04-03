@@ -1,0 +1,48 @@
+<div class="box3-wrapper" >
+  <div class="trip-side-block airplane" *ngFor="let city of cities; let y = index">
+    <div *ngIf="city.hasSavedPlace">
+      <div class="trip-country-name">{{city.country ? city.country.trans[0].title : "Country name"}}</div>
+      <div class="box3-place-wrapper" >
+        <div class="trip-place-name">
+              <span class="name">
+               {{city.trans[0].title}}
+              </span>
+        </div>
+        <div class="trip-side-layer-wrap"   dnd-sortable-container [sortableData]="city.places" [dropZones]="[city.trans[0].title]" [dragEnabled]="dragOperation">
+          <div class="trip-side-layer" >
+            <div class="trip-side-wrapper" (mouseenter)="setDragOperation(true)" (mouseleave)="setDragOperation(false)" *ngFor="let place of city.places; let x = index" dnd-sortable [sortableIndex]="x"
+                 (onDragStart)="itemDragged()"   (onDropSuccess)="itemSwapped(city.places)">
+              <div class="trip-side-row" *ngIf="place.saved">
+                <a href="#" class="drag-icon">
+                  <i class="trav-ellipsis-v-icon"></i>
+                </a>
+                <div class="img-wrap">
+                  <img src="http://placehold.it/64x60" alt="photo">
+                </div>
+                <div class="trip-content">
+                  <div class="trip-txt-line">
+                    <div class="line-txt place-info">
+                      <p class="dest-name">{{place.trans[0].title}}</p>
+                    </div>
+                    <div class="line-time">
+                      &nbsp; @ {{place.pivot.time}}
+                    </div>
+                  </div>
+                  <div class="trip-txt-line">
+                    <div class="line-txt">
+                      Will spend <b>{{place.pivot.budget}}</b>
+                      <span class="dot">·</span>
+                      Planning to stay <b>{{place.pivot.duration}}</b>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

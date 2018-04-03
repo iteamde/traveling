@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-confirm',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmComponent implements OnInit {
 
-  constructor() { }
+  constructor( @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+
+  }
+
+  onSuccess() {
+    if (this.data.onSuccess) this.data.onSuccess();
+  }
+
+  onReject() {
+    if (this.data.onReject) this.data.onReject();
   }
 
 }

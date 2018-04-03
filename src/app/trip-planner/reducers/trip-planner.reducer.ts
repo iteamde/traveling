@@ -1,5 +1,4 @@
 import * as tripPlanner from '../actions/trip-planner.actions';
-import {ADD_CITY} from '../actions/trip-planner.actions';
 
 export interface State {
   trip_id: number;
@@ -9,7 +8,10 @@ export interface State {
 
 export const INIT_STATE: State = {
   trip_id: null,
-  citiesInfo: null,
+  citiesInfo: {
+    activeCity : {},
+    cities: []
+  },
 };
 
 /**
@@ -31,9 +33,55 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
                 citiesInfo: {
                 ...state.citiesInfo,
                   activeCity : action.payload,
-                  cities : insertItem(state.citiesInfo.cities, action.payload)
-            },
+                  cities : pushItem(state.citiesInfo.cities, action.payload)
+            }
+      };
 
+    case tripPlanner.ADD_PLACE_SUCCESS:
+      return {...state,
+        citiesInfo: {
+          ...state.citiesInfo,
+          cities : replaceItem(state.citiesInfo.cities, action.payload.helper)
+        }
+      };
+
+    case tripPlanner.SAVE_CITY_SUCCESS:
+      return {...state,
+        citiesInfo: {
+          ...state.citiesInfo,
+          cities : setItemProperty(state.citiesInfo.cities, action.payload.helper)
+        }
+      };
+
+    case tripPlanner.DELETE_CITY_SUCCESS:
+      return {...state,
+        citiesInfo: {
+          ...state.citiesInfo,
+          cities : removeItem(state.citiesInfo.cities, action.payload.helper)
+        }
+      };
+
+    case tripPlanner.SET_ACTIVE_CITY:
+      return {...state,
+        citiesInfo: {
+          ...state.citiesInfo,
+          activeCity :  action.payload
+        }
+      };
+
+    case tripPlanner.SAVE_PLACE_SUCCESS:
+      return {...state,
+        citiesInfo: {
+          ...state.citiesInfo,
+          cities :  replaceItem(state.citiesInfo.cities, action.payload.helper)
+        }
+      };
+    case tripPlanner.DELETE_PLACE_SUCCESS:
+      return {...state,
+        citiesInfo: {
+          ...state.citiesInfo,
+          cities :  replaceItem(state.citiesInfo.cities, action.payload.helper)
+        }
       };
 
     default :
@@ -44,15 +92,26 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
 export const getTripId = (state: State) => state.trip_id;
 export const  getCitiesInfo = (state: State) => state.citiesInfo;
 
-
-function insertItem(array, action) {
+function setItemProperty(array, data) {
   const newArray = array.slice();
-  newArray.splice(action.index, 0, action.item);
+  newArray[data.index][data.property] = data.value;
   return newArray;
 }
 
-function removeItem(array, action) {
+function replaceItem(array, data) {
   const newArray = array.slice();
-  newArray.splice(action.index, 1);
+  newArray[data.index] = data.item;
+  return newArray;
+}
+
+function pushItem(array, item) {
+  const newArray = array.slice();
+  newArray.push(item);
+  return newArray;
+}
+
+function removeItem(array, data) {
+  const newArray = array.slice();
+  newArray.splice(data.index, 1);
   return newArray;
 }

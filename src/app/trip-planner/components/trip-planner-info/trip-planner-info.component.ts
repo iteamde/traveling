@@ -1,18 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddCityToTripModalComponent} from '../../modals/add-city-to-trip-modal/add-city-to-trip-modal.component';
 import {ModalManager} from '../../../core/services/modal-manager.service';
 import {AddPlaceToTripModalComponent} from '../../modals/add-place-to-trip-modal/add-place-to-trip-modal.component';
-import {ApiService} from '../../../core/services/api.service';
 import {TripPlannerService} from '../../services/trip-planner.service';
 import {IMyDpOptions} from 'mydatepicker';
 import {ConfirmComponent} from '../../../core/components/modals/confirm/confirm.component';
 import {getCitiesInfo, getOpenedModalRef, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
-import {AddCityAction, SetCityInfo} from '../../actions/trip-planner.actions';
+import {AddCityAction, CancelTripAction, SaveTripAction, SetCityInfoAction} from '../../actions/trip-planner.actions';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+import {ApiService} from '../../../core/services/api.service';
 
-
+@AutoUnsubscribe()
 @Component({
   selector: 'app-trip-planner-info',
   styleUrls: ['./trip-planner-info.component.scss'],
@@ -22,35 +23,20 @@ export class TripPlannerInfoComponent implements  OnInit{
   public data = {
     cities : [],
   };
-  public today = new Date();
-  public time = `${this.today.getHours()}:${this.today.getMinutes()}`;
-  private routeParams: any;
-  public dragOperation = false;
-  public model: any = { date: { year: 2018, month: 10, day: 9 } };
-  private isDragling = false;
+  public routeParams: any;
   public showMessage = true;
   public activeCity;
-  private modalRef$;
   public citiesInfo$;
 
-
-  public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'dd mmm yyyy',
-    width: '169px',
-    height: '25px',
-  };
-
-  constructor(private atp: AmazingTimePickerService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private modalManager: ModalManager,
-              private api: TripPlannerService,
+              private api: ApiService,
               private router: Router,
               private store: Store<State>
   ){
             this.routeParams = this.route.snapshot.params;
-            this.modalRef$ = this.store.select(getOpenedModalRef);
             this.citiesInfo$ = this.store.select(getCitiesInfo);
-    this.citiesInfo$.subscribe( res => console.log("Its city info", res));
+            this.citiesInfo$.subscribe( res => console.log("Its city info", res));
   }
 
   ngOnInit() {
@@ -96,32 +82,9 @@ export class TripPlannerInfoComponent implements  OnInit{
       }
 
     });
-    this.store.dispatch(new SetCityInfo({cities: this.data.cities , activeCity: this.data.cities[0]}));
+    this.store.dispatch(new SetCityInfoAction({cities: this.data.cities , activeCity: this.data.cities[0]}));
   }
 
-  itemDragged(i) {
-    console.log("DROP START" , i);
-    this.isDragling = true;
-  }
-  itemSwapped(i) {
-    console.log("DROP END" , i);
-    this.isDragling = false;
-  }
-
-
-  open(x) {
-    const amazingTimePicker = this.atp.open({
-      time:  this.time,
-      theme: 'dark',
-      arrowStyle: {
-        background: 'red',
-        color: 'white'
-      }
-    });
-    amazingTimePicker.afterClose().subscribe(time => {
-      x.time = time;
-    });
-  }
 
   openCityModal() {
     this.modalManager.openModalFromLCH(AddCityToTripModalComponent, this.routeParams );
@@ -131,59 +94,30 @@ export class TripPlannerInfoComponent implements  OnInit{
     this.modalManager.openModalFromLCH(AddPlaceToTripModalComponent, this.routeParams );
   }
 
-
-  saveCity(city) {
-    city.saved = true;
-    return;
-    /*console.log(this.routeParams.id , id);
-    return this.api.saveCityInfo({city_id: id}, `trips/${this.routeParams.id}/finish_city`).subscribe(res => {});*/
-  }
-
-  removeCity(id) {
-    this.data.cities.splice(id, 1);
-    if (this.data.cities.length) {
-      this.activeCity = this.data.cities[0]
-    }
-   // return this.api.removeCityInfo({city_id: id}, `trips/${this.routeParams.id}/remove_city`).subscribe(res => {});
-  }
-
-  savePlace(city, place, j) {
-    city.places[j] = place;
-    city.hasSavedPlace = city.hasSavedPlace ? city.hasSavedPlace + 1 :  1;
-    place.saved = true;
-    place.pivot.duration = (place.pivot.hour || 0) + ' hours ' + (place.pivot.minute || 0) + ' min ';
-    console.log("ITS CITY ", city, place);
-
-   // return this.api.savePlaceInfo({place_id: id, date: '2001-03-10', time: '12:00' , duration: '12', budget: 250},
-    //  `trips/${this.routeParams.id}/finish_place`).subscribe(res => {});
-  }
-
-  removePlace(city, j) {
-    city.places.splice(j, 1);
-   // return this.api.removePlaceInfo({place_id: id}, `trips/${this.routeParams.id}/remove_place`).subscribe(res => {});
-  }
-
   publishTrip(id) {
-    //return this.api.publishTrip({}, `trips/${this.routeParams.id}/publish`).subscribe(res => {});
+    this.store.dispatch(new SaveTripAction({details: {}, url: `trips/${this.routeParams.id}/publish`}));
   }
-  cancelTrip(id) {
-    this.modalManager.openModalFromLCH(ConfirmComponent, this.routeParams );
-    // return this.api.cancelTrip({}, `trips/${this.routeParams.id}/cancel`).subscribe(res => {});
+
+  cancelTrip() {
+    this.modalManager.openModalFromLCH(ConfirmComponent,
+      {
+        title : "Are you sure you want to cancel your Trip Plan?" ,
+        onSuccess: this.cancel.bind(this),
+        onReject: false }
+        );
   }
-  setDragOperation(e) {
-    if (this.isDragling) return;
-    this.dragOperation = e;
+  cancel() {
+    this.store.dispatch(new CancelTripAction({details: {}, url: `trips/${this.routeParams.id}/cancel`}));
   }
 
   getLat() {
-    return +this.activeCity.places[0].lat
+    return +this.activeCity.places[0].lat;
   }
 
   getLng() {
-    return +this.activeCity.places[0].lng
+    return +this.activeCity.places[0].lng;
   }
 
-  setActiveCity(x) {
-    this.activeCity = x;
+  ngOnDestroy() {
   }
 }

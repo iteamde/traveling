@@ -20,7 +20,7 @@
               <a class="nav-link" >Save as draft</a>
             </li>
             <li class="nav-item">
-              <a (click)="publishTrip()" class="nav-link btn btn-light-primary" routerLink="home" >Save plan</a>
+              <a (click)="publishTrip()" class="nav-link btn btn-light-primary"  >Save plan</a>
             </li>
             <li class="nav-item">
               <a class="profile-link" href="#">
@@ -35,238 +35,15 @@
   <h3 class="place-title text-center" *ngIf="showMessage">Please fill the information for cities & places</h3>
   <div class="create-trip-wrapper">
     <div class="trip-side">
-      <div class="trip-side-content"  >
-      <!-- <div class="box3-wrapper" dnd-sortable-container [sortableData]="data.cities" [dropZones]="['city-dropZone']">
-          <div class="trip-side-block airplane" *ngFor="let city of data.cities; let y = index" [dragEnabled]="!dragOperation" dnd-sortable [sortableIndex]="y"
-               (onDragStart)="itemDragged(y);"  (onDragEnd)="itemSwapped(y)" >
-            <div *ngIf="city.hasSavedPlace">
-              <div class="trip-country-name">{{city.country ? city.country.trans[0].title : "Country name"}}</div>
-              <div class="box3-place-wrapper" >
-                <div class="trip-place-name">
-              <span class="name">
-               {{city.trans[0].title}}
-              </span>
-                </div>
-                <div class="trip-side-layer-wrap"   dnd-sortable-container [sortableData]="city.places" [dropZones]="[city.trans[0].title]" [dragEnabled]="dragOperation">
-                  <div class="trip-side-layer" >
-                    <div class="trip-side-wrapper" (mouseenter)="setDragOperation(true)" (mouseleave)="setDragOperation(false)" *ngFor="let place of city.places; let x = index" dnd-sortable [sortableIndex]="x"
-                         (onDragStart)="itemDragged(x)"  (onDragEnd)="itemSwapped(x)">
-                      <div class="trip-side-row" *ngIf="place.saved">
-                          <a href="#" class="drag-icon">
-                            <i class="trav-ellipsis-v-icon"></i>
-                          </a>
-                          <div class="img-wrap">
-                            <img src="http://placehold.it/64x60" alt="photo">
-                          </div>
-                          <div class="trip-content">
-                            <div class="trip-txt-line">
-                              <div class="line-txt place-info">
-                                <p class="dest-name">{{place.trans[0].title}}</p>
-                              </div>
-                              <div class="line-time">
-                                &nbsp; @ {{place.pivot.time}}
-                              </div>
-                            </div>
-                            <div class="trip-txt-line">
-                              <div class="line-txt">
-                                Will spend <b>{{place.pivot.budget}}</b>
-                                <span class="dot">·</span>
-                                Planning to stay <b>{{place.pivot.duration}}</b>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-       <div class="box2-wrapper" *ngFor="let city of data.cities">
-          <div class="trip-side-block add-place box2" *ngIf="city.saved && city.places.length && city.hasSavedPlace != city.places.length" >
-            <div class="trip-place-name" >
-              <span class="name">{{city.trans[0].title}}</span>
-            </div>
-            <div class="trip-side-layer-wrap" *ngFor="let place of city.places; let j= index;" >
-      <div class="adding-place-block" *ngIf="!place.saved">
-        <div class="add-form">
-          <div class="form-row">
-            <div class="field-style flex-field">
-              <div class="img-wrap">
-                <img src="http://placehold.it/54x54" alt="photo">
-              </div>
-              <div class="field-txt">
-                {{place.trans[0].title}}
-              </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field-style">
-              <div class="field-label">When you will check-in?</div>
-              <div class="flex-field">
-                <div class="flex-item">
-                  <div class="field-ttl">Date</div>
-                  <div class="date-inner" [ngStyle]="{'position':'relative'}">
-                    <my-date-picker name="date" [options]="myDatePickerOptions"
-                                    [(ngModel)]="place.pivot.date"></my-date-picker>
-                  </div>
-                </div>
-                <div class="flex-item" (click)="open(place.pivot)">
-                  <div class="field-ttl">Time</div>
-                  <div class="date-inner" >
-                    {{place.pivot.time}}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field-style">
-              <div class="field-label">Planning to stay</div>
-              <div class="flex-field">
-                <div class="flex-item">
-                  <div class="field-ttl">Hours</div>
-                  <div class="time-count">
-                    <span class="click" (click)="place.pivot.hour = place.pivot.hour ?  place.pivot.hour - 1 : 0 ">-</span>
-                    <input type="number" name="hour"  min="0" [value]="place.pivot.hour" [(ngModel)]="place.pivot.hour">
-                    <span class="click" (click)="place.pivot.hour = place.pivot.hour ?  place.pivot.hour + 1 : 1 ">+</span>
-                  </div>
-                </div>
-                <div class="flex-item">
-                  <div class="field-ttl">Minutes</div>
-                  <div class="time-count">
-                    <span class="click" (click)="place.pivot.minute = place.pivot.minute ?  place.pivot.minute - 1 : 0 ">-</span>
-                    <input type="number" name="minute" min="0" max="59" [value]="place.pivot.minute" [(ngModel)]="place.pivot.minute">
-                    <span class="click" (click)="place.pivot.minute = place.pivot.minute ?  place.pivot.minute + 1 : 1 ">+</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="field-style">
-              <div class="field-label">How much you are expecting to spend</div>
-              <div class="flex-field">
-                <div class="flex-item amount-input">
-                  <input type="text" name="enter_amount" placeholder="Enter amount" [(ngModel)]="place.pivot.budget" >
-                </div>
-                <div class="flex-item radio-field">
-                  <input type="radio" name="expect_spend" [id]="place.id"  [ngModel]="place.pivot.budget" value="50">
-                  <label class="check-field" (click)="place.pivot.budget = '50'">
-                    50$
-                  </label>
-                </div>
-                <div class="flex-item radio-field">
-                  <input type="radio" name="expect_spend"  [id]="place.id" [ngModel]="place.pivot.budget" value="100">
-                  <label class="check-field" (click)="place.pivot.budget = '100'">
-                    100$
-                  </label>
-                </div>
-                <div class="flex-item radio-field">
-                  <input type="radio" name="expect_spend" [id]="place.id" [ngModel]="place.pivot.budget"  value="200">
-                  <label class="check-field" (click)="place.pivot.budget = '200'">
-                    200$
-                  </label>
-                </div>
-              </div>
-              <div class="field-subtext">
-                Spending so far <b>${{place.pivot.budget}} </b>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="add-footer">
-          <button type="button" class="btn btn-transp btn-cancel" (click)="removePlace(city, j)">Delete</button>
-          <button type="button" class="btn btn-light-primary btn-bordered"
-                  [disabled]="!place.pivot.budget || !(place.pivot.minute || place.pivot.hour) || !place.pivot.date || !place.pivot.time"
-                  (click)="savePlace(city , place, j)">Save</button>
-        </div>
+      <div class="trip-side-content">
+      <app-completed-place-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id"></app-completed-place-box>
+      <app-place-details-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id"></app-place-details-box>
+      <app-city-arrive-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id"></app-city-arrive-box>
       </div>
-    </div>
-  </div>
-       </div>-->
-
-       <div class="trip-side-block add-place" *ngFor="let city of (citiesInfo$ | async).cities; let i = index">
-          <div class="trip-side-layer-wrap" *ngIf="!city.saved">
-            <form class="adding-place-block arrow-left" #form="ngForm" (ngSubmit)="saveCity(city)">
-              <div class="add-form" >
-                <div class="form-row">
-                  <div class="field-style flex-field" [ngStyle]="{'cursor': 'pointer'}" (click)="setActiveCity(city)">
-                    <div class="img-wrap">
-                      <img src="http://placehold.it/54x54" alt="photo">
-                    </div>
-                    <div class="field-txt">
-                      {{city.trans[0].title}}
-                    </div>
-                  </div>
-                </div>
-                <div class="form-row" >
-                  <div class="field-style">
-                    <div class="field-label">How you will arrive here?</div>
-                    <div class="flex-field">
-                      <div class="flex-item radio-field">
-                        <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-1'" [ngModel]="city.transportation"  value="plane" required>
-                        <label class="check-field" (click)="city.transportation = 'plane'">
-                          <i class="trav-angle-plane-icon"></i>
-                        </label>
-                      </div>
-                      <div class="flex-item radio-field">
-                        <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-2'" [ngModel]="city.transportation"  value="car" required>
-                        <label class="check-field" (click)="city.transportation = 'car'">
-                          <i class="trav-car-icon"></i>
-                        </label>
-                      </div>
-                      <div class="flex-item radio-field">
-                        <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-3'" [ngModel]="city.transportation"  value="train" required>
-                        <label class="check-field" (click)="city.transportation = 'train'">
-                          <i class="trav-railway-icon"></i>
-                        </label>
-                      </div>
-                      <div class="flex-item radio-field">
-                        <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-4'" [ngModel]="city.transportation"  value="bus" required>
-                        <label class="check-field" (click)="city.transportation = 'bus'">
-                          <i class="trav-bus-icon"></i>
-                        </label>
-                      </div>
-                      <div class="flex-item radio-field">
-                        <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-5'" [ngModel]="city.transportation"  value="cycle" required>
-                        <label class="check-field" (click)="city.transportation = 'cycle'">
-                          <i class="trav-cycle-icon"></i>
-                        </label>
-                      </div>
-                      <div class="flex-item radio-field">
-                        <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-6'" [ngModel]="city.transportation"  value="walk" required>
-                        <label class="check-field" (click)="city.transportation = 'walk'">
-                          <i class="trav-walk-icon-2"></i>
-                        </label>
-                      </div>
-                      <div class="flex-item radio-field">
-                        <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-7'" [ngModel]="city.transportation"  value="ship" required>
-                        <label class="check-field" (click)="city.transportation = 'ship'">
-                          <i class="trav-ship-icon"></i>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="add-footer">
-                <button type="button" class="btn btn-transp btn-cancel" (click)="removeCity(i)">Delete </button>
-                <button type="submit" class="btn btn-light-primary btn-bordered" [disabled]="!form.valid || !city.places.length" >Save</button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-
       <div class="trip-side-button-block">
         <button class="btn btn-transp btn-bordered" (click)="openPlaceModal()">
           <i class="trav-add-place-icon"></i>
-          <span>Add a Place in </span>
+          <span>Add a Place in {{(citiesInfo$ | async).activeCity.trans[0].title}}</span>
         </button>
         <button class="btn btn-transp btn-bordered"  (click)="openCityModal()">
           <i class="trav-move-new-icon"></i>
@@ -326,9 +103,9 @@
           <button class="btn btn-light-bg-grey btn-bordered">Next Day</button>
         </div>
       </div>
-      <!--<agm-map [latitude]="(citiesInfo$ | async).cities.activeCity.places[0].lat" [longitude]="(citiesInfo$ | async).cities.activeCity.places[0].lng">
-        <agm-marker [latitude]="(citiesInfo$ | async).cities.activeCity.places[0].lat" [longitude]="(citiesInfo$ | async).cities.activeCity.places[0].lng"></agm-marker>
-      </agm-map>-->
+      <agm-map [latitude]="+( (citiesInfo$ | async).activeCity.lat || (citiesInfo$ | async).activeCity.places[0].lat)" [longitude]="+( (citiesInfo$ | async).activeCity.lng || (citiesInfo$ | async).activeCity.places[0].lng)">
+        <agm-marker [latitude]="+( (citiesInfo$ | async).activeCity.lat || (citiesInfo$ | async).activeCity.places[0].lat)" [longitude]="+((citiesInfo$ | async).activeCity.lng || (citiesInfo$ | async).activeCity.places[0].lng)"></agm-marker>
+      </agm-map>
       <!--<div class="trip-map-layer">
         <img src="./assets/image/create-trip-plan-map.jpg" alt="">
         <div class="trip-map-filter-block">

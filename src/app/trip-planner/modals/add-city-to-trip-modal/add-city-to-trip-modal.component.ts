@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State, getErrorFromServer, getOpenedModalRef} from '../../../core/reducers/index';
+import {State, getErrorFromServer} from '../../../core/reducers/index';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AddCityAction} from '../../actions/trip-planner.actions';
 import {Subscription} from 'rxjs/Subscription';
@@ -9,7 +9,9 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Router} from '@angular/router';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-add-city-to-trip-modal',
   templateUrl: 'add-city-to-trip-modal.component.html',
@@ -24,7 +26,6 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
    * Trip planner error
    */
   public error$: Observable<string>;
-  public modalRef$: Observable<any>;
 
   /**
    * Cities data holder
@@ -55,7 +56,6 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
   {
     this.closeLink = this.route.routerState.snapshot.url.endsWith('info') ? this.route.routerState.snapshot.url : 'trip/new';
     this.error$ = store.select(getErrorFromServer);
-    this.modalRef$ = this.store.select(getOpenedModalRef);
   }
 
   ngOnInit() {
@@ -73,26 +73,23 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
    * Next step button clicked
    */
   onAddClick(city) {
-    console.log("ADd CITYT", city);
-    if(this.route.routerState.snapshot.url.endsWith('info')){
-      this.modalRef$.take(1).subscribe(res => res.close());
-    }
+
     const urlTo = `/trip/${this.routeParams.id}/${this.route.routerState.snapshot.url.endsWith('info') ? 'info' : 'places'}`;
 
     const transformedCity = {
-      id : city.cId,
-      trans: [{title: city.title}],
+      id : city.id,
+      trans: city.trans,
+      country: city.country,
       lat: city.lat,
       lng: city.lng,
       order: 0,
+      places: [],
     };
 
-    console.log("urlTo" , urlTo);
     this.store.dispatch(new AddCityAction(this.routeParams.id, transformedCity, urlTo ));
   }
   ngOnDestroy() {
-    this.searchCitySubscription$.unsubscribe();
-    //this.modalRef$.unsubscribe();
+
   }
 
 }

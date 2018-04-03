@@ -36,6 +36,7 @@
     "ng2-drag-drop": "^3.0.2",
     "ng2-twitter": "^0.3.0",
     "ng4-loading-spinner": "^1.1.1",
+    "ngx-auto-unsubscribe": "^2.3.0",
     "ngx-scroll-event": "^1.0.8",
     "reselect": "^3.0.1",
     "rxjs": "^5.5.6",

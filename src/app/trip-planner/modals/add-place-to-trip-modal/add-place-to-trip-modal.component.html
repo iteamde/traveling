@@ -1,12 +1,12 @@
 <!-- add place popup -->
-<div class="modal-wrapper">
+<div class="modal-wrapper" *ngIf="(citiesInfo$ |async).activeCity.id">
   <button class="modal-close" type="button" mat-button  [mat-dialog-close]="true" [routerLink]="[closeLink]">
     <i class="trav-close-icon"></i>
   </button>
   <div class="modal-dialog modal-custom-style modal-650" role="document">
     <div class="modal-custom-block">
       <div class="post-block post-modal-add-place">
-        <h3 class="place-title">What is your next destination ?<!--in <b>Nagoya</b>--></h3>
+        <h3 class="place-title">What is your next destination in {{(citiesInfo$ |async).activeCity.trans[0].title}}</h3>
         <div class="search-block-wrap">
           <div class="search-block-inner">
             <div class="search-block" [formGroup]="form">

@@ -1,0 +1,71 @@
+<div class="trip-side-block add-place" *ngFor="let city of cities; let i = index">
+  <div class="trip-side-layer-wrap" *ngIf="!city.saved">
+    <form class="adding-place-block arrow-left" #form="ngForm" (ngSubmit)="saveCity(city, i)">
+      <div class="add-form" >
+        <div class="form-row">
+          <div class="field-style flex-field" [ngStyle]="{'cursor': 'pointer'}" (click)="setActiveCity(city)">
+            <div class="img-wrap">
+              <img src="http://placehold.it/54x54" alt="photo">
+            </div>
+            <div class="field-txt">
+              {{city.trans[0].title}}
+            </div>
+          </div>
+        </div>
+        <div class="form-row" >
+          <div class="field-style">
+            <div class="field-label">How you will arrive here?</div>
+            <div class="flex-field">
+              <div class="flex-item radio-field">
+                <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-1'" [ngModel]="city.transportation"  value="plane" required>
+                <label class="check-field" (click)="city.transportation = 'plane'">
+                  <i class="trav-angle-plane-icon"></i>
+                </label>
+              </div>
+              <div class="flex-item radio-field">
+                <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-2'" [ngModel]="city.transportation"  value="car" required>
+                <label class="check-field" (click)="city.transportation = 'car'">
+                  <i class="trav-car-icon"></i>
+                </label>
+              </div>
+              <div class="flex-item radio-field">
+                <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-3'" [ngModel]="city.transportation"  value="train" required>
+                <label class="check-field" (click)="city.transportation = 'train'">
+                  <i class="trav-railway-icon"></i>
+                </label>
+              </div>
+              <div class="flex-item radio-field">
+                <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-4'" [ngModel]="city.transportation"  value="bus" required>
+                <label class="check-field" (click)="city.transportation = 'bus'">
+                  <i class="trav-bus-icon"></i>
+                </label>
+              </div>
+              <div class="flex-item radio-field">
+                <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-5'" [ngModel]="city.transportation"  value="cycle" required>
+                <label class="check-field" (click)="city.transportation = 'cycle'">
+                  <i class="trav-cycle-icon"></i>
+                </label>
+              </div>
+              <div class="flex-item radio-field">
+                <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-6'" [ngModel]="city.transportation"  value="walk" required>
+                <label class="check-field" (click)="city.transportation = 'walk'">
+                  <i class="trav-walk-icon-2"></i>
+                </label>
+              </div>
+              <div class="flex-item radio-field">
+                <input type="radio" [name]="city.id + '-1'" [id]="city.id + '-7'" [ngModel]="city.transportation"  value="ship" required>
+                <label class="check-field" (click)="city.transportation = 'ship'">
+                  <i class="trav-ship-icon"></i>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="add-footer">
+        <button type="button" class="btn btn-transp btn-cancel" (click)="removeCity(city, i)">Delete </button>
+        <button type="submit" class="btn btn-light-primary btn-bordered" [disabled]="!form.valid || !city.places.length" >Save</button>
+      </div>
+    </form>
+  </div>
+</div>

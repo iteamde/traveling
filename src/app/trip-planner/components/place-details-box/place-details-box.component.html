@@ -1,0 +1,103 @@
+<div class="box2-wrapper" *ngFor="let city of cities; let i = index">
+  <div class="trip-side-block add-place box2" *ngIf="city.saved && city.places.length && city.hasSavedPlace != city.places.length" >
+    <div class="trip-place-name" >
+      <span class="name">{{city.trans[0].title}}</span>
+    </div>
+    <div class="trip-side-layer-wrap" *ngFor="let place of city.places; let j= index;" >
+      <div class="adding-place-block" *ngIf="!place.saved">
+        <div class="add-form">
+          <div class="form-row">
+            <div class="field-style flex-field">
+              <div class="img-wrap">
+                <img src="http://placehold.it/54x54" alt="photo">
+              </div>
+              <div class="field-txt">
+                {{place.trans[0].title}}
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field-style">
+              <div class="field-label">When you will check-in?</div>
+              <div class="flex-field">
+                <div class="flex-item">
+                  <div class="field-ttl">Date</div>
+                  <div class="date-inner" [ngStyle]="{'position':'relative'}">
+                    <my-date-picker name="date" [options]="myDatePickerOptions"
+                                    [(ngModel)]="place.pivot.date"></my-date-picker>
+                  </div>
+                </div>
+                <div class="flex-item" (click)="open(place.pivot)">
+                  <div class="field-ttl">Time</div>
+                  <div class="date-inner" >
+                    {{place.pivot.time}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field-style">
+              <div class="field-label">Planning to stay</div>
+              <div class="flex-field">
+                <div class="flex-item">
+                  <div class="field-ttl">Hours</div>
+                  <div class="time-count">
+                    <span class="click" (click)="place.pivot.hour = place.pivot.hour ?  place.pivot.hour - 1 : 0 ">-</span>
+                    <input type="number" name="hour"  min="0" [value]="place.pivot.hour" [(ngModel)]="place.pivot.hour">
+                    <span class="click" (click)="place.pivot.hour = place.pivot.hour ?  place.pivot.hour + 1 : 1 ">+</span>
+                  </div>
+                </div>
+                <div class="flex-item">
+                  <div class="field-ttl">Minutes</div>
+                  <div class="time-count">
+                    <span class="click" (click)="place.pivot.minute = place.pivot.minute ?  place.pivot.minute - 1 : 0 ">-</span>
+                    <input type="number" name="minute" min="0" max="59" [value]="place.pivot.minute" [(ngModel)]="place.pivot.minute">
+                    <span class="click" (click)="place.pivot.minute = place.pivot.minute ?  place.pivot.minute + 1 : 1 ">+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field-style">
+              <div class="field-label">How much you are expecting to spend</div>
+              <div class="flex-field">
+                <div class="flex-item amount-input">
+                  <input type="text" name="enter_amount" placeholder="Enter amount" [(ngModel)]="place.pivot.budget" >
+                </div>
+                <div class="flex-item radio-field">
+                  <input type="radio" name="expect_spend" [id]="place.id"  [ngModel]="place.pivot.budget" value="50">
+                  <label class="check-field" (click)="place.pivot.budget = '50'">
+                    50$
+                  </label>
+                </div>
+                <div class="flex-item radio-field">
+                  <input type="radio" name="expect_spend"  [id]="place.id" [ngModel]="place.pivot.budget" value="100">
+                  <label class="check-field" (click)="place.pivot.budget = '100'">
+                    100$
+                  </label>
+                </div>
+                <div class="flex-item radio-field">
+                  <input type="radio" name="expect_spend" [id]="place.id" [ngModel]="place.pivot.budget"  value="200">
+                  <label class="check-field" (click)="place.pivot.budget = '200'">
+                    200$
+                  </label>
+                </div>
+              </div>
+              <div class="field-subtext">
+                Spending so far <b>${{place.pivot.budget}} </b>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="add-footer">
+          <button type="button" class="btn btn-transp btn-cancel" (click)="removePlace(city, i , place, j)">Delete</button>
+          <button type="button" class="btn btn-light-primary btn-bordered"
+                  [disabled]="!place.pivot.budget || !(place.pivot.minute || place.pivot.hour) || !place.pivot.date || !place.pivot.time"
+                  (click)="savePlace(city, i , place, j)">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

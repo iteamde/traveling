@@ -14,6 +14,9 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
 import {TripInfoResolver} from './services/trip-info-resolver';
 import {ConfirmComponent} from '../core/components/modals/confirm/confirm.component';
 import {AgmCoreModule} from "@agm/core";
+import { CityArriveBoxComponent } from './components/city-arrive-box/city-arrive-box.component';
+import { PlaceDetailsBoxComponent } from './components/place-details-box/place-details-box.component';
+import { CompletedPlaceBoxComponent } from './components/completed-place-box/completed-place-box.component';
 
 @NgModule({
   imports: [
@@ -33,6 +36,9 @@ import {AgmCoreModule} from "@agm/core";
     AddCityToTripModalComponent,
     AddPlaceToTripModalComponent,
     TripPlannerInfoComponent,
+    CityArriveBoxComponent,
+    PlaceDetailsBoxComponent,
+    CompletedPlaceBoxComponent,
   ],
   providers: [
     TripPlannerService,

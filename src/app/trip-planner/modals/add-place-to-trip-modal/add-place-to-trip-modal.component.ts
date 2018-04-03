@@ -6,10 +6,13 @@ import {AddPlaceAction} from '../../actions/trip-planner.actions';
 import {Observable} from 'rxjs';
 import {Subscription} from 'rxjs/Subscription';
 import {TripPlannerService} from '../../services/trip-planner.service';
-import {getErrorFromServer, getOpenedModalRef} from '../../../core/reducers';
+import {getCitiesInfo, getErrorFromServer} from '../../../core/reducers';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Router} from '@angular/router';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
+
+@AutoUnsubscribe()
 @Component({
   selector: 'app-add-place-to-trip-modal',
   templateUrl: './add-place-to-trip-modal.component.html',
@@ -18,6 +21,9 @@ import {Router} from '@angular/router';
 export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
 
   public trip_id: number;
+  public city_id: number;
+  public cities: any;
+  public city_index: number;
   public closeLink: string;
 
   public searchPlaceSubscription$: Subscription;
@@ -28,7 +34,7 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
    * Trip planner error
    */
   public error$: Observable<string>;
-  public modalRef$: Observable<any>;
+  public citiesInfo$: Observable<any>;
 
   /**
    * Holds trip data
@@ -45,19 +51,29 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
               @Inject(MAT_DIALOG_DATA) public routeParams: any,
               private route: Router) {
     this.closeLink = this.route.routerState.snapshot.url.endsWith('info') ? this.route.routerState.snapshot.url : 'trip/new';
-
+    this.error$ = this.store.select(getErrorFromServer);
+    this.citiesInfo$ = this.store.select(getCitiesInfo);
   }
 
   ngOnInit() {
-    this.error$ = this.store.select(getErrorFromServer);
-    this.modalRef$ = this.store.select(getOpenedModalRef);
+
+    this.citiesInfo$.subscribe(res => {
+      this.cities = res.cities;
+      this.city_id = (res.activeCity && res.activeCity.id);
+      res.cities.forEach((city, index) => {
+        if (city.id === this.city_id) {
+          this.city_index = index;
+        }
+      });
+    });
+
     this.form = this.fb.group({
       place: '',
     });
 
     this.searchPlaceSubscription$ = this.form.valueChanges
       .debounceTime(500)
-      .switchMap(form => this.tripPlannerService.getPlaces(form.place))
+      .switchMap(form => this.tripPlannerService.getPlaces(form.place, this.city_id))
       .subscribe(res => this.places = res.data.places);
   }
 
@@ -65,14 +81,15 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
    * Add button clicked
    */
   onAddClick(place) {
-    if(this.route.routerState.snapshot.url.endsWith('info')){
-      this.modalRef$.take(1).subscribe(res => res.close(place));
-      return;
-    }
-     this.store.dispatch(new AddPlaceAction( this.routeParams.id, {place_id : place.id}, `/trip/${this.routeParams.id}/info`));
+    let tCity = this.cities[this.city_index];
+    place.pivot = {};
+    place.trans = [{title : place.name}];
+    tCity.places.push(place);
+
+    this.store.dispatch(new AddPlaceAction( this.routeParams.id, {place_id : place.id}, `/trip/${this.routeParams.id}/info`,
+      {item: tCity, index: this.city_index }));
   }
 
   ngOnDestroy() {
-    this.searchPlaceSubscription$.unsubscribe();
   }
 }

@@ -28,8 +28,8 @@ export class TripPlannerService {
     return this.api.post(details,  'cities/search');
   }
 
-  getPlaces(query): Observable<any> {
-    const details = {query, language_id: 1, offset: 0, limit: 10};
+  getPlaces(query, id): Observable<any> {
+    const details = {query, language_id: 1, offset: 0, limit: 10, city_id: id};
     return this.api.post(details,  'places/search');
   }
 

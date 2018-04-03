@@ -149,3 +149,6 @@ input[type=number]::-webkit-outer-spin-button {
 .create-trip-wrapper .trip-side .trip-side-content .trip-side-block .trip-side-wrapper:not(:last-child){
   margin-bottom: 20px;
 }
+.create-trip-wrapper .trip-side{
+  max-width: 650px;
+}
