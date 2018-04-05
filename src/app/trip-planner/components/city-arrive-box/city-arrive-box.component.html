@@ -64,7 +64,7 @@
       </div>
       <div class="add-footer">
         <button type="button" class="btn btn-transp btn-cancel" (click)="removeCity(city, i)">Delete </button>
-        <button type="submit" class="btn btn-light-primary btn-bordered" [disabled]="!form.valid || !city.places.length" >Save</button>
+        <button type="submit" class="btn btn-light-primary btn-bordered" [disabled]="!form.valid" >Save</button>
       </div>
     </form>
   </div>

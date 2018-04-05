@@ -20,6 +20,7 @@ import {RouterEffects} from './core/effects/router.effects';
 import {HomeModule} from './home/home.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 const effectsArr = [
   AuthEffects,
@@ -42,6 +43,7 @@ const effectsArr = [
     EffectsModule.forRoot(effectsArr),
     StoreModule.forRoot(reducers),
     Ng4LoadingSpinnerModule.forRoot(),
+    ToastrModule.forRoot({positionClass : 'toast-top-right'}),
     TripPlannerModule
   ],
   providers: [

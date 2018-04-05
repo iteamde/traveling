@@ -13,14 +13,12 @@ export const DELETE_CITY = '[Trip-planner] delete city';
 export const DELETE_CITY_SUCCESS = '[Trip-planner] delete success city';
 export const SET_ACTIVE_CITY = '[Trip-planner] set active city';
 export const SAVE_PLACE = '[Trip-planner] save place details';
-export const SAVE_PLACE_SUCCESS = '[Trip-planner] place details success';
-export const DELETE_PLACE = '[Trip-planner] save place details';
-export const DELETE_PLACE_SUCCESS = '[Trip-planner] place details success';
+export const SAVE_PLACE_SUCCESS = '[Trip-planner] save place details success';
+export const DELETE_PLACE = '[Trip-planner] delete place details';
+export const DELETE_PLACE_SUCCESS = '[Trip-planner] delete place  success';
 export const CANCEL_TRIP = '[Trip-planner] cancel trip';
 export const SAVE_TRIP = '[Trip-planner] save trip';
 export const EMPTY = 'Empty';
-
-
 
 
 export class EmptyAction implements Action {
@@ -199,6 +197,8 @@ export type Actions
   | SetActiveCityAction
   | SavePlaceAction
   | SavePlaceSuccessAction
+  | DeletePlaceAction
+  | DeletePlaceSuccessAction
   | CancelTripAction
   | EmptyAction
   | SaveTripAction;

@@ -62,6 +62,7 @@ export const getUserId = createSelector(getAuthState, fromAuth.getUserId);
  */
 export const getTripId = createSelector(getTripPlannerState, fromTripPlanner.getTripId);
 export const getCitiesInfo = createSelector(getTripPlannerState, fromTripPlanner.getCitiesInfo);
+export const getAlreadySpent = createSelector(getTripPlannerState, fromTripPlanner.getAlreadySpent);
 
 
 

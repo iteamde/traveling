@@ -1,6 +1,6 @@
-<div class="box3-wrapper" >
-  <div class="trip-side-block airplane" *ngFor="let city of cities; let y = index">
-    <div *ngIf="city.hasSavedPlace">
+<div class="box3-wrapper" *ngFor="let city of cities; let y = index">
+  <div class="trip-side-block" ngClass="{{city.transportation}}" *ngIf="city.hasSavedPlace">
+    <div>
       <div class="trip-country-name">{{city.country ? city.country.trans[0].title : "Country name"}}</div>
       <div class="box3-place-wrapper" >
         <div class="trip-place-name">
@@ -30,7 +30,7 @@
                   </div>
                   <div class="trip-txt-line">
                     <div class="line-txt">
-                      Will spend <b>{{place.pivot.budget}}</b>
+                      Will spend <b>${{place.pivot.budget}}</b>
                       <span class="dot">·</span>
                       Planning to stay <b>{{place.pivot.duration}}</b>
                     </div>

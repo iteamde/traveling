@@ -86,7 +86,7 @@
                 </div>
               </div>
               <div class="field-subtext">
-                Spending so far <b>${{place.pivot.budget}} </b>
+                Spending so far <b>${{ +alreadySpent + (place.pivot.budget ? +place.pivot.budget : 0)}} </b>
               </div>
             </div>
           </div>

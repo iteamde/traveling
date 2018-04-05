@@ -37,8 +37,8 @@
     <div class="trip-side">
       <div class="trip-side-content">
       <app-completed-place-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id"></app-completed-place-box>
-      <app-place-details-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id"></app-place-details-box>
-      <app-city-arrive-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id"></app-city-arrive-box>
+      <app-place-details-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id" [alreadySpent]="(alreadySpent$| async)"></app-place-details-box>
+      <app-city-arrive-box [cities]="(citiesInfo$ | async).cities" [trip_id]="routeParams.id" ></app-city-arrive-box>
       </div>
       <div class="trip-side-button-block">
         <button class="btn btn-transp btn-bordered" (click)="openPlaceModal()">
@@ -103,8 +103,10 @@
           <button class="btn btn-light-bg-grey btn-bordered">Next Day</button>
         </div>
       </div>
-      <agm-map [latitude]="+( (citiesInfo$ | async).activeCity.lat || (citiesInfo$ | async).activeCity.places[0].lat)" [longitude]="+( (citiesInfo$ | async).activeCity.lng || (citiesInfo$ | async).activeCity.places[0].lng)">
-        <agm-marker [latitude]="+( (citiesInfo$ | async).activeCity.lat || (citiesInfo$ | async).activeCity.places[0].lat)" [longitude]="+((citiesInfo$ | async).activeCity.lng || (citiesInfo$ | async).activeCity.places[0].lng)"></agm-marker>
+      <agm-map (mapReady)="storeMapReady($event)">
+        <template *ngFor="let city of (citiesInfo$ | async).cities">
+          <agm-marker *ngFor="let place of city.places "   [latitude]="+place.lat" [longitude]="+place.lng"></agm-marker>
+        </template>
       </agm-map>
       <!--<div class="trip-map-layer">
         <img src="./assets/image/create-trip-plan-map.jpg" alt="">

@@ -16,6 +16,7 @@ import {Store} from '@ngrx/store';
 export class PlaceDetailsBoxComponent implements OnInit {
   @Input() cities;
   @Input() trip_id;
+  @Input() alreadySpent;
 
   public today = new Date();
   public time = `${this.today.getHours()}:${this.today.getMinutes()}`;
@@ -53,7 +54,7 @@ export class PlaceDetailsBoxComponent implements OnInit {
     const dur = (place.pivot.hour || 0) * 60 + (place.pivot.minute || 0);
 
     return this.store.dispatch(
-      new SavePlaceAction( {
+       new SavePlaceAction( {
         helper: {item: city, index: i},
         data: {place_id: place.id, date: place.pivot.date.formatted, time : this.time, duration: dur, budget: +place.pivot.budget},
         url: `trips/${this.trip_id}/finish_place`
@@ -63,7 +64,7 @@ export class PlaceDetailsBoxComponent implements OnInit {
 
   removePlace(city, i, place, j) {
     city.places.splice(j, 1);
-    return this.store.dispatch(
+     return this.store.dispatch(
       new DeletePlaceAction( {
         helper: {item: city, index: i},
         data: {place_id: place.id, },

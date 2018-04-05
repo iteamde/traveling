@@ -41,7 +41,7 @@ export class TripPlannerService {
     return this.api.post(details, url);
   }
   savePlaceInfo(details, url): Observable<any> {
-    return this.api.post(details, url);
+     return this.api.post(details, url);
   }
   removeCityInfo(details, url): Observable<any> {
     return this.api.post(details, url);

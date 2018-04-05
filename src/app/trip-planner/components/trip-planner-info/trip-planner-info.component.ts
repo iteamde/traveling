@@ -1,17 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { AmazingTimePickerService } from 'amazing-time-picker';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddCityToTripModalComponent} from '../../modals/add-city-to-trip-modal/add-city-to-trip-modal.component';
 import {ModalManager} from '../../../core/services/modal-manager.service';
 import {AddPlaceToTripModalComponent} from '../../modals/add-place-to-trip-modal/add-place-to-trip-modal.component';
-import {TripPlannerService} from '../../services/trip-planner.service';
-import {IMyDpOptions} from 'mydatepicker';
 import {ConfirmComponent} from '../../../core/components/modals/confirm/confirm.component';
-import {getCitiesInfo, getOpenedModalRef, State} from '../../../core/reducers';
+import {getCitiesInfo, State, getAlreadySpent} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
-import {AddCityAction, CancelTripAction, SaveTripAction, SetCityInfoAction} from '../../actions/trip-planner.actions';
+import {CancelTripAction, SaveTripAction, SetCityInfoAction} from '../../actions/trip-planner.actions';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {ApiService} from '../../../core/services/api.service';
+import {LatLngBounds} from '@agm/core';
+declare var google: any;
 
 @AutoUnsubscribe()
 @Component({
@@ -19,7 +18,7 @@ import {ApiService} from '../../../core/services/api.service';
   styleUrls: ['./trip-planner-info.component.scss'],
   templateUrl: './trip-planner-info.component.html',
 })
-export class TripPlannerInfoComponent implements  OnInit{
+export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
   public data = {
     cities : [],
   };
@@ -27,6 +26,10 @@ export class TripPlannerInfoComponent implements  OnInit{
   public showMessage = true;
   public activeCity;
   public citiesInfo$;
+  public storeMap;
+  public alreadySpent$;
+
+
 
   constructor(private route: ActivatedRoute,
               private modalManager: ModalManager,
@@ -36,7 +39,12 @@ export class TripPlannerInfoComponent implements  OnInit{
   ){
             this.routeParams = this.route.snapshot.params;
             this.citiesInfo$ = this.store.select(getCitiesInfo);
-            this.citiesInfo$.subscribe( res => console.log("Its city info", res));
+            this.alreadySpent$ = this.store.select(getAlreadySpent);
+            this.citiesInfo$.subscribe( res => {
+              this.data.cities = res.cities;
+              if(this.storeMap) this.storeMap.fitBounds(this.findStoresBounds());
+              console.log("Its city info", res);
+            });
   }
 
   ngOnInit() {
@@ -45,43 +53,8 @@ export class TripPlannerInfoComponent implements  OnInit{
     const dataFromBack = this.route.snapshot.data.placesInfo.data;
     if (dataFromBack.error) return this.router.navigate(['/error']);
     //TODO REMOVE THIS WORST CODE EVER
-    let cCity;
+    this.transformBackendData(dataFromBack);
 
-    dataFromBack.places.forEach((place) => {
-      let flag = false;
-       cCity = {
-        country: {},
-        places: [],
-      };
-
-
-      this.data.cities.forEach( (city) => {
-          if (city.id === place.city.id) {
-            flag = city.id;
-          }
-      });
-
-      if (flag) {
-        delete  place.city;
-        delete  place.country;
-        let flag2;
-        this.data.cities.forEach( (c, i) => {
-          if (flag === c.id)  flag2 = i + 1;
-        });
-        if(flag2) this.data.cities[flag2 - 1].places.push(place);
-
-      } else {
-        cCity = place.city;
-        cCity.country = {};
-        cCity.country = place.country;
-        cCity.places = [];
-        delete  place.city;
-        delete  place.country;
-        cCity.places.push(place);
-        this.data.cities.push(cCity);
-      }
-
-    });
     this.store.dispatch(new SetCityInfoAction({cities: this.data.cities , activeCity: this.data.cities[0]}));
   }
 
@@ -110,12 +83,63 @@ export class TripPlannerInfoComponent implements  OnInit{
     this.store.dispatch(new CancelTripAction({details: {}, url: `trips/${this.routeParams.id}/cancel`}));
   }
 
-  getLat() {
-    return +this.activeCity.places[0].lat;
+  //AGM MAP CENTER HELPER
+  public storeMapReady(map){
+    this.storeMap = map;
+    this.storeMap.fitBounds(this.findStoresBounds());
   }
 
-  getLng() {
-    return +this.activeCity.places[0].lng;
+  public findStoresBounds(){
+    let bounds: LatLngBounds = new google.maps.LatLngBounds();
+
+    this.data.cities.forEach(city => {
+      city.places.forEach( place => bounds.extend(new google.maps.LatLng(place.lat, place.lng)));
+    });
+
+
+
+    return bounds;
+  }
+
+
+
+  transformBackendData(dataFromBack) {
+    let cCity;
+    dataFromBack.places.forEach((place) => {
+      let flag = false;
+      cCity = {
+        country: {},
+        places: [],
+      };
+
+
+      this.data.cities.forEach( (city) => {
+        if (city.id === place.city.id) {
+          flag = city.id;
+        }
+      });
+
+      if (flag) {
+        delete  place.city;
+        delete  place.country;
+        let flag2;
+        this.data.cities.forEach( (c, i) => {
+          if (flag === c.id)  flag2 = i + 1;
+        });
+        if(flag2) this.data.cities[flag2 - 1].places.push(place);
+
+      } else {
+        cCity = place.city;
+        cCity.country = {};
+        cCity.country = place.country;
+        cCity.places = [];
+        delete  place.city;
+        delete  place.country;
+        cCity.places.push(place);
+        this.data.cities.push(cCity);
+      }
+
+    });
   }
 
   ngOnDestroy() {

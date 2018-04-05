@@ -1,0 +1,38 @@
+.box3-wrapper  .trip-side-block{
+
+  &:after{
+    transform: translateX(-46%);
+  }
+
+  &.plane:after{
+    content: "\e92c";
+    transform: translateX(-46%) rotate(90deg);
+  }
+
+  &.car:after{
+    content: "\e90c";
+  }
+
+  &.train:after{
+    content: "\e950";
+  }
+
+  &.bus:after{
+    content: "\e954";
+  }
+
+  &.cycle:after{
+    content: "\e964";
+  }
+
+  &.walk:after{
+    content: "\e966";
+  }
+
+  &.ship:after{
+    content: "\e965";
+  }
+
+}
+
+
