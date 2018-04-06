@@ -28,6 +28,10 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
   public citiesInfo$;
   public storeMap;
   public alreadySpent$;
+  public currentLocation = {
+    lat : 0,
+    lng: 0
+  };
 
 
 
@@ -45,6 +49,15 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
               if(this.storeMap) this.storeMap.fitBounds(this.findStoresBounds());
               console.log("Its city info", res);
             });
+
+            if (navigator)
+            {
+              navigator.geolocation.getCurrentPosition( pos => {
+                this.currentLocation.lng = +pos.coords.longitude;
+                this.currentLocation.lat = +pos.coords.latitude;
+                if(this.storeMap) this.storeMap.fitBounds(this.findStoresBounds());
+              });
+            }
   }
 
   ngOnInit() {
@@ -96,8 +109,9 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
       city.places.forEach( place => bounds.extend(new google.maps.LatLng(place.lat, place.lng)));
     });
 
-
-
+    if (this.currentLocation.lat && this.currentLocation.lng){
+      bounds.extend(new google.maps.LatLng(this.currentLocation.lat, this.currentLocation.lng));
+    }
     return bounds;
   }
 

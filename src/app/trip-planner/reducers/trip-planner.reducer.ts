@@ -28,7 +28,7 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
       return {...state, trip_id : action.payload.data.trip_id};
 
     case tripPlanner.SET_CITY_INFO:
-      return {...state, citiesInfo : action.payload};
+      return {...state, citiesInfo : action.payload, alreadySpend : 0};
 
     case tripPlanner.ADD_CITY_SUCCESS:
       return {...state,
