@@ -19,25 +19,20 @@ import {AuthHelper} from '../helpers/auth.helper';
 
 @Injectable()
 export class AuthEffects {
-   private urlTo: string;
   /**
    * Registers user with given dataconstructor(puauth: fromAuth.reducer,blic payload) {}
    */
   @Effect()
   register$ = this.actions$.ofType(auth.REGISTER)
-    .switchMap((action: auth.RegisterAction) => {
-       this.urlTo = action.payload.urlTo;
-       return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
-    })
-    .map( res => this.responseHandler(res, this.urlTo, auth.RegistrationSuccessAction , error.AddErrorAction) ) ;
+    .switchMap((action: auth.RegisterAction) =>
+        this.apiService.post( action.payload.queryUrl, {...action.payload.data})
+       .map( res => this.responseHandler(res, action.payload.urlTo, auth.RegistrationSuccessAction , error.AddErrorAction)));
 
   @Effect()
   login$ = this.actions$.ofType(auth.LOGIN)
-    .switchMap((action: auth.LoginAction) => {
-      this.urlTo = action.payload.urlTo;
-      return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
-    })
-    .map( res => this.responseHandler(res, this.urlTo, auth.LoginSuccessAction , error.AddErrorAction) ) ;
+    .switchMap((action: auth.LoginAction) =>
+       this.apiService.post( action.payload.queryUrl, {...action.payload.data})
+       .map( res => this.responseHandler(res, action.payload.urlTo, auth.LoginSuccessAction , error.AddErrorAction)));
 
   @Effect()
   loginSuccess$ = this.actions$.ofType(auth.LOGIN_SUCCESS)
@@ -48,18 +43,17 @@ export class AuthEffects {
 
   @Effect()
   reset$ = this.actions$.ofType(auth.RESET_PASSWORD)
-    .switchMap((action: auth.ResetPasswordAction) => {
-      return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
-    })
-    .map( res => this.responseHandler(res, false, auth.ResetPasswordSuccessAction , error.AddErrorAction) ) ;
+    .switchMap((action: auth.ResetPasswordAction) =>
+       this.apiService.post(action.payload.queryUrl, {...action.payload.data})
+       .map( res => this.responseHandler(res, false, auth.ResetPasswordSuccessAction , error.AddErrorAction)));
+
 
 
   @Effect()
   setPassword$ = this.actions$.ofType(auth.SET_PASSWORD)
-    .switchMap((action: auth.SetPasswordAction) => {
-      return this.apiService.post({...action.payload.data} , action.payload.queryUrl);
-    })
-    .map( res => this.responseHandler(res, false, auth.SetPasswordSuccessAction , error.AddErrorAction) ) ;
+    .switchMap((action: auth.SetPasswordAction) =>
+      this.apiService.post(action.payload.queryUrl, {...action.payload.data})
+      .map( res => this.responseHandler(res, false, auth.SetPasswordSuccessAction , error.AddErrorAction)));
 
   /**
    * Default constructor
@@ -74,11 +68,9 @@ export class AuthEffects {
 
   responseHandler(res, urlTo,  suc , onError) {
     if (res && res.success) {
-      console.log("SUCCES RESPONSE" , res);
       if (urlTo) this.router.navigate([urlTo]);
       return new suc(res);
     } else {
-      console.log("ERROR RESPONSE" , res);
       return new onError(res.data);
     }
   }

@@ -45,6 +45,21 @@ export class PlaceDetailsBoxComponent implements OnInit {
     });
   }
 
+  placeTimeInc(place, type) {
+    place.pivot[type] = place.pivot[type] ?  place.pivot[type] + 1 : 1;
+  }
+
+  placeTimeDec(place, type) {
+    place.pivot[type] = place.pivot[type] ?  place.pivot[type] - 1 : 0;
+  }
+
+  setBudget(place , amount) {
+    place.pivot.budget = amount;
+  }
+
+  isDisabled(place) {
+    return  !place.pivot.budget || !(place.pivot.minute || place.pivot.hour) || !place.pivot.date || !place.pivot.time
+  }
 
   savePlace(city, i, place, j) {
     city.places[j] = place;
@@ -53,24 +68,26 @@ export class PlaceDetailsBoxComponent implements OnInit {
     place.pivot.duration = (place.pivot.hour || 0) + ' hours ' + (place.pivot.minute || 0) + ' min ';
     const dur = (place.pivot.hour || 0) * 60 + (place.pivot.minute || 0);
 
-    return this.store.dispatch(
-       new SavePlaceAction( {
-        helper: {item: city, index: i},
-        data: {place_id: place.id, date: place.pivot.date.formatted, time : this.time, duration: dur, budget: +place.pivot.budget},
-        url: `trips/${this.trip_id}/finish_place`
-      })
-    );
+
+    const payload = {
+      helper: {item: city, index: i},
+      data: {place_id: place.id, date: place.pivot.date.formatted, time : this.time, duration: dur, budget: +place.pivot.budget},
+      url: `trips/${this.trip_id}/finish_place`
+    };
+
+    return this.store.dispatch(new SavePlaceAction(payload));
   }
 
   removePlace(city, i, place, j) {
     city.places.splice(j, 1);
-     return this.store.dispatch(
-      new DeletePlaceAction( {
-        helper: {item: city, index: i},
-        data: {place_id: place.id, },
-        url: `trips/${this.trip_id}/remove_place`
-      })
-    );
+
+    const payload = {
+      helper: {item: city, index: i},
+      data: {place_id: place.id, },
+      url: `trips/${this.trip_id}/remove_place`
+    };
+
+    return this.store.dispatch(new DeletePlaceAction(payload));
   }
 
 }

@@ -32,9 +32,7 @@ export class RegistrationGuard implements CanActivate {
 
 
       return this.registrationStep$.map(res => {
-        console.log("ROUTE", state.url, res);
          if ( res  === (routeRelations[state.url] && routeRelations[state.url].step)) {
-           console.log("ON TRUE");
            return true;
          } else {
            this.router.navigate(['/signup']);

@@ -43,17 +43,17 @@
                 <div class="flex-item">
                   <div class="field-ttl">Hours</div>
                   <div class="time-count">
-                    <span class="click" (click)="place.pivot.hour = place.pivot.hour ?  place.pivot.hour - 1 : 0 ">-</span>
+                    <span class="click" (click)="placeTimeDec(place, 'hour')">-</span>
                     <input type="number" name="hour"  min="0" [value]="place.pivot.hour" [(ngModel)]="place.pivot.hour">
-                    <span class="click" (click)="place.pivot.hour = place.pivot.hour ?  place.pivot.hour + 1 : 1 ">+</span>
+                    <span class="click" (click)="placeTimeInc(place, 'hour')">+</span>
                   </div>
                 </div>
                 <div class="flex-item">
                   <div class="field-ttl">Minutes</div>
                   <div class="time-count">
-                    <span class="click" (click)="place.pivot.minute = place.pivot.minute ?  place.pivot.minute - 1 : 0 ">-</span>
+                    <span class="click" (click)="placeTimeDec(place, 'minute')">-</span>
                     <input type="number" name="minute" min="0" max="59" [value]="place.pivot.minute" [(ngModel)]="place.pivot.minute">
-                    <span class="click" (click)="place.pivot.minute = place.pivot.minute ?  place.pivot.minute + 1 : 1 ">+</span>
+                    <span class="click" (click)="placeTimeInc(place, 'minute')">+</span>
                   </div>
                 </div>
               </div>
@@ -68,19 +68,19 @@
                 </div>
                 <div class="flex-item radio-field">
                   <input type="radio" name="expect_spend" [id]="place.id"  [ngModel]="place.pivot.budget" value="50">
-                  <label class="check-field" (click)="place.pivot.budget = '50'">
+                  <label class="check-field" (click)="setBudget(place, 50)">
                     50$
                   </label>
                 </div>
                 <div class="flex-item radio-field">
                   <input type="radio" name="expect_spend"  [id]="place.id" [ngModel]="place.pivot.budget" value="100">
-                  <label class="check-field" (click)="place.pivot.budget = '100'">
+                  <label class="check-field" (click)="setBudget(place , 100)">
                     100$
                   </label>
                 </div>
                 <div class="flex-item radio-field">
                   <input type="radio" name="expect_spend" [id]="place.id" [ngModel]="place.pivot.budget"  value="200">
-                  <label class="check-field" (click)="place.pivot.budget = '200'">
+                  <label class="check-field" (click)="setBudget(place, 200)">
                     200$
                   </label>
                 </div>
@@ -94,7 +94,7 @@
         <div class="add-footer">
           <button type="button" class="btn btn-transp btn-cancel" (click)="removePlace(city, i , place, j)">Delete</button>
           <button type="button" class="btn btn-light-primary btn-bordered"
-                  [disabled]="!place.pivot.budget || !(place.pivot.minute || place.pivot.hour) || !place.pivot.date || !place.pivot.time"
+                  [disabled]="isDisabled(place)"
                   (click)="savePlace(city, i , place, j)">Save</button>
         </div>
       </div>

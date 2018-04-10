@@ -12,13 +12,11 @@ import {Router} from '@angular/router';
 import {getOpenedModalRef, State} from '../../core/reducers';
 import {Observable} from '../../../../node_modules/rxjs';
 import {Store} from '@ngrx/store';
-import {ApiService} from '../../core/services/api.service';
 
 
 @Injectable()
 export class TripPlannerEffects {
 
-  private payload: any;
   public modalRef$: Observable<any>;
 
   /**
@@ -29,14 +27,20 @@ export class TripPlannerEffects {
     .switchMap((action: tripPlanner.CreateTripAction) => this.tripPlannerService.createTrip({...action.payload})
     .map(response => this.responseHandler(response, tripPlanner.CreateTripSuccessAction , `/trip/${response.data.trip_id}/cities`)));
 
+  /**
+   * Cancel trip plan
+   */
   @Effect()
   cancelTrip$ = this.actions$.ofType(tripPlanner.CANCEL_TRIP)
-    .switchMap((action: tripPlanner.CancelTripAction) => this.tripPlannerService.cancelTrip(action.payload.details, action.payload.url)
+    .switchMap((action: tripPlanner.CancelTripAction) => this.tripPlannerService.cancelTrip(action.payload.url, action.payload.details)
     .map( response => this.responseHandler(response, tripPlanner.EmptyAction , 'home')));
 
+  /**
+   * Save trip plan
+   */
   @Effect()
   saveTrip$ = this.actions$.ofType(tripPlanner.SAVE_TRIP)
-    .switchMap((action: tripPlanner.SaveTripAction) => this.tripPlannerService.publishTrip(action.payload.details, action.payload.url)
+    .switchMap((action: tripPlanner.SaveTripAction) => this.tripPlannerService.publishTrip(action.payload.url, action.payload.details)
     .map( response => this.responseHandler(response, tripPlanner.EmptyAction , 'home')));
 
   /**
@@ -57,29 +61,40 @@ export class TripPlannerEffects {
       this.tripPlannerService.addPlace(action.payload.trip_id, action.payload.details)
       .map(response => this.responseHandler(response, tripPlanner.AddPlaceSuccessAction , action.payload.urlTo, action.payload)));
 
-
+  /**
+   * Save city info  to trip
+   */
   @Effect()
   finishCity$ = this.actions$.ofType(tripPlanner.SAVE_CITY)
     .switchMap((action: tripPlanner.SaveCityAction) =>
-        this.tripPlannerService.saveCityInfo(action.payload.data, action.payload.url)
+        this.tripPlannerService.saveCityInfo(action.payload.url, action.payload.data)
         .map(response => this.responseHandler(response, tripPlanner.SaveCitySuccessAction, false, action.payload)));
 
+  /**
+   * Remove city info  from trip
+   */
   @Effect()
   removeCity$ = this.actions$.ofType(tripPlanner.DELETE_CITY)
     .switchMap((action: tripPlanner.DeleteCityAction) =>
-      this.tripPlannerService.removeCityInfo(action.payload.data, action.payload.url)
+      this.tripPlannerService.removeCityInfo(action.payload.url, action.payload.data)
       .map(response => this.responseHandler(response, tripPlanner.DeleteCitySuccessAction, false, action.payload)));
 
+  /**
+   * Save place info  from trip
+   */
   @Effect()
   finishPlace$ = this.actions$.ofType(tripPlanner.SAVE_PLACE)
     .switchMap((action: tripPlanner.SavePlaceAction) =>
-       this.tripPlannerService.saveCityInfo(action.payload.data, action.payload.url)
+       this.tripPlannerService.savePlaceInfo(action.payload.url, action.payload.data)
           .map(response => this.responseHandler(response, tripPlanner.SavePlaceSuccessAction, false, action.payload)));
 
+  /**
+   * Remove place info  from trip
+   */
   @Effect()
-  deletePlace$ = this.actions$.ofType(tripPlanner.DELETE_PLACE)
+  removePlace$ = this.actions$.ofType(tripPlanner.DELETE_PLACE)
     .switchMap((action: tripPlanner.DeletePlaceAction) =>
-      this.tripPlannerService.removePlaceInfo(action.payload.data, action.payload.url)
+      this.tripPlannerService.removePlaceInfo(action.payload.url, action.payload.data)
       .map(response => this.responseHandler(response, tripPlanner.DeletePlaceSuccessAction, false, action.payload)));
 
   /**
@@ -90,7 +105,6 @@ export class TripPlannerEffects {
    */
   constructor(private actions$: Actions,
               private tripPlannerService: TripPlannerService,
-              private api: ApiService,
               private router: Router,
               private store: Store<State>
   ) {

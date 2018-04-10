@@ -8,7 +8,6 @@ import {Observable} from 'rxjs/Observable';
 import {getErrorFromServer, getLoginStatus, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {LoginAction} from '../../actions/auth.actions';
-import {ApiService} from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-login-modal',
@@ -33,8 +32,7 @@ export class LoginModalComponent implements OnInit {
     private store: Store<State>,
     public facebookService: FacebookService,
     private fb: FormBuilder ,
-    public validation: ValidationService,
-    private api: ApiService) {
+    public validation: ValidationService) {
 
     this.authError$ = store.select(getErrorFromServer);
     this.loginStatus$ = store.select(getLoginStatus);

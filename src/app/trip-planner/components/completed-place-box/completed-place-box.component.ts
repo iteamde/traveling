@@ -26,15 +26,12 @@ export class CompletedPlaceBoxComponent implements OnInit {
   itemDragged() {
     this.isDragling = true;
   }
+
   itemSwapped(places) {
     this.isDragling = false;
-
     let order = [];
     places.forEach( (place, index) => order.push({place_id: place.id, order: index}));
-    this.api.post(
-      {order: order},
-      `trips/${this.trip_id}/places_order`
-    ).subscribe();
+    this.api.post( `trips/${this.trip_id}/places_order`, {order: order}).subscribe();
   }
 
 }

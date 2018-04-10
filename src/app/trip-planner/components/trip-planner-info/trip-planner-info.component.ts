@@ -8,7 +8,6 @@ import {getCitiesInfo, State, getAlreadySpent} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {CancelTripAction, SaveTripAction, SetCityInfoAction} from '../../actions/trip-planner.actions';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
-import {ApiService} from '../../../core/services/api.service';
 import {LatLngBounds} from '@agm/core';
 declare var google: any;
 
@@ -37,7 +36,6 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private modalManager: ModalManager,
-              private api: ApiService,
               private router: Router,
               private store: Store<State>
   ){
@@ -85,12 +83,12 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
   }
 
   cancelTrip() {
-    this.modalManager.openModalFromLCH(ConfirmComponent,
-      {
-        title : "Are you sure you want to cancel your Trip Plan?" ,
-        onSuccess: this.cancel.bind(this),
-        onReject: false }
-        );
+    const data = {
+      title : 'Are you sure you want to cancel your Trip Plan?' ,
+      onSuccess: this.cancel.bind(this),
+      onReject: false
+    };
+    this.modalManager.openModalFromLCH(ConfirmComponent, data);
   }
   cancel() {
     this.store.dispatch(new CancelTripAction({details: {}, url: `trips/${this.routeParams.id}/cancel`}));

@@ -76,18 +76,19 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
       language_id: 1
     };
 
-    this.apiService.post(details, this.settings.getDataUrl).take(1).subscribe(res => {
+    this.apiService.post(this.settings.getDataUrl, details).take(1).subscribe(res => {
       fromScrollEvent ? this.items = [...this.items, ...res.data] : this.items = res.data;
     });
   }
 
   register() {
     this.user$.take(1).subscribe(user => {
-      this.store.dispatch(new RegisterAction({
+      const payload = {
         data: { [this.settings.itemsType]: this.choosenItems, user_id: (user && user.data && user.data.user_id) || 116 },
         queryUrl : this.settings.queryUrl,
         urlTo : this.settings.urlTo
-      }));
+      };
+      this.store.dispatch(new RegisterAction(payload));
     });
   }
 

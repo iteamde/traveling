@@ -31,7 +31,9 @@ export class RegisterModalStep2Component implements OnInit {
     gender: ''
   };
 
-  constructor(private store: Store<State>, private fb: FormBuilder, public validation: ValidationService) {
+  constructor(private store: Store<State>,
+              private fb: FormBuilder,
+              public validation: ValidationService) {
     this.user$ = store.select(getLoggedUser);
     this.authError$ = store.select(getErrorFromServer);
   }
@@ -64,11 +66,12 @@ export class RegisterModalStep2Component implements OnInit {
 
   register() {
     this.user$.take(1).subscribe(user => {
-      this.store.dispatch(new RegisterAction({
+      const payload = {
         data: {...this.userForm.value, ...{user_id: (user && user.data) || 116} },
         queryUrl : 'users/create/step2',
         urlTo : 'signup/step3'
-      }));
+      };
+      this.store.dispatch(new RegisterAction(payload));
     });
   }
 }

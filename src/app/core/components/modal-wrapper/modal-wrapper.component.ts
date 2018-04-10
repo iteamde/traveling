@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalManager} from '../../services/modal-manager.service';
-import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-modal-wrapper',

@@ -21,29 +21,27 @@ export class CityArriveBoxComponent implements OnInit {
 
   saveCity(city, index) {
     if (!city.places.length) return this.toastr.error('Please add a place before save');
-    return this.store.dispatch(
-      new SaveCityAction( {
-        helper: {property: 'saved', value: true, index: index},
-        data: {city_id: city.id, transportation: city.transportation },
-        url: `trips/${this.trip_id}/finish_city`
-      })
-    );
+    
+    const payload = {
+      helper: {property: 'saved', value: true, index: index},
+      data: {city_id: city.id, transportation: city.transportation },
+      url: `trips/${this.trip_id}/finish_city`
+    };
+
+    return this.store.dispatch(new SaveCityAction(payload));
   }
 
   removeCity(city , index) {
-    return this.store.dispatch(
-      new DeleteCityAction( {
-        helper: {index: index},
-        data: {city_id: city.id, },
-        url: `trips/${this.trip_id}/remove_city`
-      })
-    );
+    const payload = {
+      helper: {index: index},
+      data: {city_id: city.id, },
+      url: `trips/${this.trip_id}/remove_city`
+    };
+    return this.store.dispatch(new DeleteCityAction(payload));
   }
 
   setActiveCity(city) {
-    return this.store.dispatch(
-      new SetActiveCityAction(city)
-    );
+    return this.store.dispatch(new SetActiveCityAction(city));
   }
 
 }
