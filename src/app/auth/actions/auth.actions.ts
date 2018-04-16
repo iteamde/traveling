@@ -37,7 +37,7 @@ export class LoginSuccessAction implements Action {
 
 
 export class EmptyAction implements Action {
-  readonly type = "Empty";
+  readonly type = 'EMPTY';
 }
 
 

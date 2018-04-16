@@ -59,7 +59,15 @@ export class TripPlannerEffects {
   addPlace$ = this.actions$.ofType(tripPlanner.ADD_PLACE)
     .switchMap((action: tripPlanner.AddPlaceAction) =>
       this.tripPlannerService.addPlace(action.payload.trip_id, action.payload.details)
-      .map(response => this.responseHandler(response, tripPlanner.AddPlaceSuccessAction , action.payload.urlTo, action.payload)));
+      .map(response => this.responseHandler(response, tripPlanner.AddPlaceSuccessAction , false, action.payload)));
+  /**
+   * Add place to trip success
+   */
+  @Effect()
+  addPlaceSuccess$ = this.actions$.ofType(tripPlanner.ADD_PLACE_SUCCESS)
+    .switchMap((action: tripPlanner.AddPlaceSuccessAction) =>
+      this.router.navigate([ action.payload.urlTo])
+    ).map( () => new tripPlanner.EmptyAction());
 
   /**
    * Save city info  to trip

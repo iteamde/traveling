@@ -103,12 +103,7 @@
           <button class="btn btn-light-bg-grey btn-bordered">Next Day</button>
         </div>
       </div>
-      <agm-map (mapReady)="storeMapReady($event)">
-        <template *ngFor="let city of (citiesInfo$ | async).cities">
-          <agm-marker *ngIf="currentLocation.lat && currentLocation.lng" [latitude]="currentLocation.lat" [longitude]="currentLocation.lng"></agm-marker>
-          <agm-marker *ngFor="let place of city.places "   [latitude]="+place.lat" [longitude]="+place.lng"></agm-marker>
-        </template>
-      </agm-map>
+      <app-trip-planner-map class="trip-map-block" [cities]="(citiesInfo$ | async).cities"></app-trip-planner-map>
       <!--<div class="trip-map-layer">
         <img src="./assets/image/create-trip-plan-map.jpg" alt="">
         <div class="trip-map-filter-block">

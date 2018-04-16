@@ -59,6 +59,9 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.tripPlannerService.getCities('')
+    .subscribe(res => this.cities = JSON.parse(res.data));
+
     this.cityForm = this.fb.group({
       city: ''
     });

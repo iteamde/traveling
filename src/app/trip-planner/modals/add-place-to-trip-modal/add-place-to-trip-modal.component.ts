@@ -57,6 +57,8 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+
+
     this.citiesInfo$.subscribe(res => {
       this.cities = res.cities;
       this.city_id = (res.activeCity && res.activeCity.id);
@@ -66,6 +68,9 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
         }
       });
     });
+
+    this.tripPlannerService.getPlaces('', this.city_id)
+      .subscribe(res => this.places = res.data.places);
 
     this.form = this.fb.group({
       place: '',

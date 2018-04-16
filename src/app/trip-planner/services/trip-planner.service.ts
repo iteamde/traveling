@@ -14,7 +14,7 @@ export class TripPlannerService {
    * @param details
    */
   createTrip(details): Observable<any> {
-    return this.api.post( details,  'trips/new');
+    return this.api.post( 'trips/new', details);
   }
 
   /**

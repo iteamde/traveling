@@ -14,9 +14,11 @@ import { AmazingTimePickerModule } from 'amazing-time-picker';
 import {TripInfoResolver} from './services/trip-info-resolver';
 import {ConfirmComponent} from '../core/components/modals/confirm/confirm.component';
 import {AgmCoreModule} from "@agm/core";
+import { AgmDirectionModule } from 'agm-direction';
 import { CityArriveBoxComponent } from './components/city-arrive-box/city-arrive-box.component';
 import { PlaceDetailsBoxComponent } from './components/place-details-box/place-details-box.component';
 import { CompletedPlaceBoxComponent } from './components/completed-place-box/completed-place-box.component';
+import { TripPlannerMapComponent } from './components/trip-planner-map/trip-planner-map.component';
 
 @NgModule({
   imports: [
@@ -28,7 +30,8 @@ import { CompletedPlaceBoxComponent } from './components/completed-place-box/com
     AmazingTimePickerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXf0rOLWAEcQn2pAqRyZeighQ_y8NtNYY'
-    })
+    }),
+    AgmDirectionModule
   ],
   declarations: [
     TripPlannerComponent,
@@ -39,6 +42,7 @@ import { CompletedPlaceBoxComponent } from './components/completed-place-box/com
     CityArriveBoxComponent,
     PlaceDetailsBoxComponent,
     CompletedPlaceBoxComponent,
+    TripPlannerMapComponent,
   ],
   providers: [
     TripPlannerService,
