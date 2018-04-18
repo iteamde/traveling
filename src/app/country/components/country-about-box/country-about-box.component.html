@@ -1,0 +1,38 @@
+<div class="post-block post-country-block">
+  <div class="post-side-top">
+    <h3 class="side-ttl">About the country</h3>
+  </div>
+  <div class="post-country-inner">
+    <div class="post-footer-info">
+      <div class="post-foot-block">
+        <i class="trav-comment-icon"></i>
+        <span class="blue-txt">Discussed</span>&nbsp;
+        <span>by</span>&nbsp;
+        <b>john moline, pitter garmen, richerd</b>&nbsp;
+        <span>and 437 more</span>
+      </div>
+    </div>
+    <div class="post-txt-wrap">
+      <p class="post-txt">New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers.</p>
+    </div>
+    <div class="post-map-block">
+      <div class="post-map-inner">
+        <agm-map [latitude]="+info.lat" [longitude]="+info.lng"></agm-map>
+        <div class="post-top-map-info">
+          <div class="info-block">
+            <div class="info-icon">
+              <i class="trav-popularity-icon"></i>
+            </div>
+            <div class="info-txt">
+              <div class="info-ttl">{{info.population}}</div>
+              <div class="info-smpl">Population</div>
+            </div>
+          </div>
+        </div>
+        <div class="post-map-flag">
+          <img class="flag-image" src="http://placehold.it/50x50/3f3d72" alt="flag">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

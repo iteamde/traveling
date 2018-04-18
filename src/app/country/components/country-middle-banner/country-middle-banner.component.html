@@ -1,0 +1,17 @@
+<div class="top-banner-wrap">
+  <img class="banner-city" *ngIf="!data.media.length" src="http://placehold.it/1070x215" alt="banner">
+  <img class="banner-city" *ngIf="data.media.length" src="{{'https://s3.amazonaws.com/travooo-images2/' + data.media[0].url}}" alt="banner">
+  <div class="banner-cover-txt">
+    <div class="banner-name">
+      <div class="banner-ttl">{{data.info.trans[0].title}}</div>
+      <div class="sub-ttl"><!--City in--> {{data.info.trans[0].title}}</div>
+    </div>
+    <div class="banner-btn">
+      <button type="button" class="btn btn-light-grey btn-bordered btn-icon-side btn-icon-right" (click)="followCountry()">
+        <i class="trav-comment-plus-icon"></i>
+        <span>Follow</span>
+        <span class="icon-wrap"><i class="trav-view-plan-icon"></i></span>
+      </button>
+    </div>
+  </div>
+</div>

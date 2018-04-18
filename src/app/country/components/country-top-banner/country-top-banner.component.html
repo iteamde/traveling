@@ -1,0 +1,42 @@
+<div class="top-banner-wrap">
+  <div class="post-block post-flage-detail">
+    <div class="post-event-block">
+      <div class="post-event-image">
+        <img class="event-cover"  *ngIf="!data.media.length" src="https://www.runnersworld.com/sites/runnersworld.com/files/styles/article_main_custom_user_phone_1x/public/articles/2016/09/nyc_marathon.jpg?itok=mrgDghrv&amp;timestamp=1473862824" alt="photo">
+        <img class="event-cover" *ngIf="data.media.length" src="{{'https://s3.amazonaws.com/travooo-images2/' + data.media[0].url}}">
+      </div>
+      <div class="post-event-main">
+        <div class="flag-wrap">
+          <img src="http://placehold.it/155x77" alt="flag">
+        </div>
+        <div class="post-placement-info">
+          <span class="hash">#<b>{{data.info.id}}</b></span>
+          <h2 class="place-name">{{data.info.trans[0].title}}</h2>
+          <div class="event-info-layer">
+            <span class="placement-place"><!--City in--> <a href="#" class="place-link">{{data.info.trans[0].title}}</a></span>
+            <div class="event-foot-info">
+              <ul class="foot-avatar-list">
+                <li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>
+                <li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>
+                <li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>
+              </ul>
+            </div>
+            <i class="trav-talk-icon icon-grey-comment"></i>
+            <span class="talking">64K Talking about this</span>
+          </div>
+          <div class="event-main-content">
+            <p>{{data.info.trans[0].description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="follow-bottom-link">
+        <button type="button" class="btn btn-light-grey btn-bordered btn-icon-side btn-icon-right" (click)="followCountry()">
+          <i class="trav-comment-plus-icon"></i>
+          <span>Follow</span>
+          <span class="icon-wrap"><i class="trav-view-plan-icon"></i></span>
+        </button>
+        <a  class="follow-link">{{data.stats.followers}} {{data.stats.followers > 1 ? 'Followers':'Follower'}}</a>
+      </div>
+    </div>
+  </div>
+</div>

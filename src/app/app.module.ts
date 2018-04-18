@@ -21,6 +21,7 @@ import {HomeModule} from './home/home.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import {CountryModule} from './country/country.module';
 
 const effectsArr = [
   AuthEffects,
@@ -44,7 +45,8 @@ const effectsArr = [
     StoreModule.forRoot(reducers),
     Ng4LoadingSpinnerModule.forRoot(),
     ToastrModule.forRoot({positionClass : 'toast-top-right'}),
-    TripPlannerModule
+    TripPlannerModule,
+    CountryModule
   ],
   providers: [
     ApiService,

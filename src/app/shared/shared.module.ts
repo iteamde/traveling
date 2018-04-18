@@ -9,16 +9,19 @@ import { ScrollEventModule } from 'ngx-scroll-event';
 import {PlatformService} from '../core/services/platform.service';
 import { FooterComponent } from './footer/footer.component';
 import {MyDatePickerModule} from 'mydatepicker';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MainHeaderComponent
   ],
   imports: [
     CommonModule,
     ScrollEventModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    RouterModule
   ],
   exports: [
     RouterModule,
@@ -28,7 +31,8 @@ import {MyDatePickerModule} from 'mydatepicker';
     CommonModule,
     FooterComponent,
     ScrollEventModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    MainHeaderComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {

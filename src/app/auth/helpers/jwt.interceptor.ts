@@ -34,6 +34,10 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request).do(event => {
       if (event instanceof HttpResponse) {
         this.spinnerService.hide();
+        if (event.body && event.body.data && event.body.data.error === 400) {
+           this.router.navigate(['/error']);
+          return Observable.throw('Error');
+        }
       }
     })
     .catch(err => {
