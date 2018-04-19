@@ -20,7 +20,7 @@ export class CountryInfoResolver implements Resolve<any> {
       this.countryService.getCountryPlans(countryId),
       this.countryService.getCountryPlaces(countryId)
     ).map(res => {
-      return {
+      const country = {
         media: res[0].data.medias,
         info: res[1].data.country,
         numOfFollowers: res[2].data.followers,
@@ -28,6 +28,7 @@ export class CountryInfoResolver implements Resolve<any> {
         plans: res[4].data.plans,
         places: res[5].data.places,
       };
+      return country;
     });
   }
 }

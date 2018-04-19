@@ -22,11 +22,13 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import {CountryModule} from './country/country.module';
+import {CountryEffects} from './country/effects/country.effects';
 
 const effectsArr = [
   AuthEffects,
   TripPlannerEffects,
-  RouterEffects
+  RouterEffects,
+  CountryEffects
 ];
 
 @NgModule({

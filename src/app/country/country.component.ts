@@ -1,23 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CountryService} from './services/country.service';
+import {getCountry, State} from '../core/reducers';
+import {Store} from '@ngrx/store';
+import { SetCountryInfoAction} from './actions/country.actions';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
+@AutoUnsubscribe()
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.scss']
 })
-export class CountryComponent implements OnInit {
+export class CountryComponent implements OnInit, OnDestroy{
   public data;
   public countryMediaData;
   public plansMediaData;
   public placesMediaData;
 
   constructor (private route: ActivatedRoute,
-               private countryService: CountryService) {
-    this.data = this.route.snapshot.data.country;
-    console.log("COUNTRY INFO", this.data);
-  }
+               private countryService: CountryService,
+               private store: Store<State>) {
+    this.store.dispatch(new SetCountryInfoAction(this.route.snapshot.data.country));
+    this.store.select(getCountry).subscribe( res => {
+      console.log("Country", res);
+      this.data = res;
+    });
+    }
 
   ngOnInit() {
 
@@ -39,16 +48,9 @@ export class CountryComponent implements OnInit {
       count: this.data.stats.places,
       media: this.data.places.slice(0, 3).map(res => new Object({url: res.medias[0] && res.medias[0].url}))
     };
-
-
-
   }
 
-  followCountry() {
-      this.countryService.followCountry( this.data.info.id).subscribe( res => {
-        if (res.success) {
-          this.data.stats.followers++;
-        }
-      });
+  ngOnDestroy(){
+
   }
 }

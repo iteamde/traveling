@@ -12,6 +12,7 @@ import { LeftOutsideMenuComponent } from './components/left-outside-menu/left-ou
 import { CountryTopBannerComponent } from './components/country-top-banner/country-top-banner.component';
 import { CountryMiddleBannerComponent } from './components/country-middle-banner/country-middle-banner.component';
 import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar-about-box.component';
+import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,9 @@ import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar
     LeftOutsideMenuComponent,
     CountryTopBannerComponent,
     CountryMiddleBannerComponent,
-    SidebarAboutBoxComponent]
+    SidebarAboutBoxComponent,
+    FollowButtonComponent
+  ],
   providers: [
     CountryService,
     CountryInfoResolver

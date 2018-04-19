@@ -11,7 +11,6 @@ export class CountryGalleryBoxComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("INFO", this.info);
   }
 
 }

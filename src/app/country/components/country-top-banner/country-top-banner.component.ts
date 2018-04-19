@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-country-top-banner',
@@ -7,15 +7,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class CountryTopBannerComponent implements OnInit {
   @Input() data;
-  @Output() follow: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  followCountry() {
-    this.follow.emit();
   }
 
 }

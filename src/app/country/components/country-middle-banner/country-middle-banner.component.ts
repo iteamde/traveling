@@ -7,14 +7,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class CountryMiddleBannerComponent implements OnInit {
   @Input() data;
-  @Output() follow: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  followCountry() {
-    this.follow.emit();
-  }
 }

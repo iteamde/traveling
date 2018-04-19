@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar-about-box',
@@ -8,15 +8,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class SidebarAboutBoxComponent implements OnInit {
 
   @Input() data;
-  @Output() follow: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  followCountry() {
-    this.follow.emit();
   }
 
 }

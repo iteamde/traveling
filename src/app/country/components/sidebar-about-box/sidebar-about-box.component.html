@@ -7,11 +7,7 @@
           <img class="flag-image" src="http://placehold.it/105x53/e70c24?text=flag" alt="flag">
         </div>
         <div class="follow-btn-wrap">
-          <button type="button" class="btn btn-light-grey btn-bordered btn-icon-side btn-icon-right" (click)="followCountry()">
-            <i class="trav-comment-plus-icon"></i>
-            <span>Follow</span>
-            <span class="icon-wrap"><i class="trav-view-plan-icon"></i></span>
-          </button>
+          <app-follow-button></app-follow-button>
         </div>
       </div>
     </div>
@@ -22,7 +18,7 @@
       </p>
       <ul class="post-footer-info-list">
         <li>
-          <p class="info-count">{{data.stats.followers}}</p>
+          <p class="info-count">{{data.numOfFollowers}}</p>
           <p class="info-label">Followers</p>
         </li>
         <li>

@@ -30,12 +30,8 @@
         </div>
       </div>
       <div class="follow-bottom-link">
-        <button type="button" class="btn btn-light-grey btn-bordered btn-icon-side btn-icon-right" (click)="followCountry()">
-          <i class="trav-comment-plus-icon"></i>
-          <span>Follow</span>
-          <span class="icon-wrap"><i class="trav-view-plan-icon"></i></span>
-        </button>
-        <a  class="follow-link">{{data.stats.followers}} {{data.stats.followers > 1 ? 'Followers':'Follower'}}</a>
+        <app-follow-button></app-follow-button>
+        <a  class="follow-link">{{data.numOfFollowers}} {{data.numOfFollowers > 1 ? 'Followers':'Follower'}}</a>
       </div>
     </div>
   </div>
