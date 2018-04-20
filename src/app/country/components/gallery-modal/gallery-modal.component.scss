@@ -1,0 +1,13 @@
+.lg-toolbar .lg-close{
+  position: relative;
+  &:after {
+    content: "";
+  }
+  .trav-close-icon:before{
+    color: #fff;
+    position: absolute;
+    top: -20px;
+    left: 6px;
+  }
+}
+

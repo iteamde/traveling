@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ModalManager} from '../../../core/services/modal-manager.service';
+import {GalleryModalComponent} from '../gallery-modal/gallery-modal.component';
 
 @Component({
   selector: 'app-country-gallery-box',
@@ -8,9 +10,13 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CountryGalleryBoxComponent implements OnInit {
   @Input() info;
 
-  constructor() { }
+  constructor(private modalService: ModalManager) { }
 
   ngOnInit() {
+  }
+
+  showGallery() {
+    this.modalService.openModal(GalleryModalComponent);
   }
 
 }

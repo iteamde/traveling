@@ -13,6 +13,7 @@ import { CountryTopBannerComponent } from './components/country-top-banner/count
 import { CountryMiddleBannerComponent } from './components/country-middle-banner/country-middle-banner.component';
 import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar-about-box.component';
 import { FollowButtonComponent } from './components/follow-button/follow-button.component';
+import { GalleryModalComponent } from './components/gallery-modal/gallery-modal.component';
 
 @NgModule({
   imports: [
@@ -31,11 +32,13 @@ import { FollowButtonComponent } from './components/follow-button/follow-button.
     CountryTopBannerComponent,
     CountryMiddleBannerComponent,
     SidebarAboutBoxComponent,
-    FollowButtonComponent
+    FollowButtonComponent,
+    GalleryModalComponent
   ],
   providers: [
     CountryService,
     CountryInfoResolver
-  ]
+  ],
+  entryComponents: [GalleryModalComponent]
 })
 export class CountryModule { }

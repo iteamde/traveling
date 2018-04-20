@@ -23,7 +23,8 @@ export function reducer(state: State = INIT_STATE, action: country.Actions) {
     case country.FOLLOW_SUCCESS:
       return {...state, country: {
           ...state.country,
-          numOfFollowers : state.country.numOfFollowers + 1
+          numOfFollowers : state.country.numOfFollowers + 1,
+          followStatus: true
          }};
 
     default :
@@ -33,5 +34,6 @@ export function reducer(state: State = INIT_STATE, action: country.Actions) {
 
 export const getCountry = (state: State) => state.country;
 export const getCountryId = (state: State) => state.country.info.id;
+export const getFollowStatus = (state: State) => state.country.followStatus;
 
 

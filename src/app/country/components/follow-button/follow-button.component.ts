@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FollowCountryAction} from '../../actions/country.actions';
-import {getCountryId, State} from '../../../core/reducers';
+import {getCountryId, getFollowStatus, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
-@AutoUnsubscribe()
+@AutoUnsubscribe({includeArrays: true})
 @Component({
   selector: 'app-follow-button',
   templateUrl: './follow-button.component.html',
@@ -12,8 +12,13 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 })
 export class FollowButtonComponent implements OnInit, OnDestroy {
   public id: number;
+  public isFollowed: boolean;
+  private subscriptions;
   constructor(private store: Store<State>) {
-    this.store.select(getCountryId).subscribe(id => this.id = id);
+    this.subscriptions = [
+      this.store.select(getCountryId).subscribe(id => this.id = id),
+      this.store.select(getFollowStatus).subscribe(status => this.isFollowed = status)
+    ];
   }
 
   ngOnInit() {

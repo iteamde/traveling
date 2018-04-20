@@ -75,6 +75,7 @@ export const getAlreadySpent = createSelector(getTripPlannerState, fromTripPlann
  */
 export const getCountry = createSelector(getCountryState, fromCountry.getCountry);
 export const getCountryId = createSelector(getCountryState, fromCountry.getCountryId);
+export const getFollowStatus = createSelector(getCountryState, fromCountry.getFollowStatus);
 
 
 

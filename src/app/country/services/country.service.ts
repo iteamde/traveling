@@ -55,4 +55,8 @@ export class CountryService {
     return this.api.post(  `countries/${countryId}/follow?language_id=1`, {});
   }
 
+  checkFollowStatus(countryId): Observable<any> {
+    return this.api.post(  `countries/${countryId}/checkfollow?language_id=1`, {});
+  }
+
 }
