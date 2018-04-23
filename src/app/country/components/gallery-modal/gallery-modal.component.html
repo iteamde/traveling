@@ -3,14 +3,14 @@
   <div class="lg" style="width:100%; height:100%">
     <div class="lg-inner">
       <div class="lg-item lg-current lg-complete"  style="display: block!important">
-        <div class="lg-img-wrap" style="padding-right: 390px;width: 1140px;">
-          <img class="lg-object lg-image" src="https://sachinchoolur.github.io/lightGallery/static/img/2-1600.jpg">
+        <div class="lg-img-wrap" >
+          <img class="lg-object lg-image" src="{{'https://s3.amazonaws.com/travooo-images2/' + medias[currentIndex].url}}">
         </div>
         <div class="cover-block" style="width: 1140px;">
           <div class="cover-block-inner comment-block" style="width: 1140px;">
             <ul class="modal-outside-link-list white-bg">
               <li class="outside-link">
-                <a href="#">
+                <a (click)="closeModal()">
                   <div class="round-icon">
                     <i class="trav-angle-left"></i>
                   </div>
@@ -18,7 +18,7 @@
                 </a>
               </li>
               <li class="outside-link">
-                <a href="#">
+                <a (click)="reportMedia()">
                   <div class="round-icon">
                     <i class="trav-flag-icon"></i>
                   </div>
@@ -26,7 +26,7 @@
                 </a>
               </li>
             </ul>
-            <div class="gallery-comment-wrap">
+            <div class="gallery-comment-wrap" >
               <div class="gallery-comment-inner mCustomScrollbar _mCS_4">
                 <div id="mCSB_4" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;"
                      tabindex="0">
@@ -47,10 +47,10 @@
                       <div class="gallery-comment-txt">
                         <p>This is an amazing street to walk around and do some shopping</p>
                       </div>
-                      <div class="gal-com-footer-info">
-                        <div class="post-foot-block post-reaction">
+                      <div class="gal-com-footer-info" *ngIf="medias[currentIndex].reactions">
+                        <div class="post-foot-block post-reaction" (click)="likeMedia()">
                           <i class="trav-heart-fill-icon"></i>
-                          <span><b>185</b></span>
+                          <span><b>{{medias[currentIndex].reactions.likes.length}}</b></span>
                         </div>
                         <div class="post-foot-block post-comment-place">
                           <i class="trav-location"></i>
@@ -58,39 +58,38 @@
                         </div>
                       </div>
                     </div>
-                    <div class="post-comment-layer">
+                    <div class="post-comment-layer" *ngIf="medias[currentIndex].reactions">
                       <div class="post-comment-top-info">
                         <div class="comm-count-info">
-                          5 Comments
+                          {{medias[currentIndex].reactions.comments.length}} Comments
                         </div>
                         <div class="comm-count-info">
-                          3 / 20
+                          <!--3 / 20-->
                         </div>
                       </div>
-                      <div class="post-comment-wrapper">
-                        <div class="post-comment-row">
+                      <div class="post-comment-wrapper" *ngIf="medias[currentIndex].reactions">
+                        <div class="post-comment-row" *ngFor="let comment of medias[currentIndex].reactions.comments">
                           <div class="post-com-avatar-wrap">
                             <img src="http://placehold.it/45x45" alt="" class="mCS_img_loaded">
                           </div>
                           <div class="post-comment-text">
                             <div class="post-com-name-layer">
-                              <a href="#" class="comment-name">Katherin</a>
-                              <a href="#" class="comment-nickname">@katherin</a>
+                              <a href="#" class="comment-name">{{comment.user.username}}</a>
+                              <a href="#" class="comment-nickname">@</a>
                             </div>
                             <div class="comment-txt">
-                              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus labore tenetur
-                                vel. Neque molestiae repellat culpa qui odit delectus.</p>
+                              <p>{{comment.comment}}</p>
                             </div>
                             <div class="comment-bottom-info">
-                              <div class="com-reaction">
+                             <!-- <div class="com-reaction">
                                 <img src="./assets/image/icon-smile.png" alt="" class="mCS_img_loaded">
                                 <span>21</span>
-                              </div>
-                              <div class="com-time">6 hours ago</div>
+                              </div>-->
+                              <div class="com-time">At: {{comment.created_at | date:'medium'}}</div>
                             </div>
                           </div>
                         </div>
-                        <div class="post-comment-row happen-event">
+                       <!-- <div class="post-comment-row happen-event">
                           <div class="post-com-avatar-wrap">
                             <img src="http://placehold.it/45x45" alt="" class="mCS_img_loaded">
                           </div>
@@ -133,7 +132,7 @@
                             </div>
                           </div>
                         </div>
-                        <a href="#" class="load-more-link">Load more...</a>
+                        <a href="#" class="load-more-link">Load more...</a>-->
                       </div>
                     </div>
                   </div>
@@ -155,7 +154,7 @@
                   <img src="http://placehold.it/45x45" alt="">
                 </div>
                 <div class="post-add-com-input">
-                  <input type="text" placeholder="Write a commenttt">
+                  <input type="text" #comment (keyup.enter)="sendComment()" [(ngModel)]="currentComment" placeholder="Write a commenttt">
                 </div>
               </div>
             </div>
@@ -169,14 +168,16 @@
       </span>
     </div>
     <div class="lg-actions">
-      <button class="lg-prev lg-icon"><i class="trav-angle-left"></i></button>
-      <button class="lg-next lg-icon"><i class="trav-angle-right"></i></button>
+      <button (click)="prevSlide()" *ngIf="currentIndex > 0" class="lg-prev lg-icon"><i class="trav-angle-left"></i></button>
+      <button (click)="nextSlide()" *ngIf="currentIndex < medias.length - 1" class="lg-next lg-icon"><i class="trav-angle-right"></i></button>
     </div>
     <div class="lg-thumb-outer lg-grab" style="height: 180px;">
-      <div class="lg-thumb lg-group"
-           style="width: 1200px; position: relative; transform: translate3d(0px, 0px, 0px); transition-duration: 600ms;">
-        <div  class="lg-thumb-item" style="width:100px; height: 100%; margin-right: 20px"><img
-          src="https://sachinchoolur.github.io/lightGallery/static/img/thumb-2.jpg"></div>
+      <div class="lg-thumb lg-group">
+        <div  class="lg-thumb-item" *ngFor="let media of medias; let i = index"
+              [ngClass] = "{'active' : currentIndex === i}"
+              (click)="selectMedia(i)">
+          <img src="{{'https://s3.amazonaws.com/travooo-images2/' + media.url}}">
+        </div>
       </div>
     </div>
   </div>

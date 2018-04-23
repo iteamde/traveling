@@ -16,7 +16,11 @@ export class CountryGalleryBoxComponent implements OnInit {
   }
 
   showGallery() {
-    this.modalService.openModal(GalleryModalComponent);
+
+    console.log("Show gallery", this.info.media)
+    if (this.info.media.length && this.info.media[0].id) {
+      this.modalService.openModal(GalleryModalComponent, {data: this.info.media});
+    }
   }
 
 }

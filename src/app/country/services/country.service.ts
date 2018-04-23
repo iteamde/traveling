@@ -51,12 +51,46 @@ export class CountryService {
     return this.api.get(  `countries/${countryId}/places?language_id=1`);
   }
 
+  /**
+   * Get reactions to media
+   */
+  getReactions(mediaId): Observable<any> {
+    return this.api.post(  `medias/${mediaId}/reactions?language_id=1`, {});
+  }
+
+  /**
+   * Follow country
+   */
   followCountry(countryId): Observable<any> {
     return this.api.post(  `countries/${countryId}/follow?language_id=1`, {});
   }
 
+  /**
+   * Check follow  status country
+   */
   checkFollowStatus(countryId): Observable<any> {
     return this.api.post(  `countries/${countryId}/checkfollow?language_id=1`, {});
+  }
+
+  /**
+   * Report media
+   */
+  reportMedia(mediaId): Observable<any> {
+    return this.api.post(  `medias/${mediaId}/report?language_id=1`, {});
+  }
+
+  /**
+   * Report media
+   */
+  likeMedia(mediaId): Observable<any> {
+    return this.api.post(  `medias/${mediaId}/like?language_id=1`, {});
+  }
+
+  /**
+   * Report media
+   */
+  sendComment(mediaId, comment): Observable<any> {
+    return this.api.post(  `medias/${mediaId}/comment?language_id=1`, {comment: comment});
   }
 
 }

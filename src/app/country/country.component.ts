@@ -40,7 +40,7 @@ export class CountryComponent implements OnInit, OnDestroy{
     this.plansMediaData = {
       title: 'Trip plans',
       count: this.data.stats.trips,
-      media: this.data.plans.slice(0, 3).map(res => new Object({url: res.thumb})),
+      media: this.data.plans.slice(0, 3).map(res => res.medias),
     };
 
     this.placesMediaData = {

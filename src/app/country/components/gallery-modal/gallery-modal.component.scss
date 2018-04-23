@@ -11,3 +11,50 @@
   }
 }
 
+.lg-outer .lg-item.lg-current{
+  &:before{
+    display: none;
+  }
+}
+.main-gallery-block.lg-outer .lg-item .lg-img-wrap{
+  left: 0;
+  height: 100%;
+  top:50%;
+  transform: translateY(-50%);
+  position: relative;
+  padding-right: 390px;
+  width: 1140px;
+
+  &:before{
+    display: none;
+  }
+
+  img{
+    position: absolute;
+    top:50%;
+    transform: translate(-50%, -50%);
+    left: calc(50% - 195px);
+  }
+}
+
+.lg-outer.lg-has-thumb .lg-item{
+  padding-bottom: 0;
+}
+.main-gallery-block.lg-outer .lg-thumb{
+  &.lg-group{
+    width: 1200px;
+    position: relative;
+    transform: translate3d(0px, 0px, 0px);
+    transition-duration: 600ms;
+    .lg-thumb-item{
+      width:100px;
+      height: 100%;
+      margin-right: 20px;
+
+      &.active{
+        opacity: 1;
+      }
+    }
+  }
+}
+

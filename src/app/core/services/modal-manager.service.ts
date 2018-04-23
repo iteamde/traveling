@@ -33,8 +33,8 @@ export class ModalManager {
     } , 1);
   }
 
-  openModal(component) {
-    this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component)}));
+  openModal(component, data?) {
+    this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component,  {data})}));
   }
 
 }
