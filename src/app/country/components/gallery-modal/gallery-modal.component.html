@@ -128,12 +128,8 @@
       </div>
     </div>
     <div class="lg-toolbar lg-group">
-      <span class="lg-icon lg-close">
-        <button class="trav-close-icon" (click)="closeModal()"></button>
-      </span>
-      <span id="lg-share" class="lg-icon" (click)="isActiveSocialShare = !isActiveSocialShare">
-
-      </span>
+      <span class="lg-icon lg-close" (click)="closeModal()"></span>
+      <span id="lg-share" class="lg-icon" (click)="isActiveSocialShare = !isActiveSocialShare"></span>
       <ul class="lg-dropdown" style="position: absolute;">
         <li>
           <a id="lg-share-facebook"  class="text-left" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{pageUrlEncoded}}">

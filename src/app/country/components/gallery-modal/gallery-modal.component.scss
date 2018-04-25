@@ -1,9 +1,7 @@
 .lg-toolbar .lg-close{
   position: relative;
   cursor: pointer;
-  &:after {
-    content: "";
-  }
+
   .trav-close-icon:before{
     color: #fff;
     position: absolute;

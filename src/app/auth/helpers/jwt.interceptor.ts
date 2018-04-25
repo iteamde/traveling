@@ -10,6 +10,7 @@ import {State} from '../../core/reducers';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
+  private spinnerCounter = 0;
 
   constructor( private authHelper: AuthHelper,
                private router: Router,
@@ -20,6 +21,7 @@ export class JwtInterceptor implements HttpInterceptor {
     //UI helpers
     this.store.dispatch(new RemoveErrorAction());
     this.spinnerService.show();
+    this.spinnerCounter++;
 
     // add authorization header with jwt token if available
     let userToken = this.authHelper.getAuthToken();
@@ -33,7 +35,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
     return next.handle(request).do(event => {
       if (event instanceof HttpResponse) {
-        this.spinnerService.hide();
+        this.spinnerCounter--;
+        if(!this.spinnerCounter)  this.spinnerService.hide();
         if (event.body && event.body.data && event.body.data.error === 400) {
            this.router.navigate(['/error']);
           return Observable.throw('Error');
