@@ -1,17 +1,20 @@
 .lg-toolbar .lg-close{
   position: relative;
+  cursor: pointer;
   &:after {
     content: "";
   }
   .trav-close-icon:before{
     color: #fff;
     position: absolute;
-    top: -20px;
+    top: 5px;
     left: 6px;
+    cursor: pointer;
   }
 }
 
 .lg-outer .lg-item.lg-current{
+  width: 1140px;
   &:before{
     display: none;
   }
@@ -19,21 +22,25 @@
 .main-gallery-block.lg-outer .lg-item .lg-img-wrap{
   left: 0;
   height: 100%;
-  top:50%;
-  transform: translateY(-50%);
   position: relative;
-  padding-right: 390px;
-  width: 1140px;
+  width: 750px;
+  z-index: 900;
+  display: block;
 
   &:before{
     display: none;
   }
 
-  img{
+   a{
     position: absolute;
     top:50%;
     transform: translate(-50%, -50%);
-    left: calc(50% - 195px);
+    left: calc(50%);
+     max-height: 640px;
+     display: block;
+     img{
+       max-height: 640px!important;
+     }
   }
 }
 
@@ -57,4 +64,52 @@
     }
   }
 }
+.modal-outside-link-list li a{
+  cursor: pointer;
+}
+.post-foot-block.post-reaction{
+  cursor: pointer;
+}
+.lg-outer .lg-dropdown {
+  right: 60px;
 
+  a{
+    width: 120px;
+    white-space: normal;
+
+    .lg-dropdown-text{
+      margin-top: 0;
+    }
+  }
+}
+.reply-to{
+  transition: 0.4s;
+  cursor: pointer;
+  opacity: 0;
+}
+.post-comment-row:hover{
+  .reply-to{
+    opacity: 1;
+  }
+}
+.post-comment-wrapper .post-comment-row .post-comment-text .comment-bottom-info{
+  display: block;
+}
+.reply{
+  color: #404040;
+  position: relative;
+  font-size: 12px;
+  height: 50px;
+  padding: 12px 0 8px 2px;
+
+  span{
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+    right: 0;
+    top:0;
+    margin-top: 5px;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+}

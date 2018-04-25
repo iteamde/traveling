@@ -1,8 +1,7 @@
 <button type="button" class="btn  btn-bordered btn-icon-side btn-icon-right"
         [ngClass] ="{'btn-light-grey': !isFollowed, 'btn-light-primary': isFollowed }"
-        [disabled]="isFollowed"
-        (click)="followCountry()">
+        (click)="toggleFollow()">
   <i class="trav-comment-plus-icon"></i>
-  <span>Follow</span>
+  <span> {{isFollowed ? 'Unfollow' : 'Follow'}}</span>
   <span class="icon-wrap"><i class="trav-view-plan-icon"></i></span>
 </button>

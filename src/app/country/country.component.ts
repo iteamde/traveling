@@ -33,18 +33,21 @@ export class CountryComponent implements OnInit, OnDestroy{
     //FILL DATA FOR  BOX GALLERY WRAPPERs
     this.countryMediaData = {
       title: 'Photos',
+      routePath: 'country-media',
       count: this.data.stats.medias,
-      media: this.data.media
+      media: this.data.media.slice(0, 3)
     };
 
     this.plansMediaData = {
       title: 'Trip plans',
+      routePath: 'trips-media',
       count: this.data.stats.trips,
       media: this.data.plans.slice(0, 3).map(res => res.medias),
     };
 
     this.placesMediaData = {
       title: 'Best places',
+      routePath: 'place-media',
       count: this.data.stats.places,
       media: this.data.places.slice(0, 3).map(res => new Object({url: res.medias[0] && res.medias[0].url}))
     };

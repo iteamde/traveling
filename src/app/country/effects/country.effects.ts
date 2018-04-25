@@ -18,6 +18,15 @@ export class CountryEffects {
     .switchMap((action: country.FollowCountryAction) => this.countryService.followCountry(action.payload)
       .map( response => this.responseHandler(response, country.FollowSuccessAction )));
 
+
+  /**
+   * Unfollow country
+   */
+  @Effect()
+  unfollow$ = this.actions$.ofType(country.UNFOLLOW_COUNTRY)
+    .switchMap((action: country.UnfollowCountryAction) => this.countryService.unfollowCountry(action.payload)
+      .map( response => this.responseHandler(response, country.UnfollowSuccessAction )));
+
   /**
    * Default constructor
    * @param actions$

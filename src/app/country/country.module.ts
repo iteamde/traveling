@@ -14,6 +14,7 @@ import { CountryMiddleBannerComponent } from './components/country-middle-banner
 import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar-about-box.component';
 import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 import { GalleryModalComponent } from './components/gallery-modal/gallery-modal.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { GalleryModalComponent } from './components/gallery-modal/gallery-modal.
     CountryMiddleBannerComponent,
     SidebarAboutBoxComponent,
     FollowButtonComponent,
-    GalleryModalComponent
+    GalleryModalComponent,
+    TimeAgoPipe
   ],
   providers: [
     CountryService,

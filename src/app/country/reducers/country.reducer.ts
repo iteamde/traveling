@@ -27,6 +27,13 @@ export function reducer(state: State = INIT_STATE, action: country.Actions) {
           followStatus: true
          }};
 
+    case country.UNFOLLOW_SUCCESS:
+      return {...state, country: {
+          ...state.country,
+          numOfFollowers : state.country.numOfFollowers - 1,
+          followStatus: false
+        }};
+
     default :
       return state;
   }
@@ -35,5 +42,6 @@ export function reducer(state: State = INIT_STATE, action: country.Actions) {
 export const getCountry = (state: State) => state.country;
 export const getCountryId = (state: State) => state.country.info.id;
 export const getFollowStatus = (state: State) => state.country.followStatus;
-
+export const getCountryMedia = (state: State) => state.country.media;
+export const getTripMedia = (state: State) => state.country.plans.map(res => res.medias);
 

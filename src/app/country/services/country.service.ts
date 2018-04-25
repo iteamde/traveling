@@ -66,6 +66,13 @@ export class CountryService {
   }
 
   /**
+   * Unfollow country
+   */
+  unfollowCountry(countryId): Observable<any> {
+    return this.api.post(  `countries/${countryId}/unfollow?language_id=1`, {});
+  }
+
+  /**
    * Check follow  status country
    */
   checkFollowStatus(countryId): Observable<any> {
@@ -89,8 +96,8 @@ export class CountryService {
   /**
    * Report media
    */
-  sendComment(mediaId, comment): Observable<any> {
-    return this.api.post(  `medias/${mediaId}/comment?language_id=1`, {comment: comment});
+  sendComment(mediaId, comment, reply_to?): Observable<any> {
+    return this.api.post(  `medias/${mediaId}/comment?language_id=1`, {comment, reply_to});
   }
 
 }

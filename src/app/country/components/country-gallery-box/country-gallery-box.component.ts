@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ModalManager} from '../../../core/services/modal-manager.service';
-import {GalleryModalComponent} from '../gallery-modal/gallery-modal.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-country-gallery-box',
@@ -10,17 +9,14 @@ import {GalleryModalComponent} from '../gallery-modal/gallery-modal.component';
 export class CountryGalleryBoxComponent implements OnInit {
   @Input() info;
 
-  constructor(private modalService: ModalManager) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  showGallery() {
-
-    console.log("Show gallery", this.info.media)
+  openGallery() {
     if (this.info.media.length && this.info.media[0].id) {
-      this.modalService.openModal(GalleryModalComponent, {data: this.info.media});
+      this.router.navigate([`${this.router.url}/${this.info.routePath}/${this.info.media[0].id}`]);
     }
   }
-
 }
