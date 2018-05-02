@@ -37,7 +37,7 @@ export class LoginModalComponent implements OnInit {
 
     this.authError$ = store.select(getErrorFromServer);
     this.loginStatus$ = store.select(getLoginStatus);
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     console.log("Return URL", this.returnUrl);
 
   }
