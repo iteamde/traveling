@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse} from '@angular/common/http';
+import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {AuthHelper} from './auth.helper';
 import {Router} from '@angular/router';
@@ -37,15 +37,18 @@ export class JwtInterceptor implements HttpInterceptor {
       if (event instanceof HttpResponse) {
         this.spinnerCounter--;
         if(!this.spinnerCounter)  this.spinnerService.hide();
-        if (event.body && event.body.data && event.body.data.error === 400) {
-           this.router.navigate(['/error']);
-          return Observable.throw('Error');
-        }
-      }
+     }
     })
     .catch(err => {
-      this.spinnerService.hide();
-      this.router.navigate(['/error']);
+        this.spinnerService.hide();
+        if (err instanceof HttpErrorResponse) {
+          console.log("Its HEREEEE", err);
+          if (err.status === 401) {
+            this.router.navigate(['/login']);
+            return Observable.throw(err);
+          }
+        }
+        this.router.navigate(['/error']);
       return Observable.throw(err);
     });
   }

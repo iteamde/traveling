@@ -35,8 +35,14 @@ export class AuthComponent implements OnInit {
     if ( (this.path === '/')) {
       console.log("HERE IS auth token", this.authHelper.getAuthToken());
       //TODO SHOULD BE SOME API FOR LOGIN WITH TOKEN FAKE DATA FOR NOW!!!
-      this.store.dispatch(new LoginAction({data : {email: 'kachan.vitaliy12@gmail.com', password: '1111111'}, urlTo: '/home' , queryUrl: 'users/login'}));
+      this.router.navigate(['/login']);
+     // this.store.dispatch(new LoginAction({data : {email: 'kachan.vitaliy12@gmail.com', password: '1111111'}, urlTo: '/home' , queryUrl: 'users/login'}));
       return;
+    }
+
+    if ( (this.path.includes('/login?returnUrl'))) {
+      step = 0;
+      this.modalManager.openModalFromLCH(routeRelations['/login'].component);
     }
 
     if ( Object.keys(routeRelations).includes(this.path)) {

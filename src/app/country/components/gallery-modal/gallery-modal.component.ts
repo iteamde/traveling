@@ -107,6 +107,23 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
       .subscribe(res => res.liked ? this.likedSuccess() : this.removeLike());
   }
 
+  likeComment(comment) {
+    this.countryService.likeComment(this.medias[this.currentIndex].id, comment.id)
+      .subscribe(res => res.liked ?
+        this.commentLikedSuccess(comment) :
+        this.commentRemoveLike(comment));
+  }
+
+  commentLikedSuccess(comment) {
+    comment.likes.length++;
+    this.toastrSuccess('Liked successfully added');
+  }
+
+  commentRemoveLike(comment) {
+    comment.likes.length--;
+    this.toastrError('Like  removed');
+  }
+
   likedSuccess() {
     this.medias[this.currentIndex].reactions.likes.length++;
     this.toastrSuccess('Liked successfully added');
@@ -120,8 +137,13 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
   addComment() {
     const commentModel = {
       comment: this.currentComment,
-      user: {username: "Some hardcoded username"},
-      reply_to: this.replayTo.id,
+      user: {name: "hardcoded name"},
+      reply_to: {
+        id: this.replayTo.id,
+        user: {
+          name: this.replayTo.name
+        }
+      },
       created_at: new Date()
     };
     this.medias[this.currentIndex].reactions.comments.push(commentModel);

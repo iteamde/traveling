@@ -1,5 +1,4 @@
 import { Component, OnInit  } from '@angular/core';
-import {Location} from '@angular/common';
 import {FacebookService} from '../../services/facebook.service';
 import {emailValidator} from '../../../core/validators/custom-validators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -8,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import {getErrorFromServer, getLoginStatus, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {LoginAction} from '../../actions/auth.actions';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -18,6 +18,7 @@ export class LoginModalComponent implements OnInit {
   public authError$: Observable<any>;
   public loginStatus$: Observable<any>;
   public userForm: FormGroup;
+  private returnUrl: string;
   public user: any = {
     email: '',
     password: '',
@@ -28,7 +29,7 @@ export class LoginModalComponent implements OnInit {
   };
 
   constructor(
-    private _location: Location,
+    private route: ActivatedRoute,
     private store: Store<State>,
     public facebookService: FacebookService,
     private fb: FormBuilder ,
@@ -36,6 +37,8 @@ export class LoginModalComponent implements OnInit {
 
     this.authError$ = store.select(getErrorFromServer);
     this.loginStatus$ = store.select(getLoginStatus);
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log("Return URL", this.returnUrl);
 
   }
 
@@ -66,7 +69,7 @@ export class LoginModalComponent implements OnInit {
 
  facebookLogin() {
    this.facebookService.login()
-     .then(res => this.store.dispatch(new LoginAction({data: res, urlTo: '/home', queryUrl: 'users/create/facebook'})));
+     .then(res => this.store.dispatch(new LoginAction({data: res, urlTo: this.returnUrl, queryUrl: 'users/create/facebook'})));
  }
 
   twitterLogin() {
@@ -74,7 +77,7 @@ export class LoginModalComponent implements OnInit {
   }
 
  login() {
-   this.store.dispatch(new LoginAction({data : this.userForm.value, urlTo: '/home' , queryUrl: 'users/login'}));
+   this.store.dispatch(new LoginAction({data : this.userForm.value, urlTo: this.returnUrl , queryUrl: 'users/login'}));
  }
 
 

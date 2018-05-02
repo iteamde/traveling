@@ -38,11 +38,13 @@
                     <div class="top-gallery-content gallery-comment-top">
                       <div class="top-info-layer">
                         <div class="top-avatar-wrap">
-                          <img src="http://placehold.it/50x50" alt="" class="mCS_img_loaded">
+                          <img src="http://placehold.it/50x50" *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length" alt="" class="mCS_img_loaded">
+                          <img src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/' + medias[currentIndex].users[0].id + '/' + medias[currentIndex].users[0].profile_picture }}" *ngIf="medias[currentIndex].users && medias[currentIndex].users.length" alt="" class="mCS_img_loaded">
                         </div>
                         <div class="top-info-txt">
                           <div class="preview-txt">
-                            <a class="dest-name" href="#">Julie</a>
+                            <a class="dest-name" *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length">Hardcoded on front</a>
+                            <a class="dest-name" *ngIf="medias[currentIndex].users && medias[currentIndex].users.length">{{medias[currentIndex].users[0].name}}</a>
                             <p class="dest-place">uploaded a <b>photo</b> <span class="date">2 hours ago</span></p>
                           </div>
                         </div>
@@ -73,23 +75,24 @@
                       <div class="post-comment-wrapper" *ngIf="medias[currentIndex].reactions">
                         <div class="post-comment-row" *ngFor="let comment of medias[currentIndex].reactions.comments">
                           <div class="post-com-avatar-wrap">
-                            <img src="http://placehold.it/45x45" alt="" class="mCS_img_loaded">
+                            <img src="http://placehold.it/45x45" *ngIf="!comment.user || !comment.user.profile_picture" >
+                            <img src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/' + comment.users_id + '/' + comment.user.profile_picture }}" *ngIf="comment.user && comment.user.profile_picture">
                           </div>
                           <div class="post-comment-text">
                             <div class="post-com-name-layer">
-                              <a href="#" class="comment-name">{{comment.user.username}}</a>
-                              <a href="#" class="comment-nickname">@</a>
+                              <a  class="comment-name">{{comment.user.name}}</a>
+                              <a  class="comment-nickname">@{{comment.user.username}}</a>
                             </div>
                             <div class="comment-txt">
-                              <p><b>{{comment.reply_to ? comment.reply_to + ", " : ''}}</b>{{comment.comment}}</p>
+                              <p><b>{{comment.reply_to.id ? comment.reply_to.user.name + ", " : ''}}</b>{{comment.comment}}</p>
                             </div>
                             <div class="comment-bottom-info">
-                              <!-- <div class="com-reaction">
-                                 <img src="./assets/image/icon-smile.png" alt="" class="mCS_img_loaded">
-                                 <span>21</span>
-                               </div>-->
+                               <div class="com-reaction pull-left" (click)="likeComment(comment)">
+                                 <img src="./assets/image/icon-like.png" alt="" class="mCS_img_loaded">
+                                 <span>{{comment.likes.length}}</span>
+                               </div>
                               <div class="com-time pull-left" >{{comment.created_at | timeAgo}}</div>
-                              <div class="com-time reply-to pull-right" (click)="setReplyTo(comment.id, comment.user.username)">reply</div>
+                              <div class="com-time reply-to pull-right" (click)="setReplyTo(comment.id, comment.user.name)">reply</div>
                             </div>
                           </div>
                         </div>

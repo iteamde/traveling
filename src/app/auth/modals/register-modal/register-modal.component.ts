@@ -46,6 +46,7 @@ export class RegisterModalComponent implements OnInit {
     this.userForm = this.fb.group({
       username: [this.user.username, [
         Validators.required,
+        Validators.minLength(8),
         nameValidator
 
       ]],

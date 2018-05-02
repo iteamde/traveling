@@ -87,10 +87,17 @@ export class CountryService {
   }
 
   /**
-   * Report media
+   * Like media
    */
   likeMedia(mediaId): Observable<any> {
     return this.api.post(  `medias/${mediaId}/like?language_id=1`, {});
+  }
+
+  /**
+   * Like comment
+   */
+  likeComment(mediaId, commentId): Observable<any> {
+    return this.api.post(  `medias/${mediaId}/${commentId}/like?language_id=1`, {});
   }
 
   /**

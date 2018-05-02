@@ -47,6 +47,7 @@ export class RegisterModalStep2Component implements OnInit {
     this.userForm = this.fb.group({
       name: [this.user.name, [
         Validators.required,
+        Validators.minLength(8),
         nameValidator
 
       ]],

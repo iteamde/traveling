@@ -4,7 +4,8 @@ import {FormControl, FormGroup, AbstractControl} from '@angular/forms';
 const   validationMessages = {
   username: {
     required: "Username field is required",
-    nameValidator: "Username must contain only letters"
+    nameValidator: "Username must contain only letters",
+    minlength: "Username should be at least 8 characters",
   },
   email: {
     required: "Email field is required",
@@ -21,7 +22,8 @@ const   validationMessages = {
   },
   name: {
     required: "Name field is required",
-    nameValidator: "Name must contain only letters"
+    nameValidator: "Name must contain only letters",
+    minlength: "Name should be at least 8 characters",
   },
   age: {
     required: "Age  is required",
