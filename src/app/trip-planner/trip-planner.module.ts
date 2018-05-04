@@ -28,9 +28,6 @@ import { TripPlannerMapComponent } from './components/trip-planner-map/trip-plan
     CoreModule,
     DndModule.forRoot(),
     AmazingTimePickerModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAXf0rOLWAEcQn2pAqRyZeighQ_y8NtNYY'
-    }),
     AgmDirectionModule
   ],
   declarations: [

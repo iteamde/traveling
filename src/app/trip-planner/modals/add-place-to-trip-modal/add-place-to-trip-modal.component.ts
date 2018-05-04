@@ -90,7 +90,6 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
     place.pivot = {};
     place.trans = [{title : place.name}];
     tCity.places.push(place);
-    console.log("tCity", tCity);
     let helper = {item: tCity, index: this.city_index};
     this.store.dispatch(new AddPlaceAction( this.routeParams.id, {place_id : place.id}, `/trip/${this.routeParams.id}/info`, helper));
   }

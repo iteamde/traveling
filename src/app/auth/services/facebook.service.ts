@@ -1,15 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
-import { fromPromise } from 'rxjs/observable/fromPromise';
 import {Subject} from 'rxjs/Subject';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/distinct';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/filter';
 import 'rxjs/add/observable/fromPromise';
-import { never } from 'rxjs/observable/never';
-import {PlatformService} from '../../core/services/platform.service';
 
 /// TEMP
 declare var FB: any;
@@ -29,7 +21,6 @@ export class FacebookService {
   // Shows if FB SDK is laoded or not
   // Can be used outside the module to draw Loading status of button
   public FBLoadStatus$ = () => {
-    if (this.platformService.isServer()) { return never(); }
     const fn = (d: any, s: any, id: any): Promise<any> => {
       return new Promise((resolve, reject) => {
         if (JSScript) { return resolve({loaded: true, loading: false, error: undefined}); }
@@ -72,16 +63,11 @@ export class FacebookService {
   /**
    * Default constructor
    */
-  constructor(private zone: NgZone, private platformService: PlatformService) {
-  }
-
-
+  constructor(private zone: NgZone) {}
 
   /**
    * Log in using facebook
    */
-
-
 
   login() {
     return new Promise((resolve, reject) => {

@@ -16,7 +16,7 @@ export class CountryEffects {
   @Effect()
   follow$ = this.actions$.ofType(country.FOLLOW_COUNTRY)
     .switchMap((action: country.FollowCountryAction) => this.countryService.followCountry(action.payload)
-      .map( response => this.responseHandler(response, country.FollowSuccessAction )));
+      .map( res => res.success ? new country.FollowSuccessAction() : new error.AddErrorAction(res.data)));
 
 
   /**
@@ -25,7 +25,7 @@ export class CountryEffects {
   @Effect()
   unfollow$ = this.actions$.ofType(country.UNFOLLOW_COUNTRY)
     .switchMap((action: country.UnfollowCountryAction) => this.countryService.unfollowCountry(action.payload)
-      .map( response => this.responseHandler(response, country.UnfollowSuccessAction )));
+      .map( res => res.success ? new country.UnfollowSuccessAction() : new error.AddErrorAction(res.data)));
 
   /**
    * Default constructor
@@ -35,14 +35,5 @@ export class CountryEffects {
    */
   constructor(private actions$: Actions,
               private countryService: CountryService
-  ) {
-  }
-
-  responseHandler(res, onSuccess, urlTo?, hook?) {
-    if (res.success) {
-      return  new onSuccess(hook || res);
-    }
-    return new error.AddErrorAction(res.data && res.data.message);
-  }
-
+  ) {}
 }

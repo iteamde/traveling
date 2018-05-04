@@ -15,7 +15,7 @@
         <p *ngIf="formErrors.password" class="sub-ttl error-message">{{ formErrors.password }}</p>
         <p *ngIf="formErrors.password_confirmation" class="sub-ttl error-message">{{ formErrors.password_confirmation }}</p>
         <div *ngIf="(authError$ | async)">
-          <p  *ngFor="let err of  (authError$ | async)" class="sub-ttl error-message">{{ err }}</p>
+          <p   class="sub-ttl error-message">{{ (authError$ | async).message }}</p>
         </div>
       </div>
 
@@ -46,7 +46,7 @@
               Continue with Facebook</button>
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-info" (click)="open()" >
+            <button type="button" class="btn btn-info">
               <i class="fa fa-twitter side-icon"></i>
               Continue with Twitter</button>
           </div>

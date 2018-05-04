@@ -22,7 +22,7 @@ export class LoginAction implements Action {
    * Default constructor
    * @param payload
    */
-  constructor(public payload: {data: any, queryUrl: string, urlTo: string}) {}
+  constructor(public payload: {data: any, queryUrl: string}) {}
 }
 
 export class LoginSuccessAction implements Action {
@@ -34,12 +34,6 @@ export class LoginSuccessAction implements Action {
    */
   constructor(public payload) {}
 }
-
-
-export class EmptyAction implements Action {
-  readonly type = 'EMPTY';
-}
-
 
 /**
  * Registers new user. (Currently just with given email and password)
@@ -110,7 +104,6 @@ export type Actions = RegisterAction
   | SetPasswordAction
   | SetPasswordSuccessAction
   | ClearPasswordStatus
-  | EmptyAction
   | RegistrationSuccessAction;
 
 

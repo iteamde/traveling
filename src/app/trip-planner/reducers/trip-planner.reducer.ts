@@ -1,4 +1,7 @@
 import * as tripPlanner from '../actions/trip-planner.actions';
+import {ImmutableHelperService} from '../../core/services/immutable-helper.service';
+
+const helper = new ImmutableHelperService();
 
 export interface State {
   trip_id: number;
@@ -22,6 +25,7 @@ export const INIT_STATE: State = {
  * @param action
  */
 export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) {
+
   switch (action.type) {
 
     case tripPlanner.CREATE_TRIP_SUCCESS:
@@ -34,8 +38,8 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
       return {...state,
                 citiesInfo: {
                 ...state.citiesInfo,
-                  activeCity : action.payload,
-                  cities : pushItem(state.citiesInfo.cities, action.payload)
+                  activeCity : action.payload.res,
+                  cities : helper.pushItem(state.citiesInfo.cities, action.payload.res)
             }
       };
 
@@ -43,7 +47,7 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
       return {...state,
         citiesInfo: {
           ...state.citiesInfo,
-          cities : replaceItem(state.citiesInfo.cities, action.payload.helper)
+          cities : helper.replaceItem(state.citiesInfo.cities, action.payload.res.helper)
         }
       };
 
@@ -51,7 +55,7 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
       return {...state,
         citiesInfo: {
           ...state.citiesInfo,
-          cities : setItemProperty(state.citiesInfo.cities, action.payload.helper)
+          cities : helper.setItemProperty(state.citiesInfo.cities, action.payload.helper)
         }
       };
 
@@ -59,7 +63,7 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
       return {...state,
         citiesInfo: {
           ...state.citiesInfo,
-          cities : removeItem(state.citiesInfo.cities, action.payload.helper)
+          cities : helper.removeItem(state.citiesInfo.cities, action.payload.helper)
         }
       };
 
@@ -76,7 +80,7 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
         alreadySpend : state.alreadySpend + +action.payload.data.budget,
         citiesInfo: {
           ...state.citiesInfo,
-          cities :  replaceItem(state.citiesInfo.cities, action.payload.helper)
+          cities :  helper.replaceItem(state.citiesInfo.cities, action.payload.helper)
         },
       };
 
@@ -84,7 +88,7 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
       return {...state,
         citiesInfo: {
           ...state.citiesInfo,
-          cities :  replaceItem(state.citiesInfo.cities, action.payload.helper)
+          cities :  helper.replaceItem(state.citiesInfo.cities, action.payload.helper)
         }
       };
 
@@ -96,27 +100,3 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
 export const getTripId = (state: State) => state.trip_id;
 export const  getCitiesInfo = (state: State) => state.citiesInfo;
 export const  getAlreadySpent = (state: State) => state.alreadySpend;
-
-function setItemProperty(array, data) {
-  const newArray = array.slice();
-  newArray[data.index][data.property] = data.value;
-  return newArray;
-}
-
-function replaceItem(array, data) {
-  const newArray = array.slice();
-  newArray[data.index] = data.item;
-  return newArray;
-}
-
-function pushItem(array, item) {
-  const newArray = array.slice();
-  newArray.push(item);
-  return newArray;
-}
-
-function removeItem(array, data) {
-  const newArray = array.slice();
-  newArray.splice(data.index, 1);
-  return newArray;
-}

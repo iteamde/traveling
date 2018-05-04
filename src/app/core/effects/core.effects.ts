@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Actions} from '@ngrx/effects';
+import {Actions, Effect} from '@ngrx/effects';
+import * as CoreActions from '../actions/core.actions';
+import {Store} from '@ngrx/store';
+import {getOpenedModalRef, State} from '../reducers';
 
 
 
@@ -7,7 +10,13 @@ import {Actions} from '@ngrx/effects';
 @Injectable()
 export class CoreEffects {
 
-  constructor(private actions$: Actions) {
+
+  @Effect({dispatch: false})
+  navigateBack$ = this.actions$.ofType(CoreActions.CLOSE_OPENED_MODAL)
+    .do(() => this.store.select(getOpenedModalRef).take(1).subscribe(res => res && res.close()));
+
+  constructor(private actions$: Actions,
+              private store: Store<State>) {
   }
 
 }

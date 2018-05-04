@@ -6,12 +6,6 @@ import {Location} from '@angular/common';
 import {Effect, Actions} from '@ngrx/effects';
 import * as RouterActions from '../actions/router.actions';
 
-/*const objectToQuery = (obj: Object) => {
-  const params = {};
-  Object.keys(obj).forEach(key => params.set(key, obj[key]));
-
-  return params.toString();
-}*/
 
 @Injectable()
 export class RouterEffects {

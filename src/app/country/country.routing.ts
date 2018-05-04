@@ -1,7 +1,7 @@
 import {CountryComponent} from './country.component';
 import {CountryInfoResolver} from './services/country-info-resolver';
 import {ModalWrapperComponent} from '../core/components/modal-wrapper/modal-wrapper.component';
-import {GalleryModalComponent} from './components/gallery-modal/gallery-modal.component';
+import {GalleryModalComponent} from '../core/components/gallery-modal/gallery-modal.component';
 import {getCountryMedia, getTripMedia} from '../core/reducers';
 import {AuthGuard} from '../auth/guards/can-activate.guard';
 

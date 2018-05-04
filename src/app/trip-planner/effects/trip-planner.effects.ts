@@ -6,26 +6,30 @@ import * as tripPlanner from '../actions/trip-planner.actions';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
 import {TripPlannerService} from '../services/trip-planner.service';
-import {Router} from '@angular/router';
-import {getOpenedModalRef, State} from '../../core/reducers';
-import {Observable} from '../../../../node_modules/rxjs';
-import {Store} from '@ngrx/store';
+import {go} from '../../core/actions/router.actions';
+import {CloseOpenedModalAction} from '../../core/actions/core.actions';
 
 
 @Injectable()
 export class TripPlannerEffects {
 
-  public modalRef$: Observable<any>;
-
   /**
-   * Creates trip plan
+   * Create trip plan
    */
   @Effect()
   createTrip$ = this.actions$.ofType(tripPlanner.CREATE_TRIP)
     .switchMap((action: tripPlanner.CreateTripAction) => this.tripPlannerService.createTrip({...action.payload})
-    .map(response => this.responseHandler(response, tripPlanner.CreateTripSuccessAction , `/trip/${response.data.trip_id}/cities`)));
+      .map(response => response.success ?
+        new tripPlanner.CreateTripSuccessAction(response) :
+        new error.AddErrorAction(response.data && response.data.message)));
+
+  /**
+   * Create trip plan success
+   */
+  @Effect()
+  createTripSuccess$ = this.actions$.ofType(tripPlanner.CREATE_TRIP_SUCCESS)
+    .map((action: tripPlanner.CreateTripSuccessAction) => go(`/trip/${action.payload.data.trip_id}/cities`));
 
   /**
    * Cancel trip plan
@@ -33,7 +37,7 @@ export class TripPlannerEffects {
   @Effect()
   cancelTrip$ = this.actions$.ofType(tripPlanner.CANCEL_TRIP)
     .switchMap((action: tripPlanner.CancelTripAction) => this.tripPlannerService.cancelTrip(action.payload.url, action.payload.details)
-    .map( response => this.responseHandler(response, tripPlanner.EmptyAction , 'home')));
+      .map(() => go(`/home`)));
 
   /**
    * Save trip plan
@@ -41,7 +45,7 @@ export class TripPlannerEffects {
   @Effect()
   saveTrip$ = this.actions$.ofType(tripPlanner.SAVE_TRIP)
     .switchMap((action: tripPlanner.SaveTripAction) => this.tripPlannerService.publishTrip(action.payload.url, action.payload.details)
-    .map( response => this.responseHandler(response, tripPlanner.EmptyAction , 'home')));
+      .map(() => go(`/home`)));
 
   /**
    * Add city to trip
@@ -50,7 +54,16 @@ export class TripPlannerEffects {
   addCity$ = this.actions$.ofType(tripPlanner.ADD_CITY)
     .switchMap((action: tripPlanner.AddCityAction) =>
       this.tripPlannerService.addCity(action.payload.trip_id, action.payload.details)
-      .map(response => this.responseHandler(response, tripPlanner.AddCitySuccessAction , action.payload.urlTo, action.payload.details)));
+        .map(response => response.success ?
+          new tripPlanner.AddCitySuccessAction({res: action.payload.details || response, urlTo: action.payload.urlTo }) :
+          new error.AddErrorAction(response.data && response.data.message)));
+
+  /**
+   * Add city to trip success
+   */
+  @Effect()
+  addCitySuccess$ = this.actions$.ofType(tripPlanner.ADD_CITY_SUCCESS)
+    .mergeMap((action: tripPlanner.AddCitySuccessAction) => ([go(action.payload.urlTo), new CloseOpenedModalAction()]));
 
   /**
    * Add place to trip
@@ -59,15 +72,15 @@ export class TripPlannerEffects {
   addPlace$ = this.actions$.ofType(tripPlanner.ADD_PLACE)
     .switchMap((action: tripPlanner.AddPlaceAction) =>
       this.tripPlannerService.addPlace(action.payload.trip_id, action.payload.details)
-      .map(response => this.responseHandler(response, tripPlanner.AddPlaceSuccessAction , false, action.payload)));
+        .map(response => response.success ?
+          new tripPlanner.AddPlaceSuccessAction({res: action.payload , urlTo: action.payload.urlTo }) :
+          new error.AddErrorAction(response.data && response.data.message)));
   /**
    * Add place to trip success
    */
   @Effect()
   addPlaceSuccess$ = this.actions$.ofType(tripPlanner.ADD_PLACE_SUCCESS)
-    .switchMap((action: tripPlanner.AddPlaceSuccessAction) =>
-      this.router.navigate([ action.payload.urlTo])
-    ).map( () => new tripPlanner.EmptyAction());
+    .mergeMap((action: tripPlanner.AddPlaceSuccessAction) => ([go(action.payload.urlTo), new CloseOpenedModalAction()]));
 
   /**
    * Save city info  to trip
@@ -75,8 +88,11 @@ export class TripPlannerEffects {
   @Effect()
   finishCity$ = this.actions$.ofType(tripPlanner.SAVE_CITY)
     .switchMap((action: tripPlanner.SaveCityAction) =>
-        this.tripPlannerService.saveCityInfo(action.payload.url, action.payload.data)
-        .map(response => this.responseHandler(response, tripPlanner.SaveCitySuccessAction, false, action.payload)));
+      this.tripPlannerService.saveCityInfo(action.payload.url, action.payload.data)
+        .map(response => response.success ?
+          new tripPlanner.SaveCitySuccessAction(action.payload) :
+          new error.AddErrorAction(response.data && response.data.message)));
+
 
   /**
    * Remove city info  from trip
@@ -85,7 +101,9 @@ export class TripPlannerEffects {
   removeCity$ = this.actions$.ofType(tripPlanner.DELETE_CITY)
     .switchMap((action: tripPlanner.DeleteCityAction) =>
       this.tripPlannerService.removeCityInfo(action.payload.url, action.payload.data)
-      .map(response => this.responseHandler(response, tripPlanner.DeleteCitySuccessAction, false, action.payload)));
+        .map(response => response.success ?
+          new tripPlanner.DeleteCitySuccessAction(action.payload) :
+          new error.AddErrorAction(response.data && response.data.message)));
 
   /**
    * Save place info  from trip
@@ -93,8 +111,10 @@ export class TripPlannerEffects {
   @Effect()
   finishPlace$ = this.actions$.ofType(tripPlanner.SAVE_PLACE)
     .switchMap((action: tripPlanner.SavePlaceAction) =>
-       this.tripPlannerService.savePlaceInfo(action.payload.url, action.payload.data)
-          .map(response => this.responseHandler(response, tripPlanner.SavePlaceSuccessAction, false, action.payload)));
+      this.tripPlannerService.savePlaceInfo(action.payload.url, action.payload.data)
+        .map(response => response.success ?
+          new tripPlanner.SavePlaceSuccessAction(action.payload) :
+          new error.AddErrorAction(response.data && response.data.message)));
 
   /**
    * Remove place info  from trip
@@ -103,29 +123,18 @@ export class TripPlannerEffects {
   removePlace$ = this.actions$.ofType(tripPlanner.DELETE_PLACE)
     .switchMap((action: tripPlanner.DeletePlaceAction) =>
       this.tripPlannerService.removePlaceInfo(action.payload.url, action.payload.data)
-      .map(response => this.responseHandler(response, tripPlanner.DeletePlaceSuccessAction, false, action.payload)));
+        .map(response => response.success ?
+          new tripPlanner.DeletePlaceSuccessAction(action.payload) :
+          new error.AddErrorAction(response.data && response.data.message)));
 
   /**
    * Default constructor
    * @param actions$
    * @param tripPlannerService
-   * @param router
    */
   constructor(private actions$: Actions,
               private tripPlannerService: TripPlannerService,
-              private router: Router,
-              private store: Store<State>
   ) {
-    this.modalRef$ = this.store.select(getOpenedModalRef);
-  }
 
-  responseHandler(res, onSuccess, urlTo, hook?) {
-    if (res.success) {
-      if (hook )  this.modalRef$.take(1).subscribe(ref => ref && ref.close());
-      if (urlTo) this.router.navigate([ urlTo]);
-      return  new onSuccess(hook || res);
-    }
-    return new error.AddErrorAction(res.data && res.data.message);
   }
-
 }

@@ -7,10 +7,19 @@ import 'rxjs/add/operator/skipUntil';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import {getRegistationStep} from '../../core/reducers';
-import {routeRelations} from '../helpers/relation';
+
 @Injectable()
 export class RegistrationGuard implements CanActivate {
   protected registrationStep$: Observable<number>;
+  private relation  = {
+    '/login': 0,
+    '/signup': 1,
+    '/signup/step2': 2,
+    '/signup/step3': 3,
+    '/signup/step4': 4,
+    '/signup/step5': 5,
+    '/signup/done' : 6
+  };
 
   /**
    * Default constructor
@@ -32,7 +41,7 @@ export class RegistrationGuard implements CanActivate {
 
 
       return this.registrationStep$.map(res => {
-         if ( res  === (routeRelations[state.url] && routeRelations[state.url].step)) {
+         if ( res  ===  this.relation[state.url]) {
            return true;
          } else {
            this.router.navigate(['/signup']);

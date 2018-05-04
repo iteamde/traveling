@@ -6,7 +6,7 @@ import 'rxjs/add/operator/take';
 import {nameValidator} from '../../../core/validators/custom-validators';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ValidationService} from '../../../core/services/validation';
-import {RegisterAction} from '../../actions/auth.actions';
+import {RegisterAction, SetRegistrationStep} from '../../actions/auth.actions';
 import * as range from 'lodash/range';
 
 
@@ -34,6 +34,7 @@ export class RegisterModalStep2Component implements OnInit {
   constructor(private store: Store<State>,
               private fb: FormBuilder,
               public validation: ValidationService) {
+    this.store.dispatch(new SetRegistrationStep(2));
     this.user$ = store.select(getLoggedUser);
     this.authError$ = store.select(getErrorFromServer);
   }

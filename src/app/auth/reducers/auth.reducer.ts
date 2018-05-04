@@ -37,7 +37,7 @@ export function reducer(state: State = INIT_STATE, action: auth.Actions) {
       return {...state, user: {...state.user, ...action.payload.data}};
 
     case auth.REGISTRATION_SUCCESS:
-      return {...state, user: {...state.user, ...action.payload}, registrationStep:  state.registrationStep + 1, authError: null };
+      return {...state, user: {...state.user, ...action.payload.res}, registrationStep:  state.registrationStep + 1, authError: null };
 
     case auth.RESET_PASSWORD_SUCCESS:
       return {...state, resetPasswordStatus : 'emailSent'};

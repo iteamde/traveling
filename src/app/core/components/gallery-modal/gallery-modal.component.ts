@@ -2,11 +2,11 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Store} from '@ngrx/store';
 import {getOpenedModalRef, State} from '../../../core/reducers';
-import {CountryService} from '../../services/country.service';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {ToastrService} from 'ngx-toastr';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Router} from '@angular/router';
 import * as findIndex from 'lodash/findIndex';
+import {CountryService} from '../../../country/services/country.service';
 
 @AutoUnsubscribe({includeArrays: true})
 @Component({
@@ -39,7 +39,6 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log("GalleryModalComponent init", this.data);
     this.currentIndex = findIndex(this.medias, {id: +this.data.params.mediaId});
     this.currentIndex = (this.currentIndex === -1) ? 0 : this.currentIndex;
     this.getReactions();

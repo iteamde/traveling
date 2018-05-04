@@ -40,9 +40,9 @@ export class JwtInterceptor implements HttpInterceptor {
      }
     })
     .catch(err => {
-        this.spinnerService.hide();
+      this.spinnerCounter--;
+      if(!this.spinnerCounter)  this.spinnerService.hide();
         if (err instanceof HttpErrorResponse) {
-          console.log("Its HEREEEE", err);
           if (err.status === 401) {
             this.router.navigate(['/login']);
             return Observable.throw(err);

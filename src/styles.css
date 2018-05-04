@@ -2,6 +2,7 @@
 .custom-overlay-pane-class .mat-dialog-container{
   padding: 0;
   box-shadow: none;
+  min-height: 100vh;
 }
 .sign-up-style{
   margin: 125px auto 30px;

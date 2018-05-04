@@ -14,6 +14,12 @@ import {PrivacyPolicyComponent} from './components/privacy-policy/privacy-policy
 import { ErrorComponent } from './components/error/error.component';
 import { ModalWrapperComponent } from './components/modal-wrapper/modal-wrapper.component';
 import { ConfirmComponent } from './components/modals/confirm/confirm.component';
+import {HeaderComponent} from './components/header/header.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {MainHeaderComponent} from './components/main-header/main-header.component';
+import {GalleryModalComponent} from './components/gallery-modal/gallery-modal.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   imports: [
@@ -21,7 +27,10 @@ import { ConfirmComponent } from './components/modals/confirm/confirm.component'
     RouterModule,
     FormsModule,
     SharedModule,
-    EffectsModule.forFeature([CoreEffects])
+    EffectsModule.forFeature([CoreEffects]),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAXf0rOLWAEcQn2pAqRyZeighQ_y8NtNYY'
+    }),
   ],
   providers: [
     ValidationService,
@@ -32,9 +41,20 @@ import { ConfirmComponent } from './components/modals/confirm/confirm.component'
     PrivacyPolicyComponent,
     ErrorComponent,
     ModalWrapperComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainHeaderComponent,
+    GalleryModalComponent,
+    TimeAgoPipe
   ],
-  exports: []
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    MainHeaderComponent,
+    GalleryModalComponent,
+    AgmCoreModule
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

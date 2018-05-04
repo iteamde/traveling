@@ -18,13 +18,7 @@ export const DELETE_PLACE = '[Trip-planner] delete place details';
 export const DELETE_PLACE_SUCCESS = '[Trip-planner] delete place  success';
 export const CANCEL_TRIP = '[Trip-planner] cancel trip';
 export const SAVE_TRIP = '[Trip-planner] save trip';
-export const EMPTY = 'Empty';
 
-
-export class EmptyAction implements Action {
-  readonly type = EMPTY;
-
-}
 
 /**
  * Creates new trip
@@ -200,6 +194,5 @@ export type Actions
   | DeletePlaceAction
   | DeletePlaceSuccessAction
   | CancelTripAction
-  | EmptyAction
   | SaveTripAction;
 

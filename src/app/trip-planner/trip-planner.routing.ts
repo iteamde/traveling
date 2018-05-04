@@ -9,28 +9,32 @@ import {ModalWrapperComponent} from '../core/components/modal-wrapper/modal-wrap
 
 export const TripPlannerRoutes = [
 
-  { path: 'trip', component: TripPlannerComponent,
-  children: [
-    {
-      path: 'new',
-      component: ModalWrapperComponent,
-      data: {modal: CreateTripPlanModalComponent}
-    },
-    {
-      path: ':id/cities',
-      component: ModalWrapperComponent,
-      data: {modal: AddCityToTripModalComponent}
-    },
-    { path: ':id/places',
-      component: ModalWrapperComponent,
-      data: {modal: AddPlaceToTripModalComponent}
-    },
-    {
-      path: ':id/info',
-      component: TripPlannerInfoComponent,
-      resolve: { placesInfo : TripInfoResolver}
-    }
-  ],
-    canActivate: [AuthGuard]
+  {
+    path: 'trip',
+    component: TripPlannerComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'new',
+        component: ModalWrapperComponent,
+        data: {modal: CreateTripPlanModalComponent}
+      },
+      {
+        path: ':id/cities',
+        component: ModalWrapperComponent,
+        data: {modal: AddCityToTripModalComponent}
+      },
+      {
+        path: ':id/places',
+        component: ModalWrapperComponent,
+        data: {modal: AddPlaceToTripModalComponent}
+      },
+      {
+        path: ':id/info',
+        component: TripPlannerInfoComponent,
+        resolve: {placesInfo: TripInfoResolver}
+      }
+    ],
+
   }
 ];

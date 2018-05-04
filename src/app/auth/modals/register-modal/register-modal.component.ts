@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {RegisterAction} from '../../actions/auth.actions';
+import {RegisterAction, SetRegistrationStep} from '../../actions/auth.actions';
 import {Store} from '@ngrx/store';
 import {getErrorFromServer, State} from '../../../core/reducers';
 import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
@@ -35,6 +35,7 @@ export class RegisterModalComponent implements OnInit {
                private fb: FormBuilder ,
                public validation: ValidationService,
                private modalManager: ModalManager) {
+    this.store.dispatch(new SetRegistrationStep(1));
     this.authError$ = store.select(getErrorFromServer);
   }
 
@@ -80,9 +81,5 @@ export class RegisterModalComponent implements OnInit {
     };
 
     this.store.dispatch(new RegisterAction(payload));
-  }
-
-  open() {
-    this.modalManager.openModal(LoginModalComponent);
   }
 }
