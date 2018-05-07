@@ -2,6 +2,10 @@
   agm-map {
     height: 100%;
     width: 100%;
+
+    &.tripInfoMap{
+      padding-top: 58px;
+    }
   }
 }
 

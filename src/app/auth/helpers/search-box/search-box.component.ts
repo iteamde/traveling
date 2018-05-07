@@ -77,7 +77,8 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
     };
 
     this.apiService.post(this.settings.getDataUrl, details).take(1).subscribe(res => {
-      fromScrollEvent ? this.items = [...this.items, ...res.data] : this.items = res.data;
+      const data = this.settings.itemsType === 'places' ? res.data.places : res.data;
+      fromScrollEvent ? this.items = [...this.items, ...data] : this.items = data;
     });
   }
 

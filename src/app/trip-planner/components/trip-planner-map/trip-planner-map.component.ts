@@ -20,7 +20,7 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
   };
   public directionOptions = {
     markerOptions: {
-      icon: false,
+      icon: 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png',
     },
   };
   public transportationTable = {

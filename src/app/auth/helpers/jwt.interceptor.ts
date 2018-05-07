@@ -15,7 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor( private authHelper: AuthHelper,
                private router: Router,
                private spinnerService: Ng4LoadingSpinnerService,
-               private store: Store<State>) { }
+               private store: Store<State>) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //UI helpers
@@ -44,7 +44,7 @@ export class JwtInterceptor implements HttpInterceptor {
       if(!this.spinnerCounter)  this.spinnerService.hide();
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.routerState.snapshot.url }});
             return Observable.throw(err);
           }
         }

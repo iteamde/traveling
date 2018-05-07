@@ -1,4 +1,4 @@
-<agm-map (mapReady)="storeMapReady($event)">
+<agm-map (mapReady)="storeMapReady($event)" class="tripInfoMap">
   <agm-marker *ngIf="currentLocation.lat && currentLocation.lng" [latitude]="currentLocation.lat" [longitude]="currentLocation.lng"></agm-marker>
 
   <!--START AGM DIRECTIONS FROM YOUR CITY YO FIRST PLACE -->
@@ -42,9 +42,10 @@
                              [longitude]="+cities[i+1].places[0].lng">
          </agm-polyline-point>
        </agm-polyline>
-
-      <!--START AGM DIRECTIONS FROM FIRST CITY LAST PLACE TO @ CITY FIRST PLACE -->
-      <agm-direction *ngIf="cities[i+1] && cities[i+1].places.length && isModeAllowed(cities[i+1].transportation)" [travelMode]="getTravelMode(cities[i+1].transportation)" [renderOptions]="directionOptions"
+    </template>
+    <template *ngIf="(i + 1) < cities.length  && cities[i+1].places.length">
+    <!--START AGM DIRECTIONS FROM FIRST CITY LAST PLACE TO @ CITY FIRST PLACE -->
+      <agm-direction  [travelMode]="getTravelMode(cities[i+1].transportation)" [renderOptions]="directionOptions"
                      [origin]="{lat: +city.places[city.places.length - 1].lat,lng: +city.places[city.places.length - 1].lng}"
                      [destination]="{lat: +cities[i+1].places[0].lat,lng: +cities[i+1].places[0].lng}"
                       (onChange)="dirChange($event)"
@@ -52,14 +53,14 @@
       </agm-direction>
 
       <!--END AGM DIRECTIONS FROM FIRST CITY LAST PLACE TO @ CITY FIRST PLACE -->
-      </template>
+    </template>
 
 
 
 
     <!--START AGM DIRECTIONS BETWEEN PLACES INSIDE CITY -->
     <template   *ngFor="let place of city.places; let j = index" >
-      <agm-marker  [latitude]="+place.lat" [longitude]="+place.lng"></agm-marker>
+      <agm-marker *ngIf="city.places.length === 1"  [latitude]="+place.lat" [longitude]="+place.lng"></agm-marker>
       <agm-direction *ngIf="city.places[j+1]" [origin]="{lat: +place.lat, lng: +place.lng}"  [travelMode]="'DRIVING'" [destination]="{lat:+city.places[j+1].lat, lng: +city.places[j+1].lng}" [renderOptions]="directionOptions"></agm-direction>
     </template>
     <!--END AGM DIRECTIONS BETWEEN PLACES INSIDE CITY -->
