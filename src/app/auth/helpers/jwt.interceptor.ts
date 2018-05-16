@@ -49,6 +49,7 @@ export class JwtInterceptor implements HttpInterceptor {
           }
         }
         this.router.navigate(['/error']);
+        this.spinnerService.hide();
       return Observable.throw(err);
     });
   }

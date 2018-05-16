@@ -1,5 +1,5 @@
 import * as country from '../actions/country.actions';
-
+import * as flatten from 'lodash/flatten';
 export interface State {
   country: any;
 }
@@ -44,4 +44,6 @@ export const getCountryId = (state: State) => state.country.info.id;
 export const getFollowStatus = (state: State) => state.country.followStatus;
 export const getCountryMedia = (state: State) => state.country.media;
 export const getTripMedia = (state: State) => state.country.plans.map(res => res.medias);
+export const getPlacesMedia = (state: State) => flatten(state.country.places.filter( (arr) => arr.medias.length).slice(0,10)
+  .map(res => res.medias.map(res1 => res1))).slice(0, 10);
 

@@ -2,7 +2,7 @@ import {CountryComponent} from './country.component';
 import {CountryInfoResolver} from './services/country-info-resolver';
 import {ModalWrapperComponent} from '../core/components/modal-wrapper/modal-wrapper.component';
 import {GalleryModalComponent} from '../core/components/gallery-modal/gallery-modal.component';
-import {getCountryMedia, getTripMedia} from '../core/reducers';
+import {getCountryMedia, getPlacesMedia, getTripMedia} from '../core/reducers';
 import {AuthGuard} from '../auth/guards/can-activate.guard';
 
 export const CountryRoutes = [
@@ -25,7 +25,7 @@ export const CountryRoutes = [
       {
         path: 'place-media/:mediaId',
         component: ModalWrapperComponent,
-        data: {modal: GalleryModalComponent, getFunc: getTripMedia, skipClose: true}
+        data: {modal: GalleryModalComponent, getFunc: getPlacesMedia, skipClose: true}
       }
     ]
   }

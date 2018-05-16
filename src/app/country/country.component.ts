@@ -49,7 +49,10 @@ export class CountryComponent implements OnInit, OnDestroy{
       title: 'Best places',
       routePath: 'place-media',
       count: this.data.stats.places,
-      media: this.data.places.slice(0, 3).map(res => new Object({url: res.medias[0] && res.medias[0].url}))
+      media: this.data.places.filter(arr => arr.medias.length).slice(0, 3).map(res => new Object({
+        url: res.medias[0] && res.medias[0].url,
+        id: res.medias[0] && res.medias[0].id,
+      }))
     };
   }
 

@@ -45,7 +45,7 @@
                           <div class="preview-txt">
                             <a class="dest-name" *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length">Hardcoded on front</a>
                             <a class="dest-name" *ngIf="medias[currentIndex].users && medias[currentIndex].users.length">{{medias[currentIndex].users[0].name}}</a>
-                            <p class="dest-place">uploaded a <b>photo</b> <span class="date">2 hours ago</span></p>
+                            <p class="dest-place" *ngIf="medias[currentIndex].uploaded_at">uploaded a <b>photo</b> <span class="date">{{ medias[currentIndex].uploaded_at | timeAgo}}</span></p>
                           </div>
                         </div>
                       </div>
