@@ -85,7 +85,7 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
   register() {
     this.user$.take(1).subscribe(user => {
       const payload = {
-        data: { [this.settings.itemsType]: this.choosenItems, user_id: user && user.data && user.data.id },
+        data: { [this.settings.itemsType]: this.choosenItems, user_id: user && user.id },
         queryUrl : this.settings.queryUrl,
         urlTo : this.settings.urlTo
       };

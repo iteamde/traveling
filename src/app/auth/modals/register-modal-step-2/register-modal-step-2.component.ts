@@ -69,7 +69,7 @@ export class RegisterModalStep2Component implements OnInit {
   register() {
     this.user$.take(1).subscribe(user => {
       const payload = {
-        data: {...this.userForm.value, ...{user_id: (user && user.data) || 116} },
+        data: {...this.userForm.value, ...{user_id: user && user.id} },
         queryUrl : 'users/create/step2',
         urlTo : 'signup/step3'
       };
