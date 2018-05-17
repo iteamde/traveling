@@ -40,16 +40,15 @@ export class JwtInterceptor implements HttpInterceptor {
      }
     })
     .catch(err => {
-      this.spinnerCounter--;
-      if(!this.spinnerCounter)  this.spinnerService.hide();
+      this.spinnerCounter = 0;
+      this.spinnerService.hide();
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.routerState.snapshot.url }});
+            this.router.navigate(['/login']);
             return Observable.throw(err);
           }
         }
         this.router.navigate(['/error']);
-        this.spinnerService.hide();
       return Observable.throw(err);
     });
   }
