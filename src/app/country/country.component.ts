@@ -5,6 +5,8 @@ import {getCountry, State} from '../core/reducers';
 import {Store} from '@ngrx/store';
 import { SetCountryInfoAction} from './actions/country.actions';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+import {PlacesListComponent} from './components/places-list/places-list.component';
+import {HolidaysListComponent} from './components/holidays-list/holidays-list.component';
 
 @AutoUnsubscribe()
 @Component({
@@ -17,6 +19,8 @@ export class CountryComponent implements OnInit, OnDestroy{
   public countryMediaData;
   public plansMediaData;
   public placesMediaData;
+  public placesList = PlacesListComponent;
+  public holidaysList = HolidaysListComponent;
 
   constructor (private route: ActivatedRoute,
                private countryService: CountryService,

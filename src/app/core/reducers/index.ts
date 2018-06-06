@@ -74,8 +74,11 @@ export const getAlreadySpent = createSelector(getTripPlannerState, fromTripPlann
  * Trip module selectors
  */
 export const getCountry = createSelector(getCountryState, fromCountry.getCountry);
+export const getCountryInfo = createSelector(getCountryState, fromCountry.getCountryInfo);
 export const getCountryId = createSelector(getCountryState, fromCountry.getCountryId);
 export const getFollowStatus = createSelector(getCountryState, fromCountry.getFollowStatus);
+export const getCountryPlaces = createSelector(getCountryState, fromCountry.getCountryPlaces);
+export const getCountryHolidays = createSelector(getCountryState, fromCountry.getCountryHolidays);
 export const getCountryMedia = createSelector(getCountryState, fromCountry.getCountryMedia);
 export const getTripMedia = createSelector(getCountryState, fromCountry.getTripMedia);
 export const getPlacesMedia = createSelector(getCountryState, fromCountry.getPlacesMedia);

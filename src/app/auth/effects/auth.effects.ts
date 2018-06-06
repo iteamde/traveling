@@ -40,7 +40,7 @@ export class AuthEffects {
   @Effect()
   login$ = this.actions$.ofType(auth.LOGIN)
     .switchMap((action: auth.LoginAction) => this.apiService.post(action.payload.queryUrl, {...action.payload.data})
-      .map(res => res.success ? new auth.LoginSuccessAction(res) : new error.AddErrorAction(res.data)));
+      .map(res => res.success ? new auth.LoginSuccessAction({...res, returnUrl : action.payload.returnUrl}) : new error.AddErrorAction(res.data)));
 
   /**
    * Login user success
@@ -48,7 +48,7 @@ export class AuthEffects {
   @Effect()
   loginSuccess$ = this.actions$.ofType(auth.LOGIN_SUCCESS)
     .do((action: auth.LoginSuccessAction) => this.authHelper.setAuthToken(action.payload.data.token))
-    .map(() => go('/home'));
+    .map((action: auth.LoginSuccessAction) => go(action.payload.returnUrl));
 
   /**
    * Reset password request

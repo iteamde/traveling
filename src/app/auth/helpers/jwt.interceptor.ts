@@ -38,13 +38,22 @@ export class JwtInterceptor implements HttpInterceptor {
         this.spinnerCounter--;
         if(!this.spinnerCounter)  this.spinnerService.hide();
      }
+    },(err: any) => {
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401) {
+          let loc = {...document.location};
+          return this.router.navigate(['/login'], { queryParams: { returnUrl: loc.pathname }});
+          // redirect to the login route
+          // or show a modal
+        }
+      }
     })
     .catch(err => {
       this.spinnerCounter = 0;
       this.spinnerService.hide();
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            this.router.navigate(['/login']);
+           // this.router.navigate(['/login']);
             return Observable.throw(err);
           }
         }

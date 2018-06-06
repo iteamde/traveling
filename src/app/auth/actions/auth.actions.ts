@@ -22,7 +22,7 @@ export class LoginAction implements Action {
    * Default constructor
    * @param payload
    */
-  constructor(public payload: {data: any, queryUrl: string}) {}
+  constructor(public payload: {data: any, queryUrl: string, returnUrl?: string}) {}
 }
 
 export class LoginSuccessAction implements Action {

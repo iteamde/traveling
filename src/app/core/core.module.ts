@@ -20,6 +20,8 @@ import {MainHeaderComponent} from './components/main-header/main-header.componen
 import {GalleryModalComponent} from './components/gallery-modal/gallery-modal.component';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import {AgmCoreModule} from '@agm/core';
+import { SliderWrapperComponent } from './components/slider-wrapper/slider-wrapper.component';
+import {RegexPipe} from './pipes/matchPipe';
 
 @NgModule({
   imports: [
@@ -46,14 +48,18 @@ import {AgmCoreModule} from '@agm/core';
     FooterComponent,
     MainHeaderComponent,
     GalleryModalComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    SliderWrapperComponent,
+    RegexPipe
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     MainHeaderComponent,
     GalleryModalComponent,
-    AgmCoreModule
+    AgmCoreModule,
+    SliderWrapperComponent,
+    RegexPipe
   ]
 })
 export class CoreModule {

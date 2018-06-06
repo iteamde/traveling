@@ -1,0 +1,28 @@
+<div class="post-block">
+  <div class="post-side-top">
+    <h3 class="side-ttl">National holidays <span class="count">6</span></h3>
+    <div class="side-right-control">
+      <a  class="see-more-link">See all</a>
+      <a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
+      <a  class="slide-link slide-next"><i class="trav-angle-right"></i></a>
+    </div>
+  </div>
+  <div class="post-side-inner">
+    <div class="post-slide-wrap slide-hide-right-margin">
+      <ul id="nationalHoliday" class="post-slider">
+        <li class="post-card" *ngFor="let item of (data | async)" [ngStyle]="{'width.px': settings.width}">
+          <div class="image-wrap">
+            <img src="http://placehold.it/274x234" alt="">
+<!--            <div class="card-cover">
+              <span class="date">4</span>
+              <span class="month">Jul</span>
+            </div>-->
+          </div>
+          <div class="post-slider-caption">
+            <p class="post-card-name">{{item.trans[0].title}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

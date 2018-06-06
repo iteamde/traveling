@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FacebookService} from '../../services/facebook.service';
 import {emailValidator} from '../../../core/validators/custom-validators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -34,7 +34,7 @@ export class LoginModalComponent implements OnInit {
     private store: Store<State>,
     public facebookService: FacebookService,
     public api: ApiService,
-    private fb: FormBuilder ,
+    private fb: FormBuilder,
     public validation: ValidationService) {
 
     this.store.dispatch(new SetRegistrationStep(0));
@@ -68,41 +68,41 @@ export class LoginModalComponent implements OnInit {
       });
   }
 
- facebookLogin() {
-   this.facebookService.login()
-     .then(res => this.store.dispatch(new LoginAction({data: res, queryUrl: 'users/create/facebook'})));
- }
+  facebookLogin() {
+    this.facebookService.login()
+      .then(res => this.store.dispatch(new LoginAction({data: res, queryUrl: 'users/create/facebook'})));
+  }
 
   twitterLogin() {
     this.popupCenter('http://uat.travooo.com/api/users/create/twitter/login', 'Twitter', '900', '600');
   }
 
-login() {
-this.store.dispatch(new LoginAction({data : this.userForm.value , queryUrl: 'users/login'}));
-}
+  login() {
+    this.store.dispatch(new LoginAction({data: this.userForm.value, queryUrl: 'users/login', returnUrl : this.returnUrl}));
+  }
 
 
-popupCenter(url, title, w, h) {
+  popupCenter(url, title, w, h) {
 // Fixes dual-screen position                         Most browsers      Firefox
-const dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
-const dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+    const dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+    const dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
 
-const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
 
-const left = ((width / 2) - (w / 2)) + dualScreenLeft;
-const top = ((height / 2) - (h / 2)) + dualScreenTop;
-const newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+    const left = ((width / 2) - (w / 2)) + dualScreenLeft;
+    const top = ((height / 2) - (h / 2)) + dualScreenTop;
+    const newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
 // Puts focus on the newWindow
-if (window.focus) {
-  newWindow.focus();
-}
+    if (window.focus) {
+      newWindow.focus();
+    }
 
 
-newWindow.onfocus = function() {
-  console.log("HEre is this", this);
-}
-}
+    newWindow.onfocus = function () {
+      console.log('HEre is this', this);
+    };
+  }
 
 }

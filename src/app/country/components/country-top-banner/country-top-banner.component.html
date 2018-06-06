@@ -7,12 +7,9 @@
       </div>
       <div class="post-event-main">
         <div class="flag-wrap">
-          <img src="http://placehold.it/155x77" alt="flag">
+          <img src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + data.info.iso_code.toLowerCase() + '.png'}}" alt="flag">
         </div>
         <div class="post-placement-info">
-<!--
-          <span class="hash">#<b>{{data.info.id}}</b></span>
--->
           <h2 class="place-name">{{data.info.trans[0].title}}</h2>
           <div class="event-info-layer">
             <span class="placement-place">Country in <a href="#" class="place-link">{{data.info.region.trans[0].title}}</a></span>

@@ -1,0 +1,96 @@
+<div class="modal-wrapper">
+  <button class="modal-close"  mat-button  [mat-dialog-close]="true">
+    <i class="trav-close-icon"></i>
+  </button>
+  <div class="modal-dialog modal-custom-style modal-660" role="document">
+    <div class="modal-custom-block">
+      <div class="post-block post-modal-language-style">
+        <div class="post-lang-top">
+          <div class="top-txt">
+            <h3 class="ttl">{{(data | async).trans[0].title}}</h3>
+            <p>Country in <a href="#" class="link">{{(data | async).region.trans[0].title}}</a></p>
+          </div>
+        </div>
+        <div class="post-lang-inner">
+          <div class="lang-row">
+            <div class="lang-label" (click)="openedList.languages = !openedList.languages">
+              Languages Spoken <span>({{(data | async).languages.length}})</span>
+            </div>
+            <div class="lang-collapse" [ngClass]="{'opened': openedList.languages}">
+              <div class="lang-list" *ngFor="let lang of (data | async).languages">
+                <div class="lang-string">
+                  <div class="name">{{lang.trans.title}}</div>
+<!-- <div class="info">{{(data | async).iso_code}}</div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-label" (click)="openedList.currencies = !openedList.currencies">
+              Currencies <span>({{(data | async).currencies.length}})</span>
+            </div>
+            <div class="lang-collapse" [ngClass]="{'opened': openedList.currencies}">
+              <div class="lang-list" *ngFor="let curr of (data | async).currencies">
+                <div class="lang-string">
+                  <div class="name">{{curr.trans[0].title}}</div>
+                  <!--<div class="info">$</div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--  <div class="lang-row">
+            <div class="lang-label" data-toggle="collapse" data-target="#timings" aria-expanded="false" aria-controls="timings">
+              Timings <span>(1)</span>
+            </div>
+            <div class="collapse lang-collapse" id="timings">
+              <div class="lang-list">
+                <div class="lang-string">
+                  <div class="name">New York, NY</div>
+                  <div class="info">8:03 AM</div>
+                </div>
+              </div>
+            </div>
+          </div>-->
+          <div class="lang-row">
+            <div class="lang-label" (click)="openedList.religions = !openedList.religions">
+              Religions <span>({{(data | async).religions.length}})</span>
+            </div>
+            <div class="lang-collapse"   [ngClass]="{'opened': openedList.religions}">
+              <div class="lang-list" *ngFor="let rel of (data | async).religions">
+                <div class="lang-string">
+                  <div class="name">{{rel.trans[0].title}}</div>
+                  <!--<div class="info">52 %</div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-label" (click)="openedList.trans = !openedList.trans">
+              Transportation Methods <span>({{(data | async).trans[0].transportation.split(',').length}})</span>
+            </div>
+            <div class="lang-collapse"  [ngClass]="{'opened': openedList.trans}">
+              <div class="lang-list" *ngFor="let tran of (data | async).trans[0].transportation.split(',')">
+                <div class="lang-string" >
+                  <div class="name">{{tran}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lang-row">
+            <div class="lang-label" (click)="openedList.limit = !openedList.limit">
+              Speed limit <span>({{(data | async).trans[0].speed_limit.split('\r\n\r\n').length}})</span>
+            </div>
+            <div class="lang-collapse"  [ngClass]="{'opened': openedList.limit}">
+              <div class="lang-list">
+                <div class="lang-string" *ngFor="let item of (data | async).trans[0].speed_limit.split('\r\n\r\n')">
+                  <div class="name">{{item | match : '[^\\s]*'}}</div>
+                  <div class="info">{{item | match : '\\s.*'}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

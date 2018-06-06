@@ -1,0 +1,15 @@
+<div class="post-block post-tips-list-block">
+  <div class="post-top-layer">
+    <div class="top-left">
+      <h3 class="post-tip-ttl_lg">Emergency Number &nbsp;<span>{{info.length}}</span></h3>
+    </div>
+  </div>
+  <div class="post-list-inner">
+    <div class="post-tip-row"  *ngFor="let item of info">
+      <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.trans[0].description}}</b></div>
+      <div class="row-txt">
+        <span>{{item.trans[0].title}}</span>
+      </div>
+    </div>
+  </div>
+</div>

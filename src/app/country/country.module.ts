@@ -13,12 +13,22 @@ import { CountryMiddleBannerComponent } from './components/country-middle-banner
 import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar-about-box.component';
 import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 import { GalleryModalComponent } from '../core/components/gallery-modal/gallery-modal.component';
+import { CountryAboutBox2Component } from './components/country-about-box2/country-about-box2.component';
+import { CountryIndexesBoxComponent } from './components/country-indexes-box/country-indexes-box.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { CountryEmergencyNumberComponent } from './components/country-emergency-number/country-emergency-number.component';
+import { PlacesListComponent } from './components/places-list/places-list.component';
+import { HolidaysListComponent } from './components/holidays-list/holidays-list.component';
+import { CountryBudgetBoxComponent } from './components/country-budget-box/country-budget-box.component';
+import { CountryAccordionModalComponent } from './modals/country-accordion-modal/country-accordion-modal.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     CoreModule,
+    MatSliderModule,
   ],
   declarations: [
     CountryComponent,
@@ -29,11 +39,22 @@ import { GalleryModalComponent } from '../core/components/gallery-modal/gallery-
     CountryMiddleBannerComponent,
     SidebarAboutBoxComponent,
     FollowButtonComponent,
+    CountryAboutBox2Component,
+    CountryIndexesBoxComponent,
+    CountryEmergencyNumberComponent,
+    PlacesListComponent,
+    HolidaysListComponent,
+    CountryBudgetBoxComponent,
+    CountryAccordionModalComponent,
   ],
   providers: [
     CountryService,
     CountryInfoResolver
   ],
-  entryComponents: [GalleryModalComponent]
+  entryComponents: [
+    GalleryModalComponent,
+    PlacesListComponent,
+    HolidaysListComponent,
+    CountryAccordionModalComponent]
 })
 export class CountryModule { }

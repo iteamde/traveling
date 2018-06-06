@@ -70,291 +70,25 @@
         <!-- MAIN-CONTENT -->
         <div class="main-content-layer">
           <app-country-about-box [info]="data.info" ></app-country-about-box>
-          <div class="post-block post-tips-list-block">
-            <div class="post-list-inner">
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Nationality</b></div>
-                <div class="row-txt">
-                  <span>American</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Languages spoken</b></div>
-                <div class="row-txt">
-                  <span>English</span>
-                  <a href="#" class="more-link">+3 More</a>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Currencies</b></div>
-                <div class="row-txt">
-                  <span>US Dollar</span>
-                  <span class="currency">(1 USD = 9.23 MAD)</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Timings</b></div>
-                <div class="row-txt">
-                  <span>8:03 AM New York, NY</span>
-                  <a href="#" class="more-link">+3 More</a>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Religions</b></div>
-                <div class="row-txt">
-                  <span>Christianity</span>
-                  <a href="#" class="more-link">+2 More</a>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Phone Code</b></div>
-                <div class="row-txt">
-                  <span>33</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Units of measurement</b></div>
-                <div class="row-txt">
-                  <span>Mph, Letre, Inch</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Working days</b></div>
-                <div class="row-txt">
-                  <span>Monday to Saturday</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Transportation Methods</b></div>
-                <div class="row-txt">
-                  <span>Car, Taxi</span>
-                  <a href="#" class="more-link">+2 More</a>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Speed Limit</b></div>
-                <div class="row-txt">
-                  <span>Highways 100-120 km/h (74-80 mph)</span>
-                  <a href="#" class="more-link">+6 More</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-country-about-box2 [info]="data.info"></app-country-about-box2>
+          <app-country-indexes-box [info]="data.info"></app-country-indexes-box>
 
-          <div class="post-block post-tips-list-block">
-            <div class="post-top-layer">
-              <div class="top-left">
-                <h3 class="post-tip-ttl_lg">City Indexes</h3>
-              </div>
-              <div class="top-right">
-                <a href="#" class="tip-link">Map Index</a>
-              </div>
-            </div>
-            <div class="post-list-inner">
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Pollution</b></div>
-                <div class="row-txt">
-                  <div class="index-slider-wrap">
-                    <div class="counter">
-                      <span id="current"></span>&nbsp;/&nbsp;<span id="total"></span>
-                    </div>
-                    <div id="sliderPollution" class="slider"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Cost of Living</b></div>
-                <div class="row-txt">
-                  <div class="index-slider-wrap">
-                    <div class="counter">
-                      <span id="currentCost"></span>&nbsp;/&nbsp;<span id="totalCost"></span>
-                    </div>
-                    <div id="costOfLiving" class="slider"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Crime Rate</b></div>
-                <div class="row-txt">
-                  <div class="index-slider-wrap">
-                    <div class="counter">
-                      <span id="currentRate"></span>&nbsp;/&nbsp;<span id="totalRate"></span>
-                    </div>
-                    <div id="crimeRate" class="slider"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Quality of Life</b></div>
-                <div class="row-txt">
-                  <div class="index-slider-wrap">
-                    <div class="counter">
-                      <span id="currentQuolity"></span>&nbsp;/&nbsp;<span id="totalQuolity"></span>
-                    </div>
-                    <div id="qualityOfLife" class="slider"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-country-emergency-number [info]="data.info.emergency"></app-country-emergency-number>
 
-          <div class="post-block post-tips-list-block">
-            <div class="post-top-layer">
-              <div class="top-left">
-                <h3 class="post-tip-ttl_lg">Emergency Number &nbsp;<span>5</span></h3>
-              </div>
-            </div>
-            <div class="post-list-inner">
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Emergencies</b></div>
-                <div class="row-txt">
-                  <span>911</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Moroccan Embassy</b></div>
-                <div class="row-txt">
-                  <span>+1-556-758-2625</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Highway</b></div>
-                <div class="row-txt">
-                  <span>5050</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Tow Track</b></div>
-                <div class="row-txt">
-                  <span>+1-476-123-1001</span>
-                </div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Poison Control</b></div>
-                <div class="row-txt">
-                  <span>+1-800-222-1222</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="post-block">
-            <div class="post-side-top">
-              <h3 class="side-ttl">Places <span class="count">5.684</span></h3>
-              <div class="side-right-control">
-                <a href="#" class="see-more-link">See all</a>
-                <a href="#" class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
-                <a href="#" class="slide-link slide-next"><i class="trav-angle-right"></i></a>
-              </div>
-            </div>
-            <div class="post-side-inner">
-              <div class="post-slide-wrap slide-hide-right-margin">
-                <ul id="citiesSlider" class="post-slider">
-                  <li>
-                    <img src="http://placehold.it/230x300" alt="">
-                    <div class="post-slider-caption transparent-caption">
-                      <p class="post-slide-name">Statue of Liberty</p>
-                    </div>
-                  </li>
-                  <li>
-                    <img src="http://placehold.it/230x300" alt="">
-                    <div class="post-slider-caption transparent-caption">
-                      <p class="post-slide-name">Central park</p>
-                    </div>
-                  </li>
-                  <li>
-                    <img src="http://placehold.it/230x300" alt="">
-                    <div class="post-slider-caption transparent-caption">
-                      <p class="post-slide-name">Metropolitan Museum of Art</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="post-block">
-            <div class="post-side-top">
-              <h3 class="side-ttl">National holidays <span class="count">6</span></h3>
-              <div class="side-right-control">
-                <a href="#" class="see-more-link">See all</a>
-                <a href="#" class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
-                <a href="#" class="slide-link slide-next"><i class="trav-angle-right"></i></a>
-              </div>
-            </div>
-            <div class="post-side-inner">
-              <div class="post-slide-wrap slide-hide-right-margin">
-                <ul id="nationalHoliday" class="post-slider">
-                  <li class="post-card">
-                    <div class="image-wrap">
-                      <img src="http://placehold.it/274x234" alt="">
-                      <div class="card-cover">
-                        <span class="date">4</span>
-                        <span class="month">Jul</span>
-                      </div>
-                    </div>
-                    <div class="post-slider-caption">
-                      <p class="post-card-name">Independence day</p>
-                      <div class="post-footer-info">
-                        <div class="post-foot-block">
-                          <ul class="foot-avatar-list">
-                            <li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li><!--
-															--><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li><!--
-															--><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>
-                          </ul>
-                          <span>20 Talking about this</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="post-card">
-                    <div class="image-wrap">
-                      <img src="http://placehold.it/274x234" alt="">
-                      <div class="card-cover">
-                        <span class="date">13</span>
-                        <span class="month">May</span>
-                      </div>
-                    </div>
-                    <div class="post-slider-caption">
-                      <p class="post-card-name">Mother's day</p>
-                      <div class="post-footer-info">
-                        <div class="post-foot-block">
-                          <ul class="foot-avatar-list">
-                            <li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li><!--
-															--><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li><!--
-															--><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>
-                          </ul>
-                          <span>18 Talking about this</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="post-card">
-                    <div class="image-wrap">
-                      <img src="http://placehold.it/274x234" alt="">
-                      <div class="card-cover">
-                        <span class="date">13</span>
-                        <span class="month">May</span>
-                      </div>
-                    </div>
-                    <div class="post-slider-caption">
-                      <p class="post-card-name">Grand Canyon National Park</p>
-                      <div class="post-footer-info">
-                        <div class="post-foot-block">
-                          <ul class="foot-avatar-list">
-                            <li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li><!--
-															--><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li><!--
-															--><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>
-                          </ul>
-                          <span>20 Talking about this</span>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <app-dcl-slider-wrapper [type]="placesList"
+                                  [settings]="{
+                                    width: 230,
+                                    height: 300,
+                                    count: data.places.length
+                                  }">
+          </app-dcl-slider-wrapper>
+          <app-dcl-slider-wrapper [type]="holidaysList"
+                                  [settings]="{
+                                    width: 274,
+                                    height: 234,
+                                    count: data.info.holidays.length
+                                  }">
+          </app-dcl-slider-wrapper>
 
           <div class="post-block post-country-block">
             <div class="post-side-top">
@@ -571,37 +305,7 @@
             </div>
           </div>
 
-          <div class="post-block post-tips-list-block">
-            <div class="post-top-layer">
-              <div class="top-left">
-                <ul class="foot-avatar-list">
-                  <li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
-										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
-										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
-                </ul>&nbsp;
-                <div class="post-top-txt">
-                  <span class="name">John mobile</span>
-                  <span>and 7 more are talking about this</span>
-                </div>
-              </div>
-              <div class="top-right">
-                <div class="top-comment-icon">
-                  <i class="trav-talk-icon"></i>
-                </div>
-              </div>
-            </div>
-            <div class="post-list-inner">
-              <div class="post-tip-row">
-                <div class="row-label">Budget &nbsp;<b>US $60</b></div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label">Mid-Range &nbsp;<b>US $60-200</b></div>
-              </div>
-              <div class="post-tip-row">
-                <div class="row-label">Top-End &nbsp;<b>US $200</b></div>
-              </div>
-            </div>
-          </div>
+          <app-country-budget-box [data]="data.info.trans[0].other"></app-country-budget-box>
 
           <div class="post-block post-tips-list-block">
             <div class="post-top-layer">
@@ -1264,15 +968,18 @@
           <aside class="sidebar">
 
             <app-sidebar-about-box [data]="data"></app-sidebar-about-box>
+<!--
+            TODO hide for country page
+-->
 
-            <div class="post-block post-side-block">
+<!--            <div class="post-block post-side-block">
               <div class="post-side-inner">
                 <button type="button" class="btn btn-light-primary btn-bordered btn-full">
                   <i class="trav-add-trip-icon"></i>
                   Add a Trip
                 </button>
               </div>
-            </div>
+            </div>-->
 
             <div class="post-block post-side-block">
               <div class="post-side-inner">
