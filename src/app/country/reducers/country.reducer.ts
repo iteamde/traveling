@@ -41,6 +41,7 @@ export function reducer(state: State = INIT_STATE, action: country.Actions) {
 
 export const getCountry = (state: State) => state.country;
 export const getCountryInfo = (state: State) => state.country.info;
+export const getCountryStats = (state: State) => state.country.stats;
 export const getCountryId = (state: State) => state.country.info.id;
 export const getFollowStatus = (state: State) => state.country.followStatus;
 export const getCountryPlaces = (state: State) => state.country.places;

@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {getCountryPlaces, State} from '../../../core/reducers';
+import {getCountryPlaces, getCountryStats, State} from '../../../core/reducers';
 
 @Component({
   selector: 'app-places-list',
@@ -9,8 +9,10 @@ import {getCountryPlaces, State} from '../../../core/reducers';
 })
 export class PlacesListComponent implements OnInit {
   public data: any;
+  public stats: any;
   constructor(private store: Store<State>) {
     this.data = this.store.select(getCountryPlaces);
+    this.stats = this.store.select(getCountryStats);
   }
 
   ngOnInit() {
