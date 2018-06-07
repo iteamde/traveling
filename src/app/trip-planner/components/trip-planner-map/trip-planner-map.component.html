@@ -13,7 +13,7 @@
   </template>
 
   <template *ngIf="cities[0].transportation && !isModeAllowed(cities[0].transportation)">
-    <agm-polyline  [strokeColor]="getTravelMode(cities[0].transportation)=='PLANE'?'#47a0fc':'#505050'" [strokeWeight]="5" [strokeOpacity]="0.9">
+    <agm-polyline  [strokeColor]="getTravelMode(cities[0].transportation)=='PLANE'?'#47a0fc':'#505050'" [strokeWeight]="3" [strokeOpacity]="0.9" [geodesic]="getTravelMode(cities[0].transportation)=='PLANE'">
       <agm-polyline-point
         [latitude]="currentLocation.lat"
         [longitude]="currentLocation.lng">
@@ -32,7 +32,7 @@
   <template *ngFor="let city of cities; let i = index">
 
     <template *ngIf="(i + 1) < cities.length && !isModeAllowed(cities[i+1].transportation) && cities[i+1].places.length">
-      <agm-polyline *ngIf="cities[i+1].transportation" [strokeColor]="getTravelMode(cities[i+1].transportation)=='PLANE'?'#47a0fc':'#505050'" [strokeWeight]="5" [strokeOpacity]="0.9">
+      <agm-polyline *ngIf="cities[i+1].transportation" [strokeColor]="getTravelMode(cities[i+1].transportation)=='PLANE'?'#47a0fc':'#505050'" [strokeWeight]="3" [strokeOpacity]="0.9" [geodesic]="getTravelMode(cities[i+1].transportation)=='PLANE'">
          <agm-polyline-point
                              [latitude]="+city.places[city.places.length - 1].lat"
                              [longitude]="+city.places[city.places.length - 1].lng">
