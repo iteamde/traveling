@@ -12,8 +12,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class CountryService {
   private type: string;
 
-  public isAddTripClicked = false;
-
   constructor(
     private api: ApiService,
     private route: Router,
