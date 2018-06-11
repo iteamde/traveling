@@ -6,6 +6,10 @@
     &.tripInfoMap{
       padding-top: 58px;
     }
+
+    .agm-info-window-content {
+      overflow: hidden;
+    }
   }
 }
 

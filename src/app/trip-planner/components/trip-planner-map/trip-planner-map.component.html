@@ -1,5 +1,24 @@
-<agm-map (mapReady)="storeMapReady($event)" class="tripInfoMap">
+<agm-map  #gm (mapReady)="storeMapReady($event)" class="tripInfoMap">
   <agm-marker *ngIf="currentLocation.lat && currentLocation.lng" [latitude]="currentLocation.lat" [longitude]="currentLocation.lng"></agm-marker>
+
+
+
+  <agm-marker *ngIf="getTravelMode(cities[0].transportation)=='PLANE'"
+              [iconUrl]="'./../../assets/image/plane1.png'"
+              [latitude]="(+cities[0].places[0].lat + currentLocation.lat)/2"
+              [longitude]="(+cities[0].places[0].lng + currentLocation.lng)/2">
+
+    <agm-info-window [disableAutoPan]="true" #infoWindow [isOpen]="true" [maxWidth]="300">
+
+      <div>Flying from Ukraine(Kiev) to Poland(...)</div>
+      <div>Full time: 5 hours</div>
+
+    </agm-info-window>
+  </agm-marker>
+
+
+
+
 
   <!--START AGM DIRECTIONS FROM YOUR CITY YO FIRST PLACE -->
   <template *ngIf="currentLocation.lat && currentLocation.lng && cities[0].transportation">
@@ -23,6 +42,7 @@
         [longitude]="+cities[0].places[0].lng">
       </agm-polyline-point>
     </agm-polyline>
+
   </template>
 
   <!--END AGM DIRECTIONS FROM YOUR CITY YO FIRST PLACE -->

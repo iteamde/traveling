@@ -7,9 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import {ValidationService} from '../../../core/services/validation';
 import {IMyDpOptions} from 'mydatepicker';
 import {getErrorFromServer} from '../../../core/reducers';
-import {getCountry} from '../../../core/reducers';
 import {CountryService} from '../../../country/services/country.service';
-import {ActivatedRoute, RouterLinkActive} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({

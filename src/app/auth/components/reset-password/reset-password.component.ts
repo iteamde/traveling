@@ -3,8 +3,8 @@ import {getErrorFromServer, getResetPasswordStatus, State} from '../../../core/r
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {ValidationService} from '../../../core/services/validation';
-import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
-import {ClearPasswordStatus, ResetPasswordAction, SetPasswordAction} from '../../actions/auth.actions';
+import { matchPasswordValidator} from '../../../core/validators/custom-validators';
+import {ClearPasswordStatus, SetPasswordAction} from '../../actions/auth.actions';
 import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
