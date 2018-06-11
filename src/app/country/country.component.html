@@ -305,7 +305,7 @@
             </div>
           </div>
 
-          <app-country-budget-box [data]="data.info.trans[0].other"></app-country-budget-box>
+          <app-country-budget-box *ngIf="data.info.trans[0].other" [data]="data.info.trans[0].other"></app-country-budget-box>
 
           <div class="post-block post-tips-list-block">
             <div class="post-top-layer">
@@ -968,18 +968,16 @@
           <aside class="sidebar">
 
             <app-sidebar-about-box [data]="data"></app-sidebar-about-box>
-<!--
-            TODO hide for country page
--->
 
-<!--            <div class="post-block post-side-block">
+
+           <div *ngIf="!isCountry" class="post-block post-side-block">
               <div class="post-side-inner">
-                <button type="button" class="btn btn-light-primary btn-bordered btn-full">
+                <button type="button" class="btn btn-light-primary btn-bordered btn-full" (click)="addTrip()">
                   <i class="trav-add-trip-icon"></i>
                   Add a Trip
                 </button>
               </div>
-            </div>-->
+           </div>
 
             <div class="post-block post-side-block">
               <div class="post-side-inner">

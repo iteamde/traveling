@@ -7,6 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import {ValidationService} from '../../../core/services/validation';
 import {IMyDpOptions} from 'mydatepicker';
 import {getErrorFromServer} from '../../../core/reducers';
+import {getCountry} from '../../../core/reducers';
+
 
 @Component({
   selector: 'app-create-trip-plan-modal',
@@ -16,6 +18,7 @@ import {getErrorFromServer} from '../../../core/reducers';
 
 export class CreateTripPlanModalComponent implements OnInit {
   public privacy = 1;
+
 
   /**
    * Trip planner error
@@ -36,12 +39,25 @@ export class CreateTripPlanModalComponent implements OnInit {
     dateFormat: 'dd mmm yyyy'
   };
 
+  public cityName: string;
+
   /**
    * Default constructor
    * @param store
    * @param fb
    */
-  constructor(private store: Store<State>, private fb: FormBuilder, public validation: ValidationService ) { }
+
+  constructor(private store: Store<State>,
+              private fb: FormBuilder,
+              public validation: ValidationService) {
+
+    // this.store.select(getCountry).subscribe( res => {
+    //   console.log("Country", res);
+    //   this.cityName  = res.info.trans[0].title;
+    //   console.log("CityName", this.cityName);
+    // });
+
+  }
 
   ngOnInit() {
 
@@ -57,7 +73,10 @@ export class CreateTripPlanModalComponent implements OnInit {
       ]],
       privacy: this.privacy
     });
+
   }
+
+
 
 
   /**

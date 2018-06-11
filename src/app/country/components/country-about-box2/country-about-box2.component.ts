@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalManager} from '../../../core/services/modal-manager.service';
 import {CountryAccordionModalComponent} from '../../modals/country-accordion-modal/country-accordion-modal.component';
+import {CountryService} from '../../services/country.service';
+
 
 @Component({
   selector: 'app-country-about-box2',
@@ -10,7 +12,12 @@ import {CountryAccordionModalComponent} from '../../modals/country-accordion-mod
 export class CountryAboutBox2Component implements OnInit {
   @Input() info;
 
-  constructor(private modalService: ModalManager) { }
+  isCountry: boolean;
+
+  constructor(private modalService: ModalManager, private countryService: CountryService) {
+
+    this.isCountry = this.countryService.getType() === 'countries';
+  }
 
   ngOnInit() {
   }

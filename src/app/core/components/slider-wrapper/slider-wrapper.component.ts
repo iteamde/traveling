@@ -11,6 +11,9 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 
+
+import * as Hammer from 'hammerjs';
+
 // Helper component to add dynamic components
 @Component({
   selector: 'app-dcl-slider-wrapper',
@@ -55,14 +58,29 @@ export class SliderWrapperComponent {
     this.isViewInitialized = true;
     this.updateComponent();
 
-    let ul = this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slider')[0];
-    let next = this.target.element.nativeElement.nextSibling.getElementsByClassName('trav-angle-right')[0];
-    let prev = this.target.element.nativeElement.nextSibling.getElementsByClassName('trav-angle-left')[0];
-    let containerWidth = this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slide-wrap')[0].offsetWidth;
+    const ul = this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slider')[0];
+    const next = this.target.element.nativeElement.nextSibling.getElementsByClassName('trav-angle-right')[0];
+    const prev = this.target.element.nativeElement.nextSibling.getElementsByClassName('trav-angle-left')[0];
+    const containerWidth = this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slide-wrap')[0].offsetWidth;
+    const fullWidth = (this.settings.width + 20) * this.settings.count - 20;
 
-    let fullWidth = (this.settings.width + 20) * this.settings.count - 20;
+
+    /**
+     *  Hammer -> for swiping img-sliders on mobile  devices
+     */
+    Hammer(ul).on('swipeleft', () => moveForvard());
+    Hammer(ul).on('swiperight', () => moveBackvard());
 
     next.onclick = () => {
+      moveForvard();
+    };
+
+    prev.onclick = () => {
+      moveBackvard();
+    };
+
+
+    const moveForvard = () => {
       if (this.x === containerWidth - fullWidth) {
         this.x = 0;
         return this.transform(ul, this.x);
@@ -75,12 +93,10 @@ export class SliderWrapperComponent {
         this.x = containerWidth - fullWidth;
         return this.transform(ul, this.x);
       }
+    }
 
-    };
-
-
-    prev.onclick = () => {
-      if (this.x === 0 ) {
+    const moveBackvard = () => {
+      if (this.x === 0) {
         this.x = containerWidth - fullWidth;
         return this.transform(ul, this.x);
       }
@@ -93,9 +109,11 @@ export class SliderWrapperComponent {
         this.x = 0;
         return this.transform(ul, this.x);
       }
-    };
+    }
+
     this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slider')[0].style.width = fullWidth + 'px';
   }
+
 
   ngOnDestroy() {
     if (this.cmpRef) {

@@ -7,13 +7,13 @@ import {AuthGuard} from '../auth/guards/can-activate.guard';
 
 export const CountryRoutes = [
   {
-    path: 'country/:id',
+    path: ':type/:id',
     component: CountryComponent,
     resolve: {country: CountryInfoResolver},
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
       {
-        path: 'country-media/:mediaId',
+        path: 'media/:mediaId',
         component: ModalWrapperComponent,
         data: {modal: GalleryModalComponent, getFunc: getCountryMedia, skipClose: true}
       },

@@ -6,13 +6,14 @@
         <img class="event-cover" *ngIf="data.media.length" src="{{'https://s3.amazonaws.com/travooo-images2/' + data.media[0].url}}">
       </div>
       <div class="post-event-main">
-        <div class="flag-wrap">
+        <div class="flag-wrap" *ngIf="data.info.iso_code">
           <img src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + data.info.iso_code.toLowerCase() + '.png'}}" alt="flag">
         </div>
         <div class="post-placement-info">
-          <h2 class="place-name">{{data.info.trans[0].title}}</h2>
+          <h2 *ngIf="data.info.trans[0].title" class="place-name">{{data.info.trans[0].title}}</h2>
           <div class="event-info-layer">
-            <span class="placement-place">Country in <a href="#" class="place-link">{{data.info.region.trans[0].title}}</a></span>
+            <span *ngIf="data.info.region" class="placement-place">Country in <a href="#" class="place-link">{{data.info.region.trans[0].title}}</a></span>
+            <span  *ngIf="!data.info.region" class="placement-place">City in <a href="#" class="place-link">{{data.info.country.trans[0].title}}</a></span>
             <div class="event-foot-info">
               <ul class="foot-avatar-list">
                 <li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>

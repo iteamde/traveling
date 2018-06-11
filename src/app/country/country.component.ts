@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CountryService} from './services/country.service';
 import {getCountry, State} from '../core/reducers';
 import {Store} from '@ngrx/store';
@@ -21,10 +21,14 @@ export class CountryComponent implements OnInit, OnDestroy{
   public placesMediaData;
   public placesList = PlacesListComponent;
   public holidaysList = HolidaysListComponent;
+  public isCountry: boolean;
+
 
   constructor (private route: ActivatedRoute,
+               private router: Router,
                private countryService: CountryService,
                private store: Store<State>) {
+    this.isCountry = this.countryService.getType() === 'countries';
     this.store.dispatch(new SetCountryInfoAction(this.route.snapshot.data.country));
     this.store.select(getCountry).subscribe( res => {
       console.log("Country", res);
@@ -37,7 +41,7 @@ export class CountryComponent implements OnInit, OnDestroy{
     //FILL DATA FOR  BOX GALLERY WRAPPERs
     this.countryMediaData = {
       title: 'Photos',
-      routePath: 'country-media',
+      routePath: 'media',
       count: this.data.stats.medias,
       media: this.data.media.slice(0, 3)
     };
@@ -63,4 +67,10 @@ export class CountryComponent implements OnInit, OnDestroy{
   ngOnDestroy(){
 
   }
+
+  addTrip() {
+    this.router.navigate(['/trip/new']);
+
+  }
+
 }

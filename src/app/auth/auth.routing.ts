@@ -38,7 +38,7 @@ export const AuthRoutes = [
             path: 'signup/step3',
             component: ModalWrapperComponent,
             data: {modal: RegisterModalStep3Component},
-            canActivate: [RegistrationGuard]
+            // canActivate: [RegistrationGuard]
           },
           {
             path: 'signup/step4',

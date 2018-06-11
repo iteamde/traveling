@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {Resolve} from '@angular/router';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Resolve, Router} from '@angular/router';
+import {ActivatedRouteSnapshot} from '@angular/router';
 import {CountryService} from './country.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
@@ -8,10 +8,31 @@ import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class CountryInfoResolver implements Resolve<any> {
-  constructor(private countryService: CountryService ) {}
+  constructor(private countryService: CountryService,
+              private router: Router) {
+  }
 
   resolve(route: ActivatedRouteSnapshot) {
     const countryId = route.paramMap.get('id');
+
+    switch (route.paramMap.get('type')) {
+
+      case 'city':
+        this.countryService.setType('cities');
+        break;
+
+      case 'country':
+        this.countryService.setType('countries');
+        break;
+
+      default:
+        return this.router.navigate(['/error']);
+
+    }
+
+
+
+
     return Observable.forkJoin(
       this.countryService.getCountryMedia(countryId),
       this.countryService.getCountryInfo(countryId),
@@ -21,6 +42,12 @@ export class CountryInfoResolver implements Resolve<any> {
       this.countryService.getCountryPlaces(countryId),
       this.countryService.checkFollowStatus(countryId)
     ).map(res => {
+
+
+      res.forEach((item) => {
+        if (item.data && item.data.error === 400) return this.router.navigate(['/error']);
+      })
+
       const country = {
         media: res[0].data.medias,
         info: res[1].data,

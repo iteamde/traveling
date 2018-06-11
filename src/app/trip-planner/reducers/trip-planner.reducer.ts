@@ -5,13 +5,17 @@ const helper = new ImmutableHelperService();
 
 export interface State {
   trip_id: number;
+  cityName: string;
   citiesInfo: any;
   alreadySpend: number;
+
+
 }
 
 
 export const INIT_STATE: State = {
   trip_id: null,
+  cityName: '',
   citiesInfo: {
     activeCity : {},
     cities: []
@@ -100,3 +104,4 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
 export const getTripId = (state: State) => state.trip_id;
 export const  getCitiesInfo = (state: State) => state.citiesInfo;
 export const  getAlreadySpent = (state: State) => state.alreadySpend;
+

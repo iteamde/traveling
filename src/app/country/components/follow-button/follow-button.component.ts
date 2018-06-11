@@ -25,6 +25,7 @@ export class FollowButtonComponent implements OnInit, OnDestroy {
   }
 
   toggleFollow() {
+    console.log(this.isFollowed)
     this.isFollowed ?
       this.store.dispatch(new UnfollowCountryAction(this.id)) :
       this.store.dispatch(new FollowCountryAction(this.id));

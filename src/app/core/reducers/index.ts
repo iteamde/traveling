@@ -70,6 +70,7 @@ export const getCitiesInfo = createSelector(getTripPlannerState, fromTripPlanner
 export const getAlreadySpent = createSelector(getTripPlannerState, fromTripPlanner.getAlreadySpent);
 
 
+
 /**
  * Trip module selectors
  */

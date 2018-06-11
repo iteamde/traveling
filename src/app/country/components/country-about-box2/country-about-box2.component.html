@@ -3,20 +3,20 @@
     <div class="post-tip-row" >
       <div class="row-label"><i class="trav-about-icon"></i><b>Nationality</b></div>
       <div class="row-txt">
-        <span>{{info.trans[0].nationality }}</span>
+        <span>{{info.trans[0]?.nationality }}</span>
       </div>
     </div>
     <div class="post-tip-row" *ngIf="info.languages.length">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Languages spoken</b></div>
       <div class="row-txt">
-        <span>{{info.languages[0].trans.title }}</span>
+        <span>{{ isCountry ? info.languages[0].trans.title : info.languages[0].title }}</span>
         <a *ngIf="info.languages.length - 1" (click)="showPopup()" class="more-link">+{{info.languages.length - 1}} More</a>
       </div>
     </div>
     <div class="post-tip-row">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Currencies</b></div>
       <div class="row-txt">
-        <span>{{info.currencies[0].trans[0].title }}</span>
+        <span>{{info.currencies[0]?.trans[0].title }}</span>
         <a *ngIf="info.currencies.length - 1" (click)="showPopup()" class="more-link">+{{info.currencies.length - 1}} More</a>
 
         <!--
@@ -50,7 +50,7 @@
     <div class="post-tip-row">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Units of measurement</b></div>
       <div class="row-txt">
-        <span>{{info.trans[0].metrics | match:'\\((.*?)\\)': 1}}</span>
+        <span *ngIf="info.trans[0].metrics">{{info.trans[0].metrics | match:'\\((.*?)\\)': 1}}</span>
       </div>
     </div>
     <div class="post-tip-row">
@@ -61,14 +61,14 @@
     </div>
     <div class="post-tip-row">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Transportation Methods</b></div>
-      <div class="row-txt">
+      <div class="row-txt" *ngIf="info.trans[0].transportation">
         <span>{{info.trans[0].transportation.split(',')[0]}}</span>
         <a *ngIf="info.trans[0].transportation.split(',').length - 1" (click)="showPopup()" class="more-link">+{{info.trans[0].transportation.split(',').length - 1}} More</a>
       </div>
     </div>
     <div class="post-tip-row">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Speed Limit</b></div>
-      <div class="row-txt">
+      <div class="row-txt" *ngIf="info.trans[0].speed_limit">
         <span>{{info.trans[0].speed_limit.split('\r\n\r\n')[0]}}</span>
         <a *ngIf="info.trans[0].speed_limit.split('\r\n\r\n').length - 1" (click)="showPopup()" class="more-link">+{{info.trans[0].speed_limit.split('\r\n\r\n').length - 1}} More</a>
 

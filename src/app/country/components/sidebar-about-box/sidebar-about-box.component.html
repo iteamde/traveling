@@ -4,7 +4,7 @@
       <img src="http://placehold.it/400x210" alt="">
       <div class="post-place-image-info">
         <div class="place-flag-image">
-          <img class="flag-image" src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + data.info.iso_code.toLowerCase() + '.png'}}" alt="flag">
+          <img *ngIf="data.info.iso_code" class="flag-image" src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + data.info.iso_code.toLowerCase() + '.png'}}" alt="flag">
         </div>
         <div class="follow-btn-wrap">
           <app-follow-button></app-follow-button>
@@ -13,8 +13,11 @@
     </div>
     <div class="post-slider-caption">
       <p class="post-place-name" >{{data.info.trans[0].title}}</p>
-      <p class="post-card-placement">
+      <p *ngIf="data.info.region" class="post-card-placement">
         Country in <a >{{data.info.region.trans[0].title}}</a>
+      </p>
+      <p *ngIf="!data.info.region" class="post-card-placement">
+        City in <a >{{data.info.country.trans[0].title}}</a>
       </p>
       <ul class="post-footer-info-list">
         <li>
