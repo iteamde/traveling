@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State, getErrorFromServer} from '../../../core/reducers/index';
+import {State, getErrorFromServer, getTripPlannerState} from '../../../core/reducers/index';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AddCityAction} from '../../actions/trip-planner.actions';
 import {Subscription} from 'rxjs/Subscription';
@@ -41,6 +41,8 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
    */
   public cityForm: FormGroup;
 
+  public cityName: string;
+
   /**
    * Default constructor
    * @param store
@@ -59,12 +61,21 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.tripPlannerService.getCities('')
+
+    this.store.select(getTripPlannerState).subscribe(res => {
+      console.log('getTripPlannerState', res)
+      this.cityName = res.cityName;
+    });
+
+
+    this.tripPlannerService.getCities(this.cityName ? this.cityName : '')
     .subscribe(res => this.cities = JSON.parse(res.data));
 
     this.cityForm = this.fb.group({
-      city: ''
+      city:  ''
     });
+
+
 
     this.searchCitySubscription$ = this.cityForm.valueChanges
       .debounceTime(500)

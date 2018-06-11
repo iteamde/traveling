@@ -69,6 +69,7 @@ export class CountryComponent implements OnInit, OnDestroy{
   }
 
   addTrip() {
+    this.countryService.isAddTripClicked = true;
     this.router.navigate(['/trip/new']);
 
   }

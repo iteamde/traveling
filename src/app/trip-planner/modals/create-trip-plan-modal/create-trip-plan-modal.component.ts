@@ -8,6 +8,7 @@ import {ValidationService} from '../../../core/services/validation';
 import {IMyDpOptions} from 'mydatepicker';
 import {getErrorFromServer} from '../../../core/reducers';
 import {getCountry} from '../../../core/reducers';
+import {CountryService} from '../../../country/services/country.service';
 
 
 @Component({
@@ -49,17 +50,21 @@ export class CreateTripPlanModalComponent implements OnInit {
 
   constructor(private store: Store<State>,
               private fb: FormBuilder,
-              public validation: ValidationService) {
-
-    // this.store.select(getCountry).subscribe( res => {
-    //   console.log("Country", res);
-    //   this.cityName  = res.info.trans[0].title;
-    //   console.log("CityName", this.cityName);
-    // });
+              public validation: ValidationService,
+              private countryService: CountryService) {
 
   }
 
   ngOnInit() {
+
+    if (this.countryService.getType() === 'cities' && this.countryService.isAddTripClicked) {
+      this.store.select(getCountry).subscribe(res => {
+        this.cityName = res.info.trans[0].title;
+      });
+    }
+    else {
+      this.cityName = '';
+    }
 
     this.error$ = this.store.select(getErrorFromServer);
     this.form = this.fb.group({
@@ -77,13 +82,12 @@ export class CreateTripPlanModalComponent implements OnInit {
   }
 
 
-
-
   /**
    * Next step button clicked
    */
   submit() {
-    this.store.dispatch(new CreateTripAction({user_id: 1, ...this.form.value,  ...{date : this.form.get('date').value.jsdate}}));
+    this.store.dispatch(new CreateTripAction({user_id: 1, cityName: this.cityName, ...this.form.value,  ...{date : this.form.get('date').value.jsdate}}));
+    this.countryService.isAddTripClicked = false;
   }
 
 }
