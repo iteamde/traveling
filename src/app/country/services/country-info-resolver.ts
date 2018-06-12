@@ -43,7 +43,6 @@ export class CountryInfoResolver implements Resolve<any> {
       this.countryService.checkFollowStatus(countryId)
     ).map(res => {
 
-
       res.forEach((item) => {
         if (item.data && item.data.error === 400) return this.router.navigate(['/error']);
       })

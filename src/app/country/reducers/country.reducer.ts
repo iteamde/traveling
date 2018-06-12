@@ -1,5 +1,6 @@
 import * as country from '../actions/country.actions';
 import * as flatten from 'lodash/flatten';
+
 export interface State {
   country: any;
 }

@@ -8,7 +8,10 @@ import {
   ComponentRef,
   ComponentFactory,
   ComponentFactoryResolver,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  AfterViewInit,
+  OnDestroy,
+  OnChanges
 } from '@angular/core';
 
 
@@ -20,7 +23,7 @@ import * as Hammer from 'hammerjs';
   template: `
     <div #target></div>`
 })
-export class SliderWrapperComponent {
+export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChanges  {
   @ViewChild('target', {read: ViewContainerRef}) target;
   @Input() type;
   @Input() settings;
@@ -81,34 +84,37 @@ export class SliderWrapperComponent {
 
 
     const moveForvard = () => {
-      if (this.x === containerWidth - fullWidth) {
-        this.x = 0;
-        return this.transform(ul, this.x);
+
+      switch (true) {
+        case (this.x === containerWidth - fullWidth):
+          this.x = 0;
+          break;
+        case ((this.x - this.settings.width - 20) >= containerWidth - fullWidth):
+          this.x = this.x - this.settings.width - 20;
+          break;
+        case ((this.x - this.settings.width - 20) < containerWidth - fullWidth):
+          this.x = containerWidth - fullWidth;
+          break;
       }
-      if ((this.x - this.settings.width - 20) >= containerWidth - fullWidth) {
-        this.x = this.x - this.settings.width - 20;
-        return this.transform(ul, this.x);
-      }
-      if ((this.x - this.settings.width - 20) < containerWidth - fullWidth) {
-        this.x = containerWidth - fullWidth;
-        return this.transform(ul, this.x);
-      }
+      return this.transform(ul, this.x);
     }
 
-    const moveBackvard = () => {
-      if (this.x === 0) {
-        this.x = containerWidth - fullWidth;
-        return this.transform(ul, this.x);
-      }
-      if ((this.x + this.settings.width + 20) <= 0) {
-        this.x = this.x + this.settings.width + 20;
-        return this.transform(ul, this.x);
 
+
+    const moveBackvard = () => {
+
+      switch (true) {
+        case (this.x === 0):
+          this.x = containerWidth - fullWidth;
+          break;
+        case ((this.x + this.settings.width + 20) <= 0):
+          this.x = this.x + this.settings.width + 20;
+          break;
+        case ((this.x + this.settings.width + 20) > 0):
+          this.x = 0;
+          break;
       }
-      if ((this.x + this.settings.width + 20) > 0) {
-        this.x = 0;
-        return this.transform(ul, this.x);
-      }
+      return this.transform(ul, this.x);
     }
 
     this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slider')[0].style.width = fullWidth + 'px';
