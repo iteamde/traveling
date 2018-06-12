@@ -39,6 +39,7 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
   }
 
   isModeAllowed(transportation) {
@@ -68,6 +69,7 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
         });
       }
     this.storeMap.fitBounds(this.findStoresBounds());
+
   }
 
   public findStoresBounds(){

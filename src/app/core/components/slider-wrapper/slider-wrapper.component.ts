@@ -84,7 +84,6 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
 
 
     const moveForvard = () => {
-
       switch (true) {
         case (this.x === containerWidth - fullWidth):
           this.x = 0;
@@ -102,7 +101,6 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
 
 
     const moveBackvard = () => {
-
       switch (true) {
         case (this.x === 0):
           this.x = containerWidth - fullWidth;

@@ -23,6 +23,7 @@ import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import {CountryModule} from './country/country.module';
 import {CountryEffects} from './country/effects/country.effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 const effectsArr = [
   AuthEffects,
@@ -45,6 +46,9 @@ const effectsArr = [
     SharedModule,
     EffectsModule.forRoot(effectsArr),
     StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
+    }),
     Ng4LoadingSpinnerModule.forRoot(),
     ToastrModule.forRoot({positionClass : 'toast-top-right'}),
     TripPlannerModule,

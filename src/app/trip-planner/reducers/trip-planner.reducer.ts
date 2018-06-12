@@ -33,11 +33,9 @@ export function reducer(state: State = INIT_STATE, action: tripPlanner.Actions) 
   switch (action.type) {
 
     case tripPlanner.CREATE_TRIP:
-      console.log("REDUCER_ACTION - ACTION_CREATE_TRIP:", action.payload )
       return {...state, cityName: action.payload.cityName};
 
     case tripPlanner.CREATE_TRIP_SUCCESS:
-      console.log("REDUCER_ACTION - ACTION_CREATE_TRIP_SUCCESS:", action.payload )
       return {...state, trip_id : action.payload.data.trip_id};
 
     case tripPlanner.SET_CITY_INFO:
