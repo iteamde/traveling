@@ -29,7 +29,7 @@ export class TripPlannerEffects {
    */
   @Effect()
   createTripSuccess$ = this.actions$.ofType(tripPlanner.CREATE_TRIP_SUCCESS)
-    .map((action: tripPlanner.CreateTripSuccessAction) => go(`/trip/${action.payload.data.trip_id}/cities`));
+    .map((action: tripPlanner.CreateTripSuccessAction) =>  go(`/trip/${action.payload.data.trip_id}/cities`));
 
   /**
    * Cancel trip plan

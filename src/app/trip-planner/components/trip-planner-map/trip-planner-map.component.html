@@ -1,29 +1,11 @@
 <agm-map  #gm (mapReady)="storeMapReady($event)" class="tripInfoMap">
   <agm-marker *ngIf="currentLocation.lat && currentLocation.lng" [latitude]="currentLocation.lat" [longitude]="currentLocation.lng"></agm-marker>
 
-
-
-  <agm-marker *ngIf="getTravelMode(cities[0].transportation)=='PLANE'"
-              [iconUrl]="'./../../assets/image/plane1.png'"
-              [latitude]="(+cities[0].places[0].lat + currentLocation.lat)/2"
-              [longitude]="(+cities[0].places[0].lng + currentLocation.lng)/2">
-
-    <agm-info-window [disableAutoPan]="true" #infoWindow [isOpen]="true" [maxWidth]="300">
-
-      <div>Flying from Ukraine(Kiev) to Poland(...)</div>
-      <div>Full time: 5 hours</div>
-
-    </agm-info-window>
-  </agm-marker>
-
-
-
-
-
   <!--START AGM DIRECTIONS FROM YOUR CITY YO FIRST PLACE -->
   <template *ngIf="currentLocation.lat && currentLocation.lng && cities[0].transportation">
     <agm-direction
-                    [travelMode]="getTravelMode(cities[0].transportation)" [renderOptions]="directionOptions"
+                    [travelMode]="getTravelMode(cities[0].transportation)"
+                    [renderOptions]="directionOptions"
                     [origin]="{lat: currentLocation.lat,lng: currentLocation.lng}"
                     [destination]="{lat: +cities[0].places[0].lat,lng: +cities[0].places[0].lng}"
                     (onChange)="dirChange($event)"
@@ -65,10 +47,11 @@
     </template>
     <template *ngIf="(i + 1) < cities.length  && cities[i+1].places.length">
     <!--START AGM DIRECTIONS FROM FIRST CITY LAST PLACE TO @ CITY FIRST PLACE -->
-      <agm-direction  [travelMode]="getTravelMode(cities[i+1].transportation)" [renderOptions]="directionOptions"
+      <agm-direction [travelMode]="getTravelMode(cities[i+1].transportation)"
+                     [renderOptions]="directionOptions"
                      [origin]="{lat: +city.places[city.places.length - 1].lat,lng: +city.places[city.places.length - 1].lng}"
                      [destination]="{lat: +cities[i+1].places[0].lat,lng: +cities[i+1].places[0].lng}"
-                      (onChange)="dirChange($event)"
+                     (onChange)="dirChange($event)"
                      [visible]="isModeAllowed(cities[i+1].transportation)">
       </agm-direction>
 
@@ -81,7 +64,10 @@
     <!--START AGM DIRECTIONS BETWEEN PLACES INSIDE CITY -->
     <template   *ngFor="let place of city.places; let j = index" >
       <agm-marker *ngIf="city.places.length === 1"  [latitude]="+place.lat" [longitude]="+place.lng"></agm-marker>
-      <agm-direction *ngIf="city.places[j+1]" [origin]="{lat: +place.lat, lng: +place.lng}"  [travelMode]="'DRIVING'" [destination]="{lat:+city.places[j+1].lat, lng: +city.places[j+1].lng}" [renderOptions]="directionOptions"></agm-direction>
+      <agm-direction *ngIf="city.places[j+1]"
+                     [origin]="{lat: +place.lat, lng: +place.lng}"
+                     [travelMode]="'DRIVING'"
+                     [destination]="{lat:+city.places[j+1].lat, lng: +city.places[j+1].lng}" [renderOptions]="directionOptions"></agm-direction>
     </template>
     <!--END AGM DIRECTIONS BETWEEN PLACES INSIDE CITY -->
   </template>

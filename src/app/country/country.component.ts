@@ -28,8 +28,16 @@ export class CountryComponent implements OnInit, OnDestroy{
                private router: Router,
                private countryService: CountryService,
                private store: Store<State>) {
+    /**
+     * Check if this component is country or city
+     */
     this.isCountry = this.countryService.getType() === 'countries';
+
     this.store.dispatch(new SetCountryInfoAction(this.route.snapshot.data.country));
+
+    /**
+     * Get data for component (country or city)
+     */
     this.store.select(getCountry).subscribe( res => {
       console.log("Country", res);
       this.data = res;
@@ -67,6 +75,10 @@ export class CountryComponent implements OnInit, OnDestroy{
   ngOnDestroy(){
 
   }
+
+  /**
+   * navigate to /trip/new with params -> example: http://localhost:4200/trip/new?city=kiev
+   */
 
   addTrip() {
     this.router.navigate(['/trip/new'], {queryParams: {city: this.data.info.trans[0].title.toLowerCase()}});

@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ApiService} from '../../core/services/api.service';
-import {ActivatedRoute, Router} from '@angular/router';
-
-
-
+import { Router} from '@angular/router';
 
 
 
 @Injectable()
 export class CountryService {
+
+
+  /**
+   * type = country || city
+   */
   private type: string;
 
   constructor(
     private api: ApiService,
-    private route: Router,
-    private activatedRoute: ActivatedRoute
+    private route: Router) {
 
-  ) {
     console.log('router', this.route);
+
   }
+
+
   setType(type) {
     return this.type = type;
   }

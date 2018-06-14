@@ -63,17 +63,27 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
     if (navigator)
       {
         navigator.geolocation.getCurrentPosition( pos => {
+
+          /**
+           * Get current geo-position. Example: lat:30.608178799999997, lng:50.452959199999995
+           */
           this.currentLocation.lng = +pos.coords.longitude;
           this.currentLocation.lat = +pos.coords.latitude;
           this.storeMap.fitBounds(this.findStoresBounds());
+
         });
+
+
+
+
+
       }
     this.storeMap.fitBounds(this.findStoresBounds());
 
   }
 
   public findStoresBounds(){
-    let bounds: LatLngBounds = new google.maps.LatLngBounds();
+    const bounds: LatLngBounds = new google.maps.LatLngBounds();
 
     this.cities.forEach(city => {
       city.places.forEach( place => bounds.extend(new google.maps.LatLng(place.lat, place.lng)));

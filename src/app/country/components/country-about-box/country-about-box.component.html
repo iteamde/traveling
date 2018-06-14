@@ -1,6 +1,6 @@
 <div class="post-block post-country-block">
   <div class="post-side-top">
-    <h3 class="side-ttl">About the country</h3>
+    <h3 class="side-ttl">About the {{ isCountry ? 'country' : 'city' }}</h3>
   </div>
   <div class="post-country-inner">
     <div class="post-footer-info">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="post-txt-wrap">
-      <p class="post-txt">New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers.</p>
+      <p class="post-txt">{{info.trans[0].description ? info.trans[0].description : 'No description'}}</p>
     </div>
     <div class="post-map-block">
       <div class="post-map-inner">

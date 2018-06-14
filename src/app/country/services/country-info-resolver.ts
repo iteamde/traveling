@@ -30,9 +30,6 @@ export class CountryInfoResolver implements Resolve<any> {
 
     }
 
-
-
-
     return Observable.forkJoin(
       this.countryService.getCountryMedia(countryId),
       this.countryService.getCountryInfo(countryId),
@@ -43,10 +40,16 @@ export class CountryInfoResolver implements Resolve<any> {
       this.countryService.checkFollowStatus(countryId)
     ).map(res => {
 
+      /**
+       * If at least one of the items in array has an error === 400 -> navigate to error page
+       */
       res.forEach((item) => {
         if (item.data && item.data.error === 400) return this.router.navigate(['/error']);
       })
 
+      /**
+       * Join multiply responses from server into one object
+       */
       const country = {
         media: res[0].data.medias,
         info: res[1].data,
