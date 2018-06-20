@@ -71,7 +71,7 @@
         <div class="main-content-layer">
           <app-country-about-box [info]="data.info" ></app-country-about-box>
           <app-country-about-box2 [info]="data.info"></app-country-about-box2>
-          <app-country-indexes-box [info]="data.info"></app-country-indexes-box>
+          <app-country-indexes-box [info]="data.info" [isCountry]="isCountry"></app-country-indexes-box>
 
           <app-country-emergency-number [info]="data.info.emergency"></app-country-emergency-number>
 
@@ -143,10 +143,10 @@
 
           <div class="post-block post-tab-block post-tip-tab">
             <div class="post-tab-inner post-tip-tab" id="postTabBlock">
-              <div class="tab-item active-tab">
-                Trips Tips &nbsp;<span>57</span>
-              </div>
-              <div class="tab-item">
+              <!--<div class="tab-item active-tab">-->
+                <!--Trips Tips &nbsp;<span>57</span>-->
+              <!--</div>-->
+              <div class="tab-item active-tab ">
                 Packing Tips
               </div>
               <div class="tab-item">
@@ -155,7 +155,7 @@
             </div>
           </div>
 
-          <div class="post-block post-tips-block">
+         <!-- <div class="post-block post-tips-block">
             <div class="post-tips-block-inner">
               <div class="post-top-info-layer">
                 <div class="post-top-info-wrap">
@@ -303,7 +303,7 @@
             <div class="post-load-txt">
               Loading...
             </div>
-          </div>
+          </div>-->
 
           <app-country-budget-box *ngIf="data.info.trans[0].other" [data]="data.info.trans[0].other"></app-country-budget-box>
 
@@ -315,10 +315,10 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <div class="post-top-txt">
-                  <span class="name">John mobile</span>
-                  <span>and 7 more are talking about this</span>
-                </div>
+                <!--<div class="post-top-txt">-->
+                  <!--<span class="name">John mobile</span>-->
+                  <!--<span>and 7 more are talking about this</span>-->
+                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -326,31 +326,55 @@
                 </div>
               </div>
             </div>
-            <div class="post-list-inner">
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Shoes</b></div>
-                <div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Umbrella</b></div>
-                <div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Backpack</b></div>
-                <div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Sunglasses</b></div>
-                <div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>ID</b></div>
-                <div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Camera</b></div>
-                <div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>
-              </div>
+
+            <div class="post-list-inner" *ngIf="data.info.trans[0].planning_tips">
+
+
+                <div class="tips-container" *ngFor="let item of planningTips | keys">
+
+                  <div class="post-tip-row tip-txt" *ngIf="checkDataType(planningTips)">
+                    <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
+                    <div class="row-txt"><span>{{item.value}}</span></div>
+                  </div>
+
+
+                  <div class="post-tip-row tip-txt" *ngIf="!checkDataType(planningTips)">
+                    <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
+                    <div class="row-txt">
+                      <ul>
+                        <li *ngFor="let value of item.value" >{{value}}</li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+                </div>
+
+
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Shoes</b></div>-->
+                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Umbrella</b></div>-->
+                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Backpack</b></div>-->
+                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Sunglasses</b></div>-->
+                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>ID</b></div>-->
+                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Camera</b></div>-->
+                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
             </div>
           </div>
 
@@ -370,10 +394,10 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <div class="post-top-txt">
-                  <span class="name">John mobile</span>
-                  <span>and 7 more are talking about this</span>
-                </div>
+                <!--<div class="post-top-txt">-->
+                  <!--<span class="name">John mobile</span>-->
+                  <!--<span>and 7 more are talking about this</span>-->
+                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -381,127 +405,138 @@
                 </div>
               </div>
             </div>
-            <div class="post-list-inner">
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Greeting</b></div>
-                <div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>
+
+            <div class="post-list-inner" *ngIf="data.info.trans[0].etiquette && data.info.trans[0].restrictions">
+              <div class="post-tip-row tip-txt" *ngFor="let item of etiquette | keys">
+                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
+                <div class="row-txt"><span>{{item.value}}</span></div>
               </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Lines</b></div>
-                <div class="row-txt"><span>Proin cursus erat lorem placerat bibendum tincidunt sem.</span></div>
+
+              <div class="post-tip-row tip-txt" *ngFor="let item of restrictions | keys">
+                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
+                <div class="row-txt"><span>{{item.value}}</span></div>
               </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Seats</b></div>
-                <div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Tips</b></div>
-                <div class="row-txt"><span>Duis egestas massa at feugiat tincidunt.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dress Code</b></div>
-                <div class="row-txt"><span>Vivamus eu massa non tellus consequat euismod ut erat.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Photography</b></div>
-                <div class="row-txt"><span>Etiam eu enim a est imperdiet euismod.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Eating & Drinking</b></div>
-                <div class="row-txt"><span>Nulla porta felis id maximus aliquet.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Gestures</b></div>
-                <div class="row-txt"><span>Proin sit amet est finibus, auctor eros condimentum nisi.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Communication</b></div>
-                <div class="row-txt"><span>Vivamus ut ligula et urna pharetra lacinia.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Language</b></div>
-                <div class="row-txt"><span>Fusce lacinia dui quis nibh tincidunt pulvinar.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Religion</b></div>
-                <div class="row-txt"><span>Quisque eget dui aliquet, laoreet ante quis, sollicitudin.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Smoking</b></div>
-                <div class="row-txt"><span>Proin ullamcorper diam vel nibh placerat iaculis.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Visiting</b></div>
-                <div class="row-txt"><span>Nullam pharetra ipsum eu placerat dictum.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hijab and Burqa</b></div>
-                <div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Alcohol</b></div>
-                <div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Drugs</b></div>
-                <div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Prostitution</b></div>
-                <div class="row-txt"><span>Duis egestas massa at feugiat tincidunt.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dress Code</b></div>
-                <div class="row-txt"><span>Vivamus eu massa non tellus consequat euismod.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Photography</b></div>
-                <div class="row-txt"><span>Etiam eu enim a est imperdiet euismod.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Driving</b></div>
-                <div class="row-txt"><span>Nulla porta felis id maximus aliquet.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Pork</b></div>
-                <div class="row-txt"><span>Proin sit amet est finibus, auctor eros non, condimentum.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Freedom of Religion</b></div>
-                <div class="row-txt"><span>Vivamus ut ligula et urna pharetra lacinia.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Freedom of Speech</b></div>
-                <div class="row-txt"><span>Fusce lacinia dui quis nibh tincidunt pulvinar.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Gambling</b></div>
-                <div class="row-txt"><span>Quisque eget dui aliquet, laoreet ante quis, sollicitudin.</span></div>
-              </div>
+
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Greeting</b></div>-->
+                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Lines</b></div>-->
+                <!--<div class="row-txt"><span>Proin cursus erat lorem placerat bibendum tincidunt sem.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Seats</b></div>-->
+                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Tips</b></div>-->
+                <!--<div class="row-txt"><span>Duis egestas massa at feugiat tincidunt.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dress Code</b></div>-->
+                <!--<div class="row-txt"><span>Vivamus eu massa non tellus consequat euismod ut erat.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Photography</b></div>-->
+                <!--<div class="row-txt"><span>Etiam eu enim a est imperdiet euismod.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Eating & Drinking</b></div>-->
+                <!--<div class="row-txt"><span>Nulla porta felis id maximus aliquet.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Gestures</b></div>-->
+                <!--<div class="row-txt"><span>Proin sit amet est finibus, auctor eros condimentum nisi.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Communication</b></div>-->
+                <!--<div class="row-txt"><span>Vivamus ut ligula et urna pharetra lacinia.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Language</b></div>-->
+                <!--<div class="row-txt"><span>Fusce lacinia dui quis nibh tincidunt pulvinar.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Religion</b></div>-->
+                <!--<div class="row-txt"><span>Quisque eget dui aliquet, laoreet ante quis, sollicitudin.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Smoking</b></div>-->
+                <!--<div class="row-txt"><span>Proin ullamcorper diam vel nibh placerat iaculis.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Visiting</b></div>-->
+                <!--<div class="row-txt"><span>Nullam pharetra ipsum eu placerat dictum.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hijab and Burqa</b></div>-->
+                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Alcohol</b></div>-->
+                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Drugs</b></div>-->
+                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Prostitution</b></div>-->
+                <!--<div class="row-txt"><span>Duis egestas massa at feugiat tincidunt.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dress Code</b></div>-->
+                <!--<div class="row-txt"><span>Vivamus eu massa non tellus consequat euismod.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Photography</b></div>-->
+                <!--<div class="row-txt"><span>Etiam eu enim a est imperdiet euismod.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Driving</b></div>-->
+                <!--<div class="row-txt"><span>Nulla porta felis id maximus aliquet.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Pork</b></div>-->
+                <!--<div class="row-txt"><span>Proin sit amet est finibus, auctor eros non, condimentum.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Freedom of Religion</b></div>-->
+                <!--<div class="row-txt"><span>Vivamus ut ligula et urna pharetra lacinia.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Freedom of Speech</b></div>-->
+                <!--<div class="row-txt"><span>Fusce lacinia dui quis nibh tincidunt pulvinar.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Gambling</b></div>-->
+                <!--<div class="row-txt"><span>Quisque eget dui aliquet, laoreet ante quis, sollicitudin.</span></div>-->
+              <!--</div>-->
             </div>
           </div>
 
-          <div class="post-block post-tips-list-block">
-            <div class="post-top-layer">
-              <div class="top-left">
-                <h3 class="post-tip-ttl">Recommended Vaccination</h3>
-              </div>
-            </div>
-            <div class="post-list-inner">
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Immunizations</b></div>
-                <div class="row-txt"><span>Laoreet nibh nec odio porta consectetur.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hepatitis B</b></div>
-                <div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Typhoid Fever</b></div>
-                <div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>
-              </div>
-            </div>
-          </div>
+          <!--<div class="post-block post-tips-list-block">-->
+            <!--<div class="post-top-layer">-->
+              <!--<div class="top-left">-->
+                <!--<h3 class="post-tip-ttl">Recommended Vaccination</h3>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="post-list-inner">-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Immunizations</b></div>-->
+                <!--<div class="row-txt"><span>Laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hepatitis B</b></div>-->
+                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Typhoid Fever</b></div>-->
+                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
           <div class="post-block post-tips-list-block">
             <div class="post-top-layer">
@@ -544,10 +579,10 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <div class="post-top-txt">
-                  <span class="name">John mobile</span>
-                  <span>and 7 more are talking about this</span>
-                </div>
+                <!--<div class="post-top-txt">-->
+                  <!--<span class="name">John mobile</span>-->
+                  <!--<span>and 7 more are talking about this</span>-->
+                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -611,10 +646,10 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <div class="post-top-txt">
-                  <span class="name">John mobile</span>
-                  <span>and 7 more are talking about this</span>
-                </div>
+                <!--<div class="post-top-txt">-->
+                  <!--<span class="name">John mobile</span>-->
+                  <!--<span>and 7 more are talking about this</span>-->
+                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -659,10 +694,10 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <div class="post-top-txt">
-                  <span class="name">John mobile</span>
-                  <span>and 7 more are talking about this</span>
-                </div>
+                <!--<div class="post-top-txt">-->
+                  <!--<span class="name">John mobile</span>-->
+                  <!--<span>and 7 more are talking about this</span>-->
+                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">

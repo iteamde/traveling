@@ -21,6 +21,9 @@ import { PlacesListComponent } from './components/places-list/places-list.compon
 import { HolidaysListComponent } from './components/holidays-list/holidays-list.component';
 import { CountryBudgetBoxComponent } from './components/country-budget-box/country-budget-box.component';
 import { CountryAccordionModalComponent } from './modals/country-accordion-modal/country-accordion-modal.component';
+import {KeysPipe} from '../core/pipes/keysPipe';
+import {ConvertService} from '../core/services/convert.service';
+
 
 
 @NgModule({
@@ -46,10 +49,12 @@ import { CountryAccordionModalComponent } from './modals/country-accordion-modal
     HolidaysListComponent,
     CountryBudgetBoxComponent,
     CountryAccordionModalComponent,
+    KeysPipe
   ],
   providers: [
     CountryService,
-    CountryInfoResolver
+    CountryInfoResolver,
+    ConvertService
   ],
   entryComponents: [
     GalleryModalComponent,

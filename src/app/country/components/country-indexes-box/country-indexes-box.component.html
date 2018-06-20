@@ -1,52 +1,52 @@
 <div class="post-block post-tips-list-block">
   <div class="post-top-layer">
     <div class="top-left">
-      <h3 class="post-tip-ttl_lg">Country Indexes</h3>
+      <h3 class="post-tip-ttl_lg">{{isCountry ? 'Country ' : 'City'}} Indexes</h3>
     </div>
     <div class="top-right">
       <a  class="tip-link">Map Index</a>
     </div>
   </div>
   <div class="post-list-inner">
-    <div class="post-tip-row">
+    <div class="post-tip-row" *ngIf="info.trans[0].indexes?.pollution || info.trans[0]?.pollution_index">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Pollution</b></div>
       <div class="row-txt">
         <div class="index-slider-wrap">
           <div class="counter">
-            <span id="current">{{info.trans[0].pollution_index}}</span>/100<span></span>
+            <span id="current">{{isCountry ? info.trans[0].pollution_index : info.trans[0].indexes.pollution}}</span>/100<span></span>
           </div>
-          <mat-slider min="0" max="100" disabled="true"  value="{{info.trans[0].pollution_index}}"></mat-slider>
+          <mat-slider min="0" max="100" disabled="true"  value="{{isCountry ? info.trans[0].pollution_index : info.trans[0].indexes.pollution}}"></mat-slider>
         </div>
       </div>
     </div>
-    <div class="post-tip-row">
+    <div class="post-tip-row" *ngIf="info.trans[0]?.cost_of_living ">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Cost of Living</b></div>
       <div class="row-txt">
         <div class="index-slider-wrap">
           <div class="counter">
             <span>{{info.trans[0].cost_of_living}}</span>/100<span></span>
           </div>
-          <mat-slider min="0" max="100" disabled="true"  value="{{info.trans[0].cost_of_living}}"></mat-slider>
+          <mat-slider min="0" max="100" disabled="true"  value="{{info.trans[0].cost_of_living }}"></mat-slider>
         </div>
       </div>
     </div>
-    <div class="post-tip-row">
+    <div class="post-tip-row" *ngIf="info.trans[0].indexes?.crime_rate || info.trans[0]?.crime_rate">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Crime Rate</b></div>
       <div class="row-txt">
         <div class="index-slider-wrap">
           <div class="counter">
-            <span>{{info.trans[0].crime_rate}}</span>/100<span></span>
+            <span>{{isCountry ? info.trans[0].crime_rate : info.trans[0].indexes.crime_rate}}</span>/100<span></span>
           </div>
-          <mat-slider min="0" max="100" disabled="true"  value="{{info.trans[0].crime_rate}}"></mat-slider>
+          <mat-slider min="0" max="100" disabled="true"  value="{{isCountry ? info.trans[0].crime_rate : info.trans[0].indexes.crime_rate}}"></mat-slider>
         </div>
       </div>
     </div>
-    <div class="post-tip-row">
+    <div class="post-tip-row" *ngIf="info.trans[0].indexes?.quality_of_life || info.trans[0]?.quality_of_life">
       <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Quality of Life</b></div>
       <div class="row-txt">
         <div class="index-slider-wrap">
           <div class="counter">
-            <span>{{info.trans[0].quality_of_life}}</span>/100<span></span>
+            <span>{{isCountry ? info.trans[0].quality_of_life : info.trans[0].indexes.quality_of_life}}</span>/100<span></span>
           </div>
           <mat-slider min="0" max="100" disabled="true"  value="{{info.trans[0].quality_of_life}}"></mat-slider>
         </div>

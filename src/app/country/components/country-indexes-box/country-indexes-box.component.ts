@@ -7,10 +7,12 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CountryIndexesBoxComponent implements OnInit {
   @Input() info;
+  @Input() isCountry;
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

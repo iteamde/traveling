@@ -1,31 +1,43 @@
 <div class="modal-wrapper">
-  <button class="modal-close"  mat-button  [mat-dialog-close]="true">
+  <button class="modal-close" mat-button [mat-dialog-close]="true">
     <i class="trav-close-icon"></i>
   </button>
   <div class="modal-dialog modal-custom-style modal-660" role="document">
     <div class="modal-custom-block">
       <div class="post-block post-modal-language-style">
         <div class="post-lang-top">
-          <div class="top-txt">
+
+          <div class="top-txt" *ngIf="isCountry && (data | async).region.trans[0].title">
             <h3 class="ttl">{{(data | async).trans[0].title}}</h3>
-            <p>Country in <a href="#" class="link">{{(data | async).region.trans[0].title}}</a></p>
+            <p>Country in
+              <a href="#" class="link">{{(data | async).region.trans[0].title}}</a>
+            </p>
           </div>
+
+          <div class="top-txt" *ngIf="!isCountry && (data | async).country.trans[0].title">
+            <h3 class="ttl">{{(data | async).trans[0].title}}</h3>
+            <p>City in
+              <a href="#" class="link">{{(data | async).country.trans[0].title}}</a>
+            </p>
+          </div>
+
         </div>
+
         <div class="post-lang-inner">
-          <div class="lang-row">
+          <div class="lang-row" *ngIf="(data | async).languages.length">
             <div class="lang-label" (click)="openedList.languages = !openedList.languages">
               Languages Spoken <span>({{(data | async).languages.length}})</span>
             </div>
             <div class="lang-collapse" [ngClass]="{'opened': openedList.languages}">
               <div class="lang-list" *ngFor="let lang of (data | async).languages">
                 <div class="lang-string">
-                  <div class="name">{{lang.trans.title}}</div>
-<!-- <div class="info">{{(data | async).iso_code}}</div>-->
+                  <div class="name">{{isCountry ? lang.trans.title : lang.title }}</div>
+                  <!-- <div class="info">{{(data | async).iso_code}}</div>-->
                 </div>
               </div>
             </div>
           </div>
-          <div class="lang-row">
+          <div class="lang-row" *ngIf="(data | async).currencies.length">
             <div class="lang-label" (click)="openedList.currencies = !openedList.currencies">
               Currencies <span>({{(data | async).currencies.length}})</span>
             </div>
@@ -38,20 +50,20 @@
               </div>
             </div>
           </div>
-        <!--  <div class="lang-row">
-            <div class="lang-label" data-toggle="collapse" data-target="#timings" aria-expanded="false" aria-controls="timings">
-              Timings <span>(1)</span>
-            </div>
-            <div class="collapse lang-collapse" id="timings">
-              <div class="lang-list">
-                <div class="lang-string">
-                  <div class="name">New York, NY</div>
-                  <div class="info">8:03 AM</div>
+          <!--  <div class="lang-row">
+              <div class="lang-label" data-toggle="collapse" data-target="#timings" aria-expanded="false" aria-controls="timings">
+                Timings <span>(1)</span>
+              </div>
+              <div class="collapse lang-collapse" id="timings">
+                <div class="lang-list">
+                  <div class="lang-string">
+                    <div class="name">New York, NY</div>
+                    <div class="info">8:03 AM</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>-->
-          <div class="lang-row">
+            </div>-->
+          <div class="lang-row" *ngIf="(data | async).religions.length">
             <div class="lang-label" (click)="openedList.religions = !openedList.religions">
               Religions <span>({{(data | async).religions.length}})</span>
             </div>
@@ -64,7 +76,7 @@
               </div>
             </div>
           </div>
-          <div class="lang-row">
+          <div class="lang-row" *ngIf="(data | async).trans[0].transportation.split(',').length">
             <div class="lang-label" (click)="openedList.trans = !openedList.trans">
               Transportation Methods <span>({{(data | async).trans[0].transportation.split(',').length}})</span>
             </div>
@@ -76,7 +88,7 @@
               </div>
             </div>
           </div>
-          <div class="lang-row">
+          <div class="lang-row" *ngIf="(data | async).trans[0].speed_limit">
             <div class="lang-label" (click)="openedList.limit = !openedList.limit">
               Speed limit <span>({{(data | async).trans[0].speed_limit.split('\r\n\r\n').length}})</span>
             </div>
@@ -89,7 +101,11 @@
               </div>
             </div>
           </div>
+
+
         </div>
+
+
       </div>
     </div>
   </div>

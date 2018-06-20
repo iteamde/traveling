@@ -7,6 +7,7 @@ import { SetCountryInfoAction} from './actions/country.actions';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {PlacesListComponent} from './components/places-list/places-list.component';
 import {HolidaysListComponent} from './components/holidays-list/holidays-list.component';
+import {ConvertService} from '../core/services/convert.service';
 
 @AutoUnsubscribe()
 @Component({
@@ -14,7 +15,7 @@ import {HolidaysListComponent} from './components/holidays-list/holidays-list.co
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.scss']
 })
-export class CountryComponent implements OnInit, OnDestroy{
+export class CountryComponent implements OnInit, OnDestroy {
   public data;
   public countryMediaData;
   public plansMediaData;
@@ -23,9 +24,15 @@ export class CountryComponent implements OnInit, OnDestroy{
   public holidaysList = HolidaysListComponent;
   public isCountry: boolean;
 
+  public etiquette;
+  public restrictions;
+  public planningTips;
+
+
 
   constructor (private route: ActivatedRoute,
                private router: Router,
+               private converService: ConvertService,
                private countryService: CountryService,
                private store: Store<State>) {
     /**
@@ -38,15 +45,28 @@ export class CountryComponent implements OnInit, OnDestroy{
     /**
      * Get data for component (country or city)
      */
-    this.store.select(getCountry).subscribe( res => {
+    this.store.select(getCountry).subscribe(res => {
       console.log("Country", res);
       this.data = res;
     });
-    }
 
-  ngOnInit() {
 
-    //FILL DATA FOR  BOX GALLERY WRAPPERs
+  }
+
+
+
+ngOnInit() {
+
+  /**
+   * Convert strings that is returned by API into objects
+   */
+  this.etiquette = this.converService.convertSwitch(this.data.info.trans[0].etiquette, '\r\n\r\n');
+  this.restrictions = this.converService.convertSwitch(this.data.info.trans[0].restrictions, '\r\n\r\n');
+  this.planningTips = this.converService.convertSwitch(this.data.info.trans[0].planning_tips, '\r\n\r\n');
+
+
+
+    // FILL DATA FOR  BOX GALLERY WRAPPERs
     this.countryMediaData = {
       title: 'Photos',
       routePath: 'media',
@@ -72,8 +92,13 @@ export class CountryComponent implements OnInit, OnDestroy{
     };
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
+  }
+
+
+  checkDataType(data){
+    return Object.keys(data).length > 1;
   }
 
   /**
