@@ -17,7 +17,7 @@
           <div class="top-txt" *ngIf="!isCountry && (data | async).country.trans[0].title">
             <h3 class="ttl">{{(data | async).trans[0].title}}</h3>
             <p>City in
-              <a href="#" class="link">{{(data | async).country.trans[0].title}}</a>
+              <a [routerLink]="['/country', (data | async).countries_id]" class="link">{{(data | async).country.trans[0].title}}</a>
             </p>
           </div>
 
@@ -31,7 +31,8 @@
             <div class="lang-collapse" [ngClass]="{'opened': openedList.languages}">
               <div class="lang-list" *ngFor="let lang of (data | async).languages">
                 <div class="lang-string">
-                  <div class="name">{{isCountry ? lang.trans.title : lang.title }}</div>
+                  <div class="name">{{ lang.title }}</div>
+                  <!--<div class="name">{{isCountry ? lang.trans.title : lang.title }}</div>-->
                   <!-- <div class="info">{{(data | async).iso_code}}</div>-->
                 </div>
               </div>

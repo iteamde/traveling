@@ -7,7 +7,31 @@ import {AuthGuard} from '../auth/guards/can-activate.guard';
 
 export const CountryRoutes = [
   {
-    path: ':type/:id',
+    path: 'country/:id',
+    component: CountryComponent,
+    resolve: {country: CountryInfoResolver},
+    //canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'media/:mediaId',
+        component: ModalWrapperComponent,
+        data: {modal: GalleryModalComponent, getFunc: getCountryMedia, skipClose: true}
+      },
+      {
+        path: 'trips-media/:mediaId',
+        component: ModalWrapperComponent,
+        data: {modal: GalleryModalComponent, getFunc: getTripMedia, skipClose: true}
+      },
+      {
+        path: 'place-media/:mediaId',
+        component: ModalWrapperComponent,
+        data: {modal: GalleryModalComponent, getFunc: getPlacesMedia, skipClose: true}
+      }
+    ]
+  },
+
+  {
+    path: 'city/:id',
     component: CountryComponent,
     resolve: {country: CountryInfoResolver},
     //canActivate: [AuthGuard],

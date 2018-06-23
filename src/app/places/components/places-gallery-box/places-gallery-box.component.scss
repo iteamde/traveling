@@ -1,0 +1,16 @@
+.post-board .board-photo-list .board-image{
+  &.half-image{
+    img{
+      width: 84px;
+      height: 89px;
+    }
+  }
+  img{
+    width: 178px;
+    height: 111px;
+    object-fit: cover;
+  }
+}
+.post-board{
+  cursor: pointer;
+}

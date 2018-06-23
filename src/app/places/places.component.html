@@ -1,0 +1,249 @@
+<router-outlet></router-outlet>
+
+<div class="main-wrapper">
+
+  <app-main-header></app-main-header>
+
+  <div class="content-wrap">
+
+    <button class="btn btn-mobile-side sidebar-toggler" id="sidebarToggler">
+      <i class="trav-cog"></i>
+    </button>
+    <button class="btn btn-mobile-side left-outside-btn" id="filterToggler">
+      <i class="trav-filter"></i>
+    </button>
+
+    <div class="container-fluid">
+      <!-- left outside menu -->
+
+      <app-left-outside-menu></app-left-outside-menu>
+
+      <!--top banner-->
+
+      <app-places-top-banner [data]="data"></app-places-top-banner>
+
+
+      <div class="top-board-wrap">
+
+        <app-places-gallery-box [info]="placePhotos"></app-places-gallery-box>
+        <app-places-gallery-box [info]="oneDayPlans"></app-places-gallery-box>
+        <app-places-gallery-box [info]="nearbyPlaces"></app-places-gallery-box>
+
+        <div class="post-block post-board">
+          <div class="post-side-top">
+            <h3 class="side-ttl">Nearby events</h3>
+            <div class="side-right-control">
+              <div class="side-count">241</div>
+            </div>
+          </div>
+          <div class="post-side-inner">
+            <div class="board-photo-list">
+              <div class="board-image full-image">
+                <img src="http://placehold.it/185x115" alt="photo">
+              </div>
+              <div class="board-image half-image">
+                <img src="http://placehold.it/85x90" alt="photo">
+              </div>
+              <div class="board-image half-image">
+                <img src="http://placehold.it/85x90" alt="photo">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="post-block post-board">
+          <div class="post-side-top">
+            <h3 class="side-ttl">Stories</h3>
+            <div class="side-right-control">
+              <div class="side-count">14</div>
+            </div>
+          </div>
+          <div class="post-side-inner">
+            <div class="board-photo-list">
+              <div class="board-image full-image">
+                <img src="http://placehold.it/185x115" alt="photo">
+              </div>
+              <div class="board-image half-image">
+                <img src="http://placehold.it/85x90" alt="photo">
+              </div>
+              <div class="board-image half-image">
+                <img src="http://placehold.it/85x90" alt="photo">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="custom-row">
+
+        <!-- MAIN-CONTENT -->
+        <div class="main-content-layer">
+
+          <app-places-about-box [info]="data.info"></app-places-about-box>
+
+          <div class="post-block post-review-block">
+            <div class="review-inner">
+              <div class="review-info-block half-block" style="border:none">
+                <div class="info-ttl">Working times</div>
+                <div class="info-txt">
+                  <p *ngIf="!data.info.place.trans[0]?.working_days && !data.info.place.trans[0]?.working_times">No
+                    Info</p>
+                  <p>{{data.info.place.trans[0]?.working_days}}<b>{{data.info.place.trans[0]?.working_times}}</b></p>
+                </div>
+              </div>
+              <div class="review-info-block half-block" style="border:none">
+                <div class="info-ttl">Website</div>
+                <div class="info-txt">
+                  <a href="www.disneyland.com" target="blank" class="web-site">www.disneyland.com</a>
+                </div>
+              </div>
+              <!--<div class="review-info-block">-->
+              <!--<div class="info-ttl">Popular times</div>-->
+              <!--<div class="info-txt">-->
+              <!--<div class="chart-layer">-->
+              <!--<img src="http://placehold.it/585x105?text=chart_of_popular_times" alt="chart">-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+            </div>
+          </div>
+
+          <app-user-rating-box [data]="data"></app-user-rating-box>
+
+          <app-places-photo-box [data]="data" [info]="placePhotos"></app-places-photo-box>
+
+          <div class="post-block">
+            <div class="post-side-top">
+              <h3 class="side-ttl">Happing Today in Disneyland</h3>
+            </div>
+            <div class="post-side-inner">
+              <div class="post-map-block">
+                <div class="post-map-inner">
+                  <img src="http://placehold.it/595x360/f2f2f2" alt="map">
+
+                  <div class="dest-img-block" style="top:30px;left:100px;">
+                    <img class="dest-img" src="http://placehold.it/30x30" alt="">
+                    <div class="icon-wrap">
+                      <ul class="icon-list">
+                        <li><i class="fa fa-camera"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="dest-img-block" style="top:90px;left:100px;">
+                    <img class="dest-img" src="http://placehold.it/30x30" alt="">
+                    <div class="icon-wrap">
+                      <ul class="icon-list">
+                        <li>
+                          <img src="./assets/image/reaction-icon-smile-only.png" alt="smile">
+                        </li>
+                        <li><i class="trav-comment-icon"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="post-happen-wrap mCustomScrollbar">
+                <div class="post-happen-block">
+                  <div class="happen-info">
+                    <div class="img-wrap">
+                      <img src="http://placehold.it/30x30" alt="ava">
+                    </div>
+                    <div class="happen-txt">
+                      <a href="#" class="post-name-link">Stephen bugno</a>
+                      <span>added a</span>
+                      <img src="http://placehold.it/20x20" alt="ava" class="xs-avatar">
+                      <a href="#" class="photo-link">Photo</a>
+                    </div>
+                  </div>
+                  <div class="happen-time">
+                    <span>20 minutes ago</span>
+                  </div>
+                </div>
+                <div class="post-happen-block">
+                  <div class="happen-info">
+                    <div class="img-wrap">
+                      <img src="http://placehold.it/30x30" alt="ava">
+                    </div>
+                    <div class="happen-txt">
+                      <a href="#" class="post-name-link">Stephen bugno</a>
+                      <span>added a</span>
+                      <img src="http://placehold.it/20x20" alt="ava" class="xs-avatar">
+                      <a href="#" class="photo-link">Photo</a>
+                    </div>
+                  </div>
+                  <div class="happen-time">
+                    <span>20 minutes ago</span>
+                  </div>
+                </div>
+                <div class="post-happen-block">
+                  <div class="happen-info">
+                    <div class="img-wrap">
+                      <img src="http://placehold.it/30x30" alt="ava">
+                    </div>
+                    <div class="happen-txt">
+                      <a href="#" class="post-name-link">Stephen bugno</a>
+                      <span>added a</span>
+                      <img src="http://placehold.it/20x20" alt="ava" class="xs-avatar">
+                      <a href="#" class="photo-link">Photo</a>
+                    </div>
+                  </div>
+                  <div class="happen-time">
+                    <span>20 minutes ago</span>
+                  </div>
+                </div>
+                <div class="post-happen-block">
+                  <div class="happen-info">
+                    <div class="img-wrap">
+                      <img src="http://placehold.it/30x30" alt="ava">
+                    </div>
+                    <div class="happen-txt">
+                      <a href="#" class="post-name-link">John</a>
+                      <span>asked a</span>
+                      <span class="happen-icon"><i class="fa fa-question"></i></span>
+                      <a href="#" class="photo-link">Question</a>
+                    </div>
+                  </div>
+                  <div class="happen-time">
+                    <span>5 hours ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <app-dcl-slider-wrapper [type]="followersList"
+                                  [settings]="{
+                                    width: 230,
+                                    height: 300,
+                                    count: '20'
+                                  }">
+          </app-dcl-slider-wrapper>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar-layer" id="sidebarLayer">
+          <aside class="sidebar">
+            <app-sidebar-about-box [data]="data"></app-sidebar-about-box>
+          </aside>
+        </div>
+      </div>
+
+
+
+
+      <div class="post-block  clearfix" >
+        <app-dcl-slider-wrapper [type]="trendingList"
+                                [settings]="{
+                                    width: 230,
+                                    height: 300,
+                                    count: '20'
+                                  }">
+        </app-dcl-slider-wrapper>
+      </div>
+
+
+      <app-places-footer [countryData]="countryData" *ngIf="countryData"></app-places-footer>
+
+    </div>
+  </div>
+
+
+</div>

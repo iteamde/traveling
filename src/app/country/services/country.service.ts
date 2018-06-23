@@ -48,12 +48,6 @@ export class CountryService {
     return this.api.get(  `${this.type}/${countryId}?language_id=1`);
   }
 
-  /**
-   * Get number of followers
-   */
-  getNumOfFollowers(countryId): Observable<any> {
-    return this.api.get(  `${this.type}/${countryId}/num_followers?language_id=1`);
-  }
 
   /**
    * Get country statistic
@@ -103,6 +97,15 @@ export class CountryService {
   checkFollowStatus(countryId): Observable<any> {
     return this.api.post(  `${this.type}/${countryId}/checkfollow?language_id=1`, {});
   }
+
+  /**
+   * Get number of followers
+   */
+  getNumOfFollowers(countryId): Observable<any> {
+    return this.api.get(  `${this.type}/${countryId}/num_followers?language_id=1`);
+  }
+
+
 
   /**
    * Report media

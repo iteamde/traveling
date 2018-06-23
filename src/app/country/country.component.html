@@ -1,5 +1,5 @@
 <router-outlet></router-outlet>
-<div class="main-wrapper">
+<div class="main-wrapper" *ngIf="showComponent">
  <app-main-header></app-main-header>
   <div class="content-wrap">
 
@@ -14,7 +14,7 @@
       <!-- left outside menu -->
       <app-left-outside-menu></app-left-outside-menu>
 
-      <app-country-top-banner [data]="data" ></app-country-top-banner>
+      <app-country-top-banner  [data]="data" ></app-country-top-banner>
 
       <div class="top-board-wrap">
         <app-country-gallery-box  [info]="countryMediaData"></app-country-gallery-box>
@@ -64,25 +64,25 @@
         </div>
       </div>
 
-      <app-country-middle-banner [data]="data"></app-country-middle-banner>
+      <app-country-middle-banner  [data]="data"></app-country-middle-banner>
 
       <div class="custom-row">
         <!-- MAIN-CONTENT -->
         <div class="main-content-layer">
-          <app-country-about-box [info]="data.info" ></app-country-about-box>
-          <app-country-about-box2 [info]="data.info"></app-country-about-box2>
-          <app-country-indexes-box [info]="data.info" [isCountry]="isCountry"></app-country-indexes-box>
+          <app-country-about-box [info]="data.info" [isCountry]="isCountry"></app-country-about-box>
+          <app-country-about-box2  [info]="data.info" [isCountry]="isCountry"></app-country-about-box2>
+          <app-country-indexes-box  [info]="data.info" [isCountry]="isCountry"></app-country-indexes-box>
 
           <app-country-emergency-number [info]="data.info.emergency"></app-country-emergency-number>
 
-          <app-dcl-slider-wrapper [type]="placesList"
+          <app-dcl-slider-wrapper *ngIf="showComponent" [type]="placesList"
                                   [settings]="{
                                     width: 230,
                                     height: 300,
                                     count: data.places.length
                                   }">
           </app-dcl-slider-wrapper>
-          <app-dcl-slider-wrapper [type]="holidaysList"
+          <app-dcl-slider-wrapper  *ngIf="showComponent" [type]="holidaysList"
                                   [settings]="{
                                     width: 274,
                                     height: 234,
@@ -90,53 +90,66 @@
                                   }">
           </app-dcl-slider-wrapper>
 
+
+
+
           <div class="post-block post-country-block">
             <div class="post-side-top">
               <h3 class="side-ttl">Accessibility</h3>
             </div>
             <div class="post-country-inner post-full-inner">
               <div class="post-map-block">
+
                 <div class="post-map-inner">
-                  <img src="http://placehold.it/595x360" alt="map">
+                  <!--<img src="http://placehold.it/595x360" alt="map">-->
+                  <agm-map [latitude]="+data.info.lat" [longitude]="+data.info.lng"></agm-map>
+
                   <div class="post-top-map-tabs">
-                    <div class="map-tab" data-tab="atmTxt">
+
+                    <div class="map-tab" data-tab="atmTxt" (click)="setCurrentTab(0)" [ngClass]="{'current' : activeTab === 0 }">
                       <div class="tab-icon"><i class="trav-atms-icon"></i></div>
                       <div class="tab-txt">ATMs</div>
                     </div>
-                    <div class="map-tab" data-tab="wifiTxt">
+
+                    <div class="map-tab" data-tab="wifiTxt" (click)="setCurrentTab(1)" [ngClass]="{'current' : activeTab === 1 }">
                       <div class="tab-icon"><i class="trav-internet-icon"></i></div>
                       <div class="tab-txt">Internet</div>
                     </div>
-                    <div class="map-tab" data-tab="socketTxt">
+
+                    <div class="map-tab" data-tab="socketTxt" (click)="setCurrentTab(2)" [ngClass]="{'current' : activeTab === 2 }">
                       <div class="tab-icon"><i class="trav-sockets-icon"></i></div>
                       <div class="tab-txt">Sockets</div>
                     </div>
-                    <div class="map-tab current" data-tab="hotelTxt">
-                      <div class="tab-icon"><i class="trav-hotels-icon"></i></div>
-                      <div class="tab-txt">Hotels</div>
-                    </div>
+
+                    <!--<div class="map-tab current" data-tab="hotelTxt">-->
+                      <!--<div class="tab-icon"><i class="trav-hotels-icon"></i></div>-->
+                      <!--<div class="tab-txt">Hotels</div>-->
+                    <!--</div>-->
                   </div>
+
                   <div class="post-map-area">
-                    <div class="area-txt" id="atmTxt" style="display:none;">
+                    <div class="area-txt" id="atmTxt" *ngIf="activeTab === 0">
                       <h5 class="ttl">425,000</h5>
                       <p>ATM machines</p>
                     </div>
-                    <div class="area-txt" id="wifiTxt" style="display:none;">
-                      <h5 class="ttl">547.486</h5>
-                      <p>Free WIFI Hotspots</p>
+
+                    <div class="area-txt" id="wifiTxt" *ngIf="activeTab === 1">
+                      <p>{{data.info.trans[0].internet}}</p>
                     </div>
-                    <div class="area-txt" id="socketTxt" style="display:none;">
-                      <img src="./assets/image/types-blue-icons.png" alt="icons">
+
+                    <div class="area-txt" id="socketsTxt" *ngIf="activeTab === 2">
+                      <p>{{data.info.trans[0].sockets}}</p>
                     </div>
-                    <div class="area-txt" id="hotelTxt">
-                      <h5 class="ttl">37,000</h5>
-                      <p>Available Hotels</p>
-                    </div>
+
+                    <!--<div class="area-txt" id="socketTxt" style="display:none;">-->
+                      <!--<img src="./assets/image/types-blue-icons.png" alt="icons">-->
+                    <!--</div>-->
+                    <!--<div class="area-txt" id="hotelTxt">-->
+                      <!--<h5 class="ttl">37,000</h5>-->
+                      <!--<p>Available Hotels</p>-->
+                    <!--</div>-->
                   </div>
                 </div>
-              </div>
-              <div class="post-txt-wrap">
-                <p class="post-txt">Hotels are commonly available</p>
               </div>
             </div>
           </div>
@@ -305,7 +318,7 @@
             </div>
           </div>-->
 
-          <app-country-budget-box *ngIf="data.info.trans[0].other" [data]="data.info.trans[0].other"></app-country-budget-box>
+          <app-country-budget-box *ngIf="data.info.trans[0].other && showComponent" [data]="data.info.trans[0].other"></app-country-budget-box>
 
           <div class="post-block post-tips-list-block">
             <div class="post-top-layer">
@@ -328,7 +341,6 @@
             </div>
 
             <div class="post-list-inner" *ngIf="data.info.trans[0].planning_tips">
-
 
                 <div class="tips-container" *ngFor="let item of planningTips | keys">
 
@@ -538,25 +550,30 @@
             <!--</div>-->
           <!--</div>-->
 
-          <div class="post-block post-tips-list-block">
+          <div class="post-block post-tips-list-block"  *ngIf="data.info.trans[0].health_notes">
             <div class="post-top-layer">
               <div class="top-left">
                 <h3 class="post-tip-ttl">Risk of Disease</h3>
               </div>
             </div>
             <div class="post-list-inner">
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Malaria</b></div>
-                <div class="row-txt"><span>Laoreet nibh nec odio porta consectetur.</span></div>
+
+              <div class="post-tip-row tip-txt" *ngFor="let item of (healthNotes | keys) | slice:1">
+                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
+                <div class="row-txt"><span>{{item.value}}</span></div>
               </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dengue</b></div>
-                <div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>
-              </div>
-              <div class="post-tip-row tip-txt">
-                <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hepatits</b></div>
-                <div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>
-              </div>
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Malaria</b></div>-->
+                <!--<div class="row-txt"><span>Laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dengue</b></div>-->
+                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
+              <!--</div>-->
+              <!--<div class="post-tip-row tip-txt">-->
+                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hepatits</b></div>-->
+                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
+              <!--</div>-->
             </div>
           </div>
 

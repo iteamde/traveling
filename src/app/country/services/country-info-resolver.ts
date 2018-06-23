@@ -13,9 +13,10 @@ export class CountryInfoResolver implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot) {
+
     const countryId = route.paramMap.get('id');
 
-    switch (route.paramMap.get('type')) {
+    switch (route.url[0].path) {
 
       case 'city':
         this.countryService.setType('cities');
@@ -59,6 +60,7 @@ export class CountryInfoResolver implements Resolve<any> {
         places: res[5].data.places,
         followStatus: res[6].success
       };
+
       return country;
     });
   }

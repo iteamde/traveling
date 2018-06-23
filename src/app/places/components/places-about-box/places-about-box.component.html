@@ -1,0 +1,56 @@
+<div class="post-block post-country-block">
+  <div class="post-side-top">
+    <h3 class="side-ttl">About this Place</h3>
+  </div>
+  <div class="post-country-inner">
+    <div class="post-footer-info">
+      <div class="post-foot-block">
+        <i class="trav-comment-icon"></i>
+        <span class="blue-txt">Discussed</span>&nbsp;
+        <span>by</span>&nbsp;
+        <b>john moline, pitter garmen, richerd</b>&nbsp;
+        <span>and 437 more</span>
+      </div>
+    </div>
+    <div class="post-txt-wrap">
+      <p class="post-txt">{{info.place.trans[0]?.description ? info.place.trans[0].description : 'No description'}}</p>
+    </div>
+    <div class="post-map-block">
+      <div class="post-map-inner">
+        <agm-map [latitude]="+info.place?.lat" [longitude]="+info.place?.lng"></agm-map>
+        <div class="post-top-map-info">
+          <div class="info-block">
+            <div class="info-icon">
+              <i class="trav-popularity-icon"></i>
+            </div>
+            <div class="info-txt">
+              <div  class="info-ttl">{{info.place.trans[0]?.popularity ? info.place.trans[0]?.popularity : 'No Info'}}</div>
+              <div class="info-smpl">Popularity</div>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-icon">
+              <i class="trav-safety-big-icon"></i>
+            </div>
+            <div class="info-txt">
+              <div class="info-ttl">9/10</div>
+              <div class="info-smpl">Safety</div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="post-map-flag">-->
+          <!--<img *ngIf="info.iso_code" class="flag-image" src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + info.iso_code.toLowerCase() + '.png'}}" alt="flag">-->
+        <!--</div>-->
+      </div>
+    </div>
+    <br>
+    <div class="post-place-footer">
+      <div class="place-address">
+        <span class="address-label">Address:</span>
+        <span>{{info.place.trans[0]?.address}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+

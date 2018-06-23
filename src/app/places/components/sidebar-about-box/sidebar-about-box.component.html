@@ -1,0 +1,71 @@
+<div class="post-block post-photo-block">
+  <div class="photo-inner">
+    <img src="{{this.randomImage ? 'https://s3.amazonaws.com/travooo-images2/' + this.randomImage : 'http://placehold.it/350x405/74828b'}}" alt="photo">
+    <div class="photo-text-cover">
+      <div class="photo-top-layer">
+        <div class="place-info">
+          <div class="place-name">
+            {{data.info.place.trans[0]?.title ? data.info.place.trans[0]?.title : '' }}
+          </div>
+          <div class="photo-like">
+            <i class="trav-heart-fill-icon"></i>
+            <span class="txt">185 Likes</span>
+          </div>
+        </div>
+        <div class="photo-popup-link">
+          <a href="#">
+            <i class="trav-gallery-o-icon"></i>
+          </a>
+        </div>
+      </div>
+      <div class="author-info">Photo by <span>Patrick smith</span></div>
+    </div>
+  </div>
+  <div class="follow-block-info">
+    <ul class="foot-avatar-list">
+      <li><img class="small-ava" src="http://placehold.it/29x29" alt="ava"></li><!--
+                    -->
+      <li><img class="small-ava" src="http://placehold.it/29x29" alt="ava"></li><!--
+                    -->
+      <li><img class="small-ava" src="http://placehold.it/29x29" alt="ava"></li>
+    </ul>
+    <i class="trav-comment-plus-icon"></i>
+    <span>64K Following this place</span>
+  </div>
+  <div class="photo-btn-wrap">
+    <a class="btn btn-light-red" href="#">Book a hotel/flight</a>
+  </div>
+</div>
+
+<div class="share-page-block">
+  <div class="share-page-inner">
+    <div class="share-txt">Share this page</div>
+    <ul class="share-list">
+      <li>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-code"></i></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="aside-footer">
+  <ul class="aside-foot-menu">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Advertising</a></li>
+    <li><a href="#">Cookies</a></li>
+    <li><a href="#">More</a></li>
+  </ul>
+  <p class="copyright">Travooo &copy; 2017</p>
+</div>
+
+

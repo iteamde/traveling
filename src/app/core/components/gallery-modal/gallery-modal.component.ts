@@ -39,6 +39,7 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log("data.params",  this.data)
     this.currentIndex = findIndex(this.medias, {id: +this.data.params.mediaId});
     this.currentIndex = (this.currentIndex === -1) ? 0 : this.currentIndex;
     this.getReactions();

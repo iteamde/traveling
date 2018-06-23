@@ -17,7 +17,7 @@
         Country in <a >{{data.info.region.trans[0].title}}</a>
       </p>
       <p *ngIf="!data.info.region" class="post-card-placement">
-        City in <a >{{data.info.country.trans[0].title}}</a>
+        City in <a [routerLink]="['/country', data.info.countries_id]">{{data.info.country.trans[0].title}}</a>
       </p>
       <ul class="post-footer-info-list">
         <li>

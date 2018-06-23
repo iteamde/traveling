@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CountryService} from '../../services/country.service';
+
 
 @Component({
   selector: 'app-country-about-box',
@@ -8,15 +8,15 @@ import {CountryService} from '../../services/country.service';
 })
 export class CountryAboutBoxComponent implements OnInit {
   @Input() info;
+  @Input() isCountry;
 
-  isCountry: boolean;
 
-  constructor(private countryService: CountryService) {
+  constructor() {
 
-    this.isCountry = this.countryService.getType() === 'countries';
   }
 
   ngOnInit() {
+
   }
 
 }

@@ -1,0 +1,95 @@
+<!--<div class="post-block">-->
+  <!--<div class="post-side-top">-->
+    <!--<h3 class="side-ttl">Places <span class="count">{{(stats | async).places}}</span></h3>-->
+    <!--<div class="side-right-control">-->
+      <!--<a  class="see-more-link">See all</a>-->
+      <!--<a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>-->
+      <!--<a  class="slide-link slide-next"><i class="trav-angle-right"></i></a>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="post-side-inner">-->
+    <!--<div class="post-slide-wrap slide-hide-right-margin">-->
+      <!--<ul id="citiesSlider" class="post-slider clearfix">-->
+        <!--<li  class="slider-item" *ngFor="let item of (data | async)" [ngStyle]="{'width.px': settings.width,'height.px': settings.height}">-->
+          <!--<img *ngIf="!item.medias.length" src="http://placehold.it/230x300" alt="">-->
+          <!--<img [ngStyle]="{'width.px': settings.width,'height.px': settings.height}" *ngIf="item.medias.length" src="{{'https://s3.amazonaws.com/travooo-images2/' + item.medias[0].url}}" alt="">-->
+          <!--<div class="post-slider-caption transparent-caption">-->
+            <!--<p class="post-slide-name">{{item.trans[0].title}}</p>-->
+          <!--</div>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+
+
+
+<div class="post-block">
+  <div class="post-side-top">
+    <h3 class="side-ttl">People following this place <span class="count">64K</span></h3>
+    <div class="side-right-control">
+      <a href="#" class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
+      <a href="#" class="slide-link slide-next"><i class="trav-angle-right"></i></a>
+    </div>
+  </div>
+  <div class="post-side-inner">
+    <div class="post-slide-wrap slide-hide-right-margin">
+      <ul id="newPeopleDiscover" class="post-slider">
+        <li class="post-follow-card">
+          <div class="follow-card-inner">
+            <div class="image-wrap">
+              <img src="http://placehold.it/42x42" alt="">
+            </div>
+            <div class="post-slider-caption">
+              <p class="post-card-name">Stephanie small</p>
+              <p class="post-card-spec">Photographer</p>
+              <button type="button" class="btn btn-light-grey btn-bordered">Follow</button>
+              <p class="post-card-follow-count">12K Followers</p>
+            </div>
+          </div>
+        </li>
+        <li class="post-follow-card">
+          <div class="follow-card-inner">
+            <div class="image-wrap">
+              <img src="http://placehold.it/42x42" alt="">
+            </div>
+            <div class="post-slider-caption">
+              <p class="post-card-name">Beatriz kim park</p>
+              <p class="post-card-spec">Traveler</p>
+              <button type="button" class="btn btn-light-primary btn-bordered">Following</button>
+              <p class="post-card-follow-count">248 Followers</p>
+            </div>
+          </div>
+        </li>
+        <li class="post-follow-card">
+          <div class="follow-card-inner">
+            <div class="image-wrap">
+              <img src="http://placehold.it/42x42" alt="">
+            </div>
+            <div class="post-slider-caption">
+              <p class="post-card-name">Kathleen brown</p>
+              <p class="post-card-spec">Write</p>
+              <button type="button" class="btn btn-light-grey btn-bordered">Follow</button>
+              <p class="post-card-follow-count">39 Followers</p>
+            </div>
+          </div>
+        </li>
+        <li class="post-follow-card">
+          <div class="follow-card-inner">
+            <div class="image-wrap">
+              <img src="http://placehold.it/42x42" alt="">
+            </div>
+            <div class="post-slider-caption">
+              <p class="post-card-name">Alex ah</p>
+              <p class="post-card-spec">Photographer</p>
+              <button type="button" class="btn btn-light-grey btn-bordered">Follow</button>
+              <p class="post-card-follow-count">8K Followers</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

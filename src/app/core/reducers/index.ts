@@ -8,7 +8,7 @@ import * as fromError from './error.reducer';
 import * as fromAuth from '../../auth/reducers/auth.reducer';
 import * as fromTripPlanner from '../../trip-planner/reducers/trip-planner.reducer';
 import * as fromCountry from '../../country/reducers/country.reducer';
-
+import * as fromPlaces from '../../places/reducers/places.reducer';
 
 
 /**
@@ -20,6 +20,7 @@ export interface State {
   error: fromError.State;
   tripPlanner: fromTripPlanner.State;
   country: fromCountry.State;
+  places: fromPlaces.State;
 }
 
 
@@ -29,7 +30,8 @@ export const reducers: ActionReducerMap<State> = {
   auth: fromAuth.reducer,
   error: fromError.reducer,
   tripPlanner: fromTripPlanner.reducer,
-  country: fromCountry.reducer
+  country: fromCountry.reducer,
+  places: fromPlaces.reducer
 };
 
 /**
@@ -40,6 +42,7 @@ export const getAuthState = (state: State) => state.auth;
 export const getErrorState = (state: State) => state.error;
 export const getTripPlannerState = (state: State) => state.tripPlanner;
 export const getCountryState = (state: State) => state.country;
+export const getPlacesState = (state: State) => state.places;
 
 /**
  *  Core selectors
@@ -74,6 +77,8 @@ export const getAlreadySpent = createSelector(getTripPlannerState, fromTripPlann
 /**
  * Trip module selectors
  */
+
+// country + city
 export const getCountry = createSelector(getCountryState, fromCountry.getCountry);
 export const getCountryInfo = createSelector(getCountryState, fromCountry.getCountryInfo);
 export const getCountryStats = createSelector(getCountryState, fromCountry.getCountryStats);
@@ -86,5 +91,11 @@ export const getTripMedia = createSelector(getCountryState, fromCountry.getTripM
 export const getPlacesMedia = createSelector(getCountryState, fromCountry.getPlacesMedia);
 
 
+// places
 
-
+export const getPlaces = createSelector(getPlacesState, fromPlaces.getPlaces);
+export const getPlacesId = createSelector(getPlacesState, fromPlaces.getPlacesId);
+export const getFollowPlacesStatus = createSelector(getPlacesState, fromPlaces.getFollowPlacesStatus);
+export const getPlacesNearby = createSelector(getPlacesState, fromPlaces.getPlacesNearby);
+export const getPlacesImg = createSelector(getPlacesState, fromPlaces.getPlacesImg);
+export const getPlacesPlans = createSelector(getPlacesState, fromPlaces.getPlacesPlans);

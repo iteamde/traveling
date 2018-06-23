@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CountryBudgetBoxComponent implements OnInit {
   @Input() data;
+  @Input() isCountry;
 
   constructor() { }
 

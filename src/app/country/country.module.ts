@@ -11,7 +11,6 @@ import { LeftOutsideMenuComponent } from './components/left-outside-menu/left-ou
 import { CountryTopBannerComponent } from './components/country-top-banner/country-top-banner.component';
 import { CountryMiddleBannerComponent } from './components/country-middle-banner/country-middle-banner.component';
 import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar-about-box.component';
-import { FollowButtonComponent } from './components/follow-button/follow-button.component';
 import { GalleryModalComponent } from '../core/components/gallery-modal/gallery-modal.component';
 import { CountryAboutBox2Component } from './components/country-about-box2/country-about-box2.component';
 import { CountryIndexesBoxComponent } from './components/country-indexes-box/country-indexes-box.component';
@@ -41,7 +40,6 @@ import {ConvertService} from '../core/services/convert.service';
     CountryTopBannerComponent,
     CountryMiddleBannerComponent,
     SidebarAboutBoxComponent,
-    FollowButtonComponent,
     CountryAboutBox2Component,
     CountryIndexesBoxComponent,
     CountryEmergencyNumberComponent,

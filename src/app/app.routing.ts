@@ -8,6 +8,7 @@ import {PrivacyPolicyComponent} from './core/components/privacy-policy/privacy-p
 import {TermsOfServiceComponent} from './core/components/terms-of-service/terms-of-service.component';
 import {ErrorComponent} from './core/components/error/error.component';
 import {CountryRoutes} from './country/country.routing';
+import {PlacesRoutes} from './places/places.routing';
 
 
 const appRoutes = [
@@ -18,7 +19,8 @@ const appRoutes = [
       ...AuthRoutes,
       ...TripPlannerRoutes,
       ...HomeRoutes,
-      ...CountryRoutes
+      ...CountryRoutes,
+      ...PlacesRoutes
     ],
   },
   {

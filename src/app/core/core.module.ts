@@ -22,6 +22,7 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import {AgmCoreModule} from '@agm/core';
 import { SliderWrapperComponent } from './components/slider-wrapper/slider-wrapper.component';
 import {RegexPipe} from './pipes/matchPipe';
+import {FollowButtonComponent} from './components/follow-button/follow-button.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import {RegexPipe} from './pipes/matchPipe';
     GalleryModalComponent,
     TimeAgoPipe,
     SliderWrapperComponent,
-    RegexPipe
+    RegexPipe,
+    FollowButtonComponent
   ],
   exports: [
     HeaderComponent,
@@ -59,7 +61,8 @@ import {RegexPipe} from './pipes/matchPipe';
     GalleryModalComponent,
     AgmCoreModule,
     SliderWrapperComponent,
-    RegexPipe
+    RegexPipe,
+    FollowButtonComponent
   ]
 })
 export class CoreModule {

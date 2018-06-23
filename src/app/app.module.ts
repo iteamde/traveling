@@ -24,12 +24,15 @@ import { ToastrModule } from 'ngx-toastr';
 import {CountryModule} from './country/country.module';
 import {CountryEffects} from './country/effects/country.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {PlacesModule} from './places/places.module';
+import {PlacesEffects} from './places/effects/places.effects';
 
 const effectsArr = [
   AuthEffects,
   TripPlannerEffects,
   RouterEffects,
-  CountryEffects
+  CountryEffects,
+  PlacesEffects
 ];
 
 @NgModule({
@@ -52,7 +55,8 @@ const effectsArr = [
     Ng4LoadingSpinnerModule.forRoot(),
     ToastrModule.forRoot({positionClass : 'toast-top-right'}),
     TripPlannerModule,
-    CountryModule
+    CountryModule,
+    PlacesModule
   ],
   providers: [
     ApiService,

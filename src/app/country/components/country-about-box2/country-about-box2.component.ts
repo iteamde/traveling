@@ -11,15 +11,15 @@ import {CountryService} from '../../services/country.service';
 })
 export class CountryAboutBox2Component implements OnInit {
   @Input() info;
+  @Input() isCountry;
 
-  isCountry: boolean;
 
   constructor(private modalService: ModalManager, private countryService: CountryService) {
 
-    this.isCountry = this.countryService.getType() === 'countries';
   }
 
   ngOnInit() {
+
   }
 
   showPopup() {
