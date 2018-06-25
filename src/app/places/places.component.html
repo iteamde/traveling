@@ -86,7 +86,10 @@
                 <div class="info-txt">
                   <p *ngIf="!data.info.place.trans[0]?.working_days && !data.info.place.trans[0]?.working_times">No
                     Info</p>
-                  <p>{{data.info.place.trans[0]?.working_days}}<b>{{data.info.place.trans[0]?.working_times}}</b></p>
+                  <p *ngIf="data.info.place.trans[0]?.working_times">
+                    {{data.info.place.trans[0]?.working_days}}<b>{{data.info.place.trans[0]?.working_times}}</b>
+                  </p>
+                  <p *ngIf="!data.info.place.trans[0]?.working_times" [innerHTML]="data.info.place.trans[0]?.working_days | sanitizeHtml"></p>
                 </div>
               </div>
               <div class="review-info-block half-block" style="border:none">

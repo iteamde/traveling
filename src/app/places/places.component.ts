@@ -47,7 +47,6 @@ export class PlacesComponent implements OnInit {
       this.data = res;
 
       this.placesService.getCountryOfPlace(this.data.info.place.countries_id).take(1).subscribe(response => {
-        console.log(this.store)
         this.countryService.setType('countries');
         this.store.dispatch(new SetCountryInfoAction(response));
       });

@@ -16,6 +16,7 @@ import { PlacesPhotoBoxComponent } from './components/places-photo-box/places-ph
 import {FollowersListComponent} from './components/followers-list/followers-list.component';
 import {TrendingPlacesListComponent} from './components/trending-places-list/trending-places-list.component';
 import { PlacesFooterComponent } from './components/places-footer/places-footer.component';
+import {SanitizeHtmlPipe} from '../core/pipes/SanitizeHtmlPipe';
 
 
 
@@ -38,7 +39,8 @@ import { PlacesFooterComponent } from './components/places-footer/places-footer.
     PlacesPhotoBoxComponent,
     FollowersListComponent,
     TrendingPlacesListComponent,
-    PlacesFooterComponent
+    PlacesFooterComponent,
+    SanitizeHtmlPipe
 
   ],
   providers: [

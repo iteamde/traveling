@@ -127,6 +127,16 @@ export class PlacesService {
 
 
 
+
+  /**
+   * Get trending places
+   */
+  getTrendingPlaces(countryId): Observable<any> {
+    return this.api.get(  `countries/${countryId}/places?language_id=1`);
+  }
+
+
+
   /**
    * Get country media
    */
@@ -160,7 +170,8 @@ export class PlacesService {
       this.getCountryMedia(countryId),
       this.getCountryInfo(countryId),
       this.checkCountryFollowStatus(countryId),
-      this.getCountryNumOfFollowers(countryId)
+      this.getCountryNumOfFollowers(countryId),
+      this. getTrendingPlaces(countryId)
     ).map(res => {
       /**
        * If at least one of the items in array has an error === 400 -> navigate to error page
@@ -177,6 +188,7 @@ export class PlacesService {
         info: res[1].data,
         followStatus: res[2].success,
         numOfFollowers: res[3].data.followers,
+        trendingPlaces: res[4].data
 
       };
 
@@ -186,10 +198,7 @@ export class PlacesService {
   }
 }
 
-// API 15: GET [http://uat.travooo.com/api/countries/{country_id}/places?language_id=1|http://uat.travooo.com/api/countries/
-//
-// {country_id}
-// /places?language_id=1]
+
 
 
 

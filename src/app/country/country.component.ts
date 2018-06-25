@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CountryService} from './services/country.service';
 import {getCountry, State} from '../core/reducers';
 import {Store} from '@ngrx/store';
@@ -34,7 +34,6 @@ export class CountryComponent implements OnInit, OnDestroy {
   public planningTips;
   public healthNotes;
   public showComponent = false;
-  public params;
   public activeTab = 0;
 
   constructor(private route: ActivatedRoute,
@@ -52,15 +51,6 @@ export class CountryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    // console.log(this.route)
-    // this.params = this.router.events.take(1).subscribe(
-    //   (res: NavigationStart) => {
-    //     if (/^\/country\/\d+$/i.test(res.url)) this.showComponent = false;
-    //     // TODO: check bug when constructor doesn't execute while change country -> city by routerLink
-    //     //this.getData();
-    //     // this.init();
-    //   }
-    // );
 
   }
 
@@ -128,7 +118,6 @@ init() {
 
 
 ngOnDestroy() {
-  //this.params.unsubscribe();
 
 }
 
