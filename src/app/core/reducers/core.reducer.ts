@@ -1,6 +1,6 @@
-import * as core from '../actions/core.actions';
 import { OPEN_MODAL } from '../actions/core.actions';
 
+import * as core from '../actions/core.actions';
 
 
 export interface State {

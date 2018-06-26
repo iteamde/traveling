@@ -3,9 +3,9 @@
 
     <div class="top-banner-text">
       <div class="place-info-block">
-        <div class="place-title">{{ data.info.place.trans[0]?.title }}<span> #{{ data.info.place.trans[0]?.id }} </span></div>
+        <div class="place-title">{{ data.info.place.trans[0]?.title }}<span> #{{data.info.place?.id}} </span></div>
         <div class="place-placement">
-          <span class="event-tag">{{data.info.place?.place_type}}</span>{{data.info.place?.trans[0].address}}
+          <span class="event-tag">{{data.info.place?.place_type}}</span>{{data.info.place.trans[0]?.address}}
         </div>
         <div class="follow-block-info">
           <ul class="foot-avatar-list">

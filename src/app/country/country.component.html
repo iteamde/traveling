@@ -75,22 +75,20 @@
 
           <app-country-emergency-number [info]="data.info.emergency"></app-country-emergency-number>
 
-          <app-dcl-slider-wrapper *ngIf="showComponent" [type]="placesList"
+          <app-dcl-slider-wrapper *ngIf="showComponent && data?.places.length" [type]="placesList"
                                   [settings]="{
                                     width: 230,
                                     height: 300,
                                     count: data.places.length
                                   }">
           </app-dcl-slider-wrapper>
-          <app-dcl-slider-wrapper  *ngIf="showComponent" [type]="holidaysList"
+          <app-dcl-slider-wrapper  *ngIf="showComponent && data.info?.holidays.length" [type]="holidaysList"
                                   [settings]="{
                                     width: 274,
                                     height: 234,
                                     count: data.info.holidays.length
                                   }">
           </app-dcl-slider-wrapper>
-
-
 
 
           <div class="post-block post-country-block">
@@ -102,7 +100,7 @@
 
                 <div class="post-map-inner">
                   <!--<img src="http://placehold.it/595x360" alt="map">-->
-                  <agm-map [latitude]="+data.info.lat" [longitude]="+data.info.lng"></agm-map>
+                  <agm-map *ngIf="data.info?.lat && data.info?.lng" [latitude]="+data.info.lat" [longitude]="+data.info.lng"></agm-map>
 
                   <div class="post-top-map-tabs">
 
@@ -318,7 +316,7 @@
             </div>
           </div>-->
 
-          <app-country-budget-box *ngIf="data.info.trans[0].other && showComponent" [data]="data.info.trans[0].other"></app-country-budget-box>
+          <app-country-budget-box *ngIf="data.info.trans[0]?.other && showComponent" [data]="data.info.trans[0].other"></app-country-budget-box>
 
           <div class="post-block post-tips-list-block">
             <div class="post-top-layer">
@@ -340,7 +338,7 @@
               </div>
             </div>
 
-            <div class="post-list-inner" *ngIf="data.info.trans[0].planning_tips">
+            <div class="post-list-inner" *ngIf="data.info.trans[0]?.planning_tips">
 
                 <div class="tips-container" *ngFor="let item of planningTips | keys">
 
@@ -358,8 +356,6 @@
                       </ul>
                     </div>
                   </div>
-
-
                 </div>
 
 
@@ -418,7 +414,7 @@
               </div>
             </div>
 
-            <div class="post-list-inner" *ngIf="data.info.trans[0].etiquette && data.info.trans[0].restrictions">
+            <div class="post-list-inner" *ngIf="data.info.trans[0]?.etiquette && data.info.trans[0]?.restrictions">
               <div class="post-tip-row tip-txt" *ngFor="let item of etiquette | keys">
                 <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
                 <div class="row-txt"><span>{{item.value}}</span></div>
@@ -550,7 +546,7 @@
             <!--</div>-->
           <!--</div>-->
 
-          <div class="post-block post-tips-list-block"  *ngIf="data.info.trans[0].health_notes">
+          <div class="post-block post-tips-list-block"  *ngIf="data.info.trans[0]?.health_notes">
             <div class="post-top-layer">
               <div class="top-left">
                 <h3 class="post-tip-ttl">Risk of Disease</h3>

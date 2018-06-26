@@ -1,16 +1,15 @@
 import {Injectable} from '@angular/core';
-import {Resolve, Router} from '@angular/router';
-import {ActivatedRouteSnapshot} from '@angular/router';
+import {Resolve, Router, ActivatedRouteSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
+
 import {PlacesService} from './places.service';
 
+import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class PlacesInfoResolver implements Resolve<any> {
   constructor(private placesService: PlacesService,
-              private router: Router) {
-  }
+              private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot) {
 
@@ -27,8 +26,6 @@ export class PlacesInfoResolver implements Resolve<any> {
       this.placesService.checkFollowStatus(placesId),
       this.placesService.nearby(placesId),
       this.placesService.checkFollowers(placesId)
-
-
     ).map(res => {
 
       /**
@@ -45,7 +42,7 @@ export class PlacesInfoResolver implements Resolve<any> {
         media: res[0].data.medias,
         info: res[1].data,
         numOfFollowers: res[2].data.followers,
-        stats: res[3].data.stats,
+        stats: res[3].data.places_statistics,
         plans: res[4].data,
         discussions: res[5].data.discussions,
         reviews: res[6].data.place,

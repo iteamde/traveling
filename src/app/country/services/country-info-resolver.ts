@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Resolve, Router} from '@angular/router';
-import {ActivatedRouteSnapshot} from '@angular/router';
-import {CountryService} from './country.service';
+import {Resolve, Router, ActivatedRouteSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
+
+import {CountryService} from './country.service';
+
 import 'rxjs/add/observable/forkJoin';
 
 

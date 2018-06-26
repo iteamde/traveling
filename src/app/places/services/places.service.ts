@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {ApiService} from '../../core/services/api.service';
 import { Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 
+import {ApiService} from '../../core/services/api.service';
 
 
 @Injectable()
@@ -12,9 +12,7 @@ export class PlacesService {
     private api: ApiService,
     private router: Router) {
 
-
   }
-
 
   /**
    * Get places info
@@ -23,14 +21,12 @@ export class PlacesService {
     return this.api.get(  `places/${placesId}?language_id=1`);
   }
 
-
   /**
    * Get number of followers
    */
   getNumOfFollowers(placesId): Observable<any> {
     return this.api.get(  `places/${placesId}/num_followers?language_id=1`);
   }
-
 
   /**
    * Get places statistic
@@ -39,8 +35,6 @@ export class PlacesService {
     return this.api.get(  `places/${placesId}/stats?language_id=1`);
   }
 
-
-
   /**
    * Get places media
    */
@@ -48,14 +42,12 @@ export class PlacesService {
     return this.api.get(  `places/${placesId}/media?language_id=1`);
   }
 
-
   /**
    * Get places trip plans
    */
   getPlacesPlans(placesId): Observable<any> {
     return this.api.get(  `places/${placesId}/plans?language_id=1`);
   }
-
 
   /**
    * Get discussions
@@ -71,16 +63,12 @@ export class PlacesService {
     return this.api.get(  `places/${placesId}/reviews?language_id=1`);
   }
 
-
-
   /**
-   * post nearby
+   * Post nearby
    */
   nearby(placesId): Observable<any> {
     return this.api.post(  `places/${placesId}/nearby?language_id=1`,{});
   }
-
-
 
   /**
    * Follow places
@@ -110,7 +98,6 @@ export class PlacesService {
     return this.api.post(  `places/${placesId}/share?language_id=1`, {});
   }
 
-
   /**
    * Post review
    */
@@ -119,14 +106,11 @@ export class PlacesService {
   }
 
   /**
-   * Check followers
+   * Check place followers
    */
   checkFollowers(placesId): Observable<any> {
     return this.api.post(  `places/${placesId}/followers?language_id=1`, {});
   }
-
-
-
 
   /**
    * Get trending places
@@ -134,8 +118,6 @@ export class PlacesService {
   getTrendingPlaces(countryId): Observable<any> {
     return this.api.get(  `countries/${countryId}/places?language_id=1`);
   }
-
-
 
   /**
    * Get country media
@@ -164,7 +146,9 @@ export class PlacesService {
     return this.api.get(  `countries/${countryId}/num_followers?language_id=1`);
   }
 
-
+  /**
+   * Get country info  of the place
+   */
   getCountryOfPlace(countryId) {
     return Observable.forkJoin(
       this.getCountryMedia(countryId),
@@ -189,12 +173,10 @@ export class PlacesService {
         followStatus: res[2].success,
         numOfFollowers: res[3].data.followers,
         trendingPlaces: res[4].data
-
       };
 
-      console.log(countryInfo)
       return countryInfo;
-    })
+    });
   }
 }
 

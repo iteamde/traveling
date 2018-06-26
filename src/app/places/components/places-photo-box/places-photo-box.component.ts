@@ -16,7 +16,7 @@ export class PlacesPhotoBoxComponent implements OnInit {
   ngOnInit() {
   }
 
-  openGallery(e){
+  openGallery(e) {
     e.preventDefault();
     if (this.info.media.length && this.info.media[0].id) {
       this.router.navigate([`${this.router.url}/${this.info.routePath}/${this.info.media[0].id}`]);

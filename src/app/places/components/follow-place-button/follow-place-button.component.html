@@ -1,4 +1,3 @@
-
-
-
-<a class="btn btn-light-primary"  (click)="toggleFollow($event)">Follow</a>
+<a class="btn"  [ngClass] ="{'btn-light-grey': !isFollowed, 'btn-light-primary': isFollowed }"
+   (click)="toggleFollow($event)">{{isFollowed ? 'Unfollow' : 'Follow'}}
+</a>

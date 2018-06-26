@@ -2,7 +2,9 @@ import { ActionReducerMap} from '@ngrx/store';
 import {createSelector} from 'reselect';
 
 
-// Imports from reducers
+/**
+ * Import from reducers
+ */
 import * as fromCore from './core.reducer';
 import * as fromError from './error.reducer';
 import * as fromAuth from '../../auth/reducers/auth.reducer';
@@ -24,7 +26,9 @@ export interface State {
 }
 
 
-// Map of the reducers
+/**
+ * Map of the reducers
+ */
 export const reducers: ActionReducerMap<State> = {
   core: fromCore.reducer,
   auth: fromAuth.reducer,
@@ -89,6 +93,9 @@ export const getCountryHolidays = createSelector(getCountryState, fromCountry.ge
 export const getCountryMedia = createSelector(getCountryState, fromCountry.getCountryMedia);
 export const getTripMedia = createSelector(getCountryState, fromCountry.getTripMedia);
 export const getPlacesMedia = createSelector(getCountryState, fromCountry.getPlacesMedia);
+export const getCountryTrendingPlaces = createSelector(getCountryState, fromCountry.getCountryTrendingPlaces);
+
+
 
 
 // places

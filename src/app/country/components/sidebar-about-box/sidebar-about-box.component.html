@@ -4,7 +4,7 @@
       <img src="http://placehold.it/400x210" alt="">
       <div class="post-place-image-info">
         <div class="place-flag-image">
-          <img *ngIf="data.info.iso_code" class="flag-image" src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + data.info.iso_code.toLowerCase() + '.png'}}" alt="flag">
+          <img *ngIf="data.info?.iso_code" class="flag-image" src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + data.info.iso_code.toLowerCase() + '.png'}}" alt="flag">
         </div>
         <div class="follow-btn-wrap">
           <app-follow-button></app-follow-button>
@@ -12,20 +12,20 @@
       </div>
     </div>
     <div class="post-slider-caption">
-      <p class="post-place-name" >{{data.info.trans[0].title}}</p>
-      <p *ngIf="data.info.region" class="post-card-placement">
-        Country in <a >{{data.info.region.trans[0].title}}</a>
+      <p class="post-place-name" >{{data.info.trans[0]?.title}}</p>
+      <p *ngIf="data.info?.region" class="post-card-placement">
+        Country in <a >{{data.info.region.trans[0]?.title}}</a>
       </p>
-      <p *ngIf="!data.info.region" class="post-card-placement">
-        City in <a [routerLink]="['/country', data.info.countries_id]">{{data.info.country.trans[0].title}}</a>
+      <p *ngIf="!data.info?.region" class="post-card-placement">
+        City in <a [routerLink]="['/country', data.info.countries_id]">{{data.info.country.trans[0]?.title}}</a>
       </p>
       <ul class="post-footer-info-list">
         <li>
-          <p class="info-count">{{data.numOfFollowers}}</p>
+          <p class="info-count">{{data?.numOfFollowers}}</p>
           <p class="info-label">Followers</p>
         </li>
         <li>
-          <p class="info-count">{{data.stats.trips}}</p>
+          <p class="info-count">{{data.stats?.trips}}</p>
           <p class="info-label">Trip Plans</p>
         </li>
         <li>

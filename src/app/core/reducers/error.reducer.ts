@@ -1,7 +1,6 @@
-import * as error from '../actions/error.actions';
 import {ADD_ERROR, REMOVE_ERROR} from '../actions/error.actions';
 
-
+import * as error from '../actions/error.actions';
 
 export interface State {
   errorFromServer: any;

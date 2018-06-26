@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
-import * as error from '../../core/actions/error.actions';
-import * as places from '../actions/places.actions';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
+
 import {PlacesService} from '../services/places.service';
 
+import * as error from '../../core/actions/error.actions';
+import * as places from '../actions/places.actions';
+
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PlacesEffects {
@@ -34,6 +36,5 @@ export class PlacesEffects {
    * @param router
    */
   constructor(private actions$: Actions,
-              private placesService: PlacesService
-  ) {}
+              private placesService: PlacesService) {}
 }

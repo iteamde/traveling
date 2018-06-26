@@ -10,8 +10,6 @@ export class ConvertService {
   convertSwitch(property, pattern: string) {
     if (!property) return
 
-   // console.log(/\r\n\r\n\u2022/.test(property))
-
     if (/\r\n\r\n\u2022/.test(property)) {
       return this.convertOneStr(property, pattern);
     } else {
@@ -28,9 +26,6 @@ export class ConvertService {
      * @property -> string to be converted in object
      * @pattern -> split string by this pattern
      */
-
-   // console.log(property)
-
     let jsonStrig = '{';
     const data = property.split(pattern);
     data.forEach((item) => {
@@ -45,7 +40,6 @@ export class ConvertService {
 
 
   convertOneStr(property, pattern: string) {
-   // console.log(property)
     const current = property.split('\r\n\r\n\u2022');
     current[1] = current[1].split('\r\n\u2022');
     const obj = {};

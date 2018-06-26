@@ -3,8 +3,8 @@
   <img class="banner-city" *ngIf="data.media.length" src="{{'https://s3.amazonaws.com/travooo-images2/' + data.media[0].url}}" alt="banner">
   <div class="banner-cover-txt">
     <div class="banner-name">
-      <div *ngIf="data.info.trans[0].title" class="banner-ttl">{{data.info.trans[0].title}}</div>
-      <div *ngIf="data.info.region" class="sub-ttl">Country in {{data.info.region.trans[0].title}}</div>
+      <div *ngIf="data.info.trans[0]?.title" class="banner-ttl">{{data.info.trans[0]?.title}}</div>
+      <div *ngIf="data.info?.region" class="sub-ttl">Country in {{data.info.region.trans[0]?.title}}</div>
     </div>
     <div class="banner-btn">
       <app-follow-button></app-follow-button>

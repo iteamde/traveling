@@ -13,18 +13,25 @@
       </div>
     </div>
     <div class="post-txt-wrap">
-      <p class="post-txt">{{info.place.trans[0]?.description ? info.place.trans[0].description : 'No description'}}</p>
+      <p class="post-txt">
+        {{info.place.trans[0]?.description ? info.place.trans[0].description : 'No description'}}
+      </p>
     </div>
     <div class="post-map-block">
       <div class="post-map-inner">
-        <agm-map [latitude]="+info.place?.lat" [longitude]="+info.place?.lng"></agm-map>
+        <agm-map *ngIf="info.place?.lat && info.place?.lng"
+                 [latitude]="+info.place?.lat"
+                 [longitude]="+info.place?.lng">
+        </agm-map>
         <div class="post-top-map-info">
           <div class="info-block">
             <div class="info-icon">
               <i class="trav-popularity-icon"></i>
             </div>
             <div class="info-txt">
-              <div  class="info-ttl">{{info.place.trans[0]?.popularity ? info.place.trans[0]?.popularity : 'No Info'}}</div>
+              <div  class="info-ttl">
+                {{info.place.trans[0]?.popularity ? info.place.trans[0]?.popularity : 'No Info'}}
+              </div>
               <div class="info-smpl">Popularity</div>
             </div>
           </div>

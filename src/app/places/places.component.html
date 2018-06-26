@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 
-<div class="main-wrapper">
+<div class="main-wrapper" *ngIf="showComponent">
 
   <app-main-header></app-main-header>
 
@@ -224,29 +224,24 @@
         <!-- SIDEBAR -->
         <div class="sidebar-layer" id="sidebarLayer">
           <aside class="sidebar">
-            <app-sidebar-about-box [data]="data"></app-sidebar-about-box>
+            <app-sidebar-about-box *ngIf="data && showComponent" [data]="data"></app-sidebar-about-box>
           </aside>
         </div>
       </div>
 
-
-
-
       <div class="post-block  clearfix" >
-        <app-dcl-slider-wrapper [type]="trendingList"
+        <app-dcl-slider-wrapper *ngIf="countryData && countryData.trendingPlaces?.places.length"
+                                [type]="trendingList"
                                 [settings]="{
                                     width: 230,
                                     height: 300,
-                                    count: '20'
+                                    count: countryData.trendingPlaces.places.length
                                   }">
         </app-dcl-slider-wrapper>
       </div>
 
-
-      <app-places-footer [countryData]="countryData" *ngIf="countryData"></app-places-footer>
+      <app-places-footer [countryData]="countryData" *ngIf="countryData && countryData.media.length"></app-places-footer>
 
     </div>
   </div>
-
-
 </div>

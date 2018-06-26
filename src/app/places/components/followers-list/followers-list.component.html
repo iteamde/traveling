@@ -1,42 +1,14 @@
-<!--<div class="post-block">-->
-  <!--<div class="post-side-top">-->
-    <!--<h3 class="side-ttl">Places <span class="count">{{(stats | async).places}}</span></h3>-->
-    <!--<div class="side-right-control">-->
-      <!--<a  class="see-more-link">See all</a>-->
-      <!--<a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>-->
-      <!--<a  class="slide-link slide-next"><i class="trav-angle-right"></i></a>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="post-side-inner">-->
-    <!--<div class="post-slide-wrap slide-hide-right-margin">-->
-      <!--<ul id="citiesSlider" class="post-slider clearfix">-->
-        <!--<li  class="slider-item" *ngFor="let item of (data | async)" [ngStyle]="{'width.px': settings.width,'height.px': settings.height}">-->
-          <!--<img *ngIf="!item.medias.length" src="http://placehold.it/230x300" alt="">-->
-          <!--<img [ngStyle]="{'width.px': settings.width,'height.px': settings.height}" *ngIf="item.medias.length" src="{{'https://s3.amazonaws.com/travooo-images2/' + item.medias[0].url}}" alt="">-->
-          <!--<div class="post-slider-caption transparent-caption">-->
-            <!--<p class="post-slide-name">{{item.trans[0].title}}</p>-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-
-
-
-
 <div class="post-block">
   <div class="post-side-top">
     <h3 class="side-ttl">People following this place <span class="count">64K</span></h3>
     <div class="side-right-control">
-      <a href="#" class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
-      <a href="#" class="slide-link slide-next"><i class="trav-angle-right"></i></a>
+      <a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
+      <a  class="slide-link slide-next"><i class="trav-angle-right"></i></a>
     </div>
   </div>
   <div class="post-side-inner">
     <div class="post-slide-wrap slide-hide-right-margin">
-      <ul id="newPeopleDiscover" class="post-slider">
+      <ul id="newPeopleDiscover" class="post-slider clearfix">
         <li class="post-follow-card">
           <div class="follow-card-inner">
             <div class="image-wrap">
