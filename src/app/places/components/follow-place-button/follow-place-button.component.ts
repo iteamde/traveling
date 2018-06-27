@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-
-import {getFollowPlacesStatus, getPlacesId, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+
+import {getFollowPlacesStatus, getPlacesId, State} from '../../../core/reducers';
 import {FollowPlacesAction, UnfollowPlacesAction} from '../../actions/places.actions';
 
 @AutoUnsubscribe({includeArrays: true})
@@ -27,7 +27,7 @@ export class FollowPlaceButtonComponent implements OnInit, OnDestroy {
 
   toggleFollow(e) {
     e.preventDefault();
-    console.log("ID:", this.id);
+    console.log('ID:', this.id);
     console.log(this.isFollowed);
     this.isFollowed ?
       this.store.dispatch(new UnfollowPlacesAction(this.id)) :

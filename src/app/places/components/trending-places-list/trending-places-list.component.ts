@@ -20,7 +20,9 @@ export class TrendingPlacesListComponent implements OnInit {
   }
 
   navigateToPlace(id) {
-    if(id) this.router.navigate(['/places/', id]);
+    if (id) {
+      this.router.navigate(['/places/', id]);
+    }
 
   }
 }

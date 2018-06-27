@@ -27,7 +27,7 @@ module.exports = "<router-outlet></router-outlet>\r\n<ng4-loading-spinner> </ng4
 /***/ "./src/app/app.component.scss":
 /***/ (function(module, exports) {
 
-module.exports = ":host/deep/ .slider-item:hover {\n  cursor: pointer; }\n"
+module.exports = ":host/deep/ .slider-item:hover, :host/deep/ .see-more-link:hover {\n  cursor: pointer; }\n"
 
 /***/ }),
 
@@ -3486,7 +3486,7 @@ var RegexPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/core/pipes/mathRandom.ts":
+/***/ "./src/app/core/pipes/mathRandomPipe.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3503,7 +3503,7 @@ var MathRandomPipe = /** @class */ (function () {
     function MathRandomPipe() {
     }
     MathRandomPipe.prototype.transform = function (item) {
-        return item[Math.floor(Math.random() * item.length)].url;
+        return item[Math.floor(Math.random() * item.length)];
     };
     MathRandomPipe = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: 'mathRandom' })
@@ -4735,7 +4735,7 @@ var LeftOutsideMenuComponent = /** @class */ (function () {
 /***/ "./src/app/country/components/places-list/places-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"post-block\">\r\n  <div class=\"post-side-top\">\r\n    <h3 class=\"side-ttl\">Places <span class=\"count\">{{(stats | async).places}}</span></h3>\r\n    <div class=\"side-right-control\">\r\n      <a  class=\"see-more-link\">See all</a>\r\n      <a  class=\"slide-link slide-prev\"><i class=\"trav-angle-left\"></i></a>\r\n      <a  class=\"slide-link slide-next\"><i class=\"trav-angle-right\"></i></a>\r\n    </div>\r\n  </div>\r\n  <div class=\"post-side-inner\">\r\n    <div class=\"post-slide-wrap slide-hide-right-margin\">\r\n      <ul id=\"citiesSlider\" class=\"post-slider clearfix\">\r\n        <li  class=\"slider-item\" *ngFor=\"let item of (data | async)\"\r\n             [ngStyle]=\"{'width.px': settings.width,'height.px': settings.height}\" (click)=\"navigateToPlace(item.id)\">\r\n          <img *ngIf=\"!item.medias.length\" src=\"http://placehold.it/230x300\" alt=\"\">\r\n          <img [ngStyle]=\"{'width.px': settings.width,'height.px': settings.height}\" *ngIf=\"item.medias.length\" src=\"{{'https://s3.amazonaws.com/travooo-images2/' + item.medias[0].url}}\" alt=\"\">\r\n          <div class=\"post-slider-caption transparent-caption\">\r\n            <p class=\"post-slide-name\">{{item.trans[0]?.title}}</p>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"post-block\">\r\n  <div class=\"post-side-top\">\r\n    <h3 class=\"side-ttl\">Places <span class=\"count\">{{(stats | async).places}}</span></h3>\r\n    <div class=\"side-right-control\">\r\n      <a  class=\"see-more-link\">See all</a>\r\n      <a  class=\"slide-link slide-prev\"><i class=\"trav-angle-left\"></i></a>\r\n      <a  class=\"slide-link slide-next\"><i class=\"trav-angle-right\"></i></a>\r\n    </div>\r\n  </div>\r\n  <div class=\"post-side-inner\">\r\n    <div class=\"post-slide-wrap slide-hide-right-margin\">\r\n      <ul id=\"citiesSlider\" class=\"post-slider clearfix\">\r\n        <li  class=\"slider-item\" *ngFor=\"let item of (data | async)\"\r\n             [ngStyle]=\"{'width.px': settings.width,'height.px': settings.height}\" (click)=\"navigateToPlace(item.id)\">\r\n          <img *ngIf=\"!item.medias.length\" src=\"http://placehold.it/230x300\" alt=\"\">\r\n          <img [ngStyle]=\"{'width.px': settings.width,'height.px': settings.height}\" *ngIf=\"item.medias.length\"\r\n               src=\"{{'https://s3.amazonaws.com/travooo-images2/' + item.medias[0].url}}\" alt=\"\">\r\n          <div class=\"post-slider-caption transparent-caption\">\r\n            <p class=\"post-slide-name\">{{item.trans[0]?.title}}</p>\r\n          </div>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -4881,8 +4881,6 @@ module.exports = ":host .post-tip-row ul li {\n  padding: 5px 0;\n  list-style-t
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__actions_country_actions__ = __webpack_require__("./src/app/country/actions/country.actions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_places_list_places_list_component__ = __webpack_require__("./src/app/country/components/places-list/places-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_holidays_list_holidays_list_component__ = __webpack_require__("./src/app/country/components/holidays-list/holidays-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_pairwise__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/pairwise.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_operator_skip__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/skip.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4892,8 +4890,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
-
 
 
 
@@ -4917,7 +4913,6 @@ var CountryComponent = /** @class */ (function () {
         this.activeTab = 0;
         this.subscription$ = [];
         this.getData();
-        this.init();
         console.log('constructor COUNTRY');
     }
     CountryComponent.prototype.ngOnInit = function () {
@@ -4938,6 +4933,7 @@ var CountryComponent = /** @class */ (function () {
         this.subscription$.push(this.store.select(__WEBPACK_IMPORTED_MODULE_6__core_reducers__["c" /* getCountry */]).subscribe(function (res) {
             console.log('Country', res);
             _this.data = res;
+            _this.init();
             _this.showComponent = true;
         }));
     };
@@ -5851,9 +5847,9 @@ module.exports = ".btn.btn-light-primary:hover {\n  background: #4080ff;\n  colo
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FollowPlaceButtonComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_reducers__ = __webpack_require__("./src/app/core/reducers/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngrx_store__ = __webpack_require__("./node_modules/@ngrx/store/@ngrx/store.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ngx_auto_unsubscribe__ = __webpack_require__("./node_modules/ngx-auto-unsubscribe/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngrx_store__ = __webpack_require__("./node_modules/@ngrx/store/@ngrx/store.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_auto_unsubscribe__ = __webpack_require__("./node_modules/ngx-auto-unsubscribe/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__core_reducers__ = __webpack_require__("./src/app/core/reducers/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions_places_actions__ = __webpack_require__("./src/app/places/actions/places.actions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5874,15 +5870,15 @@ var FollowPlaceButtonComponent = /** @class */ (function () {
         var _this = this;
         this.store = store;
         this.subscriptions = [
-            this.store.select(__WEBPACK_IMPORTED_MODULE_1__core_reducers__["r" /* getPlacesId */]).subscribe(function (id) { return _this.id = id; }),
-            this.store.select(__WEBPACK_IMPORTED_MODULE_1__core_reducers__["l" /* getFollowPlacesStatus */]).subscribe(function (status) { return _this.isFollowed = status; })
+            this.store.select(__WEBPACK_IMPORTED_MODULE_3__core_reducers__["r" /* getPlacesId */]).subscribe(function (id) { return _this.id = id; }),
+            this.store.select(__WEBPACK_IMPORTED_MODULE_3__core_reducers__["l" /* getFollowPlacesStatus */]).subscribe(function (status) { return _this.isFollowed = status; })
         ];
     }
     FollowPlaceButtonComponent.prototype.ngOnInit = function () {
     };
     FollowPlaceButtonComponent.prototype.toggleFollow = function (e) {
         e.preventDefault();
-        console.log("ID:", this.id);
+        console.log('ID:', this.id);
         console.log(this.isFollowed);
         this.isFollowed ?
             this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_4__actions_places_actions__["i" /* UnfollowPlacesAction */](this.id)) :
@@ -5891,13 +5887,13 @@ var FollowPlaceButtonComponent = /** @class */ (function () {
     FollowPlaceButtonComponent.prototype.ngOnDestroy = function () {
     };
     FollowPlaceButtonComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_3_ngx_auto_unsubscribe__["a" /* AutoUnsubscribe */])({ includeArrays: true }),
+        Object(__WEBPACK_IMPORTED_MODULE_2_ngx_auto_unsubscribe__["a" /* AutoUnsubscribe */])({ includeArrays: true }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-follow-place-button',
             template: __webpack_require__("./src/app/places/components/follow-place-button/follow-place-button.component.html"),
             styles: [__webpack_require__("./src/app/places/components/follow-place-button/follow-place-button.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ngrx_store__["h" /* Store */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngrx_store__["h" /* Store */]])
     ], FollowPlaceButtonComponent);
     return FollowPlaceButtonComponent;
 }());
@@ -6251,7 +6247,7 @@ var PlacesPhotoBoxComponent = /** @class */ (function () {
 /***/ "./src/app/places/components/places-top-banner/places-top-banner.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"top-banner-wrap\">\n  <div class=\"top-banner-block\" [ngStyle]=\"{'background': 'url(https://s3.amazonaws.com/travooo-images2/' + data.media[0]?.url + ')'}\" >\n\n    <div class=\"top-banner-text\">\n      <div class=\"place-info-block\">\n        <div class=\"place-title\">{{ data.info.place.trans[0]?.title }}<span> #{{data.info.place?.id}} </span></div>\n        <div class=\"place-placement\">\n          <span class=\"event-tag\">{{data.info.place?.place_type}}</span>{{data.info.place.trans[0]?.address}}\n        </div>\n        <div class=\"follow-block-info\">\n          <ul class=\"foot-avatar-list\">\n            <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    --><li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    --><li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li>\n          </ul>\n          <i class=\"trav-talk-icon\"></i>\n          <span>{{data?.numOfFollowers}} Following this place</span>\n        </div>\n      </div>\n      <div class=\"banner-comment\">\n        <div class=\"comment-inner\">\n          <div class=\"comment-alert\">\n            <div class=\"comment-txt-wrap\">\n              <div class=\"comment-name\">Suzanne</div>\n              <div class=\"comment-txt\">I really love to walk in this beautiful street</div>\n            </div>\n            <div class=\"comment-avatar-wrap\">\n              <img src=\"http://placehold.it/27x27\" alt=\"\">\n            </div>\n          </div>\n          <div class=\"comment-alert\">\n            <div class=\"comment-txt-wrap\">\n              <div class=\"comment-name\">Mario</div>\n              <div class=\"comment-txt\">My favorite place</div>\n            </div>\n            <div class=\"comment-avatar-wrap\">\n              <img src=\"http://placehold.it/27x27\" alt=\"\">\n            </div>\n          </div>\n        </div>\n        <app-follow-place-button></app-follow-place-button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"top-banner-wrap\">\n  <div class=\"top-banner-block\" [ngStyle]=\"{'background-image': 'url(https://s3.amazonaws.com/travooo-images2/' + data.media[0]?.url + ')'}\" >\n\n    <div class=\"top-banner-text\">\n      <div class=\"place-info-block\">\n        <div class=\"place-title\">{{ data.info.place.trans[0]?.title }}<span> #{{data.info.place?.id}} </span></div>\n        <div class=\"place-placement\">\n          <span class=\"event-tag\">{{data.info.place?.place_type}}</span>{{data.info.place.trans[0]?.address}}\n        </div>\n        <div class=\"follow-block-info\">\n          <ul class=\"foot-avatar-list\">\n            <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    --><li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    --><li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li>\n          </ul>\n          <i class=\"trav-talk-icon\"></i>\n          <span>{{data?.numOfFollowers}} Following this place</span>\n        </div>\n      </div>\n      <div class=\"banner-comment\">\n        <div class=\"comment-inner\">\n          <div class=\"comment-alert\">\n            <div class=\"comment-txt-wrap\">\n              <div class=\"comment-name\">Suzanne</div>\n              <div class=\"comment-txt\">I really love to walk in this beautiful street</div>\n            </div>\n            <div class=\"comment-avatar-wrap\">\n              <img src=\"http://placehold.it/27x27\" alt=\"\">\n            </div>\n          </div>\n          <div class=\"comment-alert\">\n            <div class=\"comment-txt-wrap\">\n              <div class=\"comment-name\">Mario</div>\n              <div class=\"comment-txt\">My favorite place</div>\n            </div>\n            <div class=\"comment-avatar-wrap\">\n              <img src=\"http://placehold.it/27x27\" alt=\"\">\n            </div>\n          </div>\n        </div>\n        <app-follow-place-button></app-follow-place-button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -6305,7 +6301,7 @@ var PlacesTopBannerComponent = /** @class */ (function () {
 /***/ "./src/app/places/components/sidebar-about-box/sidebar-about-box.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"post-block post-photo-block\">\n  <div class=\"photo-inner\">\n    <img src=\"{{data.media.length ? 'https://s3.amazonaws.com/travooo-images2/' + (data.media | mathRandom) : 'http://placehold.it/350x405/74828b'}}\" alt=\"photo\">\n    <div class=\"photo-text-cover\">\n      <div class=\"photo-top-layer\">\n        <div class=\"place-info\">\n          <div class=\"place-name\">\n            {{data.info.place.trans[0]?.title ? data.info.place.trans[0]?.title : '' }}\n          </div>\n          <div class=\"photo-like\">\n            <i class=\"trav-heart-fill-icon\"></i>\n            <span class=\"txt\">185 Likes</span>\n          </div>\n        </div>\n        <div class=\"photo-popup-link\">\n          <a href=\"#\">\n            <i class=\"trav-gallery-o-icon\"></i>\n          </a>\n        </div>\n      </div>\n      <div class=\"author-info\">Photo by <span>Patrick smith</span></div>\n    </div>\n  </div>\n  <div class=\"follow-block-info\">\n    <ul class=\"foot-avatar-list\">\n      <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    -->\n      <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    -->\n      <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li>\n    </ul>\n    <i class=\"trav-comment-plus-icon\"></i>\n    <span>64K Following this place</span>\n  </div>\n  <div class=\"photo-btn-wrap\">\n    <a class=\"btn btn-light-red\" href=\"#\">Book a hotel/flight</a>\n  </div>\n</div>\n\n<div class=\"share-page-block\">\n  <div class=\"share-page-inner\">\n    <div class=\"share-txt\">Share this page</div>\n    <ul class=\"share-list\">\n      <li>\n        <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\n      </li>\n      <li>\n        <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\n      </li>\n      <li>\n        <a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a>\n      </li>\n      <li>\n        <a href=\"#\"><i class=\"fa fa-code\"></i></a>\n      </li>\n    </ul>\n  </div>\n</div>\n\n<div class=\"aside-footer\">\n  <ul class=\"aside-foot-menu\">\n    <li><a href=\"#\">Privacy</a></li>\n    <li><a href=\"#\">Terms</a></li>\n    <li><a href=\"#\">Advertising</a></li>\n    <li><a href=\"#\">Cookies</a></li>\n    <li><a href=\"#\">More</a></li>\n  </ul>\n  <p class=\"copyright\">Travooo &copy; 2017</p>\n</div>\n\n\n"
+module.exports = "<div class=\"post-block post-photo-block\">\n  <div class=\"photo-inner\">\n    <img src=\"{{data.media.length ? 'https://s3.amazonaws.com/travooo-images2/' + (data.media | mathRandom).url : 'http://placehold.it/350x405/74828b'}}\" alt=\"photo\">\n    <div class=\"photo-text-cover\">\n      <div class=\"photo-top-layer\">\n        <div class=\"place-info\">\n          <div class=\"place-name\">\n            {{data.info.place.trans[0]?.title ? data.info.place.trans[0]?.title : '' }}\n          </div>\n          <div class=\"photo-like\">\n            <i class=\"trav-heart-fill-icon\"></i>\n            <span class=\"txt\">185 Likes</span>\n          </div>\n        </div>\n        <div class=\"photo-popup-link\">\n          <a href=\"#\">\n            <i class=\"trav-gallery-o-icon\"></i>\n          </a>\n        </div>\n      </div>\n      <div class=\"author-info\">Photo by <span>Patrick smith</span></div>\n    </div>\n  </div>\n  <div class=\"follow-block-info\">\n    <ul class=\"foot-avatar-list\">\n      <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    -->\n      <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li><!--\n                    -->\n      <li><img class=\"small-ava\" src=\"http://placehold.it/29x29\" alt=\"ava\"></li>\n    </ul>\n    <i class=\"trav-comment-plus-icon\"></i>\n    <span>64K Following this place</span>\n  </div>\n  <div class=\"photo-btn-wrap\">\n    <a class=\"btn btn-light-red\" href=\"#\">Book a hotel/flight</a>\n  </div>\n</div>\n\n<div class=\"share-page-block\">\n  <div class=\"share-page-inner\">\n    <div class=\"share-txt\">Share this page</div>\n    <ul class=\"share-list\">\n      <li>\n        <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\n      </li>\n      <li>\n        <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\n      </li>\n      <li>\n        <a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a>\n      </li>\n      <li>\n        <a href=\"#\"><i class=\"fa fa-code\"></i></a>\n      </li>\n    </ul>\n  </div>\n</div>\n\n<div class=\"aside-footer\">\n  <ul class=\"aside-foot-menu\">\n    <li><a href=\"#\">Privacy</a></li>\n    <li><a href=\"#\">Terms</a></li>\n    <li><a href=\"#\">Advertising</a></li>\n    <li><a href=\"#\">Cookies</a></li>\n    <li><a href=\"#\">More</a></li>\n  </ul>\n  <p class=\"copyright\">Travooo &copy; 2017</p>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -6402,8 +6398,9 @@ var TrendingPlacesListComponent = /** @class */ (function () {
     TrendingPlacesListComponent.prototype.ngOnInit = function () {
     };
     TrendingPlacesListComponent.prototype.navigateToPlace = function (id) {
-        if (id)
+        if (id) {
             this.router.navigate(['/places/', id]);
+        }
     };
     TrendingPlacesListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -6612,13 +6609,12 @@ var PlacesComponent = /** @class */ (function () {
         var _this = this;
         // :TODO Check it
         this.route.params.subscribe(function (params) {
-            console.log('Places component reload');
+            console.log('Places component load');
             _this.showComponent = false;
             // unsubscribe
-            if (_this.subscriptions$.length) {
-                _this.subscriptions$.forEach(function (item) { return item.unsubscribe(); });
-            }
+            _this.unSubscribe(_this.subscriptions$);
             _this.getData();
+            window.scrollTo(0, 0);
         });
     };
     PlacesComponent.prototype.getData = function () {
@@ -6675,6 +6671,11 @@ var PlacesComponent = /** @class */ (function () {
             }); })
         };
     };
+    PlacesComponent.prototype.unSubscribe = function (subscriptionsArr) {
+        if (subscriptionsArr.length) {
+            subscriptionsArr.forEach(function (item) { return item.unsubscribe(); });
+        }
+    };
     PlacesComponent.prototype.ngOnDestroy = function () {
     };
     PlacesComponent = __decorate([
@@ -6720,7 +6721,7 @@ var PlacesComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_trending_places_list_trending_places_list_component__ = __webpack_require__("./src/app/places/components/trending-places-list/trending-places-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_places_footer_places_footer_component__ = __webpack_require__("./src/app/places/components/places-footer/places-footer.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__core_pipes_sanitizeHtmlPipe__ = __webpack_require__("./src/app/core/pipes/sanitizeHtmlPipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__core_pipes_mathRandom__ = __webpack_require__("./src/app/core/pipes/mathRandom.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__core_pipes_mathRandomPipe__ = __webpack_require__("./src/app/core/pipes/mathRandomPipe.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -6772,7 +6773,7 @@ var PlacesModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_16__components_trending_places_list_trending_places_list_component__["a" /* TrendingPlacesListComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__components_places_footer_places_footer_component__["a" /* PlacesFooterComponent */],
                 __WEBPACK_IMPORTED_MODULE_18__core_pipes_sanitizeHtmlPipe__["a" /* SanitizeHtmlPipe */],
-                __WEBPACK_IMPORTED_MODULE_19__core_pipes_mathRandom__["a" /* MathRandomPipe */]
+                __WEBPACK_IMPORTED_MODULE_19__core_pipes_mathRandomPipe__["a" /* MathRandomPipe */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_5__services_places_service__["a" /* PlacesService */],

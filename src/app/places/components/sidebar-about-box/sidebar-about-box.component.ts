@@ -15,7 +15,6 @@ export class SidebarAboutBoxComponent implements OnInit {
 
   ngOnInit() {
 
-
   }
 
 }

@@ -1,6 +1,6 @@
 <div class="post-block post-photo-block">
   <div class="photo-inner">
-    <img src="{{data.media.length ? 'https://s3.amazonaws.com/travooo-images2/' + (data.media | mathRandom) : 'http://placehold.it/350x405/74828b'}}" alt="photo">
+    <img src="{{data.media.length ? 'https://s3.amazonaws.com/travooo-images2/' + (data.media | mathRandom).url : 'http://placehold.it/350x405/74828b'}}" alt="photo">
     <div class="photo-text-cover">
       <div class="photo-top-layer">
         <div class="place-info">

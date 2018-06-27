@@ -11,8 +11,6 @@ import {SetCountryInfoAction} from './actions/country.actions';
 import {PlacesListComponent} from './components/places-list/places-list.component';
 import {HolidaysListComponent} from './components/holidays-list/holidays-list.component';
 
-import 'rxjs/add/operator/pairwise';
-import 'rxjs/add/operator/skip';
 
 
 
@@ -46,7 +44,6 @@ export class CountryComponent implements OnInit, OnDestroy {
               private store: Store<State>) {
 
     this.getData();
-    this.init();
     console.log('constructor COUNTRY');
 
   }
@@ -72,6 +69,7 @@ export class CountryComponent implements OnInit, OnDestroy {
     this.subscription$.push(this.store.select(getCountry).subscribe(res => {
       console.log('Country', res);
       this.data = res;
+      this.init();
       this.showComponent = true;
     }));
   }

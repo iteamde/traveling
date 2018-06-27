@@ -1,8 +1,10 @@
 :host/deep/{
 
-  .slider-item:hover  {
+  .slider-item:hover, .see-more-link:hover {
     cursor: pointer;
   }
+
+
 }
 
 

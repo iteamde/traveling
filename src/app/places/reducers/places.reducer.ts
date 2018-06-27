@@ -1,5 +1,5 @@
 import * as places from '../actions/places.actions';
-import * as flatten from 'lodash/flatten';
+
 
 export interface State {
   places: any;

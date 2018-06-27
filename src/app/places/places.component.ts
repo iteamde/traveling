@@ -46,13 +46,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
     // :TODO Check it
     this.route.params.subscribe(params => {
-      console.log('Places component reload')
+      console.log('Places component load')
       this.showComponent = false;
       // unsubscribe
-      if (this.subscriptions$.length) {
-        this.subscriptions$.forEach(item => item.unsubscribe());
-      }
+      this.unSubscribe(this.subscriptions$);
       this.getData();
+      window.scrollTo(0, 0);
     });
   }
 
@@ -117,6 +116,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
         id: res.firstmedia.id
       }))
     };
+  }
+
+  unSubscribe(subscriptionsArr) {
+    if (subscriptionsArr.length) {
+      subscriptionsArr.forEach(item => item.unsubscribe());
+    }
   }
 
   ngOnDestroy() {
