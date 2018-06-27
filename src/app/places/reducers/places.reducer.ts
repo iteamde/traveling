@@ -44,7 +44,9 @@ export function reducer(state: State = INIT_STATE, action: places.Actions) {
 export const getPlaces = (state: State) => state.places;
 export const getPlacesId = (state: State) => state.places.info.place.id;
 export const getFollowPlacesStatus = (state: State) => state.places.followStatus;
-export const getPlacesNearby = (state: State) => state.places.nearby.filter(res => Object.keys(res.firstmedia).length > 1).slice(0, 10)
+// export const getPlacesNearby = (state: State) => state.places.nearby.filter(res => Object.keys(res.firstmedia).length > 1).slice(0, 10)
+//   .map(res => res.firstmedia);
+export const getPlacesNearby = (state: State) => state.places.nearby.filter(res => Object.keys(res.firstmedia).length > 1)
   .map(res => res.firstmedia);
 export const getPlacesImg = (state: State) => state.places.media;
 export const getPlacesPlans = (state: State) => state.places.plans.plans;

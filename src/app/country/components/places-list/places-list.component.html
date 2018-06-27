@@ -2,7 +2,7 @@
   <div class="post-side-top">
     <h3 class="side-ttl">Places <span class="count">{{(stats | async).places}}</span></h3>
     <div class="side-right-control">
-      <a  class="see-more-link">See all</a>
+      <a  class="see-more-link" (click)="openGallery($event)">See all</a>
       <a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
       <a  class="slide-link slide-next"><i class="trav-angle-right"></i></a>
     </div>

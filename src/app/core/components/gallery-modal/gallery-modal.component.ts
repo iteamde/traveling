@@ -1,12 +1,15 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import { Router} from '@angular/router';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Store} from '@ngrx/store';
-import {getOpenedModalRef, State} from '../../../core/reducers';
+
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {ToastrService} from 'ngx-toastr';
-import { Router} from '@angular/router';
-import * as findIndex from 'lodash/findIndex';
+
 import {CountryService} from '../../../country/services/country.service';
+import {getOpenedModalRef, State} from '../../../core/reducers';
+
+import * as findIndex from 'lodash/findIndex';
 
 @AutoUnsubscribe({includeArrays: true})
 @Component({
@@ -25,6 +28,8 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
     id: 0,
     name: ''
   };
+  public startPoint = 0;
+  public endPoint = 10;
   private url: string;
   private subscriptions = [];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,12 +39,13 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
               private router: Router
              ) {
     this.medias = this.data.data;
+    console.log('MEDIAS:', this.medias);
     this.url = this.router.url.substr( 0, this.router.url.lastIndexOf('/') + 1);
 
   }
 
   ngOnInit() {
-    console.log("data.params",  this.data)
+    console.log('data.params',  this.data)
     this.currentIndex = findIndex(this.medias, {id: +this.data.params.mediaId});
     this.currentIndex = (this.currentIndex === -1) ? 0 : this.currentIndex;
     this.getReactions();
@@ -51,7 +57,7 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
   }
 
   sendComment() {
-    console.log("Enter pressed", this.currentComment);
+    console.log('Enter pressed', this.currentComment);
     this.countryService.sendComment(this.medias[this.currentIndex].id, this.currentComment,  this.replayTo.id)
       .subscribe(res => res.status ? this.addComment() : this.toastrError());
   }
@@ -64,19 +70,29 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
   }
 
   nextSlide() {
-    this.currentIndex++;
+    //this.currentIndex++;
+    if (this.medias.length - 1 > this.endPoint) {
+      this.startPoint += 10;
+      this.endPoint += 10;
+      this.currentIndex = this.startPoint;
+    }
     this.changeNavigation();
     this.getReactions();
   }
 
   prevSlide() {
-    this.currentIndex--;
+    //this.currentIndex--;
+    if (this.startPoint > 0) {
+      this.startPoint -= 10;
+      this.endPoint -= 10;
+      this.currentIndex = this.endPoint-1;
+    }
     this.changeNavigation();
     this.getReactions();
   }
 
-  selectMedia(i) {
-    this.currentIndex = i;
+  selectMedia(i, startPoint) {
+    this.currentIndex = i + startPoint;
     this.changeNavigation();
     this.getReactions();
   }

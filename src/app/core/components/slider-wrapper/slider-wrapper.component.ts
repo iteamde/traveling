@@ -44,7 +44,7 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
       this.cmpRef.destroy();
     }
 
-    let factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
+    const factory = this.componentFactoryResolver.resolveComponentFactory(this.type);
     this.cmpRef = this.target.createComponent(factory);
     this.cmpRef.instance.settings = this.settings;
     // to access the created instance use

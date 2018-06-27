@@ -49,7 +49,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
       console.log('Places component load')
       this.showComponent = false;
       // unsubscribe
-      this.unSubscribe(this.subscriptions$);
+      this.unSubscribe();
       this.getData();
       window.scrollTo(0, 0);
     });
@@ -118,9 +118,9 @@ export class PlacesComponent implements OnInit, OnDestroy {
     };
   }
 
-  unSubscribe(subscriptionsArr) {
-    if (subscriptionsArr.length) {
-      subscriptionsArr.forEach(item => item.unsubscribe());
+  unSubscribe() {
+    if (this.subscriptions$.length) {
+      this.subscriptions$.forEach(item => item.unsubscribe());
     }
   }
 

@@ -49,6 +49,8 @@ export const getCountryPlaces = (state: State) => state.country.places;
 export const getCountryHolidays = (state: State) => state.country.info.holidays;
 export const getCountryMedia = (state: State) => state.country.media;
 export const getTripMedia = (state: State) => state.country.plans.map(res => res.medias);
-export const getPlacesMedia = (state: State) => flatten(state.country.places.filter( (arr) => arr.medias.length).slice(0,10)
-  .map(res => res.medias.map(res1 => res1))).slice(0, 10);
+// export const getPlacesMedia = (state: State) => flatten(state.country.places.filter( (arr) => arr.medias.length).slice(0,10)
+//   .map(res => res.medias.map(res1 => res1))).slice(0, 10);
+export const getPlacesMedia = (state: State) => flatten(state.country.places.filter( (arr) => arr.medias.length)
+  .map(res => res.medias.map(res1 => res1)));
 export const getCountryTrendingPlaces = (state: State) => state.country.trendingPlaces.places;
