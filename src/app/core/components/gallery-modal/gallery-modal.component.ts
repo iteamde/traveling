@@ -69,8 +69,32 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
     this.toastr.success(err || 'Succesfully completed');
   }
 
+  //:TODO galery is not complete. Add API for likes, comments for places
   nextSlide() {
-    //this.currentIndex++;
+    this.currentIndex++;
+    console.log(this.currentIndex, this.endPoint);
+
+    if (this.currentIndex % 10 === 0) {
+      this.nextPartOfSlide();
+      return;
+    }
+    this.changeNavigation();
+    this.getReactions();
+  }
+
+  prevSlide() {
+    this.currentIndex--;
+    console.log(this.currentIndex, this.endPoint);
+    if (this.currentIndex === this.startPoint) {
+      this.prevPartOfSlide();
+      return;
+    }
+    this.changeNavigation();
+    this.getReactions();
+  }
+
+  nextPartOfSlide() {
+    // this.currentIndex++;
     if (this.medias.length - 1 > this.endPoint) {
       this.startPoint += 10;
       this.endPoint += 10;
@@ -80,12 +104,12 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
     this.getReactions();
   }
 
-  prevSlide() {
-    //this.currentIndex--;
+  prevPartOfSlide() {
+    // this.currentIndex--;
     if (this.startPoint > 0) {
       this.startPoint -= 10;
       this.endPoint -= 10;
-      this.currentIndex = this.endPoint-1;
+      this.currentIndex = this.endPoint - 1;
     }
     this.changeNavigation();
     this.getReactions();

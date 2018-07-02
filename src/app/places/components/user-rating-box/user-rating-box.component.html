@@ -11,14 +11,14 @@
           <li><i class="trav-star-icon"></i></li>
         </ul>
         <span class="count">
-                      <b>{{data.reviews?.rating}}</b>
+                      <b>{{data.reviews?.rating ? data.reviews?.rating : 'No info'}}</b>
                     </span>
         <span>from</span>
         <a href="#" class="review-link">39 Reviews</a>
       </div>
     </div>
     <div class="top-btn-wrap">
-      <button type="button" class="btn btn-transp btn-bordered">Write a Review</button>
+      <button type="button" class="btn btn-transp btn-bordered" (click)="writeReview()">Write a Review</button>
     </div>
   </div>
   <div class="post-comment-layer">

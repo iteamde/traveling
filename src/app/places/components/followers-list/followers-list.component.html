@@ -1,6 +1,7 @@
 <div class="post-block">
   <div class="post-side-top">
-    <h3 class="side-ttl">People following this place <span class="count">64K</span></h3>
+    <h3 class="side-ttl">People following this place <span class="count">64k</span></h3>
+    <!--<p>{{(data | async) | json}}</p>-->
     <div class="side-right-control">
       <a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
       <a  class="slide-link slide-next"><i class="trav-angle-right"></i></a>
@@ -8,60 +9,25 @@
   </div>
   <div class="post-side-inner">
     <div class="post-slide-wrap slide-hide-right-margin">
-      <ul id="newPeopleDiscover" class="post-slider clearfix">
-        <li class="post-follow-card">
+      <ul id="newPeopleDiscover" class="post-slider clearfix" >
+
+        <li class="post-follow-card" *ngFor="let item of (data | async).data[0]?.followers">
           <div class="follow-card-inner">
             <div class="image-wrap">
-              <img src="http://placehold.it/42x42" alt="">
+              <img *ngIf="!item?.profile_picture" src="http://placehold.it/42x42" alt="">
+              <img *ngIf="item?.profile_picture" src="{{'https://s3.amazonaws.com/travooo-images2/' + item.profile_picture}}" alt="">
             </div>
             <div class="post-slider-caption">
-              <p class="post-card-name">Stephanie small</p>
+              <p class="post-card-name" *ngIf="item?.name">{{item?.name}}</p>
               <p class="post-card-spec">Photographer</p>
               <button type="button" class="btn btn-light-grey btn-bordered">Follow</button>
               <p class="post-card-follow-count">12K Followers</p>
             </div>
           </div>
         </li>
-        <li class="post-follow-card">
-          <div class="follow-card-inner">
-            <div class="image-wrap">
-              <img src="http://placehold.it/42x42" alt="">
-            </div>
-            <div class="post-slider-caption">
-              <p class="post-card-name">Beatriz kim park</p>
-              <p class="post-card-spec">Traveler</p>
-              <button type="button" class="btn btn-light-primary btn-bordered">Following</button>
-              <p class="post-card-follow-count">248 Followers</p>
-            </div>
-          </div>
-        </li>
-        <li class="post-follow-card">
-          <div class="follow-card-inner">
-            <div class="image-wrap">
-              <img src="http://placehold.it/42x42" alt="">
-            </div>
-            <div class="post-slider-caption">
-              <p class="post-card-name">Kathleen brown</p>
-              <p class="post-card-spec">Write</p>
-              <button type="button" class="btn btn-light-grey btn-bordered">Follow</button>
-              <p class="post-card-follow-count">39 Followers</p>
-            </div>
-          </div>
-        </li>
-        <li class="post-follow-card">
-          <div class="follow-card-inner">
-            <div class="image-wrap">
-              <img src="http://placehold.it/42x42" alt="">
-            </div>
-            <div class="post-slider-caption">
-              <p class="post-card-name">Alex ah</p>
-              <p class="post-card-spec">Photographer</p>
-              <button type="button" class="btn btn-light-grey btn-bordered">Follow</button>
-              <p class="post-card-follow-count">8K Followers</p>
-            </div>
-          </div>
-        </li>
+
       </ul>
     </div>
   </div>
 </div>
+

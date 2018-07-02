@@ -18,7 +18,7 @@
         <div class="post-slider-caption transparent-caption">
           <p class="post-slide-name" href="#">{{item.trans[0]?.title}}</p>
           <div class="post-slide-description">
-            <span class="tag">{{item?.place_type}}</span> in New York City
+            <span class="tag">{{item?.place_type | removeUnderscore}}</span>
           </div>
         </div>
       </li>

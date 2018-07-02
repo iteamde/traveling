@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {getCountryPlaces, getCountryStats, State} from '../../../core/reducers';
+import {getPlaceFollowers, State} from '../../../core/reducers';
 
 @Component({
   selector: 'app-followers-list',
@@ -11,11 +11,12 @@ export class FollowersListComponent implements OnInit {
   public data: any;
   public stats: any;
   constructor(private store: Store<State>) {
-    // this.data = this.store.select(getCountryPlaces);
+    this.data = this.store.select(getPlaceFollowers);
     // this.stats = this.store.select(getCountryStats);
   }
 
   ngOnInit() {
+
   }
 
 }

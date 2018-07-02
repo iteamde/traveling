@@ -50,5 +50,6 @@ export const getPlacesNearby = (state: State) => state.places.nearby.filter(res 
   .map(res => res.firstmedia);
 export const getPlacesImg = (state: State) => state.places.media;
 export const getPlacesPlans = (state: State) => state.places.plans.plans;
+export const getPlaceFollowers = (state: State) => state.places.followers;
 
 

@@ -38,15 +38,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
               private store: Store<State>,
               private countryService: CountryService) {
 
-    console.log('Places Constructor');
-
   }
 
   ngOnInit() {
 
     // :TODO Check it
     this.route.params.subscribe(params => {
-      console.log('Places component load')
       this.showComponent = false;
       // unsubscribe
       this.unSubscribe();
@@ -72,7 +69,6 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
       // :TODO this info for footer of place component that contains country info -> make it lazyLoading, or modify API for places
       this.subscriptions$[1] = this.placesService.getCountryOfPlace(this.data.info.place.countries_id).take(1).subscribe(response => {
-        console.log('getCountryOfPlace:', res);
         this.countryService.setType('countries');
         this.store.dispatch(new SetCountryInfoAction(response));
       });
@@ -91,12 +87,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
   init() {
 
-    console.log("INIT PLACE")
     // FILL DATA FOR  BOX GALLERY WRAPPERs
     this.placePhotos = {
       title: 'Photos',
       routePath: 'photos',
-      count: this.data.info.place.media_count,
+      //count: this.data.info.place.media_count,
+      count: this.data.photo_count,
       media: this.data.media.slice(0, 3)
     };
 

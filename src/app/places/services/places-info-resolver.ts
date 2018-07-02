@@ -39,6 +39,7 @@ export class PlacesInfoResolver implements Resolve<any> {
        * Join multiply responses from server into one object
        */
       const places = {
+        photo_count: res[0].data.media_count,
         media: res[0].data.medias,
         info: res[1].data,
         numOfFollowers: res[2].data.followers,

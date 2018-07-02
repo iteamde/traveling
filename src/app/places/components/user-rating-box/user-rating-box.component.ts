@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-rating-box',
@@ -10,9 +11,12 @@ export class UserRatingBoxComponent implements OnInit {
   @Input() data;
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  writeReview() {
+    this.router.navigate([`${this.router.url}/review/new`]);
+  }
 }

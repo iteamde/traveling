@@ -4,6 +4,7 @@ import {PlacesInfoResolver} from './services/places-info-resolver';
 import {GalleryModalComponent} from '../core/components/gallery-modal/gallery-modal.component';
 import {ModalWrapperComponent} from '../core/components/modal-wrapper/modal-wrapper.component';
 import {getPlacesNearby, getPlacesImg, getPlacesPlans} from '../core/reducers';
+import {WriteReviewModalComponent} from './components/write-review-modal/write-review-modal.component';
 
 export const PlacesRoutes  = [
   {
@@ -26,6 +27,11 @@ export const PlacesRoutes  = [
         path: 'nearby-places/:mediaId',
         component: ModalWrapperComponent,
         data: {modal: GalleryModalComponent, getFunc: getPlacesNearby, skipClose: true}
+      },
+      {
+        path: 'review/new',
+        component: ModalWrapperComponent,
+        data: {modal: WriteReviewModalComponent}
       }
     ]
   }

@@ -18,6 +18,8 @@ import {TrendingPlacesListComponent} from './components/trending-places-list/tre
 import { PlacesFooterComponent } from './components/places-footer/places-footer.component';
 import {SanitizeHtmlPipe} from '../core/pipes/sanitizeHtmlPipe';
 import { MathRandomPipe} from '../core/pipes/mathRandomPipe';
+import {RemoveUnderscorePipe} from '../core/pipes/removeUnderscorePipe';
+import {WriteReviewModalComponent} from './components/write-review-modal/write-review-modal.component';
 
 
 
@@ -41,8 +43,10 @@ import { MathRandomPipe} from '../core/pipes/mathRandomPipe';
     FollowersListComponent,
     TrendingPlacesListComponent,
     PlacesFooterComponent,
+    WriteReviewModalComponent,
     SanitizeHtmlPipe,
-    MathRandomPipe
+    MathRandomPipe,
+    RemoveUnderscorePipe
 
   ],
   providers: [
@@ -51,7 +55,8 @@ import { MathRandomPipe} from '../core/pipes/mathRandomPipe';
   ],
   entryComponents: [
     FollowersListComponent,
-    TrendingPlacesListComponent
+    TrendingPlacesListComponent,
+    WriteReviewModalComponent
 
   ]
 })

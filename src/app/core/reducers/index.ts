@@ -106,3 +106,4 @@ export const getFollowPlacesStatus = createSelector(getPlacesState, fromPlaces.g
 export const getPlacesNearby = createSelector(getPlacesState, fromPlaces.getPlacesNearby);
 export const getPlacesImg = createSelector(getPlacesState, fromPlaces.getPlacesImg);
 export const getPlacesPlans = createSelector(getPlacesState, fromPlaces.getPlacesPlans);
+export const getPlaceFollowers  = createSelector(getPlacesState, fromPlaces.getPlaceFollowers );
