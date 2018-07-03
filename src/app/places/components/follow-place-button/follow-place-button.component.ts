@@ -4,6 +4,7 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
 import {getFollowPlacesStatus, getPlacesId, State} from '../../../core/reducers';
 import {FollowPlacesAction, UnfollowPlacesAction} from '../../actions/places.actions';
+import {PlacesService} from '../../services/places.service';
 
 @AutoUnsubscribe({includeArrays: true})
 @Component({
@@ -15,7 +16,7 @@ export class FollowPlaceButtonComponent implements OnInit, OnDestroy {
   public id: number;
   public isFollowed: boolean;
   private subscriptions;
-  constructor(private store: Store<State>) {
+  constructor(private store: Store<State>, private placesService: PlacesService) {
     this.subscriptions = [
       this.store.select(getPlacesId).subscribe(id => this.id = id),
       this.store.select(getFollowPlacesStatus).subscribe(status => this.isFollowed = status)

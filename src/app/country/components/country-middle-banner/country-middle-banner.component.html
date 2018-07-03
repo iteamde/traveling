@@ -1,6 +1,8 @@
 <div class="top-banner-wrap">
   <img class="banner-city" *ngIf="!data.media.length" src="http://placehold.it/1070x215" alt="banner">
-  <img class="banner-city" *ngIf="data.media.length" src="{{'https://s3.amazonaws.com/travooo-images2/' + data.media[0].url}}" alt="banner">
+  <img class="banner-city" *ngIf="data.media.length"
+       src="{{'https://s3.amazonaws.com/travooo-images2/th1100/' + data.media[0].url}}"
+       src-fallback="{{'https://s3.amazonaws.com/travooo-images2/' + data.media[0].url}}" alt="banner">
   <div class="banner-cover-txt">
     <div class="banner-name">
       <div *ngIf="data.info.trans[0]?.title" class="banner-ttl">{{data.info.trans[0]?.title}}</div>

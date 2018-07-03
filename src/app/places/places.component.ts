@@ -65,15 +65,13 @@ export class PlacesComponent implements OnInit, OnDestroy {
       console.log('PLACES DATA:', res);
       this.data = res;
       this.init();
-
-
-      // :TODO this info for footer of place component that contains country info -> make it lazyLoading, or modify API for places
-      this.subscriptions$[1] = this.placesService.getCountryOfPlace(this.data.info.place.countries_id).take(1).subscribe(response => {
-        this.countryService.setType('countries');
-        this.store.dispatch(new SetCountryInfoAction(response));
-      });
-
     })
+
+    // :TODO this info for footer of place component that contains country info -> make it lazyLoading, or modify API for places
+    this.subscriptions$[1] = this.placesService.getCountryOfPlace(this.data.info.place.countries_id).subscribe(response => {
+      this.countryService.setType('countries');
+      this.store.dispatch(new SetCountryInfoAction(response));
+    });
 
     /**
      * Get data for component country

@@ -6,6 +6,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { ScrollEventModule } from 'ngx-scroll-event';
 import {MyDatePickerModule} from 'mydatepicker';
+import { ImgFallbackModule } from 'ngx-img-fallback';
 
 @NgModule({
 
@@ -13,7 +14,8 @@ import {MyDatePickerModule} from 'mydatepicker';
     CommonModule,
     ScrollEventModule,
     MyDatePickerModule,
-    RouterModule
+    RouterModule,
+    ImgFallbackModule
   ],
   exports: [
     RouterModule,
@@ -22,6 +24,7 @@ import {MyDatePickerModule} from 'mydatepicker';
     CommonModule,
     ScrollEventModule,
     MyDatePickerModule,
+    ImgFallbackModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {

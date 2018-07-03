@@ -20,4 +20,5 @@ export class PlacesGalleryBoxComponent implements OnInit {
       this.router.navigate([`${this.router.url}/${this.info.routePath}/${this.info.media[0].id}`]);
     }
   }
+
 }

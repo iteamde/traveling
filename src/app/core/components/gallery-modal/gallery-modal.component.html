@@ -6,7 +6,8 @@
         <div class="lg-img-wrap">
           <a href="{{'https://s3.amazonaws.com/travooo-images2/' + medias[currentIndex].url}}" target="_blank">
             <img class="lg-object lg-image"
-                 src="{{'https://s3.amazonaws.com/travooo-images2/' + medias[currentIndex].url}}">
+                 src="{{'https://s3.amazonaws.com/travooo-images2/th700/' + medias[currentIndex].url}}"
+                 src-fallback="{{'https://s3.amazonaws.com/travooo-images2/' + medias[currentIndex].url}}" alt="photo">
           </a>
         </div>
         <div class="cover-block" style="width: 1140px;">
@@ -171,7 +172,8 @@
         <div class="lg-thumb-item" *ngFor="let media of medias | slice:startPoint:endPoint; let i = index"
              [ngClass]="{'active' : currentIndex === i}"
              (click)="selectMedia(i, startPoint)">
-          <img src="{{'https://s3.amazonaws.com/travooo-images2/' + media.url}}">
+          <img src="{{'https://s3.amazonaws.com/travooo-images2/th180/' + media.url}}"
+               src-fallback="{{'https://s3.amazonaws.com/travooo-images2/' + media.url}}" alt="photo">
         </div>
         <div class="lg-actions">
           <button (click)="prevPartOfSlide()" *ngIf="startPoint > 0" class="lg-prev lg-icon"><i class="trav-angle-left"></i>

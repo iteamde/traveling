@@ -41,9 +41,6 @@ export class UnfollowSuccessAction implements Action {
 }
 
 
-
-
-
 export type Actions
   = SetPlacesInfoAction
   | FollowSuccessAction

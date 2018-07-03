@@ -84,8 +84,7 @@
               <div class="review-info-block half-block" style="border:none">
                 <div class="info-ttl">Working times</div>
                 <div class="info-txt">
-                  <p *ngIf="!data.info.place.trans[0]?.working_days && !data.info.place.trans[0]?.working_times">No
-                    Info</p>
+                  <p *ngIf="!data.info.place.trans[0]?.working_days && !data.info.place.trans[0]?.working_times">No Info</p>
                   <p *ngIf="data.info.place.trans[0]?.working_times">
                     {{data.info.place.trans[0]?.working_days}}<b>{{data.info.place.trans[0]?.working_times}}</b>
                   </p>
@@ -215,16 +214,16 @@
             </div>
           </div>
 
-          <app-dcl-slider-wrapper [type]="followersList" *ngIf="data.followers.data[0]?.followers.length && data.numOfFollowers"
+          <app-dcl-slider-wrapper [type]="followersList" *ngIf="data.followers.data[0]?.followers.length"
                                   [settings]="{
                                     width: 136,
                                     height: 192,
                                     count: '20'
                                   }">
           </app-dcl-slider-wrapper>
-          <div class="post-block" *ngIf="!data.numOfFollowers">
+          <div class="post-block" *ngIf="!data.followers.data[0]?.followers.length">
             <div class="post-side-top">
-              <h3 class="side-ttl">No one follows this place yet.</h3>
+              <h3 class="side-ttl">No one else follows this place yet.</h3>
             </div>
           </div>
         </div>

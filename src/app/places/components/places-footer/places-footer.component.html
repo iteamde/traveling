@@ -5,11 +5,14 @@
         <img class="event-cover"  *ngIf="!countryData?.media.length"
              src="https://www.runnersworld.com/sites/runnersworld.com/files/styles/article_main_custom_user_phone_1x/public/articles/2016/09/nyc_marathon.jpg?itok=mrgDghrv&amp;timestamp=1473862824" alt="photo">
         <img class="event-cover" *ngIf="countryData?.media.length"
-             src="{{'https://s3.amazonaws.com/travooo-images2/' + countryData.media[0]?.url}}">
+             src="{{'https://s3.amazonaws.com/travooo-images2/th1100/' + countryData.media[0]?.url}}"
+             src-fallback="{{'https://s3.amazonaws.com/travooo-images2/' + countryData.media[0]?.url}}" alt="photo">
       </div>
       <div class="post-event-main">
         <div class="flag-wrap" *ngIf="countryData.info?.iso_code">
-          <img src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + countryData.info?.iso_code.toLowerCase() + '.png'}}" alt="flag">
+          <img src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/th180/' + countryData.info?.iso_code.toLowerCase() + '.png'}}"
+               src-fallback="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + countryData.info?.iso_code.toLowerCase() + '.png'}}"
+               alt="flag">
         </div>
         <div class="post-placement-info">
           <h2 *ngIf="countryData.info.trans[0]?.title" class="place-name">{{countryData.info.trans[0]?.title}}</h2>
