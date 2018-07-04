@@ -36,9 +36,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private placesService: PlacesService,
               private store: Store<State>,
-              private countryService: CountryService) {
-
-  }
+              private countryService: CountryService) {}
 
   ngOnInit() {
 
@@ -54,12 +52,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
   getData() {
     /**
-     * this.route.snapshot.data.country -> this is data from country resolver
+     * this.route.snapshot.data.country -> this is data from places resolver
      */
     this.store.dispatch(new SetPlacesInfoAction(this.route.snapshot.data.places));
 
     /**
-     * Get data for component (country or city)
+     * Get data for component places
      */
     this.subscriptions$[0] = this.store.select(getPlaces).subscribe(res => {
       console.log('PLACES DATA:', res);

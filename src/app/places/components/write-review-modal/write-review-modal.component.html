@@ -1,4 +1,7 @@
-<div class="modal white-style" style="display: block; overflow-y: auto" data-backdrop="false" id="writeReviewPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal white-style"
+     style="display: block; overflow-y: auto" data-backdrop="false"
+     id="writeReviewPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+      *ngIf="data?.data">
   <button class="modal-close" type="button" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
     <i class="trav-close-icon"></i>
   </button>
@@ -7,21 +10,20 @@
       <div class="post-block post-modal-review">
         <div class="review-main-block">
           <div class="review-img-wrap">
-            <img class="main-photo" src="http://placehold.it/595x205" alt="photo">
+            <img class="main-photo" src="{{'https://s3.amazonaws.com/travooo-images2/th700/' + data.data.media[0]?.url}}"
+                 src-fallback="{{'https://s3.amazonaws.com/travooo-images2/' + data.data.media[0]?.url}}" alt="photo">
             <div class="review-logo-wrap">
               <img src="./assets/image/place-name-logo.jpg" alt="logo">
             </div>
           </div>
           <div class="review-place-block">
-            <h3 class="place-title">Disneyland</h3>
-            <p class="sub-txt">Theme park in Anaheim, California</p>
+            <h3 class="place-title">{{data.data.info.place.trans[0]?.title}}</h3>
+            <p class="sub-txt">{{data.data.info.place?.place_type | removeUnderscore}}, {{data.data.info.place.trans[0]?.address}}</p>
             <div class="com-star-block">
               <ul class="com-star-list">
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li class="empty"><i class="trav-star-icon"></i></li>
+                <li *ngFor="let star of [1,2,3,4,5], let i = index" [ngClass]="{'empty': i+1 > +data.data.reviews?.rating}">
+                  <i class="trav-star-icon"></i>
+                </li>
               </ul>
             </div>
             <a href="#" class="write-review-link" id="writeReviewLink" (click)="toggleInputField($event)">Write a Review <i class="fa fa-pencil"></i></a>
@@ -32,21 +34,21 @@
                 <img src="http://placehold.it/45x45" alt="">
               </div>
               <div class="post-add-com-input">
-                <input type="text" placeholder="Write a review...">
+                <input type="text" placeholder="Write a review..." [(ngModel)]="currentReview" (keyup.enter)="sendReview()">
               </div>
             </div>
             <div class="review-foot-block">
               <div class="com-star-block">
                 <ul class="com-star-list">
-                  <li><i class="trav-star-icon"></i></li>
-                  <li><i class="trav-star-icon"></i></li>
-                  <li><i class="trav-star-icon"></i></li>
-                  <li><i class="trav-star-icon"></i></li>
-                  <li class="empty"><i class="trav-star-icon"></i></li>
+                  <li *ngFor="let star of [1,2,3,4,5], let i = index"
+                      [ngClass]="{'empty': i+1 > score}" (click)="score = i+1" style="cursor: pointer">
+                    <i class="trav-star-icon"></i>
+                  </li>
+
                 </ul>
                 <div class="com-add-btn-wrap">
-                  <button class="btn btn-transp btn-cancel">Cancel</button>
-                  <button class="btn btn-light-primary">Post</button>
+                  <button class="btn btn-transp btn-cancel" (click)="cancelReview()">Cancel</button>
+                  <button class="btn btn-light-primary" (click)="sendReview()">Post</button>
                 </div>
               </div>
             </div>
@@ -64,7 +66,7 @@
                 --><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li><!--
                 --><li><img class="small-ava" src="http://placehold.it/20x20" alt="ava"></li>
             </ul>
-            <span>39 Reviews</span>
+            <span>{{data.data.reviews?.reviews.length}} Reviews</span>
           </div>
         </div>
         <div class="post-comment-layer">
@@ -75,101 +77,42 @@
               <li>Worse</li>
             </ul>
             <div class="comm-count-info">
-              3 / 20
+              {{data.data.reviews?.reviews.length > endPoint ? endPoint : data.data.reviews?.reviews.length}} / {{data.data.reviews?.reviews.length}}
             </div>
           </div>
-          <div class="post-comment-wrapper">
-            <div class="post-comment-row happen-event">
+          <div class="post-comment-wrapper" *ngIf="data.data.reviews?.reviews.length" style="max-height:400px; overflow-y: auto;" >
+            <!--<div class="post-comment-row happen-event">-->
+            <div class="post-comment-row" *ngFor="let review of (data.data.reviews.reviews | reverseArr) | slice:startPoint:endPoint "
+                                            [ngClass]="{'happen-event': review.justHappen}">
               <div class="post-com-avatar-wrap">
                 <img src="http://placehold.it/45x45" alt="">
               </div>
               <div class="post-comment-text">
                 <div class="post-com-name-layer">
-                  <a href="#" class="comment-name">Katherin</a>
-                  <a href="#" class="comment-nickname">@katherin</a>
+                  <a href="#" class="comment-name">{{review?.ip_address}}</a>
+                  <a href="#" class="comment-nickname"></a>
                 </div>
                 <div class="comment-txt">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus labore tenetur vel. Neque molestiae repellat culpa qui odit delectus.</p>
+                  <p>
+                    {{review?.comment ? review?.comment : 'there will be comment'}}
+                  </p>
                 </div>
                 <div class="comment-bottom-info">
                   <div class="com-star-block">
                     <ul class="com-star-list">
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
+                      <li *ngFor="let star of [1,2,3,4,5], let i = index" [ngClass]="{'empty': i+1 > +review?.score}">
+                        <i class="trav-star-icon"></i>
+                      </li>
                     </ul>
-                    <span class="count">
-                        <b>5</b> / 5
-                      </span>
+                    <span class="count"><b>{{review?.score}}</b> / 5</span>
                   </div>
                   <div class="dot">·</div>
-                  <div class="com-time">6 hours ago</div>
+                  <div class="com-time">{{review?.created_at}}</div>
                 </div>
               </div>
             </div>
-            <div class="post-comment-row">
-              <div class="post-com-avatar-wrap">
-                <img src="http://placehold.it/45x45" alt="">
-              </div>
-              <div class="post-comment-text">
-                <div class="post-com-name-layer">
-                  <a href="#" class="comment-name">Amine</a>
-                  <a href="#" class="comment-nickname">@ak0117</a>
-                </div>
-                <div class="comment-txt">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus.</p>
-                </div>
-                <div class="comment-bottom-info">
-                  <div class="com-star-block">
-                    <ul class="com-star-list">
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                    </ul>
-                    <span class="count">
-                        <b>5</b> / 5
-                      </span>
-                  </div>
-                  <div class="dot">·</div>
-                  <div class="com-time">6 hours ago</div>
-                </div>
-              </div>
-            </div>
-            <div class="post-comment-row">
-              <div class="post-com-avatar-wrap">
-                <img src="http://placehold.it/45x45" alt="">
-              </div>
-              <div class="post-comment-text">
-                <div class="post-com-name-layer">
-                  <a href="#" class="comment-name">Katherin</a>
-                  <a href="#" class="comment-nickname">@katherin</a>
-                </div>
-                <div class="comment-txt">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus labore tenetur vel. Neque molestiae repellat culpa qui odit delectus.</p>
-                </div>
-                <div class="comment-bottom-info">
-                  <div class="com-star-block">
-                    <ul class="com-star-list">
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                      <li><i class="trav-star-icon"></i></li>
-                    </ul>
-                    <span class="count">
-                        <b>5</b> / 5
-                      </span>
-                  </div>
-                  <div class="dot">·</div>
-                  <div class="com-time">6 hours ago</div>
-                </div>
-              </div>
-            </div>
-            <a href="#" class="load-more-link">Load more...</a>
+
+            <a href="#" class="load-more-link" (click)="loadMoreReviews($event)">Load more...</a>
           </div>
         </div>
       </div>

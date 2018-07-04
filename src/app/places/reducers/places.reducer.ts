@@ -19,7 +19,7 @@ export function reducer(state: State = INIT_STATE, action: places.Actions) {
   switch (action.type) {
 
     case places.SET_PLACES_INFO:
-      return {...state, places: action.payload};
+      return {...state, places: {...state.places, ...action.payload}};
 
     case places.FOLLOW_SUCCESS:
       return {...state, places: {
@@ -34,6 +34,12 @@ export function reducer(state: State = INIT_STATE, action: places.Actions) {
         numOfFollowers : state.places.numOfFollowers - 1,
         followStatus: false
       }};
+
+    // case places.POST_PLACES_REVIEW_SUCCESS:
+    //   return {...state, places: {
+    //     ...state.places,
+    //     reviews: {...state.places.reviews, ...action.payload}
+    // }};
 
     default :
       return state;
@@ -51,5 +57,6 @@ export const getPlacesNearby = (state: State) => state.places.nearby.filter(res 
 export const getPlacesImg = (state: State) => state.places.media;
 export const getPlacesPlans = (state: State) => state.places.plans.plans;
 export const getPlaceFollowers = (state: State) => state.places.followers;
+export const getPlaceReviews = (state: State) => state.places.reviews;
 
 

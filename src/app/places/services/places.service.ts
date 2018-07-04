@@ -101,8 +101,8 @@ export class PlacesService {
   /**
    * Post review
    */
-  review(placesId): Observable<any> {
-    return this.api.post(  `places/${placesId}/review?language_id=1`,{});
+  postReview(placesId, comment, user_id, score): Observable<any> {
+    return this.api.post(  `places/${placesId}/review?language_id=1`,{comment, user_id, score});
   }
 
   /**
@@ -155,7 +155,7 @@ export class PlacesService {
       this.getCountryInfo(countryId),
       this.checkCountryFollowStatus(countryId),
       this.getCountryNumOfFollowers(countryId),
-      this. getTrendingPlaces(countryId)
+      this.getTrendingPlaces(countryId)
     ).map(res => {
       /**
        * If at least one of the items in array has an error === 400 -> navigate to error page

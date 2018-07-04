@@ -5,8 +5,8 @@ export const FOLLOW_PLACES = '[Places] follow places';
 export const UNFOLLOW_PLACES = '[Places] unfollow places';
 export const FOLLOW_SUCCESS = '[Places] follow places success';
 export const UNFOLLOW_SUCCESS = '[Places] unfollow places success';
-
-
+// export const POST_PLACES_REVIEW = '[Places] post places review'
+// export const POST_PLACES_REVIEW_SUCCESS = '[Places] post places review success'
 
 export class SetPlacesInfoAction implements Action {
   readonly type = SET_PLACES_INFO;
@@ -39,6 +39,20 @@ export class UnfollowSuccessAction implements Action {
   readonly type = UNFOLLOW_SUCCESS;
 
 }
+
+
+// export class PostPlacesReviewAction implements Action {
+//   readonly type = POST_PLACES_REVIEW;
+//   constructor(public payload) {
+//   }
+// }
+//
+// export class PostPlacesReviewSuccessAction implements Action {
+//   readonly type = POST_PLACES_REVIEW_SUCCESS;
+//
+//   constructor(public payload) {
+//   }
+// }
 
 
 export type Actions

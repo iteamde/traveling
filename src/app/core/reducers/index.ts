@@ -107,3 +107,6 @@ export const getPlacesNearby = createSelector(getPlacesState, fromPlaces.getPlac
 export const getPlacesImg = createSelector(getPlacesState, fromPlaces.getPlacesImg);
 export const getPlacesPlans = createSelector(getPlacesState, fromPlaces.getPlacesPlans);
 export const getPlaceFollowers  = createSelector(getPlacesState, fromPlaces.getPlaceFollowers );
+export const getPlaceReviews  = createSelector(getPlacesState, fromPlaces.getPlaceReviews );
+
+

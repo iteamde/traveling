@@ -19,26 +19,30 @@
         </div>
       </div>
       <div class="banner-comment">
-        <div class="comment-inner">
-          <div class="comment-alert">
+
+        <div class="comment-inner" *ngIf="data.reviews?.reviews.length">
+          <div class="comment-alert" *ngFor="let review of (data.reviews.reviews | reverseArr) | slice:0:2">
             <div class="comment-txt-wrap">
-              <div class="comment-name">Suzanne</div>
-              <div class="comment-txt">I really love to walk in this beautiful street</div>
+              <div class="comment-name">{{review?.ip_address}}</div>
+              <div class="comment-txt" style="text-overflow:ellipsis;max-width:300px;max-height:100px;white-space:nowrap;overflow:hidden">
+                {{review?.comment ? review?.comment : 'there will be comment'}}
+              </div>
             </div>
             <div class="comment-avatar-wrap">
-              <img src="http://placehold.it/27x27" alt="">
+              <img src="http://placehold.it/27x27" alt="" style="width:100%; max-width:initial">
             </div>
           </div>
-          <div class="comment-alert">
-            <div class="comment-txt-wrap">
-              <div class="comment-name">Mario</div>
-              <div class="comment-txt">My favorite place</div>
-            </div>
-            <div class="comment-avatar-wrap">
-              <img src="http://placehold.it/27x27" alt="">
-            </div>
-          </div>
+          <!--<div class="comment-alert">-->
+            <!--<div class="comment-txt-wrap">-->
+              <!--<div class="comment-name">Mario</div>-->
+              <!--<div class="comment-txt">My favorite place</div>-->
+            <!--</div>-->
+            <!--<div class="comment-avatar-wrap">-->
+              <!--<img src="http://placehold.it/27x27" alt="">-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
+
         <app-follow-place-button></app-follow-place-button>
       </div>
     </div>

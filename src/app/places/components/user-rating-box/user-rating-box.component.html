@@ -4,115 +4,112 @@
       <h3 class="side-ttl">User rating</h3>
       <div class="com-star-block">
         <ul class="com-star-list">
-          <li><i class="trav-star-icon"></i></li>
-          <li><i class="trav-star-icon"></i></li>
-          <li><i class="trav-star-icon"></i></li>
-          <li><i class="trav-star-icon"></i></li>
-          <li><i class="trav-star-icon"></i></li>
+          <li *ngFor="let star of [1,2,3,4,5], let i = index" [ngClass]="{'empty': i+1 > +data.reviews?.rating}">
+            <i class="trav-star-icon"></i>
+          </li>
         </ul>
+
         <span class="count">
                       <b>{{data.reviews?.rating ? data.reviews?.rating : 'No info'}}</b>
                     </span>
         <span>from</span>
-        <a href="#" class="review-link">39 Reviews</a>
+        <a href="#" class="review-link" (click)="writeReview($event)">{{data.reviews?.reviews.length}} Reviews</a>
       </div>
     </div>
     <div class="top-btn-wrap">
-      <button type="button" class="btn btn-transp btn-bordered" (click)="writeReview()">Write a Review</button>
+      <button type="button" class="btn btn-transp btn-bordered" (click)="writeReview($event)">Write a Review</button>
     </div>
   </div>
   <div class="post-comment-layer">
-    <div class="post-comment-wrapper">
-      <div class="post-comment-row">
+    <div class="post-comment-wrapper" *ngIf="data.reviews?.reviews.length">
+
+      <div class="post-comment-row" *ngFor="let review of (data.reviews.reviews | reverseArr) | slice:0:4">
         <div class="post-com-avatar-wrap">
           <img src="http://placehold.it/45x45" alt="">
         </div>
         <div class="post-comment-text">
           <div class="post-com-name-layer">
-            <a href="#" class="comment-name">Katherin</a>
-            <a href="#" class="comment-nickname">@katherin</a>
+            <a href="#" class="comment-name">{{review?.ip_address}}</a>
+            <a href="#" class="comment-nickname"></a>
           </div>
           <div class="comment-txt">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus labore tenetur vel. Neque molestiae repellat culpa qui odit delectus.</p>
+            <p>{{review?.comment ? review?.comment : 'there will be comment'}}</p>
           </div>
           <div class="comment-bottom-info">
             <div class="com-star-block">
               <ul class="com-star-list">
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
+                <li *ngFor="let star of [1,2,3,4,5], let i = index" [ngClass]="{'empty': i+1 > +review?.score}">
+                  <i class="trav-star-icon"></i>
+                </li>
               </ul>
-              <span class="count">
-                            <b>5</b> / 5
-                          </span>
+              <span class="count"><b>{{review?.score}}</b> / 5</span>
             </div>
             <div class="dot">·</div>
-            <div class="com-time">6 hours ago</div>
+            <div class="com-time">{{review?.created_at}}</div>
           </div>
         </div>
       </div>
-      <div class="post-comment-row">
-        <div class="post-com-avatar-wrap">
-          <img src="http://placehold.it/45x45" alt="">
-        </div>
-        <div class="post-comment-text">
-          <div class="post-com-name-layer">
-            <a href="#" class="comment-name">Amine</a>
-            <a href="#" class="comment-nickname">@ak0117</a>
-          </div>
-          <div class="comment-txt">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus.</p>
-          </div>
-          <div class="comment-bottom-info">
-            <div class="com-star-block">
-              <ul class="com-star-list">
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li class="empty"><i class="trav-star-icon"></i></li>
-              </ul>
-              <span class="count">
-                            <b>4</b> / 5
-                          </span>
-            </div>
-            <div class="dot">·</div>
-            <div class="com-time">6 hours ago</div>
-          </div>
-        </div>
-      </div>
-      <div class="post-comment-row">
-        <div class="post-com-avatar-wrap">
-          <img src="http://placehold.it/45x45" alt="">
-        </div>
-        <div class="post-comment-text">
-          <div class="post-com-name-layer">
-            <a href="#" class="comment-name">Katherin</a>
-            <a href="#" class="comment-nickname">@katherin</a>
-          </div>
-          <div class="comment-txt">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus labore tenetur vel. Neque molestiae repellat culpa qui odit delectus.</p>
-          </div>
-          <div class="comment-bottom-info">
-            <div class="com-star-block">
-              <ul class="com-star-list">
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-                <li><i class="trav-star-icon"></i></li>
-              </ul>
-              <span class="count">
-                            <b>5</b> / 5
-                          </span>
-            </div>
-            <div class="dot">·</div>
-            <div class="com-time">6 hours ago</div>
-          </div>
-        </div>
-      </div>
+
+      <!--<div class="post-comment-row">-->
+        <!--<div class="post-com-avatar-wrap">-->
+          <!--<img src="http://placehold.it/45x45" alt="">-->
+        <!--</div>-->
+        <!--<div class="post-comment-text">-->
+          <!--<div class="post-com-name-layer">-->
+            <!--<a href="#" class="comment-name">Amine</a>-->
+            <!--<a href="#" class="comment-nickname">@ak0117</a>-->
+          <!--</div>-->
+          <!--<div class="comment-txt">-->
+            <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus.</p>-->
+          <!--</div>-->
+          <!--<div class="comment-bottom-info">-->
+            <!--<div class="com-star-block">-->
+              <!--<ul class="com-star-list">-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li class="empty"><i class="trav-star-icon"></i></li>-->
+              <!--</ul>-->
+              <!--<span class="count">-->
+                            <!--<b>4</b> / 5-->
+                          <!--</span>-->
+            <!--</div>-->
+            <!--<div class="dot">·</div>-->
+            <!--<div class="com-time">6 hours ago</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="post-comment-row">-->
+        <!--<div class="post-com-avatar-wrap">-->
+          <!--<img src="http://placehold.it/45x45" alt="">-->
+        <!--</div>-->
+        <!--<div class="post-comment-text">-->
+          <!--<div class="post-com-name-layer">-->
+            <!--<a href="#" class="comment-name">Katherin</a>-->
+            <!--<a href="#" class="comment-nickname">@katherin</a>-->
+          <!--</div>-->
+          <!--<div class="comment-txt">-->
+            <!--<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex doloribus labore tenetur vel. Neque molestiae repellat culpa qui odit delectus.</p>-->
+          <!--</div>-->
+          <!--<div class="comment-bottom-info">-->
+            <!--<div class="com-star-block">-->
+              <!--<ul class="com-star-list">-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+                <!--<li><i class="trav-star-icon"></i></li>-->
+              <!--</ul>-->
+              <!--<span class="count">-->
+                            <!--<b>5</b> / 5-->
+                          <!--</span>-->
+            <!--</div>-->
+            <!--<div class="dot">·</div>-->
+            <!--<div class="com-time">6 hours ago</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 </div>

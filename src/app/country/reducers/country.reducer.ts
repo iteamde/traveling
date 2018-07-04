@@ -20,6 +20,7 @@ export function reducer(state: State = INIT_STATE, action: country.Actions) {
 
     case country.SET_COUNTRY_INFO:
       return {...state, country : action.payload};
+      //return {...state, country: {...state.country, ...action.payload} }; -> immutable
 
     case country.FOLLOW_SUCCESS:
       return {...state, country: {

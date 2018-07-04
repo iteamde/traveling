@@ -23,6 +23,8 @@ import {AgmCoreModule} from '@agm/core';
 import { SliderWrapperComponent } from './components/slider-wrapper/slider-wrapper.component';
 import {RegexPipe} from './pipes/matchPipe';
 import {FollowButtonComponent} from './components/follow-button/follow-button.component';
+import {ReverseArrPipe} from './pipes/reverseArrayPipe';
+
 
 @NgModule({
   imports: [
@@ -52,7 +54,8 @@ import {FollowButtonComponent} from './components/follow-button/follow-button.co
     TimeAgoPipe,
     SliderWrapperComponent,
     RegexPipe,
-    FollowButtonComponent
+    FollowButtonComponent,
+    ReverseArrPipe
   ],
   exports: [
     HeaderComponent,
@@ -62,7 +65,8 @@ import {FollowButtonComponent} from './components/follow-button/follow-button.co
     AgmCoreModule,
     SliderWrapperComponent,
     RegexPipe,
-    FollowButtonComponent
+    FollowButtonComponent,
+    ReverseArrPipe
   ]
 })
 export class CoreModule {

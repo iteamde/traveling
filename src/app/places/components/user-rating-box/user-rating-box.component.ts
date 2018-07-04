@@ -16,7 +16,8 @@ export class UserRatingBoxComponent implements OnInit {
   ngOnInit() {
   }
 
-  writeReview() {
+  writeReview(e) {
+    e.preventDefault();
     this.router.navigate([`${this.router.url}/review/new`]);
   }
 }
