@@ -16,7 +16,7 @@ export class FollowPlaceButtonComponent implements OnInit, OnDestroy {
   public id: number;
   public isFollowed: boolean;
   private subscriptions;
-  constructor(private store: Store<State>, private placesService: PlacesService) {
+  constructor(private store: Store<State>) {
     this.subscriptions = [
       this.store.select(getPlacesId).subscribe(id => this.id = id),
       this.store.select(getFollowPlacesStatus).subscribe(status => this.isFollowed = status)
@@ -28,6 +28,7 @@ export class FollowPlaceButtonComponent implements OnInit, OnDestroy {
 
   toggleFollow(e) {
     e.preventDefault();
+
     console.log('ID:', this.id);
     console.log(this.isFollowed);
     this.isFollowed ?

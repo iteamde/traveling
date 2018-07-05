@@ -24,6 +24,7 @@ import { SliderWrapperComponent } from './components/slider-wrapper/slider-wrapp
 import {RegexPipe} from './pipes/matchPipe';
 import {FollowButtonComponent} from './components/follow-button/follow-button.component';
 import {ReverseArrPipe} from './pipes/reverseArrayPipe';
+import {AllowSpinnerService} from './services/allowSpinner.service';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {ReverseArrPipe} from './pipes/reverseArrayPipe';
   ],
   providers: [
     ValidationService,
-    ModalManager
+    ModalManager,
+    AllowSpinnerService
   ],
   declarations: [
     TermsOfServiceComponent,

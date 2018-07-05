@@ -20,6 +20,7 @@ export class ModalWrapperComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router
   ) {
+
     this.component = this.route.snapshot.data.modal;
 
     if (this.route.snapshot.data.getFunc) {

@@ -25,6 +25,8 @@ export class FollowPlacesAction implements Action {
 export class FollowSuccessAction implements Action {
   readonly type = FOLLOW_SUCCESS;
 
+  constructor(public payload) {
+  }
 }
 
 export class UnfollowPlacesAction implements Action {
@@ -38,6 +40,8 @@ export class UnfollowPlacesAction implements Action {
 export class UnfollowSuccessAction implements Action {
   readonly type = UNFOLLOW_SUCCESS;
 
+  constructor(public payload) {
+  }
 }
 
 

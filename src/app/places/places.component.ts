@@ -11,6 +11,7 @@ import {SetPlacesInfoAction} from './actions/places.actions';
 
 import {FollowersListComponent} from './components/followers-list/followers-list.component';
 import {TrendingPlacesListComponent} from './components/trending-places-list/trending-places-list.component';
+import {AllowSpinnerService} from '../core/services/allowSpinner.service';
 
 
 
@@ -36,9 +37,8 @@ export class PlacesComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private placesService: PlacesService,
               private store: Store<State>,
-              private countryService: CountryService) {}
-
-  ngOnInit() {
+              private countryService: CountryService,
+              private allowSpinnerService: AllowSpinnerService) {
 
     // :TODO Check it
     this.route.params.subscribe(params => {
@@ -48,6 +48,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
       this.getData();
       window.scrollTo(0, 0);
     });
+
+  }
+
+  ngOnInit() {
+
+    //this.store.subscribe(res => console.log("STORE", res));
   }
 
   getData() {
@@ -65,6 +71,8 @@ export class PlacesComponent implements OnInit, OnDestroy {
       this.init();
     })
 
+
+    this.allowSpinnerService.allowSpinner.next(false);
     // :TODO this info for footer of place component that contains country info -> make it lazyLoading, or modify API for places
     this.subscriptions$[1] = this.placesService.getCountryOfPlace(this.data.info.place.countries_id).subscribe(response => {
       this.countryService.setType('countries');
@@ -72,7 +80,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
     });
 
     /**
-     * Get data for component country
+     * Get data for footer of places and trending places of component country
      */
     this.subscriptions$[2] = this.store.select(getCountry).subscribe(res => {
       console.log('Country', res);
@@ -96,7 +104,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
       title: 'One Day Plans',
       routePath: 'one-day-plans',
       count: this.data.plans.count,
-      media: this.data.plans.plans.slice(0, 3).map(res => res.medias),
+      media: this.data.plans.plans.slice(0, 3).map(res => res.medias)
     };
 
     this.nearbyPlaces = {

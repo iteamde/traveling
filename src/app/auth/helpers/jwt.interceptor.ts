@@ -7,20 +7,27 @@ import {RemoveErrorAction} from '../../core/actions/error.actions';
 import {Store} from '@ngrx/store';
 import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 import {State} from '../../core/reducers';
+import {AllowSpinnerService} from '../../core/services/allowSpinner.service';
+
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   private spinnerCounter = 0;
+  public allowSpinner: boolean;
 
   constructor( private authHelper: AuthHelper,
                private router: Router,
                private spinnerService: Ng4LoadingSpinnerService,
-               private store: Store<State>) {}
+               private store: Store<State>,
+               private allowSpinerService: AllowSpinnerService) {
+
+    this.allowSpinerService.allowSpinner.subscribe(res => this.allowSpinner = res);
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //UI helpers
     this.store.dispatch(new RemoveErrorAction());
-    this.spinnerService.show();
+    if ( this.allowSpinner ) this.spinnerService.show();
     this.spinnerCounter++;
 
     // add authorization header with jwt token if available
@@ -36,8 +43,11 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request).do(event => {
       if (event instanceof HttpResponse) {
         this.spinnerCounter--;
-        if(!this.spinnerCounter)  this.spinnerService.hide();
-     }
+        if (!this.spinnerCounter) {
+          this.allowSpinerService.allowSpinner.next(true);
+          this.spinnerService.hide();
+        }
+      }
     },(err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {

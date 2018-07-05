@@ -1,6 +1,6 @@
 <div class="post-block">
   <div class="post-side-top">
-    <h3 class="side-ttl">People following this place <span class="count">64k</span></h3>
+    <h3 class="side-ttl">People following this place <span class="count">{{(data | async)?.data.length}}</span></h3>
     <!--<p>{{(data | async).data | json}}</p>-->
     <div class="side-right-control">
       <a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>

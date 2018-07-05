@@ -3,7 +3,7 @@ import { Router} from '@angular/router';
 import {PlacesService} from '../../services/places.service';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Store} from '@ngrx/store';
-import {State} from '../../../core/reducers';
+import {getUserId, State} from '../../../core/reducers';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({

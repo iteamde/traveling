@@ -19,8 +19,8 @@ export function reducer(state: State = INIT_STATE, action: country.Actions) {
   switch (action.type) {
 
     case country.SET_COUNTRY_INFO:
-      return {...state, country : action.payload};
-      //return {...state, country: {...state.country, ...action.payload} }; -> immutable
+      //return {...state, country : action.payload};
+      return {...state, country: {...state.country, ...action.payload} };
 
     case country.FOLLOW_SUCCESS:
       return {...state, country: {

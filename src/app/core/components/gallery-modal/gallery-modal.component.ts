@@ -39,13 +39,11 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
               private router: Router
              ) {
     this.medias = this.data.data;
-    console.log('MEDIAS:', this.medias);
     this.url = this.router.url.substr( 0, this.router.url.lastIndexOf('/') + 1);
 
   }
 
   ngOnInit() {
-    console.log('data.params',  this.data)
     this.currentIndex = findIndex(this.medias, {id: +this.data.params.mediaId});
     this.currentIndex = (this.currentIndex === -1) ? 0 : this.currentIndex;
     this.getReactions();
@@ -57,9 +55,8 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
   }
 
   sendComment() {
-    console.log('Enter pressed', this.currentComment);
     this.countryService.sendComment(this.medias[this.currentIndex].id, this.currentComment,  this.replayTo.id)
-      .subscribe(res => res.status ? this.addComment() : this.toastrError());
+      .subscribe(res => res.status ? this.addComment(res.data.MediasCommentsId) : this.toastrError());
   }
   toastrError(err?) {
     this.toastr.error(err || 'Oops , something went wrong');
@@ -72,8 +69,6 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
   //:TODO galery is not complete. Add API for likes, comments for places
   nextSlide() {
     this.currentIndex++;
-    console.log(this.currentIndex, this.endPoint);
-
     if (this.currentIndex % 10 === 0) {
       this.nextPartOfSlide();
       return;
@@ -84,7 +79,6 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
 
   prevSlide() {
     this.currentIndex--;
-    console.log(this.currentIndex, this.endPoint);
     if (this.currentIndex === this.startPoint) {
       this.prevPartOfSlide();
       return;
@@ -174,9 +168,11 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
     this.toastrError('Like  removed');
   }
 
-  addComment() {
+  addComment(id) {
     const commentModel = {
+      id: id,
       comment: this.currentComment,
+      likes: [],
       user: {name: "hardcoded name"},
       reply_to: {
         id: this.replayTo.id,
