@@ -1,0 +1,15 @@
+:host {
+  .follow-header {
+    overflow: hidden;
+  }
+}
+
+
+@media (max-width: 764px) {
+
+  .follow-header {
+     .follow-inner .place-name span {
+       font-size: 12px;
+     }
+  }
+}

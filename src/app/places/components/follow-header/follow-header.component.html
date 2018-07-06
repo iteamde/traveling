@@ -1,0 +1,13 @@
+<div class="follow-header" id="followHeader" [ngClass]="{'scrolled': shoWHeader}">
+  <div class="container-fluid">
+    <div class="follow-inner">
+      <div class="place-name">
+        <span>{{data.info.place.trans[0]?.title}}</span>
+        <span class="place-tag">{{data.info.place?.place_type | removeUnderscore}}</span>
+      </div>
+      <div class="follow-btn">
+        <app-follow-place-button></app-follow-place-button>
+      </div>
+    </div>
+  </div>
+</div>
