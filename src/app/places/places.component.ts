@@ -13,7 +13,7 @@ import {FollowersListComponent} from './components/followers-list/followers-list
 import {TrendingPlacesListComponent} from './components/trending-places-list/trending-places-list.component';
 import {AllowSpinnerService} from '../core/services/allowSpinner.service';
 
-
+import 'rxjs/add/operator/filter';
 
 @AutoUnsubscribe({includeArrays: true})
 @Component({
@@ -30,9 +30,10 @@ export class PlacesComponent implements OnInit, OnDestroy {
   public followersList = FollowersListComponent;
   public trendingList = TrendingPlacesListComponent;
   public countryData;
-  public showComponent;
+  public showComponent: boolean;
   // array of subscriptions for unsubscribe
   public subscriptions$ = [];
+  public getCountrySubscription;
 
   constructor(private route: ActivatedRoute,
               private placesService: PlacesService,
@@ -53,8 +54,22 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    //this.store.subscribe(res => console.log("STORE", res));
+    this.getDataForPlaceCountry();
+
   }
+
+  getDataForPlaceCountry() {
+    // :TODO don`t forget that we use  city and  country as the same component
+    // :TODO ask later to make light API for footer component of place that use country info
+
+    this.allowSpinnerService.allowSpinner.next(false);
+    // :TODO this info for footer of place component that contains country info -> make it lazyLoading, or modify API for places
+    this.getCountrySubscription = this.placesService.getCountryOfPlace(this.data.info.place.countries_id).subscribe(response => {
+      this.countryService.setType('countries');
+      this.store.dispatch(new SetCountryInfoAction(response));
+    });
+  }
+
 
   getData() {
     /**
@@ -69,20 +84,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
       console.log('PLACES DATA:', res);
       this.data = res;
       this.init();
-    })
-
-
-    this.allowSpinnerService.allowSpinner.next(false);
-    // :TODO this info for footer of place component that contains country info -> make it lazyLoading, or modify API for places
-    this.subscriptions$[1] = this.placesService.getCountryOfPlace(this.data.info.place.countries_id).subscribe(response => {
-      this.countryService.setType('countries');
-      this.store.dispatch(new SetCountryInfoAction(response));
     });
 
     /**
      * Get data for footer of places and trending places of component country
      */
-    this.subscriptions$[2] = this.store.select(getCountry).subscribe(res => {
+    this.subscriptions$[1] = this.store.select(getCountry).subscribe(res => {
       console.log('Country', res);
       this.countryData = res;
       this.showComponent = true;
@@ -125,7 +132,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.getCountrySubscription.unsubscribe();
   }
 
 }

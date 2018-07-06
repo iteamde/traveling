@@ -20,6 +20,7 @@ import {SanitizeHtmlPipe} from '../core/pipes/sanitizeHtmlPipe';
 import { MathRandomPipe} from '../core/pipes/mathRandomPipe';
 import {RemoveUnderscorePipe} from '../core/pipes/removeUnderscorePipe';
 import {WriteReviewModalComponent} from './components/write-review-modal/write-review-modal.component';
+import { FollowHeaderComponent } from './components/follow-header/follow-header.component';
 
 
 
@@ -46,7 +47,8 @@ import {WriteReviewModalComponent} from './components/write-review-modal/write-r
     WriteReviewModalComponent,
     SanitizeHtmlPipe,
     MathRandomPipe,
-    RemoveUnderscorePipe
+    RemoveUnderscorePipe,
+    FollowHeaderComponent
 
   ],
   providers: [

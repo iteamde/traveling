@@ -4,6 +4,8 @@
 
   <app-main-header></app-main-header>
 
+  <app-follow-header [data]="data"></app-follow-header>
+
   <div class="content-wrap">
 
     <button class="btn btn-mobile-side sidebar-toggler" id="sidebarToggler">
@@ -14,12 +16,11 @@
     </button>
 
     <div class="container-fluid">
-      <!-- left outside menu -->
 
+      <!-- left outside menu -->
       <app-left-outside-menu></app-left-outside-menu>
 
       <!--top banner-->
-
       <app-places-top-banner [data]="data"></app-places-top-banner>
 
 
@@ -100,14 +101,6 @@
                   </a>
                 </div>
               </div>
-              <!--<div class="review-info-block">-->
-              <!--<div class="info-ttl">Popular times</div>-->
-              <!--<div class="info-txt">-->
-              <!--<div class="chart-layer">-->
-              <!--<img src="http://placehold.it/585x105?text=chart_of_popular_times" alt="chart">-->
-              <!--</div>-->
-              <!--</div>-->
-              <!--</div>-->
             </div>
           </div>
 
@@ -214,14 +207,14 @@
             </div>
           </div>
 
-          <app-dcl-slider-wrapper [type]="followersList" *ngIf="data.followers.data[0]?.followers.length"
+          <app-dcl-slider-wrapper [type]="followersList" *ngIf="data.followers?.data.length"
                                   [settings]="{
                                     width: 136,
                                     height: 192,
-                                    count: '20'
+                                    count: data.followers.data.length
                                   }">
           </app-dcl-slider-wrapper>
-          <div class="post-block" *ngIf="!data.followers.data[0]?.followers.length">
+          <div class="post-block" *ngIf="!data.followers?.data.length">
             <div class="post-side-top">
               <h3 class="side-ttl">No one else follows this place yet.</h3>
             </div>

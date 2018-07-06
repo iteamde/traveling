@@ -66,7 +66,7 @@ export class GalleryModalComponent implements OnInit, OnDestroy {
     this.toastr.success(err || 'Succesfully completed');
   }
 
-  //:TODO galery is not complete. Add API for likes, comments for places
+  //:TODO check galery work without bugs
   nextSlide() {
     this.currentIndex++;
     if (this.currentIndex % 10 === 0) {

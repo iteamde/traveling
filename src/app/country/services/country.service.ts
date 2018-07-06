@@ -8,7 +8,6 @@ import { Router} from '@angular/router';
 @Injectable()
 export class CountryService {
 
-
   /**
    * type = country || city
    */
@@ -17,11 +16,8 @@ export class CountryService {
   constructor(
     private api: ApiService,
     private route: Router) {
-
     console.log('router', this.route);
-
   }
-
 
   setType(type) {
     return this.type = type;
@@ -30,9 +26,6 @@ export class CountryService {
   getType() {
     return this.type;
   }
-
-
-
 
   /**
    * Get country media
@@ -47,7 +40,6 @@ export class CountryService {
   getCountryInfo(countryId): Observable<any> {
     return this.api.get(  `${this.type}/${countryId}?language_id=1`);
   }
-
 
   /**
    * Get country statistic
@@ -104,8 +96,6 @@ export class CountryService {
   getNumOfFollowers(countryId): Observable<any> {
     return this.api.get(  `${this.type}/${countryId}/num_followers?language_id=1`);
   }
-
-
 
   /**
    * Report media
