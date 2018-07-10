@@ -35,12 +35,6 @@ export function reducer(state: State = INIT_STATE, action: places.Actions) {
         followStatus: false
       }};
 
-    // case places.POST_PLACES_REVIEW_SUCCESS:
-    //   return {...state, places: {
-    //     ...state.places,
-    //     reviews: {...state.places.reviews, ...action.payload}
-    // }};
-
     default :
       return state;
   }
@@ -50,8 +44,6 @@ export function reducer(state: State = INIT_STATE, action: places.Actions) {
 export const getPlaces = (state: State) => state.places;
 export const getPlacesId = (state: State) => state.places.info.place.id;
 export const getFollowPlacesStatus = (state: State) => state.places.followStatus;
-// export const getPlacesNearby = (state: State) => state.places.nearby.filter(res => Object.keys(res.firstmedia).length > 1).slice(0, 10)
-//   .map(res => res.firstmedia);
 export const getPlacesNearby = (state: State) => state.places.nearby.filter(res => Object.keys(res.firstmedia).length > 1)
   .map(res => res.firstmedia);
 export const getPlacesImg = (state: State) => state.places.media;

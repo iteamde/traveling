@@ -12,14 +12,14 @@ import {ClearPasswordStatus, ResetPasswordAction} from '../../actions/auth.actio
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-  public resetPasswordStatus$:any;
-  public errorFromServer$:any;
+  public resetPasswordStatus$: any;
+  public errorFromServer$: any;
   public userForm: FormGroup;
   public user: any = {
-    email: "",
+    email: '',
   };
   public formErrors = {
-    email: "",
+    email: '',
   };
   constructor(private store: Store<State>, private fb: FormBuilder, public validation: ValidationService) {
     this.resetPasswordStatus$ = store.select(getResetPasswordStatus);

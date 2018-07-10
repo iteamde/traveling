@@ -5,6 +5,13 @@
   }
 
 
+  // modify spinner css to center it
+  .la-ball-clip-rotate-multiple.la-3x {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 }
 
 

@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
 
 import {PlacesService} from '../services/places.service';
+import {AllowSpinnerService} from '../../core/services/allowSpinner.service';
 
 import * as error from '../../core/actions/error.actions';
 import * as places from '../actions/places.actions';
 
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
-import {AllowSpinnerService} from '../../core/services/allowSpinner.service';
+
 
 @Injectable()
 export class PlacesEffects {
@@ -41,7 +42,7 @@ export class PlacesEffects {
   @Effect()
   unfollowSuccess$ = this.actions$.ofType(places.UNFOLLOW_SUCCESS)
     .switchMap((action: places.UnfollowPlacesAction) => {
-    this.allowSpinerService.allowSpinner.next(false);
+    this.allowSpinnerService.allowSpinner.next(false);
     return this.placesService.checkFollowers(action.payload)
         .map( res => res.success ? new places.SetPlacesInfoAction({followers: res}) : new error.AddErrorAction(res.data))
     });
@@ -53,7 +54,7 @@ export class PlacesEffects {
   @Effect()
   followSuccess$ = this.actions$.ofType(places.FOLLOW_SUCCESS)
     .switchMap((action: places.FollowPlacesAction) => {
-    this.allowSpinerService.allowSpinner.next(false);
+    this.allowSpinnerService.allowSpinner.next(false);
     return this.placesService.checkFollowers(action.payload)
         .map( res => res.success ? new places.SetPlacesInfoAction({followers: res}) : new error.AddErrorAction(res.data))
     });
@@ -68,5 +69,5 @@ export class PlacesEffects {
    */
   constructor(private actions$: Actions,
               private placesService: PlacesService,
-              private allowSpinerService: AllowSpinnerService) {}
+              private allowSpinnerService: AllowSpinnerService) {}
 }

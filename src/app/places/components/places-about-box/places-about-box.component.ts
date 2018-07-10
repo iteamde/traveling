@@ -9,13 +9,10 @@ import {Component, Input, OnInit} from '@angular/core';
 export class PlacesAboutBoxComponent implements OnInit {
   @Input() info;
 
-
   constructor() {
-
   }
 
   ngOnInit() {
-
   }
 
 }

@@ -25,7 +25,7 @@ export class AuthHelper {
   }
 
 
-  public clearAuthToken(){
+  public clearAuthToken() {
     localStorage.removeItem(TOKEN_NAME);
   }
 }

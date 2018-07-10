@@ -16,14 +16,14 @@ export class ResetPasswordComponent implements OnInit {
   public userForm: FormGroup;
   public resetPasswordStatus$;
   public errorFromServer$;
-  public token : string;
+  public token: string;
   public user: any = {
-    password: "",
-    password_confirmation: "",
+    password: '',
+    password_confirmation: '',
   };
   public formErrors = {
-    password: "",
-    password_confirmation: "",
+    password: '',
+    password_confirmation: '',
   };
 
   constructor(private store: Store<State>, private fb: FormBuilder , public validation: ValidationService, private route: ActivatedRoute) {

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
@@ -34,6 +34,11 @@ export class PlacesComponent implements OnInit, OnDestroy {
   // array of subscriptions for unsubscribe
   public subscriptions$ = [];
   public getCountrySubscription;
+  public openLeftMenu = false;
+  public openSideBar = false;
+
+
+
 
   constructor(private route: ActivatedRoute,
               private placesService: PlacesService,
@@ -51,6 +56,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
     });
 
   }
+
 
   ngOnInit() {
 
@@ -133,6 +139,21 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.getCountrySubscription.unsubscribe();
+  }
+
+  @HostListener('click') onClick() {
+    console.log('Click on Host Element');
+    this.openLeftMenu = false;
+  }
+
+  triggerLeftMenu(e) {
+    e.stopPropagation();
+    this.openLeftMenu = true;
+  }
+
+  triggerSideBar(e) {
+    e.stopPropagation();
+    this.openSideBar = !this.openSideBar;
   }
 
 }

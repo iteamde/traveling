@@ -7,7 +7,6 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PlacesFooterComponent implements OnInit {
 
-
   @Input() countryData;
 
   constructor() {}

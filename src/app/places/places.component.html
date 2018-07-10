@@ -8,17 +8,17 @@
 
   <div class="content-wrap">
 
-    <button class="btn btn-mobile-side sidebar-toggler" id="sidebarToggler">
+    <button class="btn btn-mobile-side sidebar-toggler" id="sidebarToggler" (click)="triggerSideBar($event)">
       <i class="trav-cog"></i>
     </button>
-    <button class="btn btn-mobile-side left-outside-btn" id="filterToggler">
+    <button class="btn btn-mobile-side left-outside-btn" id="filterToggler" (click)="triggerLeftMenu($event)">
       <i class="trav-filter"></i>
     </button>
 
     <div class="container-fluid">
 
       <!-- left outside menu -->
-      <app-left-outside-menu></app-left-outside-menu>
+      <app-left-outside-menu [showMenu]="openLeftMenu"></app-left-outside-menu>
 
       <!--top banner-->
       <app-places-top-banner [data]="data"></app-places-top-banner>
@@ -222,7 +222,7 @@
         </div>
 
         <!-- SIDEBAR -->
-        <div class="sidebar-layer" id="sidebarLayer">
+        <div class="sidebar-layer" id="sidebarLayer" [ngClass]="{'sidebar-open': openSideBar}">
           <aside class="sidebar">
             <app-sidebar-about-box *ngIf="data && showComponent" [data]="data"></app-sidebar-about-box>
           </aside>

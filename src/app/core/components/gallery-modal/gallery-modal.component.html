@@ -163,24 +163,31 @@
     <div class="lg-actions">
       <button (click)="prevSlide()" *ngIf="currentIndex > 0" class="lg-prev lg-icon"><i class="trav-angle-left"></i>
       </button>
-      <button (click)="nextSlide()" *ngIf="currentIndex < medias.length - 1" class="lg-next lg-icon"><i
-        class="trav-angle-right"></i></button>
+      <button (click)="nextSlide()" *ngIf="currentIndex < medias.length - 1" class="lg-next lg-icon">
+        <i class="trav-angle-right"></i></button>
     </div>
 
     <div class="lg-thumb-outer lg-grab" style="height: 180px;">
       <div class="lg-thumb lg-group">
+
+        <div class="lg-actions bottom-slider-btn">
+          <button (click)="prevPartOfSlide()" [ngStyle]="{'visibility': startPoint > 0 ? 'visible' : 'hidden' }"  class="lg-prev lg-icon">
+            <i class="trav-angle-left"></i>
+          </button>
+        </div>
+
         <div class="lg-thumb-item" *ngFor="let media of medias | slice:startPoint:endPoint; let i = index"
              [ngClass]="{'active' : currentIndex === i}"
              (click)="selectMedia(i, startPoint)">
           <img src="{{'https://s3.amazonaws.com/travooo-images2/th180/' + media.url}}"
                src-fallback="{{'https://s3.amazonaws.com/travooo-images2/' + media.url}}" alt="photo">
         </div>
-        <div class="lg-actions">
-          <button (click)="prevPartOfSlide()" *ngIf="startPoint > 0" class="lg-prev lg-icon"><i class="trav-angle-left"></i>
-          </button>
-          <button (click)="nextPartOfSlide()" *ngIf="endPoint < medias.length - 1" class="lg-next lg-icon"><i
-            class="trav-angle-right"></i></button>
+
+        <div class="lg-actions bottom-slider-btn">
+          <button (click)="nextPartOfSlide()" [ngStyle]="{'visibility': (endPoint < medias.length - 1) ? 'visible' : 'hidden' }" class="lg-next lg-icon">
+            <i class="trav-angle-right"></i></button>
         </div>
+
       </div>
     </div>
   </div>
