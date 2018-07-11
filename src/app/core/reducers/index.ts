@@ -52,7 +52,8 @@ export const getPlacesState = (state: State) => state.places;
  *  Core selectors
  */
 export const getOpenedModalRef = createSelector(getCoreState, fromCore.getOpenedModalRef);
-
+export const getOpenLeftMobileMenu = createSelector(getCoreState, fromCore.getOpenLeftMobileMenu);
+export const getOpenMobileSideBar = createSelector(getCoreState, fromCore.getOpenMobileSideBar);
 /**
  *  Error selectors
  */

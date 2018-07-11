@@ -1,1 +1,27 @@
+@media (max-width: 425px) {
+  :host /deep/ {
+    .post-block.post-review-block .review-inner .review-info-block.half-block {
+      padding-right: 0;
+      width: initial;
+      word-wrap: normal;
+    }
 
+    .post-comment-wrapper .post-comment-row .post-comment-text .comment-bottom-info .com-star-block span.count {
+      min-width: 30px;
+    }
+
+    .top-banner-block .top-banner-text {
+      padding-bottom: 60px;
+    }
+
+  }
+}
+
+@media (max-width: 320px) {
+  :host /deep/ {
+    .top-banner-block .top-banner-text {
+      padding-bottom: 45px;
+    }
+
+  }
+}

@@ -1,0 +1,7 @@
+@media (max-width: 425px) {
+  :host /deep/ {
+    .post-comment-wrapper .post-comment-row .post-comment-text .comment-bottom-info {
+      flex-wrap: wrap;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <div class="lg-outer main-gallery-block  lg-slide lg-grab lg-show-after-load lg-pull-caption-up lg-has-thumb lg-visible lg-thumb-open"
       [ngClass]="{'lg-dropdown-active': isActiveSocialShare}">
   <div class="lg" style="width:100%; height:100%">
-    <div class="lg-inner">
+    <div class="lg-inner" #img>
       <div class="lg-item lg-current lg-complete" style="display: block!important">
         <div class="lg-img-wrap">
           <a href="{{'https://s3.amazonaws.com/travooo-images2/' + medias[currentIndex].url}}" target="_blank">
@@ -10,8 +10,8 @@
                  src-fallback="{{'https://s3.amazonaws.com/travooo-images2/' + medias[currentIndex].url}}" alt="photo">
           </a>
         </div>
-        <div class="cover-block" style="width: 1140px;">
-          <div class="cover-block-inner comment-block" style="width: 1140px;">
+        <div class="cover-block">
+          <div class="cover-block-inner comment-block">
             <ul class="modal-outside-link-list white-bg">
               <li class="outside-link">
                 <a (click)="closeModal()">
@@ -30,7 +30,7 @@
                 </a>
               </li>
             </ul>
-            <div class="gallery-comment-wrap">
+            <div class="gallery-comment-wrap" [ngClass]="{'fadeIn': showMobileComment}">
               <div class="gallery-comment-inner mCustomScrollbar _mCS_4">
                 <div id="mCSB_4" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;"
                      tabindex="0">
@@ -131,8 +131,9 @@
         </div>
       </div>
     </div>
-    <div class="lg-toolbar lg-group">
+    <div class="lg-toolbar lg-group" style="width:100%">
       <span class="lg-icon lg-close" (click)="closeModal()"></span>
+      <span class="comment-img"  (click)="showMobileComment = !showMobileComment">Comment</span>
       <span id="lg-share" class="lg-icon" (click)="isActiveSocialShare = !isActiveSocialShare"></span>
       <ul class="lg-dropdown" style="position: absolute;">
         <li>
@@ -160,15 +161,15 @@
         </li>
       </ul>
     </div>
-    <div class="lg-actions">
+    <div class="lg-actions" *ngIf="!showMobileComment">
       <button (click)="prevSlide()" *ngIf="currentIndex > 0" class="lg-prev lg-icon"><i class="trav-angle-left"></i>
       </button>
       <button (click)="nextSlide()" *ngIf="currentIndex < medias.length - 1" class="lg-next lg-icon">
         <i class="trav-angle-right"></i></button>
     </div>
 
-    <div class="lg-thumb-outer lg-grab" style="height: 180px;">
-      <div class="lg-thumb lg-group">
+    <div class="lg-thumb-outer lg-grab" style="height: 180px;" [ngStyle]="{'z-index': showMobileComment ? '0' : '1080', 'opacity': showMobileComment ? '0' : '1' }">
+      <div class="lg-thumb lg-group" #imgGroup >
 
         <div class="lg-actions bottom-slider-btn">
           <button (click)="prevPartOfSlide()" [ngStyle]="{'visibility': startPoint > 0 ? 'visible' : 'hidden' }"  class="lg-prev lg-icon">

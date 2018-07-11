@@ -1,11 +1,11 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
 import {PlacesService} from './services/places.service';
 import {CountryService} from '../country/services/country.service';
-import {getCountry, getPlaces, State} from '../core/reducers';
+import {getCountry, getPlaces, State, getOpenMobileSideBar} from '../core/reducers';
 import {SetCountryInfoAction} from '../country/actions/country.actions';
 import {SetPlacesInfoAction} from './actions/places.actions';
 
@@ -14,6 +14,7 @@ import {TrendingPlacesListComponent} from './components/trending-places-list/tre
 import {AllowSpinnerService} from '../core/services/allowSpinner.service';
 
 import 'rxjs/add/operator/filter';
+
 
 @AutoUnsubscribe({includeArrays: true})
 @Component({
@@ -34,11 +35,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
   // array of subscriptions for unsubscribe
   public subscriptions$ = [];
   public getCountrySubscription;
-  public openLeftMenu = false;
-  public openSideBar = false;
-
-
-
+  public openMobileSideBar;
 
   constructor(private route: ActivatedRoute,
               private placesService: PlacesService,
@@ -59,9 +56,8 @@ export class PlacesComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-
     this.getDataForPlaceCountry();
-
+    this.openMobileSideBar = this.store.select(getOpenMobileSideBar);
   }
 
   getDataForPlaceCountry() {
@@ -141,19 +137,5 @@ export class PlacesComponent implements OnInit, OnDestroy {
     this.getCountrySubscription.unsubscribe();
   }
 
-  @HostListener('click') onClick() {
-    console.log('Click on Host Element');
-    this.openLeftMenu = false;
-  }
-
-  triggerLeftMenu(e) {
-    e.stopPropagation();
-    this.openLeftMenu = true;
-  }
-
-  triggerSideBar(e) {
-    e.stopPropagation();
-    this.openSideBar = !this.openSideBar;
-  }
 
 }

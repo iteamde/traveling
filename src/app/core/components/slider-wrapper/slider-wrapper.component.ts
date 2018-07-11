@@ -55,6 +55,7 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
 
   ngOnChanges() {
     this.updateComponent();
+    this.ngAfterViewInit();
   }
 
   ngAfterViewInit() {

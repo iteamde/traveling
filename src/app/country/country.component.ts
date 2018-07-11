@@ -5,7 +5,7 @@ import {Store} from '@ngrx/store';
 
 import {CountryService} from './services/country.service';
 import {ConvertService} from '../core/services/convert.service';
-import {getCountry, State} from '../core/reducers';
+import {getCountry, State, getOpenMobileSideBar} from '../core/reducers';
 import {SetCountryInfoAction} from './actions/country.actions';
 
 import {PlacesListComponent} from './components/places-list/places-list.component';
@@ -36,6 +36,7 @@ export class CountryComponent implements OnInit, OnDestroy {
   public showComponent = false;
   public activeTab = 0;
   public subscription$ = [];
+  public openMobileSideBar;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -50,6 +51,7 @@ export class CountryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    this.openMobileSideBar = this.store.select(getOpenMobileSideBar);
   }
 
   getData() {

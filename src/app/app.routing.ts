@@ -12,17 +12,24 @@ import {PlacesRoutes} from './places/places.routing';
 
 
 const appRoutes = [
-  {
-    path: '',
-    component: AppComponent,
-    children: [
-      ...AuthRoutes,
-      ...TripPlannerRoutes,
-      ...HomeRoutes,
-      ...CountryRoutes,
-      ...PlacesRoutes
-    ],
-  },
+
+  // it gives nested app-root don`t use AppComponent in router it is bootstrapped by default
+  // {
+  //   path: '',
+  //   component: AppComponent,
+  //   children: [
+  //     ...AuthRoutes,
+  //     ...TripPlannerRoutes,
+  //     ...HomeRoutes,
+  //     ...CountryRoutes,
+  //     ...PlacesRoutes
+  //   ],
+  // },
+  ...AuthRoutes,
+  ...TripPlannerRoutes,
+  ...HomeRoutes,
+  ...CountryRoutes,
+  ...PlacesRoutes,
   {
     path: 'privacy-policy',
     component: PrivacyPolicyComponent
