@@ -19,6 +19,10 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "./assets/css/bootstrap.min.css",
+        "./assets/font-awesome/css/font-awesome.min.css",
+        "./assets/css/style.css",
+        "./assets/css/additional_style.css",
         "styles.css",
         "../node_modules/ngx-toastr/toastr.css"
       ],
