@@ -23,6 +23,7 @@ import {RouterModule} from '@angular/router';
 import {TripPlannerRoutes} from './trip-planner.routing';
 import {EffectsModule} from '@ngrx/effects';
 import {TripPlannerEffects} from './effects/trip-planner.effects';
+import {CountryService} from '../country/services/country.service';
 
 
 
@@ -51,6 +52,7 @@ import {TripPlannerEffects} from './effects/trip-planner.effects';
   ],
   providers: [
     TripPlannerService,
+    CountryService,
     TripInfoResolver,
     CreateTripPlanModalComponent,
     AddCityToTripModalComponent,
