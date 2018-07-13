@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, HttpErrorResponse} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {AuthHelper} from './auth.helper';
-import {Router} from '@angular/router';
+import {ActivationStart, Router} from '@angular/router';
 import {RemoveErrorAction} from '../../core/actions/error.actions';
 import {Store} from '@ngrx/store';
 import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
@@ -22,6 +22,17 @@ export class JwtInterceptor implements HttpInterceptor {
                private allowSpinerService: AllowSpinnerService) {
 
     this.allowSpinerService.allowSpinner.subscribe(res => this.allowSpinner = res);
+
+    //
+    // router.events.subscribe(e => {
+    //   console.log(e);
+    //   if (e instanceof ActivationStart) {
+    //     console.log('Navigation Start');
+    //     this.spinnerCounter++;
+    //   }
+    // });
+
+
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -29,6 +40,7 @@ export class JwtInterceptor implements HttpInterceptor {
     this.store.dispatch(new RemoveErrorAction());
     if ( this.allowSpinner ) this.spinnerService.show();
     this.spinnerCounter++;
+    //this.spinnerCounter++;
 
     // add authorization header with jwt token if available
     let userToken = this.authHelper.getAuthToken();

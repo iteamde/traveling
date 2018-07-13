@@ -3,8 +3,10 @@ import {AuthGuard} from "../auth/guards/can-activate.guard";
 
 export const HomeRoutes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
     //canActivate: [AuthGuard],
   }
 ];
+
+

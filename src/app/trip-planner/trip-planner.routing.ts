@@ -10,7 +10,7 @@ import {ModalWrapperComponent} from '../core/components/modal-wrapper/modal-wrap
 export const TripPlannerRoutes = [
 
   {
-    path: 'trip',
+    path: '',
     component: TripPlannerComponent,
     canActivate: [AuthGuard],
     children: [

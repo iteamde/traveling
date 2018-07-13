@@ -19,6 +19,12 @@ import { CityArriveBoxComponent } from './components/city-arrive-box/city-arrive
 import { PlaceDetailsBoxComponent } from './components/place-details-box/place-details-box.component';
 import { CompletedPlaceBoxComponent } from './components/completed-place-box/completed-place-box.component';
 import { TripPlannerMapComponent } from './components/trip-planner-map/trip-planner-map.component';
+import {RouterModule} from '@angular/router';
+import {TripPlannerRoutes} from './trip-planner.routing';
+import {EffectsModule} from '@ngrx/effects';
+import {TripPlannerEffects} from './effects/trip-planner.effects';
+
+
 
 @NgModule({
   imports: [
@@ -28,7 +34,9 @@ import { TripPlannerMapComponent } from './components/trip-planner-map/trip-plan
     CoreModule,
     DndModule.forRoot(),
     AmazingTimePickerModule,
-    AgmDirectionModule
+    AgmDirectionModule,
+    RouterModule.forChild(TripPlannerRoutes),
+    EffectsModule.forFeature([TripPlannerEffects])
   ],
   declarations: [
     TripPlannerComponent,

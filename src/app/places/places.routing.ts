@@ -8,7 +8,7 @@ import {WriteReviewModalComponent} from './components/write-review-modal/write-r
 
 export const PlacesRoutes  = [
   {
-    path: 'places/:id',
+    path: '',
     component: PlacesComponent,
     resolve: {places: PlacesInfoResolver},
     // canActivate: [AuthGuard],

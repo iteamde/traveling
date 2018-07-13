@@ -21,7 +21,10 @@ import { MathRandomPipe} from '../core/pipes/mathRandomPipe';
 import {RemoveUnderscorePipe} from '../core/pipes/removeUnderscorePipe';
 import {WriteReviewModalComponent} from './components/write-review-modal/write-review-modal.component';
 import { FollowHeaderComponent } from './components/follow-header/follow-header.component';
-
+import {RouterModule} from '@angular/router';
+import {PlacesEffects} from './effects/places.effects';
+import {PlacesRoutes} from './places.routing';
+import {EffectsModule} from '@ngrx/effects';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { FollowHeaderComponent } from './components/follow-header/follow-header.
     CoreModule ,
     CommonModule,
     SharedModule,
-    CoreModule
+    RouterModule.forChild(PlacesRoutes),
+    EffectsModule.forFeature([PlacesEffects]),
+
   ],
   declarations: [
     PlacesComponent,

@@ -14,25 +14,19 @@ import {EffectsModule} from '@ngrx/effects';
 import {ApiService} from './core/services/api.service';
 import {HttpClientModule} from '@angular/common/http';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-import {TripPlannerModule} from './trip-planner/trip-planner.module';
-import {TripPlannerEffects} from './trip-planner/effects/trip-planner.effects';
 import {RouterEffects} from './core/effects/router.effects';
-import {HomeModule} from './home/home.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import {CountryModule} from './country/country.module';
 import {CountryEffects} from './country/effects/country.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {PlacesModule} from './places/places.module';
-import {PlacesEffects} from './places/effects/places.effects';
+
 
 const effectsArr = [
   AuthEffects,
-  TripPlannerEffects,
   RouterEffects,
-  CountryEffects,
-  PlacesEffects
+  CountryEffects
 ];
 
 @NgModule({
@@ -45,18 +39,15 @@ const effectsArr = [
     HttpClientModule,
     routing,
     AuthModule,
-    HomeModule,
     SharedModule,
-    EffectsModule.forRoot(effectsArr),
     StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effectsArr),
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),
     Ng4LoadingSpinnerModule.forRoot(),
     ToastrModule.forRoot({positionClass : 'toast-top-right'}),
-    TripPlannerModule,
-    CountryModule,
-    PlacesModule
+    CountryModule
   ],
   providers: [
     ApiService,
