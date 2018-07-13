@@ -17,7 +17,7 @@ export class CountryInfoResolver implements Resolve<any> {
 
     const countryId = route.paramMap.get('id');
 
-    switch (route.url[0].path) {
+    switch (route.parent.url[0].path) {
 
       case 'city':
         this.countryService.setType('cities');

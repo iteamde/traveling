@@ -25,6 +25,7 @@ import {RouterModule} from '@angular/router';
 import {PlacesEffects} from './effects/places.effects';
 import {PlacesRoutes} from './places.routing';
 import {EffectsModule} from '@ngrx/effects';
+import {CountryService} from '../country/services/country.service';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import {EffectsModule} from '@ngrx/effects';
   ],
   providers: [
     PlacesService,
-    PlacesInfoResolver
+    PlacesInfoResolver,
+    CountryService
   ],
   entryComponents: [
     FollowersListComponent,

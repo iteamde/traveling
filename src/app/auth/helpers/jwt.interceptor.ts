@@ -23,16 +23,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
     this.allowSpinerService.allowSpinner.subscribe(res => this.allowSpinner = res);
 
-    //
-    // router.events.subscribe(e => {
-    //   console.log(e);
-    //   if (e instanceof ActivationStart) {
-    //     console.log('Navigation Start');
-    //     this.spinnerCounter++;
-    //   }
-    // });
-
-
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -40,7 +30,6 @@ export class JwtInterceptor implements HttpInterceptor {
     this.store.dispatch(new RemoveErrorAction());
     if ( this.allowSpinner ) this.spinnerService.show();
     this.spinnerCounter++;
-    //this.spinnerCounter++;
 
     // add authorization header with jwt token if available
     let userToken = this.authHelper.getAuthToken();

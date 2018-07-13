@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --build-optimizer &&  gulp compress",
+    "build": "ng build --prod --aot --build-optimizer &&  gulp compress",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

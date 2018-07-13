@@ -22,6 +22,10 @@ import { CountryBudgetBoxComponent } from './components/country-budget-box/count
 import { CountryAccordionModalComponent } from './modals/country-accordion-modal/country-accordion-modal.component';
 import {KeysPipe} from '../core/pipes/keysPipe';
 import {ConvertService} from '../core/services/convert.service';
+import {RouterModule} from '@angular/router';
+import {EffectsModule} from '@ngrx/effects';
+import {CountryEffects} from './effects/country.effects';
+import {CountryRoutes} from './country.routing';
 
 
 
@@ -31,6 +35,8 @@ import {ConvertService} from '../core/services/convert.service';
     SharedModule,
     CoreModule,
     MatSliderModule,
+    RouterModule.forChild(CountryRoutes),
+    EffectsModule.forFeature([CountryEffects]),
   ],
   declarations: [
     CountryComponent,

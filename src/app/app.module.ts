@@ -18,15 +18,13 @@ import {RouterEffects} from './core/effects/router.effects';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
-import {CountryModule} from './country/country.module';
-import {CountryEffects} from './country/effects/country.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {AppPreloadingStrategy} from './customPreload';
 
 
 const effectsArr = [
   AuthEffects,
-  RouterEffects,
-  CountryEffects
+  RouterEffects
 ];
 
 @NgModule({
@@ -47,10 +45,10 @@ const effectsArr = [
     }),
     Ng4LoadingSpinnerModule.forRoot(),
     ToastrModule.forRoot({positionClass : 'toast-top-right'}),
-    CountryModule
   ],
   providers: [
     ApiService,
+    AppPreloadingStrategy,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

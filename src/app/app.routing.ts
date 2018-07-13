@@ -1,19 +1,30 @@
 import {ModuleWithProviders} from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {AuthRoutes} from './auth/auth.routing';
 import {PrivacyPolicyComponent} from './core/components/privacy-policy/privacy-policy.component';
 import {TermsOfServiceComponent} from './core/components/terms-of-service/terms-of-service.component';
 import {ErrorComponent} from './core/components/error/error.component';
-import {CountryRoutes} from './country/country.routing';
+import {AppPreloadingStrategy} from './customPreload';
+
+
+
 
 
 const appRoutes = [
 
   ...AuthRoutes,
-  ...CountryRoutes,
   {
     path: 'home',
     loadChildren: './home/home.module#HomeModule'
+  },
+  {
+    path: 'country/:id',
+    loadChildren: './country/country.module#CountryModule',
+    data: { preload: true, delay: true }
+  },
+  {
+    path: 'city/:id',
+    loadChildren: './country/country.module#CountryModule',
   },
   {
     path: 'places/:id',
@@ -40,6 +51,7 @@ const appRoutes = [
     redirectTo: '/'
   }
 
-]
+];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, {preloadingStrategy: AppPreloadingStrategy});

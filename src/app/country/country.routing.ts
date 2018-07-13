@@ -7,7 +7,7 @@ import {AuthGuard} from '../auth/guards/can-activate.guard';
 
 export const CountryRoutes = [
   {
-    path: 'country/:id',
+    path: '',
     component: CountryComponent,
     resolve: {country: CountryInfoResolver},
     //canActivate: [AuthGuard],
