@@ -55,6 +55,7 @@ export class CountryInfoResolver implements Resolve<any> {
       const country = {
         media: res[0].data.medias,
         info: res[1].data,
+        atms_count: res[1].atms_count,
         numOfFollowers: res[2].data.followers,
         stats: res[3].data.stats,
         plans: res[4].data.plans,

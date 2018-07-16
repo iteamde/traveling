@@ -17,7 +17,7 @@ export class ModalWrapperComponent implements OnInit, OnDestroy {
   private routeParams: any;
   private modalData: any;
   private skipClose: any;
-  private subscription: any;
+  private subscription$: any;
 
   constructor(private modalManager: ModalManager,
               private store: Store<State>,
@@ -40,7 +40,7 @@ export class ModalWrapperComponent implements OnInit, OnDestroy {
     this.routeParams = this.route.snapshot.params;
 
 
-    this.subscription = this.router.events.filter(event => event instanceof NavigationStart)
+    this.subscription$ = this.router.events.filter(event => event instanceof NavigationStart)
       .switchMap(() => of(this.route.snapshot.data.skipClose)).subscribe((res) => {
       this.store.dispatch(new RemoveErrorAction());
       console.log('Router DATA', res);
@@ -66,7 +66,7 @@ export class ModalWrapperComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 
 }

@@ -114,15 +114,11 @@
                       <div class="tab-txt">Sockets</div>
                     </div>
 
-                    <!--<div class="map-tab current" data-tab="hotelTxt">-->
-                      <!--<div class="tab-icon"><i class="trav-hotels-icon"></i></div>-->
-                      <!--<div class="tab-txt">Hotels</div>-->
-                    <!--</div>-->
                   </div>
 
                   <div class="post-map-area">
                     <div class="area-txt" id="atmTxt" *ngIf="activeTab === 0">
-                      <h5 class="ttl">425,000</h5>
+                      <h5 class="ttl">{{data?.atms_count || 'None'}}</h5>
                       <p>ATM machines</p>
                     </div>
 
@@ -134,13 +130,6 @@
                       <p>{{data.info.trans[0].sockets}}</p>
                     </div>
 
-                    <!--<div class="area-txt" id="socketTxt" style="display:none;">-->
-                      <!--<img src="./assets/image/types-blue-icons.png" alt="icons">-->
-                    <!--</div>-->
-                    <!--<div class="area-txt" id="hotelTxt">-->
-                      <!--<h5 class="ttl">37,000</h5>-->
-                      <!--<p>Available Hotels</p>-->
-                    <!--</div>-->
                   </div>
                 </div>
               </div>
@@ -149,9 +138,6 @@
 
           <div class="post-block post-tab-block post-tip-tab">
             <div class="post-tab-inner post-tip-tab" id="postTabBlock">
-              <!--<div class="tab-item active-tab">-->
-                <!--Trips Tips &nbsp;<span>57</span>-->
-              <!--</div>-->
               <div class="tab-item active-tab ">
                 Packing Tips
               </div>
@@ -161,155 +147,6 @@
             </div>
           </div>
 
-         <!-- <div class="post-block post-tips-block">
-            <div class="post-tips-block-inner">
-              <div class="post-top-info-layer">
-                <div class="post-top-info-wrap">
-                  <div class="post-top-avatar-wrap">
-                    <img src="http://placehold.it/30x30" alt="">
-                  </div>
-                  <div class="post-top-info-txt">
-                    <div class="post-top-name profile-name">
-                      By
-                      <a class="post-name-link" href="#">Suzanne</a>
-                      from the trip plan
-                      <a href="#" class="post-name-link">What to See In New York City</a>
-                    </div>
-                    <div class="post-info-date">
-                      5 days ago
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="post-tips">
-                <div class="post-tips_block-wrap">
-                  <div class="post-tips_block">
-                    <div class="tips-content">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eveniet, architecto vel magnam accusamus nemo odio unde autem, provident eos itaque quas at, vitae ducimus. Earum magnam quod a tempore.</p>
-                    </div>
-                  </div>
-                  <div class="tips-footer">
-                    <ul class="tip-right-info-list">
-                      <li class="round">
-                        <i class="trav-bookmark-icon"></i>
-                      </li>
-                      <li class="round">
-                        <i class="trav-flag-icon"></i>
-                      </li>
-                      <li class="round blue">
-                        <i class="trav-chevron-up"></i>
-                      </li>
-                      <li class="count">
-                        <span>5</span>
-                      </li>
-                    </ul>
-                    <div class="tips-foot-link">
-                      <a href="#" class="tip-link">+3 Tips by Suzanne</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="post-tips-block-inner">
-              <div class="post-top-info-layer">
-                <div class="post-top-info-wrap">
-                  <div class="post-top-avatar-wrap">
-                    <img src="http://placehold.it/30x30" alt="">
-                  </div>
-                  <div class="post-top-info-txt">
-                    <div class="post-top-name profile-name">
-                      By
-                      <a class="post-name-link" href="#">Suzanne</a>
-                      from the trip plan
-                      <a href="#" class="post-name-link">What to See In New York City</a>
-                    </div>
-                    <div class="post-info-date">
-                      5 days ago
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="post-tips">
-                <div class="post-tips_block-wrap">
-                  <div class="post-tips_block">
-                    <div class="tips-content">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eveniet, architecto vel magnam accusamus nemo odio unde autem, provident eos itaque quas at, vitae ducimus. Earum magnam quod a tempore.</p>
-                    </div>
-                  </div>
-                  <div class="tips-footer">
-                    <ul class="tip-right-info-list">
-                      <li class="round">
-                        <i class="trav-bookmark-icon"></i>
-                      </li>
-                      <li class="round">
-                        <i class="trav-flag-icon"></i>
-                      </li>
-                      <li class="round blue">
-                        <i class="trav-chevron-up"></i>
-                      </li>
-                      <li class="count">
-                        <span>5</span>
-                      </li>
-                    </ul>
-                    <div class="tips-foot-link">
-                      <a href="#" class="tip-link">+3 Tips by Suzanne</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="post-tips-block-inner">
-              <div class="post-top-info-layer">
-                <div class="post-top-info-wrap">
-                  <div class="post-top-avatar-wrap">
-                    <img src="http://placehold.it/30x30" alt="">
-                  </div>
-                  <div class="post-top-info-txt">
-                    <div class="post-top-name profile-name">
-                      By
-                      <a class="post-name-link" href="#">Suzanne</a>
-                      from the trip plan
-                      <a href="#" class="post-name-link">What to See In New York City</a>
-                    </div>
-                    <div class="post-info-date">
-                      5 days ago
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="post-tips">
-                <div class="post-tips_block-wrap">
-                  <div class="post-tips_block">
-                    <div class="tips-content">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eveniet, architecto vel magnam accusamus nemo odio unde autem, provident eos itaque quas at, vitae ducimus. Earum magnam quod a tempore.</p>
-                    </div>
-                  </div>
-                  <div class="tips-footer">
-                    <ul class="tip-right-info-list">
-                      <li class="round">
-                        <i class="trav-bookmark-icon"></i>
-                      </li>
-                      <li class="round">
-                        <i class="trav-flag-icon"></i>
-                      </li>
-                      <li class="round blue">
-                        <i class="trav-chevron-up"></i>
-                      </li>
-                      <li class="count">
-                        <span>5</span>
-                      </li>
-                    </ul>
-                    <div class="tips-foot-link">
-                      <a href="#" class="tip-link">+3 Tips by Suzanne</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="post-load-txt">
-              Loading...
-            </div>
-          </div>-->
 
           <app-country-budget-box *ngIf="data.info.trans[0]?.other && showComponent" [data]="data.info.trans[0].other"></app-country-budget-box>
 
@@ -321,10 +158,6 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <!--<div class="post-top-txt">-->
-                  <!--<span class="name">John mobile</span>-->
-                  <!--<span>and 7 more are talking about this</span>-->
-                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -352,32 +185,6 @@
                     </div>
                   </div>
                 </div>
-
-
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Shoes</b></div>-->
-                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Umbrella</b></div>-->
-                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Backpack</b></div>-->
-                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Sunglasses</b></div>-->
-                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>ID</b></div>-->
-                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Camera</b></div>-->
-                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
             </div>
           </div>
 
@@ -397,10 +204,6 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <!--<div class="post-top-txt">-->
-                  <!--<span class="name">John mobile</span>-->
-                  <!--<span>and 7 more are talking about this</span>-->
-                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -419,127 +222,9 @@
                 <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
                 <div class="row-txt"><span>{{item.value}}</span></div>
               </div>
-
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Greeting</b></div>-->
-                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Lines</b></div>-->
-                <!--<div class="row-txt"><span>Proin cursus erat lorem placerat bibendum tincidunt sem.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Seats</b></div>-->
-                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Tips</b></div>-->
-                <!--<div class="row-txt"><span>Duis egestas massa at feugiat tincidunt.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dress Code</b></div>-->
-                <!--<div class="row-txt"><span>Vivamus eu massa non tellus consequat euismod ut erat.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Photography</b></div>-->
-                <!--<div class="row-txt"><span>Etiam eu enim a est imperdiet euismod.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Eating & Drinking</b></div>-->
-                <!--<div class="row-txt"><span>Nulla porta felis id maximus aliquet.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Gestures</b></div>-->
-                <!--<div class="row-txt"><span>Proin sit amet est finibus, auctor eros condimentum nisi.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Communication</b></div>-->
-                <!--<div class="row-txt"><span>Vivamus ut ligula et urna pharetra lacinia.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Language</b></div>-->
-                <!--<div class="row-txt"><span>Fusce lacinia dui quis nibh tincidunt pulvinar.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Religion</b></div>-->
-                <!--<div class="row-txt"><span>Quisque eget dui aliquet, laoreet ante quis, sollicitudin.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Smoking</b></div>-->
-                <!--<div class="row-txt"><span>Proin ullamcorper diam vel nibh placerat iaculis.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Visiting</b></div>-->
-                <!--<div class="row-txt"><span>Nullam pharetra ipsum eu placerat dictum.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hijab and Burqa</b></div>-->
-                <!--<div class="row-txt"><span>Aenean viverra mi at varius venenatis.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Alcohol</b></div>-->
-                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Drugs</b></div>-->
-                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Prostitution</b></div>-->
-                <!--<div class="row-txt"><span>Duis egestas massa at feugiat tincidunt.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dress Code</b></div>-->
-                <!--<div class="row-txt"><span>Vivamus eu massa non tellus consequat euismod.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Photography</b></div>-->
-                <!--<div class="row-txt"><span>Etiam eu enim a est imperdiet euismod.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Driving</b></div>-->
-                <!--<div class="row-txt"><span>Nulla porta felis id maximus aliquet.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Pork</b></div>-->
-                <!--<div class="row-txt"><span>Proin sit amet est finibus, auctor eros non, condimentum.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Freedom of Religion</b></div>-->
-                <!--<div class="row-txt"><span>Vivamus ut ligula et urna pharetra lacinia.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Freedom of Speech</b></div>-->
-                <!--<div class="row-txt"><span>Fusce lacinia dui quis nibh tincidunt pulvinar.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Gambling</b></div>-->
-                <!--<div class="row-txt"><span>Quisque eget dui aliquet, laoreet ante quis, sollicitudin.</span></div>-->
-              <!--</div>-->
             </div>
           </div>
 
-          <!--<div class="post-block post-tips-list-block">-->
-            <!--<div class="post-top-layer">-->
-              <!--<div class="top-left">-->
-                <!--<h3 class="post-tip-ttl">Recommended Vaccination</h3>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="post-list-inner">-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Immunizations</b></div>-->
-                <!--<div class="row-txt"><span>Laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hepatitis B</b></div>-->
-                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Typhoid Fever</b></div>-->
-                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
 
           <div class="post-block post-tips-list-block"  *ngIf="data.info.trans[0]?.health_notes">
             <div class="post-top-layer">
@@ -553,18 +238,6 @@
                 <div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>{{item.key}}</b></div>
                 <div class="row-txt"><span>{{item.value}}</span></div>
               </div>
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Malaria</b></div>-->
-                <!--<div class="row-txt"><span>Laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Dengue</b></div>-->
-                <!--<div class="row-txt"><span>Proin cursus erat at lorem placerat, bibendum tincidunt.</span></div>-->
-              <!--</div>-->
-              <!--<div class="post-tip-row tip-txt">-->
-                <!--<div class="row-label"><i class="trav-about-icon"></i>&nbsp; <b>Hepatits</b></div>-->
-                <!--<div class="row-txt"><span>Mauris laoreet nibh nec odio porta consectetur.</span></div>-->
-              <!--</div>-->
             </div>
           </div>
 
@@ -587,10 +260,6 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <!--<div class="post-top-txt">-->
-                  <!--<span class="name">John mobile</span>-->
-                  <!--<span>and 7 more are talking about this</span>-->
-                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -654,10 +323,6 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <!--<div class="post-top-txt">-->
-                  <!--<span class="name">John mobile</span>-->
-                  <!--<span>and 7 more are talking about this</span>-->
-                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -702,10 +367,6 @@
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li><!--
 										--><li><img class="small-ava" src="http://placehold.it/28x28" alt="ava"></li>
                 </ul>&nbsp;
-                <!--<div class="post-top-txt">-->
-                  <!--<span class="name">John mobile</span>-->
-                  <!--<span>and 7 more are talking about this</span>-->
-                <!--</div>-->
               </div>
               <div class="top-right">
                 <div class="top-comment-icon">
@@ -1226,17 +887,8 @@
               <div class="share-page-inner">
                 <div class="share-txt">Share this page</div>
                 <ul class="share-list">
-                  <li>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fa fa-code"></i></a>
+                  <li *ngFor="let share of ['fa-facebook', 'fa-twitter', 'fa-pinterest-p', 'fa-code']">
+                    <a href="#"><i class="fa {{share}}"></i></a>
                   </li>
                 </ul>
               </div>
@@ -1244,11 +896,7 @@
 
             <div class="aside-footer">
               <ul class="aside-foot-menu">
-                <li><a href="#">Privacy</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Advertising</a></li>
-                <li><a href="#">Cookies</a></li>
-                <li><a href="#">More</a></li>
+                <li *ngFor="let item of ['Privacy', 'Terms', 'Advertising', 'Cookies', 'More']"><a href="#">{{item}}</a></li>
               </ul>
               <p class="copyright">Travooo &copy; 2017</p>
             </div>

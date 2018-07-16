@@ -41,7 +41,7 @@
               <div class="com-star-block">
                 <ul class="com-star-list">
                   <li *ngFor="let star of [1,2,3,4,5], let i = index"
-                      [ngClass]="{'empty': i+1 > score}" (click)="score = i+1" style="cursor: pointer">
+                      [ngClass]="{'empty': i+1 > score}" (click)="score = i+1"  (mouseenter)="score = i+1"  style="cursor: pointer">
                     <i class="trav-star-icon"></i>
                   </li>
 
