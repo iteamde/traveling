@@ -40,7 +40,8 @@
                       <div class="top-info-layer">
                         <div class="top-avatar-wrap">
                           <img src="http://placehold.it/50x50" *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length" alt="" class="mCS_img_loaded">
-                          <img src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/' + medias[currentIndex].users[0].id + '/' + medias[currentIndex].users[0].profile_picture }}" *ngIf="medias[currentIndex].users && medias[currentIndex].users.length" alt="" class="mCS_img_loaded">
+                          <img src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/' + medias[currentIndex].users[0].id + '/' + medias[currentIndex].users[0].profile_picture }}"
+                               *ngIf="medias[currentIndex].users && medias[currentIndex].users.length" alt="" class="mCS_img_loaded">
                         </div>
                         <div class="top-info-txt">
                           <div class="preview-txt">

@@ -1,25 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ModalManager} from '../../services/modal-manager.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {State} from '../../reducers';
+import {RemoveErrorAction} from '../../actions/error.actions';
+import {MatDialog} from '@angular/material';
+import {of} from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-modal-wrapper',
   templateUrl: './modal-wrapper.component.html',
   styleUrls: ['./modal-wrapper.component.scss']
 })
-export class ModalWrapperComponent implements OnInit {
+export class ModalWrapperComponent implements OnInit, OnDestroy {
   private component: any;
   private routeParams: any;
   private modalData: any;
   private skipClose: any;
+  private subscription: any;
 
   constructor(private modalManager: ModalManager,
               private store: Store<State>,
               private route: ActivatedRoute,
-              private router: Router
+              private router: Router,
+              private dialog: MatDialog
   ) {
+
 
     this.component = this.route.snapshot.data.modal;
 
@@ -32,17 +38,35 @@ export class ModalWrapperComponent implements OnInit {
     }
 
     this.routeParams = this.route.snapshot.params;
+
+
+    this.subscription = this.router.events.filter(event => event instanceof NavigationStart)
+      .switchMap(() => of(this.route.snapshot.data.skipClose)).subscribe((res) => {
+      this.store.dispatch(new RemoveErrorAction());
+      console.log('Router DATA', res);
+      return !res && this.dialog.closeAll();
+    });
+
+
   }
 
   ngOnInit() {
+    // this.modalManager.openModalFromLCH(this.component,
+    //   this.modalData ? {data: this.modalData , params: this.routeParams, close: this.close.bind(this) } : this.routeParams,
+    //   this.skipClose
+    //  );
+
     this.modalManager.openModalFromLCH(this.component,
-      this.modalData ? {data: this.modalData , params: this.routeParams, close: this.close.bind(this) } : this.routeParams,
-      this.skipClose
+      this.modalData ? {data: this.modalData , params: this.routeParams, close: this.close.bind(this) } : this.routeParams
      );
   }
 
   close() {
     this.router.navigate([ '../../' ], { relativeTo: this.route });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
