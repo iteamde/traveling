@@ -8,6 +8,8 @@ import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
+import 'rxjs/add/operator/debounceTime';
+
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',

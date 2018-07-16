@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 import {Store} from '@ngrx/store';
 import {getUserId, State} from '../../../core/reducers';
 import {ToastrService} from 'ngx-toastr';
+import {getLoggedUser} from '../../../core/reducers';
 
 @Component({
   selector: 'app-write-review-modal',
@@ -21,12 +22,18 @@ export class WriteReviewModalComponent implements OnInit, OnDestroy {
   public score = 0;
   public startPoint = 0;
   public endPoint = 4;
+  public currentUser;
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private router: Router,
               private store: Store<State>,
               private toastr: ToastrService,
-              private placesService: PlacesService) { }
+              private placesService: PlacesService) {
+
+    this.currentUser = JSON.parse(localStorage.getItem('aboutUser'));
+
+  }
 
   ngOnInit() {
     console.log(this.data)
@@ -45,7 +52,7 @@ export class WriteReviewModalComponent implements OnInit, OnDestroy {
   }
 
   sendReview() {
-    this.subscriptions$[0] = this.placesService.postReview(this.placesId, this.currentReview, 1, this.score)
+    this.subscriptions$[0] = this.placesService.postReview(this.placesId, this.currentReview, this.currentUser.id, this.score)
       .subscribe(res => {
         console.log('POSTreview:', res);
         res.success ? this.addReview() : this.toastrError(res.data.message);

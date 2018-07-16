@@ -47,7 +47,7 @@ export class AuthEffects {
    */
   @Effect()
   loginSuccess$ = this.actions$.ofType(auth.LOGIN_SUCCESS)
-    .do((action: auth.LoginSuccessAction) => this.authHelper.setAuthToken(action.payload.data.token))
+    .do((action: auth.LoginSuccessAction) => this.authHelper.setAuthToken(action.payload.data.token, action.payload.data.user))
     .map((action: auth.LoginSuccessAction) => go(action.payload.returnUrl));
 
   /**
