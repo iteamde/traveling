@@ -11,7 +11,7 @@ import {getLoginStatus, State} from '../core/reducers';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
   private path = '';
@@ -22,11 +22,6 @@ export class AuthComponent implements OnInit {
   ) {
     this.path = router.url;
     store.select(getLoginStatus).subscribe(res => this.loginStatus = res);
-
-
-
-
-
 
   }
 
