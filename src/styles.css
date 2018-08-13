@@ -156,3 +156,16 @@ input[type=number]::-webkit-outer-spin-button {
 .slide-link{
   cursor: pointer;
 }
+
+/***** for sidebar *****/
+
+.container-fluid .custom-row .sidebar-layer{
+  top:70px;
+  z-index: 100;
+}
+
+@media (max-width: 767px) {
+  .container-fluid .custom-row .sidebar-layer{
+    top: 50px;
+  }
+}

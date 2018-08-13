@@ -24,7 +24,9 @@ export class LeftOutsideMenuComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   clickOut(e) {
-    if (!this.eRef.nativeElement.contains(e.target)) this.store.dispatch(new CloseLeftMobileMenu);
+    if (!this.eRef.nativeElement.contains(e.target)) {
+      this.store.dispatch(new CloseLeftMobileMenu);
+    }
   }
 
 }

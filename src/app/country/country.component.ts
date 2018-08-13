@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {Store} from '@ngrx/store';
@@ -49,8 +49,8 @@ export class CountryComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnInit() {
 
+  ngOnInit() {
     this.openMobileSideBar = this.store.select(getOpenMobileSideBar);
   }
 

@@ -13,7 +13,7 @@ import 'rxjs/add/operator/debounceTime';
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
-  styleUrls: ['./search-box.component.css']
+  styleUrls: ['./search-box.component.scss']
 })
 export class SearchBoxComponent implements OnInit , OnDestroy{
   protected user$: Observable<any>;
@@ -49,11 +49,11 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
 
     if ( item.selected ) {
       this.choosenItems.push(item);
-      this.items.forEach( (elem, index) => {
-        if ( item.id === elem.id) {
-          return this.items.splice(index, 1);
-        }
-      });
+      // this.items.forEach( (elem, index) => {
+      //   if ( item.id === elem.id) {
+      //     return this.items.splice(index, 1);
+      //   }
+      // });
     } else {
       this.choosenItems.forEach( (elem, index) => {
         if ( item.id === elem.id) {
@@ -93,6 +93,10 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
       };
       this.store.dispatch(new RegisterAction(payload));
     });
+  }
+
+  isSelected(item) {
+    return this.choosenItems.filter( obj => obj['id'] === item['id']).length;
   }
 
   ngOnDestroy() {

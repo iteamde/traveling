@@ -1,10 +1,10 @@
-import { Pipe } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'reverseArr',
-  pure: false
+  pure: true
 })
-export class ReverseArrPipe {
+export class ReverseArrPipe implements PipeTransform {
   transform(value) {
     return value.slice().reverse();
   }

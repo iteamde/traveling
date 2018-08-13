@@ -5,7 +5,9 @@
       <input type="text" formControlName="query" placeholder="Item or city...">
     </div>
   </div>
-  <div class="check-block-wrap" detect-scroll (onScroll)="handleScroll($event)" [bottomOffset]="1" [topOffset]="0">
+
+  <div class="selectedCount">My selected items - {{choosenItems.length}}</div>
+  <div class="check-block-wrap checkedItems" *ngIf="choosenItems.length">
     <div class="check-block" [ngClass]="{'checked-block': item.selected}"
          [ngStyle]="{'background-image': item.cover_image || 'url(http://placehold.it/181x181)'}"
          (click)="selectItem(item)"
@@ -15,7 +17,11 @@
         <p>{{item.id}}</p>
       </div>
     </div>
-    <div class="check-block" [ngClass]="{'checked-block': item.selected}"
+  </div>
+
+
+  <div class="check-block-wrap" detect-scroll (onScroll)="handleScroll($event)" [bottomOffset]="1" [topOffset]="0">
+    <div class="check-block" [ngClass]="{'checked-block': item.selected || isSelected(item)}"
          [ngStyle]="{'background-image': item.cover_image || 'url(http://placehold.it/181x181)'}"
          (click)="selectItem(item)"
          *ngFor="let item of items">
@@ -27,7 +33,11 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" disabled *ngIf="(settings.itemToChoose > choosenItems.length)" class="btn btn-grey">Select {{settings.itemToChoose - choosenItems.length}} More</button>
-  <button type="button" (click)="register()" *ngIf="(settings.itemToChoose <= choosenItems.length)"class="btn btn-primary">Continue</button>
+  <button type="button" disabled *ngIf="(settings.itemToChoose > choosenItems.length)" class="btn btn-grey">Select
+    {{settings.itemToChoose - choosenItems.length}} More
+  </button>
+  <button type="button" (click)="register()" *ngIf="(settings.itemToChoose <= choosenItems.length)"
+          class="btn btn-primary">Continue
+  </button>
   <p class="sub-info">(Next Step: Favorite Places)</p>
 </div>

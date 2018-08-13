@@ -111,6 +111,7 @@ export class WriteReviewModalComponent implements OnInit, OnDestroy {
     }
   }
 
+
   ngOnDestroy() {
     if (this.subscriptions$.length) {
       this.subscriptions$.forEach(item => item.unsubscribe());
