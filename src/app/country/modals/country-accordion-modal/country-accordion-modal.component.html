@@ -7,17 +7,17 @@
       <div class="post-block post-modal-language-style">
         <div class="post-lang-top">
 
-          <div class="top-txt" *ngIf="isCountry && (data | async).region.trans[0].title">
-            <h3 class="ttl">{{(data | async).trans[0].title}}</h3>
+          <div class="top-txt" *ngIf="isCountry && (data | async).region.trans[0]?.title">
+            <h3 class="ttl">{{(data | async).trans[0]?.title}}</h3>
             <p>Country in
-              <a href="#" class="link">{{(data | async).region.trans[0].title}}</a>
+              <a href="#" class="link">{{(data | async)?.region.trans[0]?.title}}</a>
             </p>
           </div>
 
           <div class="top-txt" *ngIf="!isCountry && (data | async).country.trans[0].title">
             <h3 class="ttl">{{(data | async).trans[0].title}}</h3>
             <p>City in
-              <a [routerLink]="['/country', (data | async).countries_id]" class="link">{{(data | async).country.trans[0].title}}</a>
+              <a [routerLink]="['/country', (data | async).countries_id]" class="link">{{(data | async).country.trans[0]?.title}}</a>
             </p>
           </div>
 
@@ -31,7 +31,7 @@
             <div class="lang-collapse" [ngClass]="{'opened': openedList.languages}">
               <div class="lang-list" *ngFor="let lang of (data | async).languages">
                 <div class="lang-string">
-                  <div class="name">{{ lang.title }}</div>
+                  <div class="name">{{ lang?.title }}</div>
                   <!--<div class="name">{{isCountry ? lang.trans.title : lang.title }}</div>-->
                   <!-- <div class="info">{{(data | async).iso_code}}</div>-->
                 </div>
@@ -45,7 +45,7 @@
             <div class="lang-collapse" [ngClass]="{'opened': openedList.currencies}">
               <div class="lang-list" *ngFor="let curr of (data | async).currencies">
                 <div class="lang-string">
-                  <div class="name">{{curr.trans[0].title}}</div>
+                  <div class="name">{{curr.trans[0]?.title}}</div>
                   <!--<div class="info">$</div>-->
                 </div>
               </div>
@@ -71,7 +71,7 @@
             <div class="lang-collapse"   [ngClass]="{'opened': openedList.religions}">
               <div class="lang-list" *ngFor="let rel of (data | async).religions">
                 <div class="lang-string">
-                  <div class="name">{{rel.trans[0].title}}</div>
+                  <div class="name">{{rel.trans[0]?.title}}</div>
                   <!--<div class="info">52 %</div>-->
                 </div>
               </div>

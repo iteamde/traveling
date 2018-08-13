@@ -7,7 +7,6 @@ import {PlacesService} from './services/places.service';
 import {PlacesInfoResolver} from './services/places-info-resolver';
 import { LeftOutsideMenuComponent } from './components/left-outside-menu/left-outside-menu.component';
 import { PlacesTopBannerComponent } from './components/places-top-banner/places-top-banner.component';
-import {PlacesGalleryBoxComponent} from './components/places-gallery-box/places-gallery-box.component';
 import {FollowPlaceButtonComponent} from './components/follow-place-button/follow-place-button.component';
 import {PlacesAboutBoxComponent} from './components/places-about-box/places-about-box.component';
 import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar-about-box.component';
@@ -41,7 +40,6 @@ import {CountryService} from '../country/services/country.service';
     PlacesComponent,
     LeftOutsideMenuComponent,
     PlacesTopBannerComponent,
-    PlacesGalleryBoxComponent,
     FollowPlaceButtonComponent,
     PlacesAboutBoxComponent,
     SidebarAboutBoxComponent,

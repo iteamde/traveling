@@ -26,6 +26,7 @@ import {FollowButtonComponent} from './components/follow-button/follow-button.co
 import {ReverseArrPipe} from './pipes/reverseArrayPipe';
 import {AllowSpinnerService} from './services/allowSpinner.service';
 import { MobileMenuButtonsComponent } from './components/mobile-menu-buttons/mobile-menu-buttons.component';
+import {GalleryBoxComponent} from './components/gallery-box/gallery-box.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { MobileMenuButtonsComponent } from './components/mobile-menu-buttons/mob
     RegexPipe,
     FollowButtonComponent,
     ReverseArrPipe,
-    MobileMenuButtonsComponent
+    MobileMenuButtonsComponent,
+    GalleryBoxComponent
   ],
   exports: [
     HeaderComponent,
@@ -71,7 +73,8 @@ import { MobileMenuButtonsComponent } from './components/mobile-menu-buttons/mob
     RegexPipe,
     FollowButtonComponent,
     ReverseArrPipe,
-    MobileMenuButtonsComponent
+    MobileMenuButtonsComponent,
+    GalleryBoxComponent
   ]
 })
 export class CoreModule {
