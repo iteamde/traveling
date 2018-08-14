@@ -51,8 +51,7 @@ export class CreateTripPlanModalComponent implements OnInit {
   constructor(private store: Store<State>,
               private fb: FormBuilder,
               private route: ActivatedRoute,
-              public validation: ValidationService,
-              private countryService: CountryService) {
+              public validation: ValidationService) {
 
   }
 

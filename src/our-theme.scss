@@ -1,0 +1,69 @@
+
+/* Our custom material theme
+ ***************************/
+@import '~@angular/material/theming';
+
+$main: #4080ff;
+
+@include mat-core();
+
+/* Main theme colors and typography
+ **********************************/
+$my-primary: (
+        50 : $main,
+        100 : $main,
+        200 : $main,
+        300 : $main,
+        400 : $main,
+        500 : $main,
+        600 : $main,
+        700 : $main,
+        800 : $main,
+        900 : $main,
+        A100 : $main,
+        A200 : $main,
+        A400 : $main,
+        A700 : $main,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+$app-primary: mat-palette($my-primary, 400);
+$app-accent: mat-palette($mat-grey);
+$app-warn: mat-palette($mat-red);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+@include angular-material-theme($app-theme);
+
+//$app-primary: mat-palette($my-primary, 400);
+//$app-accent: mat-palette($my-primary);
+//$app-warn: mat-palette($mat-red);
+//$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+//@include mat-checkbox-theme($app-theme)
+
+//$custom-typography: mat-typography-config(
+//        $font-family: 'Roboto,sans-serif',
+//        $body-1: mat-typography-level(16px, 24px, 400),
+//        $button: mat-typography-level(16px, 24px, 400),
+//        $headline: mat-typography-level(16px, 24px, 400),
+//        $title: mat-typography-level(16px, 24px, 400),
+//        $subheading-1: mat-typography-level(16px, 24px, 400),
+//        $subheading-2: mat-typography-level(16px, 24px, 400),
+//        $input: mat-typography-level(16px, 1, 400)
+//);
+//@include mat-core($custom-typography);
+
+
+

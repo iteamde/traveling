@@ -1,0 +1,69 @@
+<div class="top-profile-layer">
+  <div class="top-profile-picture">
+    <img src="./assets/image/profile-top-image.jpg" alt="banner">
+    <a href="#" class="update-picture-link">
+      <i class="trav-camera"></i>
+      <span>Update cover picture</span>
+    </a>
+  </div>
+  <div class="top-profile-info">
+    <button class="btn btn-transp btn-bordered btn-edit">
+      <i class="trav-ellipsis-h"></i>
+    </button>
+    <div class="profile-image">
+      <img src="http://placehold.it/100x100" alt="image">
+      <a href="#" class="change-image-link">
+        <i class="trav-camera"></i>
+      </a>
+    </div>
+    <div class="profile-name-block">
+      <h2 class="name-ttl">
+        <span>Justin baker</span>
+        <span class="tag">Photographer</span>
+      </h2>
+      <p class="location">United States</p>
+    </div>
+    <div class="follow-info-wrap">
+      <ul class="follow-info-list">
+        <li>
+          <span>Followers</span>
+          <b>83</b>
+        </li>
+        <li>
+          <span>Following</span>
+          <b>2</b>
+        </li>
+        <li>
+          <span>Travel Maters</span>
+          <b>17</b>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="top-details-wrap">
+
+    <div class="detail-list">
+      <div class="detail-block"
+           *ngFor="let tab of mockTabs; let i = index"
+           [ngClass]="{'current': isCurrent === i}" (click)="isCurrent = i">
+        <b>{{tab?.title}}</b>{{tab?.count}}
+      </div>
+
+      <div class="detail-block">
+        <a href="#" class="website-link">
+                  <span class="round-icon">
+                    <i class="trav-link"></i>
+                  </span>
+          <span>Website</span>
+        </a>
+      </div>
+    </div>
+    <ul class="social-list">
+      <li *ngFor="let social of socialList">
+        <a href="#" class="{{social.socialClass}}">
+          <i class="{{social.icon}}"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

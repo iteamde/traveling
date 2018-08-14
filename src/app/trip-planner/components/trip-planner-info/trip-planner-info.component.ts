@@ -53,7 +53,7 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
 
     this.citiesInfo$.subscribe( res => {
       this.data.cities = res.cities;
-      console.log("Its city info", res);
+      console.log("It`s city info", res);
     });
   }
 

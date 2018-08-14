@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FollowButtonComponent } from './follow-place-button.component';
+import { FollowPlaceButtonComponent } from './follow-place-button.component';
 
 describe('FollowButtonComponent', () => {
-  let component: FollowButtonComponent;
-  let fixture: ComponentFixture<FollowButtonComponent>;
+  let component: FollowPlaceButtonComponent;
+  let fixture: ComponentFixture<FollowPlaceButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FollowButtonComponent ]
+      declarations: [ FollowPlaceButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FollowButtonComponent);
+    fixture = TestBed.createComponent(FollowPlaceButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

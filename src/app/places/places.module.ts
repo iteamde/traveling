@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {RouterModule} from '@angular/router';
+
+import {EffectsModule} from '@ngrx/effects';
+
 import {PlacesComponent} from './places.component';
 import {CoreModule} from '../core/core.module';
 import {SharedModule} from '../shared/shared.module';
@@ -15,15 +19,10 @@ import { PlacesPhotoBoxComponent } from './components/places-photo-box/places-ph
 import {FollowersListComponent} from './components/followers-list/followers-list.component';
 import {TrendingPlacesListComponent} from './components/trending-places-list/trending-places-list.component';
 import { PlacesFooterComponent } from './components/places-footer/places-footer.component';
-import {SanitizeHtmlPipe} from '../core/pipes/sanitizeHtmlPipe';
-import { MathRandomPipe} from '../core/pipes/mathRandomPipe';
-import {RemoveUnderscorePipe} from '../core/pipes/removeUnderscorePipe';
 import {WriteReviewModalComponent} from './components/write-review-modal/write-review-modal.component';
 import { FollowHeaderComponent } from './components/follow-header/follow-header.component';
-import {RouterModule} from '@angular/router';
 import {PlacesEffects} from './effects/places.effects';
 import {PlacesRoutes} from './places.routing';
-import {EffectsModule} from '@ngrx/effects';
 import {CountryService} from '../country/services/country.service';
 
 
@@ -49,9 +48,6 @@ import {CountryService} from '../country/services/country.service';
     TrendingPlacesListComponent,
     PlacesFooterComponent,
     WriteReviewModalComponent,
-    SanitizeHtmlPipe,
-    MathRandomPipe,
-    RemoveUnderscorePipe,
     FollowHeaderComponent
 
   ],

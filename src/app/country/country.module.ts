@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {RouterModule} from '@angular/router';
+
+import {MatSliderModule} from '@angular/material/slider';
+import {EffectsModule} from '@ngrx/effects';
+
 import { CountryComponent } from './country.component';
 import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
@@ -13,16 +18,12 @@ import { SidebarAboutBoxComponent } from './components/sidebar-about-box/sidebar
 import { GalleryModalComponent } from '../core/components/gallery-modal/gallery-modal.component';
 import { CountryAboutBox2Component } from './components/country-about-box2/country-about-box2.component';
 import { CountryIndexesBoxComponent } from './components/country-indexes-box/country-indexes-box.component';
-import {MatSliderModule} from '@angular/material/slider';
 import { CountryEmergencyNumberComponent } from './components/country-emergency-number/country-emergency-number.component';
 import { PlacesListComponent } from './components/places-list/places-list.component';
 import { HolidaysListComponent } from './components/holidays-list/holidays-list.component';
 import { CountryBudgetBoxComponent } from './components/country-budget-box/country-budget-box.component';
 import { CountryAccordionModalComponent } from './modals/country-accordion-modal/country-accordion-modal.component';
-import {KeysPipe} from '../core/pipes/keysPipe';
 import {ConvertService} from '../core/services/convert.service';
-import {RouterModule} from '@angular/router';
-import {EffectsModule} from '@ngrx/effects';
 import {CountryEffects} from './effects/country.effects';
 import {CountryRoutes} from './country.routing';
 
@@ -51,7 +52,7 @@ import {CountryRoutes} from './country.routing';
     HolidaysListComponent,
     CountryBudgetBoxComponent,
     CountryAccordionModalComponent,
-    KeysPipe
+
   ],
   providers: [
     CountryService,

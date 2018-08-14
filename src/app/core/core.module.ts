@@ -1,9 +1,10 @@
-import {NgModule, Optional, SkipSelf} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {EffectsModule} from '@ngrx/effects';
 
+import {EffectsModule} from '@ngrx/effects';
+import {AgmCoreModule} from '@agm/core';
 
 import {CoreEffects} from './effects/core.effects';
 import {SharedModule} from '../shared/shared.module';
@@ -18,16 +19,18 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {MainHeaderComponent} from './components/main-header/main-header.component';
 import {GalleryModalComponent} from './components/gallery-modal/gallery-modal.component';
-import {TimeAgoPipe} from 'time-ago-pipe';
-import {AgmCoreModule} from '@agm/core';
 import { SliderWrapperComponent } from './components/slider-wrapper/slider-wrapper.component';
-import {RegexPipe} from './pipes/matchPipe';
 import {FollowButtonComponent} from './components/follow-button/follow-button.component';
 import {ReverseArrPipe} from './pipes/reverseArrayPipe';
 import {AllowSpinnerService} from './services/allowSpinner.service';
 import { MobileMenuButtonsComponent } from './components/mobile-menu-buttons/mobile-menu-buttons.component';
 import {GalleryBoxComponent} from './components/gallery-box/gallery-box.component';
-
+import {KeysPipe} from './pipes/keysPipe';
+import {RegexPipe} from './pipes/matchPipe';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import {RemoveUnderscorePipe} from './pipes/removeUnderscorePipe';
+import {MathRandomPipe} from './pipes/mathRandomPipe';
+import {SanitizeHtmlPipe} from './pipes/sanitizeHtmlPipe';
 
 @NgModule({
   imports: [
@@ -48,8 +51,8 @@ import {GalleryBoxComponent} from './components/gallery-box/gallery-box.componen
   declarations: [
     TermsOfServiceComponent,
     PrivacyPolicyComponent,
-    ErrorComponent,
     ModalWrapperComponent,
+    ErrorComponent,
     ConfirmComponent,
     HeaderComponent,
     FooterComponent,
@@ -57,11 +60,15 @@ import {GalleryBoxComponent} from './components/gallery-box/gallery-box.componen
     GalleryModalComponent,
     TimeAgoPipe,
     SliderWrapperComponent,
-    RegexPipe,
     FollowButtonComponent,
-    ReverseArrPipe,
     MobileMenuButtonsComponent,
-    GalleryBoxComponent
+    GalleryBoxComponent,
+    KeysPipe,
+    ReverseArrPipe,
+    RegexPipe,
+    RemoveUnderscorePipe,
+    MathRandomPipe,
+    SanitizeHtmlPipe
   ],
   exports: [
     HeaderComponent,
@@ -70,11 +77,15 @@ import {GalleryBoxComponent} from './components/gallery-box/gallery-box.componen
     GalleryModalComponent,
     AgmCoreModule,
     SliderWrapperComponent,
-    RegexPipe,
     FollowButtonComponent,
-    ReverseArrPipe,
     MobileMenuButtonsComponent,
-    GalleryBoxComponent
+    GalleryBoxComponent,
+    RegexPipe,
+    KeysPipe,
+    ReverseArrPipe,
+    RemoveUnderscorePipe,
+    MathRandomPipe,
+    SanitizeHtmlPipe
   ]
 })
 export class CoreModule {

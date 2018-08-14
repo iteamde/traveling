@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {PlacesAboutBoxComponent} from './places-about-box.component';
+import { ProfileHeaderComponent } from './profile-header.component';
 
-describe('PlacesAboutBoxComponent', () => {
-  let component: PlacesAboutBoxComponent;
-  let fixture: ComponentFixture<PlacesAboutBoxComponent>;
+describe('ProfileHeaderComponent', () => {
+  let component: ProfileHeaderComponent;
+  let fixture: ComponentFixture<ProfileHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlacesAboutBoxComponent ]
+      declarations: [ ProfileHeaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlacesAboutBoxComponent);
+    fixture = TestBed.createComponent(ProfileHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

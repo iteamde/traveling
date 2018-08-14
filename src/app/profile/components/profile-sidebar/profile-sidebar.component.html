@@ -1,0 +1,39 @@
+<div class="post-block post-side-block">
+  <div class="post-side-top calendar-top">
+    <h3 class="side-ttl">Timeline</h3>
+    <div class="side-right-control">
+      <a class="slide-link slide-prev" (click)="decrementYear()">
+        <i class="trav-angle-left"></i>
+      </a>
+      <span class="month-name">{{currentYear}}</span>
+      <a class="slide-link slide-next" (click)="incrementYear()">
+        <i class="trav-angle-right"></i>
+      </a>
+    </div>
+  </div>
+  <div class="post-calendar-inner">
+    <div class="post-calendar">
+      <a class="slide-link slide-prev" (click)="decrementMonth()">
+        <i class="trav-angle-left"></i>
+      </a>
+      <h5 style="display: inline-block; min-width:150px; text-align: center" class="calendar-title">{{currentMonth}}
+        {{currentYear}}</h5>
+      <a class="slide-link slide-next" (click)="incrementMonth()">
+        <i class="trav-angle-right"></i>
+      </a>
+      <div class="post-calendar_wrap">
+        <ul class="cal-day-list">
+          <li *ngFor="let day of previousDays" class="disabled"></li>
+          <li *ngFor="let day of days | slice:1:(getDaysInMonth(month.indexOf(currentMonth), currentYear)+1)">
+            {{day}}
+          </li>
+          <li
+            *ngFor="let day of [1,2,3,4,5,6,7] | slice:0:(35 -(previousDays.length + getDaysInMonth(month.indexOf(currentMonth), currentYear)))"
+            class="disabled">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

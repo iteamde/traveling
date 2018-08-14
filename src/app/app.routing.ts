@@ -7,9 +7,6 @@ import {ErrorComponent} from './core/components/error/error.component';
 import {AppPreloadingStrategy} from './customPreload';
 
 
-
-
-
 const appRoutes = [
 
   ...AuthRoutes,
@@ -33,6 +30,10 @@ const appRoutes = [
   {
     path: 'trip',
     loadChildren: './trip-planner/trip-planner.module#TripPlannerModule'
+  },
+  {
+    path: 'profile',
+    loadChildren: './profile/profile.module#ProfileModule'
   },
   {
     path: 'privacy-policy',

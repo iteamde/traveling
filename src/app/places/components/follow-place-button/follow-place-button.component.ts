@@ -4,7 +4,6 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 
 import {getFollowPlacesStatus, getPlacesId, State} from '../../../core/reducers';
 import {FollowPlacesAction, UnfollowPlacesAction} from '../../actions/places.actions';
-import {PlacesService} from '../../services/places.service';
 
 @AutoUnsubscribe({includeArrays: true})
 @Component({

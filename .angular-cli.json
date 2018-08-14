@@ -23,8 +23,8 @@
         "./assets/font-awesome/css/font-awesome.min.css",
         "./assets/css/style.css",
         "./assets/css/additional_style.css",
-        "styles.css",
-        "../node_modules/ngx-toastr/toastr.css"
+        "../node_modules/ngx-toastr/toastr.css",
+        "styles.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
