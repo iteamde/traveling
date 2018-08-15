@@ -11,6 +11,7 @@ import * as fromAuth from '../../auth/reducers/auth.reducer';
 import * as fromTripPlanner from '../../trip-planner/reducers/trip-planner.reducer';
 import * as fromCountry from '../../country/reducers/country.reducer';
 import * as fromPlaces from '../../places/reducers/places.reducer';
+import * as fromProfile from '../../profile/reducer/profile.reducer';
 
 
 /**
@@ -23,6 +24,7 @@ export interface State {
   tripPlanner: fromTripPlanner.State;
   country: fromCountry.State;
   places: fromPlaces.State;
+  profile: fromProfile.State;
 }
 
 
@@ -35,7 +37,8 @@ export const reducers: ActionReducerMap<State> = {
   error: fromError.reducer,
   tripPlanner: fromTripPlanner.reducer,
   country: fromCountry.reducer,
-  places: fromPlaces.reducer
+  places: fromPlaces.reducer,
+  profile: fromProfile.reducer
 };
 
 /**
@@ -47,6 +50,7 @@ export const getErrorState = (state: State) => state.error;
 export const getTripPlannerState = (state: State) => state.tripPlanner;
 export const getCountryState = (state: State) => state.country;
 export const getPlacesState = (state: State) => state.places;
+export const getProfileSate = (state: State) => state.profile;
 
 /**
  *  Core selectors
@@ -111,3 +115,7 @@ export const getPlaceFollowers  = createSelector(getPlacesState, fromPlaces.getP
 export const getPlaceReviews  = createSelector(getPlacesState, fromPlaces.getPlaceReviews );
 
 
+// profile
+
+export const getProfile = createSelector(getProfileSate, fromProfile.getProfile);
+export const getProfileActiveTab = createSelector(getProfileSate, fromProfile.getActiveTab);

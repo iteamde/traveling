@@ -45,7 +45,8 @@
     <div class="detail-list">
       <div class="detail-block"
            *ngFor="let tab of mockTabs; let i = index"
-           [ngClass]="{'current': isCurrent === i}" (click)="isCurrent = i">
+           [ngClass]="{'current': activeTab === tab?.name}"
+           (click)="setActiveTab(tab?.name)">
         <b>{{tab?.title}}</b>{{tab?.count}}
       </div>
 
