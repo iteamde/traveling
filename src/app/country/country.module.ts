@@ -23,9 +23,11 @@ import { PlacesListComponent } from './components/places-list/places-list.compon
 import { HolidaysListComponent } from './components/holidays-list/holidays-list.component';
 import { CountryBudgetBoxComponent } from './components/country-budget-box/country-budget-box.component';
 import { CountryAccordionModalComponent } from './modals/country-accordion-modal/country-accordion-modal.component';
+import { CountryWeatherComponent } from './country-weather/country-weather.component';
 import {ConvertService} from '../core/services/convert.service';
 import {CountryEffects} from './effects/country.effects';
 import {CountryRoutes} from './country.routing';
+
 
 
 
@@ -52,6 +54,7 @@ import {CountryRoutes} from './country.routing';
     HolidaysListComponent,
     CountryBudgetBoxComponent,
     CountryAccordionModalComponent,
+    CountryWeatherComponent,
 
   ],
   providers: [

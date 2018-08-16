@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {getProfileActiveTab, State} from '../../../core/reducers/index';
 import {Store} from '@ngrx/store';
 import {SetActiveTabAction} from '../../actions/profile.actions';
@@ -8,9 +8,10 @@ import {SetActiveTabAction} from '../../actions/profile.actions';
   templateUrl: './profile-header.component.html',
   styleUrls: ['./profile-header.component.scss']
 })
-export class ProfileHeaderComponent implements OnInit {
+export class ProfileHeaderComponent implements OnInit, OnDestroy {
 
   public activeTab = '';
+  public subscriptions$ = [];
 
   public socialList = [
     {socialClass: 'facebook', icon: 'fa fa-facebook'},
@@ -33,11 +34,15 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(getProfileActiveTab)
+    this.subscriptions$[0] = this.store.select(getProfileActiveTab)
       .subscribe(res => this.activeTab = res);
   }
 
   setActiveTab(name) {
     this.store.dispatch(new SetActiveTabAction(name));
+  }
+
+  ngOnDestroy() {
+    this.subscriptions$.forEach(item => item.unsubscribe());
   }
 }

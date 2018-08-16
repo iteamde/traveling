@@ -1,8 +1,27 @@
-.post-block.post-tips-list-block .post-tip-row{
-  padding: 4px 0;
-  .mat-slider-horizontal{
-    min-width: 200px;
+:host {
+
+  .post-block.post-tips-list-block .post-tip-row{
+    padding: 4px 0;
+
+    .mat-slider-horizontal{
+      min-width: 200px;
+    }
   }
 }
 
 
+@media(max-width: 575px) {
+
+  .post-block.post-tips-list-block .post-tip-row {
+
+    .row-txt {
+      align-self: flex-start;
+      width:100%;
+
+      .mat-slider-horizontal {
+        min-width: 100px;
+        flex-grow: 1;
+      }
+    }
+  }
+}

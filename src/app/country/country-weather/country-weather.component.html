@@ -1,0 +1,93 @@
+<div class="post-block post-weather-block">
+  <div class="general-weather-view">
+    <div class="day-block-wrap">
+      <div class="weather-info">
+        <div class="temperature"><span>26</span><sup>o</sup><span class="temp"><b>C</b> / F</span></div>
+        <div class="weather-day">
+          <div class="day-name">Monday 28 <span class="month">Oct</span></div>
+        </div>
+      </div>
+      <div class="icon-wrap">
+        <img src="./assets/image/weather/weather-icon-1.svg" alt="" class="weather-icon">
+      </div>
+    </div>
+    <div class="weather-txt-block">
+      <div class="weather-title">
+        Nice day in <span>New York City</span>
+      </div>
+      <p>It's sunny right now in New York. The forecast today shows a low of 10<sup>o</sup></p>
+    </div>
+  </div>
+
+  <div class="weather-block-wrapper">
+    <div class="weather-carousel-control">
+      <a class="slide-prev"
+         (click)="moveBackward()">
+        <i class="trav-angle-left"></i>
+      </a>
+      <a  class="slide-next"
+          (click)="moveForward()">
+        <i class="trav-angle-right"></i>
+      </a>
+    </div>
+    <div class="weather-hour-carousel" id="weatherHourCarousel" #carouselContainer>
+      <div class="move-block" #carousel>
+        <div class="hour-block" *ngFor="let weather of mockWeather" #carouselItem>
+          <div class="time-block">{{weather.time}}</div>
+          <div class="weather-image">
+            <img src="./assets/image/weather/{{weather.icon}}.svg" alt="" class="weather-icon">
+          </div>
+          <div class="temp-block">{{weather.temp}}<sup>o</sup></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-weather-list">
+    <div class="day-weather-block">
+      <div class="day-block-wrap">
+        <div class="weather-icon">
+          <img src="./assets/image/weather/weather-icon-2.svg" alt="" class="weather-icon">
+          <span class="temperature">23<sup>o</sup></span>
+        </div>
+        <div class="weather-day">
+          <div class="day-name">Tuesday</div>
+          <div class="weather-desc">Sunny</div>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button type="button" class="btn btn-light-grey btn-bordered">Plan a Trip</button>
+      </div>
+    </div>
+    <div class="day-weather-block">
+      <div class="day-block-wrap">
+        <div class="weather-icon">
+          <img src="./assets/image/weather/weather-icon-2.svg" alt="" class="weather-icon">
+          <span class="temperature">23<sup>o</sup></span>
+        </div>
+        <div class="weather-day">
+          <div class="day-name">Wednesday</div>
+          <div class="weather-desc">Sunny</div>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button type="button" class="btn btn-light-grey btn-bordered">Plan a Trip</button>
+      </div>
+    </div>
+    <div class="day-weather-block">
+      <div class="day-block-wrap">
+        <div class="weather-icon">
+          <img src="./assets/image/weather/weather-icon-2.svg" alt="" class="weather-icon">
+          <span class="temperature">23<sup>o</sup></span>
+        </div>
+        <div class="weather-day">
+          <div class="day-name">Thursday</div>
+          <div class="weather-desc">Sunny</div>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <button type="button" class="btn btn-light-grey btn-bordered">Plan a Trip</button>
+      </div>
+    </div>
+  </div>
+</div>

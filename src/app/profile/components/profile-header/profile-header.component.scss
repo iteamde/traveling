@@ -1,3 +1,42 @@
+@media (max-width: 767px) {
+
+  :host {
+
+    .top-profile-layer {
+
+      .top-profile-picture {
+        .update-picture-link {
+          z-index: 50;
+        }
+      }
+
+      .top-profile-info {
+        .profile-name-block {
+          .name-ttl .tag {
+            position: static;
+            vertical-align: middle;
+          }
+        }
+      }
+
+      .top-details-wrap {
+        flex-wrap: wrap;
+
+        .social-list {
+          width: 100%;
+          justify-content: center;
+          margin: 10px 0;
+        }
+
+        .detail-list {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
 //:host {
 //
 //  .top-profile-layer {

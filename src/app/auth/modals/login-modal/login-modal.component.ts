@@ -45,7 +45,7 @@ export class LoginModalComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.facebookService.FBLoadStatus$();
+    this.facebookService.FBLoadStatus$().subscribe(res => console.log(res));
   }
 
   buildForm() {

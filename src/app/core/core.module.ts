@@ -25,12 +25,14 @@ import {ReverseArrPipe} from './pipes/reverseArrayPipe';
 import {AllowSpinnerService} from './services/allowSpinner.service';
 import { MobileMenuButtonsComponent } from './components/mobile-menu-buttons/mobile-menu-buttons.component';
 import {GalleryBoxComponent} from './components/gallery-box/gallery-box.component';
+import {CustomCalendarComponent} from './components/custom-calendar/custom-calendar.component';
 import {KeysPipe} from './pipes/keysPipe';
 import {RegexPipe} from './pipes/matchPipe';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import {RemoveUnderscorePipe} from './pipes/removeUnderscorePipe';
 import {MathRandomPipe} from './pipes/mathRandomPipe';
 import {SanitizeHtmlPipe} from './pipes/sanitizeHtmlPipe';
+
 
 @NgModule({
   imports: [
@@ -63,6 +65,7 @@ import {SanitizeHtmlPipe} from './pipes/sanitizeHtmlPipe';
     FollowButtonComponent,
     MobileMenuButtonsComponent,
     GalleryBoxComponent,
+    CustomCalendarComponent,
     KeysPipe,
     ReverseArrPipe,
     RegexPipe,
@@ -80,6 +83,7 @@ import {SanitizeHtmlPipe} from './pipes/sanitizeHtmlPipe';
     FollowButtonComponent,
     MobileMenuButtonsComponent,
     GalleryBoxComponent,
+    CustomCalendarComponent,
     RegexPipe,
     KeysPipe,
     ReverseArrPipe,

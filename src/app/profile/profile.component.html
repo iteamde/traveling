@@ -3,12 +3,7 @@
 
   <div class="content-wrap">
 
-    <button class="btn btn-mobile-side sidebar-toggler" id="sidebarToggler">
-      <i class="trav-cog"></i>
-    </button>
-    <button class="btn btn-mobile-side left-outside-btn" id="filterToggler">
-      <i class="trav-filter"></i>
-    </button>
+    <app-mobile-menu-buttons></app-mobile-menu-buttons>
 
     <div class="container-fluid">
       <!-- left outside menu -->
@@ -30,7 +25,7 @@
         </div>
 
         <!-- SIDEBAR -->
-        <div class="sidebar-layer" id="sidebarLayer">
+        <div class="sidebar-layer" id="sidebarLayer" [ngClass]="{'sidebar-open': openMobileSideBar | async }">
           <app-profile-sidebar></app-profile-sidebar>
         </div>
       </div>

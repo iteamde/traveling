@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {getProfile, getProfileActiveTab, State} from '../core/reducers';
+import {getOpenMobileSideBar, getProfileActiveTab, State} from '../core/reducers';
 import {Store} from '@ngrx/store';
-import {SetActiveTabAction} from './actions/profile.actions';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +11,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public subscriptions$ = [];
   public currentTab = '';
+  public openMobileSideBar;
 
   constructor(private store: Store<State>) { }
 
@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions$[0] = this.store.select(getProfileActiveTab)
       .subscribe(res => this.currentTab = res);
+
+    this.openMobileSideBar = this.store.select(getOpenMobileSideBar);
   }
 
   ngOnDestroy() {

@@ -1,4 +1,4 @@
-import { ActionReducerMap} from '@ngrx/store';
+import {ActionReducerMap} from '@ngrx/store';
 import {createSelector} from 'reselect';
 
 
@@ -57,17 +57,16 @@ export const getProfileSate = (state: State) => state.profile;
  */
 export const getOpenedModalRef = createSelector(getCoreState, fromCore.getOpenedModalRef);
 export const getOpenLeftMobileMenu = createSelector(getCoreState, fromCore.getOpenLeftMobileMenu);
-export const getOpenMobileSideBar = createSelector(getCoreState, fromCore.getOpenMobileSideBar);
+export const getOpenMobileSideBar = createSelector(getCoreState, fromCore.getOpenMobileSideBar)
+
 /**
  *  Error selectors
  */
 export const getErrorFromServer = createSelector(getErrorState, fromError.getErrorFromServer);
 
-
 /**
  *  Auth selectors selectors
  */
-
 export const getLoggedUser = createSelector(getAuthState, fromAuth.getLoggedUser);
 export const getRegistationStep = createSelector(getAuthState, fromAuth.getRegistrationStep);
 export const getResetPasswordStatus = createSelector(getAuthState, fromAuth.getResetPasswordStatus);
@@ -82,12 +81,14 @@ export const getCitiesInfo = createSelector(getTripPlannerState, fromTripPlanner
 export const getAlreadySpent = createSelector(getTripPlannerState, fromTripPlanner.getAlreadySpent);
 
 
-
 /**
  * Trip module selectors
  */
 
-// country + city
+
+/**
+ * country + city
+ */
 export const getCountry = createSelector(getCountryState, fromCountry.getCountry);
 export const getCountryInfo = createSelector(getCountryState, fromCountry.getCountryInfo);
 export const getCountryStats = createSelector(getCountryState, fromCountry.getCountryStats);
@@ -101,21 +102,21 @@ export const getPlacesMedia = createSelector(getCountryState, fromCountry.getPla
 export const getCountryTrendingPlaces = createSelector(getCountryState, fromCountry.getCountryTrendingPlaces);
 
 
-
-
-// places
-
+/**
+ * places
+ */
 export const getPlaces = createSelector(getPlacesState, fromPlaces.getPlaces);
 export const getPlacesId = createSelector(getPlacesState, fromPlaces.getPlacesId);
 export const getFollowPlacesStatus = createSelector(getPlacesState, fromPlaces.getFollowPlacesStatus);
 export const getPlacesNearby = createSelector(getPlacesState, fromPlaces.getPlacesNearby);
 export const getPlacesImg = createSelector(getPlacesState, fromPlaces.getPlacesImg);
 export const getPlacesPlans = createSelector(getPlacesState, fromPlaces.getPlacesPlans);
-export const getPlaceFollowers  = createSelector(getPlacesState, fromPlaces.getPlaceFollowers );
-export const getPlaceReviews  = createSelector(getPlacesState, fromPlaces.getPlaceReviews );
+export const getPlaceFollowers = createSelector(getPlacesState, fromPlaces.getPlaceFollowers);
+export const getPlaceReviews = createSelector(getPlacesState, fromPlaces.getPlaceReviews);
 
 
-// profile
-
+/**
+ * profile
+ */
 export const getProfile = createSelector(getProfileSate, fromProfile.getProfile);
 export const getProfileActiveTab = createSelector(getProfileSate, fromProfile.getActiveTab);

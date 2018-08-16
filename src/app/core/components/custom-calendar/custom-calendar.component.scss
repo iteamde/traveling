@@ -1,0 +1,19 @@
+:host {
+}
+
+@media(max-width: 393px) {
+  :host {
+    .post-calendar_wrap ul.cal-day-list li {
+      width:40px;
+    }
+  }
+}
+
+
+@media(max-width: 340px) {
+  :host {
+    .post-calendar_wrap ul.cal-day-list li {
+      width:35px;
+    }
+  }
+}
