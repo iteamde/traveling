@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
+import {NavigationStart, Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 
 import {Store} from '@ngrx/store';
@@ -7,42 +7,38 @@ import {MatDialog} from '@angular/material';
 
 import {OpenModalAction} from '../actions/core.actions';
 import {getOpenedModalRef, State} from '../reducers';
-import {RemoveErrorAction} from '../actions/error.actions';
 
+import {GalleryModalComponent} from '../components/gallery-modal/gallery-modal.component';
 
 import 'rxjs/add/operator/skipLast';
 import 'rxjs/add/operator/takeLast';
 import 'rxjs/add/operator/filter';
-import {of} from 'rxjs/observable/of';
+
+
 
 
 @Injectable()
 export class ModalManager {
   private modalRef$: Observable<any>;
-  private skip = false;
+  private closeSimpleModals = false;
 
-  constructor(private dialog: MatDialog, private router: Router, private store: Store<State>, private route: ActivatedRoute) {
+  constructor(private dialog: MatDialog, private router: Router, private store: Store<State>) {
 
-    // this.router.events.filter(event => event instanceof NavigationStart).switchMap(() => of(this.route.snapshot.data.skipClose)).subscribe((res) => {
-    //   this.store.dispatch(new RemoveErrorAction());
-    //   console.log('Router DATA', res)
-    //   console.log('Skip-1', this.skip)
-    //   return !this.skip && this.dialog.closeAll();
-    // });
+    /**
+     *  Close all modals on router change if it is not instance of GalleryModalComponent
+     */
 
-    // this.modalRef$ = store.select(getOpenedModalRef);
-    // this.modalRef$.takeLast(1).subscribe( res => {
-    //   console.log('Subscribe On Store getOpenedModalRef', this.skip, res);
-    //   if ( res ) !this.skip && res.close();
-    // });
+    this.modalRef$ = store.select(getOpenedModalRef);
+    this.modalRef$.subscribe( res => {
+      if(res) this.closeSimpleModals =  res.componentInstance instanceof GalleryModalComponent ?  false  : true
+    });
+
+    this.router.events.filter(event => event instanceof NavigationStart).subscribe((res) => {
+      return res && this.closeSimpleModals && this.dialog.closeAll();
+    });
+
   }
 
-  // openModalFromLCH(component, data?, skip?) {
-  //   this.skip = skip;
-  //   setTimeout(() => {
-  //     this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component, {data})}));
-  //   } , 1);
-  // }
 
   openModalFromLCH(component, data?) {
     setTimeout(() => {
@@ -53,6 +49,11 @@ export class ModalManager {
 
   openModal(component, data?) {
     this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component,  {data})}));
+  }
+
+
+  closeAll() {
+    this.dialog.closeAll();
   }
 
 

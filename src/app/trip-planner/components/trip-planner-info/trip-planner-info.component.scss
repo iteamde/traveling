@@ -1,2 +1,27 @@
+@media (max-width: 769px) {
+  :host {
+    .create-trip-wrapper{
+      flex-wrap: wrap;
+      flex-direction: column;
 
+      .trip-side {
+        width:100%;
+        min-width: 200px;
+        max-height: 50vh;
 
+        .trip-side-button-block {
+          flex-wrap: wrap;
+          min-height: 70px;
+          button {
+            padding: 5px;
+            margin-top: 10px;
+          }
+        }
+      }
+
+      .trip-map-block {
+        width:100%;
+      }
+    }
+  }
+}

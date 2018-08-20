@@ -18,14 +18,15 @@ export class ModalWrapperComponent implements OnInit, OnDestroy {
   private modalData: any;
   private skipClose: any;
   private subscription$: any;
+  public routerOut;
 
   constructor(private modalManager: ModalManager,
               private store: Store<State>,
               private route: ActivatedRoute,
               private router: Router,
-              private dialog: MatDialog
-  ) {
+              private dialog: MatDialog) {
 
+    this.routerOut = this.router;
 
     this.component = this.route.snapshot.data.modal;
 

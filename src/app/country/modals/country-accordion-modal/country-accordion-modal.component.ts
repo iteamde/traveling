@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {getCountryInfo, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {CountryService} from '../../services/country.service';
+import {ModalManager} from '../../../core/services/modal-manager.service';
 
 @Component({
   selector: 'app-country-accordion-modal',
@@ -13,7 +14,10 @@ export class CountryAccordionModalComponent implements OnInit {
   public openedList: any;
   public isCountry: boolean;
 
-  constructor(private store: Store<State>, private countryService: CountryService) {
+
+  constructor(private store: Store<State>,
+              private countryService: CountryService,
+              private modal: ModalManager) {
 
     this.isCountry = this.countryService.getType() === 'countries';
 
@@ -30,4 +34,7 @@ export class CountryAccordionModalComponent implements OnInit {
   ngOnInit() {
   }
 
+  // close() {
+  //   this.modal.closeAll();
+  // }
 }

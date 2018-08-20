@@ -1,0 +1,22 @@
+@media (max-width: 769px) {
+  :host {
+    .modal-custom-style .post-block.post-modal-trip-planner {
+      padding-top: 40px;
+      .create-trip-block {
+        .create-footer {
+          display: flex;
+          flex-direction: column;
+
+          button {
+            padding-right: 10px;
+            justify-content: space-between;
+
+            &:not(:first-child) {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
