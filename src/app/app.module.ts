@@ -18,8 +18,8 @@ import {RouterEffects} from './core/effects/router.effects';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/helpers/jwt.interceptor';
 import { ToastrModule } from 'ngx-toastr';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {AppPreloadingStrategy} from './customPreload';
+import {AllowSpinnerService} from './core/services/allowSpinner.service';
 
 
 const effectsArr = [
@@ -40,14 +40,12 @@ const effectsArr = [
     SharedModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effectsArr),
-    StoreDevtoolsModule.instrument({
-      maxAge: 10
-    }),
     Ng4LoadingSpinnerModule.forRoot(),
     ToastrModule.forRoot({positionClass : 'toast-top-right'}),
   ],
   providers: [
     ApiService,
+    AllowSpinnerService, // don`t push it to core or share module
     AppPreloadingStrategy,
     {
       provide: HTTP_INTERCEPTORS,

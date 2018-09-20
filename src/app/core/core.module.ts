@@ -22,7 +22,6 @@ import {GalleryModalComponent} from './components/gallery-modal/gallery-modal.co
 import { SliderWrapperComponent } from './components/slider-wrapper/slider-wrapper.component';
 import {FollowButtonComponent} from './components/follow-button/follow-button.component';
 import {ReverseArrPipe} from './pipes/reverseArrayPipe';
-import {AllowSpinnerService} from './services/allowSpinner.service';
 import { MobileMenuButtonsComponent } from './components/mobile-menu-buttons/mobile-menu-buttons.component';
 import {GalleryBoxComponent} from './components/gallery-box/gallery-box.component';
 import {CustomCalendarComponent} from './components/custom-calendar/custom-calendar.component';
@@ -47,8 +46,7 @@ import {SanitizeHtmlPipe} from './pipes/sanitizeHtmlPipe';
   ],
   providers: [
     ValidationService,
-    ModalManager,
-    AllowSpinnerService
+    ModalManager
   ],
   declarations: [
     TermsOfServiceComponent,
