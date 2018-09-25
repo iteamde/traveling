@@ -6,7 +6,6 @@ export const REMOVE_ERROR = '[Error] Remove error';
 /**
  * Add error from server
  */
-
 export class AddErrorAction implements Action {
   readonly type = ADD_ERROR;
 

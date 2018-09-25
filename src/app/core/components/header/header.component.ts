@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Store} from '@ngrx/store';
+
 import {getRegistationStep, State} from '../../reducers/index';
 
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+
+
+/**
+ * Header component
+ * Includes PROGRESS SECTION  when user takes registration
+ */
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

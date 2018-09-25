@@ -3,6 +3,10 @@ import {Store} from '@ngrx/store';
 import { getCountryTrendingPlaces, State} from '../../../core/reducers';
 import {Router} from '@angular/router';
 
+/**
+ * Trending places component
+ * Shows most trending places of country of current place
+ */
 @Component({
   selector: 'app-trending-places-list',
   templateUrl: './trending-places-list.component.html',
@@ -19,6 +23,10 @@ export class TrendingPlacesListComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Navigate to selected place
+   * @param id
+   */
   navigateToPlace(id) {
     if (id) {
       this.router.navigate(['/places/', id]);

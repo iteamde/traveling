@@ -1,10 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
+import {FollowCountryAction, UnfollowCountryAction} from '../../../country/actions/country.actions';
 import {getCountryId, getFollowStatus, State} from '../../reducers';
+
 import {Store} from '@ngrx/store';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
-import {FollowCountryAction, UnfollowCountryAction} from '../../../country/actions/country.actions';
 
+/**
+ * Follow button component
+ * Allow user to follow favorite country, city or place
+ */
 @AutoUnsubscribe({includeArrays: true})
 @Component({
   selector: 'app-follow-button',
@@ -25,6 +30,9 @@ export class FollowButtonComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
+  /**
+   * Follow or unfollow  action
+   */
   toggleFollow() {
     console.log(this.isFollowed)
     this.isFollowed ?

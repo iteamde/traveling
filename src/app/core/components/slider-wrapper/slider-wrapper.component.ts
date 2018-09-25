@@ -1,12 +1,10 @@
 import {
-  NgModule,
   Component,
   Compiler,
   ViewContainerRef,
   ViewChild,
   Input,
   ComponentRef,
-  ComponentFactory,
   ComponentFactoryResolver,
   ChangeDetectorRef,
   AfterViewInit,
@@ -14,23 +12,27 @@ import {
   OnChanges
 } from '@angular/core';
 
-
 import * as Hammer from 'hammerjs';
 
-// Helper component to add dynamic components
+/**
+ * Helper component to add dynamic components
+ */
 @Component({
   selector: 'app-dcl-slider-wrapper',
   template: `
     <div #target></div>`
 })
 export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChanges  {
+  /** reference to html element */
   @ViewChild('target', {read: ViewContainerRef}) target;
+  /** get info for slider (images) */
   @Input() type;
+  /** list of settings: width, height, count */
   @Input() settings;
   cmpRef: ComponentRef<any>;
 
   private x = 0;
-  private isViewInitialized: boolean = false;
+  private isViewInitialized = false;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private compiler: Compiler,
               private cdRef: ChangeDetectorRef) {
@@ -126,6 +128,11 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
     }
   }
 
+  /**
+   * Set css transfom property for sliding
+   * @param ul
+   * @param x
+   */
   transform(ul, x) {
     ul.style.transform = `translateX(${x}px)`;
   }

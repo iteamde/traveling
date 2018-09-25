@@ -1,4 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
+
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import 'rxjs/add/observable/fromPromise';
@@ -68,7 +69,6 @@ export class FacebookService {
   /**
    * Log in using facebook
    */
-
   login() {
     return new Promise((resolve, reject) => {
         FB.login(function(response) {

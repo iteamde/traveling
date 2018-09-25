@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-
+/**
+ * Register modal component (step-3)
+ */
 @Component({
   selector: 'app-register-modal-step-3',
   templateUrl: './register-modal-step-3.component.html',

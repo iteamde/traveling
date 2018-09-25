@@ -15,7 +15,9 @@ import {AllowSpinnerService} from '../core/services/allowSpinner.service';
 
 import 'rxjs/add/operator/filter';
 
-
+/**
+ * Places component
+ */
 @AutoUnsubscribe({includeArrays: true})
 @Component({
   selector: 'app-places',
@@ -43,7 +45,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
               private countryService: CountryService,
               private allowSpinnerService: AllowSpinnerService) {
 
-    // :TODO Check it
+    // get data for current place on route params change
     this.route.params.subscribe(params => {
       this.showComponent = false;
       // unsubscribe
@@ -60,6 +62,9 @@ export class PlacesComponent implements OnInit, OnDestroy {
     this.openMobileSideBar = this.store.select(getOpenMobileSideBar);
   }
 
+  /**
+   * Get data for footer where we display info about the parent country of current place
+   */
   getDataForPlaceCountry() {
     // :TODO don`t forget that we use  city and  country as the same component
     // :TODO ask later to make light API for footer component of place that use country info
@@ -72,25 +77,21 @@ export class PlacesComponent implements OnInit, OnDestroy {
     });
   }
 
-
+  /**
+   * Get main data for component places
+   */
   getData() {
-    /**
-     * this.route.snapshot.data.country -> this is data from places resolver
-     */
+
+    // this.route.snapshot.data.country -> this is data from places resolver
     this.store.dispatch(new SetPlacesInfoAction(this.route.snapshot.data.places));
 
-    /**
-     * Get data for component places
-     */
     this.subscriptions$[0] = this.store.select(getPlaces).subscribe(res => {
       console.log('PLACES DATA:', res);
       this.data = res;
       this.init();
     });
 
-    /**
-     * Get data for footer of places and trending places of component country
-     */
+    // Get data for footer of places and trending places of component country
     this.subscriptions$[1] = this.store.select(getCountry).subscribe(res => {
       console.log('Country', res);
       this.countryData = res;
@@ -98,9 +99,10 @@ export class PlacesComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Fill data for box gallery wrappers
+   */
   init() {
-
-    // FILL DATA FOR  BOX GALLERY WRAPPERs
     this.placePhotos = {
       title: 'Photos',
       routePath: 'photos',
@@ -127,6 +129,9 @@ export class PlacesComponent implements OnInit, OnDestroy {
     };
   }
 
+  /**
+   * Unsubscibe of all subscriptions
+   */
   unSubscribe() {
     if (this.subscriptions$.length) {
       this.subscriptions$.forEach(item => item.unsubscribe());

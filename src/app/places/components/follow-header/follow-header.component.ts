@@ -1,8 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 
-
-
+/**
+ * Floating follow header component
+ * It is showed when we scroll down the place page
+ */
 @Component({
   selector: 'app-follow-header',
   templateUrl: './follow-header.component.html',
@@ -10,6 +12,7 @@ import { fromEvent } from 'rxjs/observable/fromEvent';
 })
 export class FollowHeaderComponent implements OnInit, OnDestroy {
 
+  /** main data of current place */
   @Input() data;
   public eventSubscription$;
   public shoWHeader = false;
@@ -22,6 +25,11 @@ export class FollowHeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Check if page was scrolled down
+   * If scrolled we show addition header
+   * @param e event
+   */
   onWindowScroll(e) {
     e.target.documentElement.scrollTop > 0 ? this.shoWHeader = true : this.shoWHeader = false;
   }

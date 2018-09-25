@@ -3,9 +3,6 @@ import {CommonModule} from '@angular/common';
 import { RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 
-import {EffectsModule} from '@ngrx/effects';
-import {AgmCoreModule} from '@agm/core';
-
 import {CoreEffects} from './effects/core.effects';
 import {SharedModule} from '../shared/shared.module';
 import {ValidationService} from './services/validation';
@@ -31,6 +28,9 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 import {RemoveUnderscorePipe} from './pipes/removeUnderscorePipe';
 import {MathRandomPipe} from './pipes/mathRandomPipe';
 import {SanitizeHtmlPipe} from './pipes/sanitizeHtmlPipe';
+
+import {EffectsModule} from '@ngrx/effects';
+import {AgmCoreModule} from '@agm/core';
 
 
 @NgModule({

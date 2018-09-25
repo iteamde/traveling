@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Registration modal component (staep-5)
+ */
 @Component({
   selector: 'app-register-modal-step-5',
   templateUrl: './register-modal-step-5.component.html',

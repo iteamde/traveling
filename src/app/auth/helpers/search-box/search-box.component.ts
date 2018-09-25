@@ -1,15 +1,20 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ScrollEvent} from 'ngx-scroll-event';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
 import {ApiService} from '../../../core/services/api.service';
 import {RegisterAction} from '../../actions/auth.actions';
 import {getLoggedUser, State} from '../../../core/reducers';
+
+import {ScrollEvent} from 'ngx-scroll-event';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
-import {FormBuilder, FormGroup} from '@angular/forms';
-
 import 'rxjs/add/operator/debounceTime';
 
+/**
+ * Search component to select favorite country,
+ * city or place while take the registration
+ */
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
@@ -20,11 +25,12 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
   public items: Array<any> = [];
   public choosenItems: Array<any> = [];
   public itemToChoose = 5;
-  private  limit: number = 20;
-  private  offset: number = 0;
+  private  limit = 20;
+  private  offset = 0;
   private searchItemSubscription$: Subscription;
   public form: FormGroup;
-  @Input() settings:any;
+  /** list of settings */
+  @Input() settings: any;
 
   constructor(private apiService: ApiService,
               private store: Store<State>,
@@ -44,6 +50,10 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
   }
 
 
+  /**
+   * Select favorite city or place
+   * @param item
+   */
   selectItem(item) {
     item.selected = !item.selected;
 
@@ -63,6 +73,10 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
     }
   }
 
+  /**
+   * Handle scroll event to get more items (infinity scroll)
+   * @param {ScrollEvent} event
+   */
   public handleScroll(event: ScrollEvent) {
     if (event.isReachingBottom) {
       this.offset += this.limit;
@@ -70,8 +84,12 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
     }
   }
 
-  private getItems(fromScrollEvent){
-    let details = {
+  /**
+   * Get more items (cities or places)
+   * @param fromScrollEvent
+   */
+  private getItems(fromScrollEvent) {
+    const details = {
       query: this.form.get('query').value,
       limit: this.limit,
       offset: this.offset,
@@ -84,6 +102,9 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
     });
   }
 
+  /**
+   * Register a new user
+   */
   register() {
     this.user$.take(1).subscribe(user => {
       const payload = {
@@ -95,6 +116,11 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
     });
   }
 
+  /**
+   * Check if item is selected
+   * @param item
+   * @returns {number}
+   */
   isSelected(item) {
     return this.choosenItems.filter( obj => obj['id'] === item['id']).length;
   }

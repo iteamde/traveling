@@ -1,12 +1,18 @@
 import {Injectable} from '@angular/core';
 
-
+/**
+ * Convert service
+ */
 @Injectable()
 export class ConvertService {
-  constructor() {
-  }
+  constructor() {}
 
-
+  /**
+   * Choose what convert function to use
+   * @param property
+   * @param {string} pattern
+   * @returns {any}
+   */
   convertSwitch(property, pattern: string) {
     if (!property) return
 
@@ -15,37 +21,39 @@ export class ConvertService {
     } else {
       return this.convertMany(property, pattern);
     }
-
-
   }
 
-
+  /**
+   * Convert data
+   * @param property string to be converted in object
+   * @param {string} pattern  split string by this pattern
+   * @returns {any}
+   */
   convertMany(property, pattern: string) {
-    /**
-     * Convert data
-     * @property -> string to be converted in object
-     * @pattern -> split string by this pattern
-     */
-    let jsonStrig = '{';
+    let jsonString = '{';
     const data = property.split(pattern);
     data.forEach((item) => {
       const current = item.split(':');
-      jsonStrig += '"' + current[0] + '":"' + current[1] + '",';
+      jsonString += '"' + current[0] + '":"' + current[1] + '",';
     })
-    jsonStrig = jsonStrig.substr(0, jsonStrig.length - 1);
-    jsonStrig += '}';
-    const obj = JSON.parse(jsonStrig);
+    jsonString = jsonString.substr(0, jsonString.length - 1);
+    jsonString += '}';
+    const obj = JSON.parse(jsonString);
     return obj;
   }
 
-
+  /**
+   * Convert data
+   * @param property
+   * @param {string} pattern
+   * @returns {{}}
+   */
   convertOneStr(property, pattern: string) {
     const current = property.split('\r\n\r\n\u2022');
     current[1] = current[1].split('\r\n\u2022');
     const obj = {};
     obj[current[0]] = current[1];
     return obj;
-
   }
 
 }

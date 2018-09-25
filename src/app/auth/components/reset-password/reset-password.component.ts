@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {getErrorFromServer, getResetPasswordStatus, State} from '../../../core/reducers';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Store} from '@ngrx/store';
-import {ValidationService} from '../../../core/services/validation';
-import { matchPasswordValidator} from '../../../core/validators/custom-validators';
-import {ClearPasswordStatus, SetPasswordAction} from '../../actions/auth.actions';
-import {ActivatedRoute, Params} from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { getErrorFromServer, getResetPasswordStatus, State } from '../../../core/reducers';
+import { ValidationService } from '../../../core/services/validation';
+import { matchPasswordValidator } from '../../../core/validators/custom-validators';
+import { ClearPasswordStatus, SetPasswordAction } from '../../actions/auth.actions';
+
+import { Store } from '@ngrx/store';
+
+/**
+ *  Reset password component
+ */
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
@@ -39,6 +44,9 @@ export class ResetPasswordComponent implements OnInit {
     this.buildForm();
   }
 
+  /**
+   *  Build reactive form
+   */
   buildForm() {
     this.userForm = this.fb.group({
       password: [this.user.password, [
@@ -57,6 +65,9 @@ export class ResetPasswordComponent implements OnInit {
       });
   }
 
+  /**
+   *  Set new password
+   */
   reset() {
     const data = {
       token: this.token,

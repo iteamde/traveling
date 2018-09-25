@@ -1,9 +1,14 @@
 import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+
 import {State} from '../../../core/reducers';
 import {getOpenLeftMobileMenu} from '../../../core/reducers';
 import {CloseLeftMobileMenu} from '../../../core/actions/core.actions';
 
+import {Store} from '@ngrx/store';
+
+/**
+ * Left menu component
+ */
 @Component({
   selector: 'app-left-outside-menu',
   templateUrl: './left-outside-menu.component.html',
@@ -11,18 +16,19 @@ import {CloseLeftMobileMenu} from '../../../core/actions/core.actions';
 })
 export class LeftOutsideMenuComponent implements OnInit {
 
+  /** observable to show or hide mobile menu */
   public showComponent;
 
   constructor(private store: Store<State>, private eRef: ElementRef) {
-
     this.showComponent = this.store.select(getOpenLeftMobileMenu);
-
   }
 
   ngOnInit() {
   }
 
+  /** attach event listener on click to document */
   @HostListener('document:click', ['$event'])
+  // check if click was out current component -> close menu
   clickOut(e) {
     if (!this.eRef.nativeElement.contains(e.target)) {
       this.store.dispatch(new CloseLeftMobileMenu);

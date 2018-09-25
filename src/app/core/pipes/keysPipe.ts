@@ -1,5 +1,8 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
+/**
+ * Get array of keys in object
+ */
 @Pipe({name: 'keys'})
 export class KeysPipe implements PipeTransform {
   transform(value, args: string[]): any {

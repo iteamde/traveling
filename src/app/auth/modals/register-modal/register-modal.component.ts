@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import {RegisterAction, SetRegistrationStep} from '../../actions/auth.actions';
-import {Store} from '@ngrx/store';
 import {getErrorFromServer, State} from '../../../core/reducers';
 import {emailValidator, matchPasswordValidator, nameValidator} from '../../../core/validators/custom-validators';
 import {ValidationService} from '../../../core/services/validation';
-import {Observable} from 'rxjs/Observable';
 import {ModalManager} from '../../../core/services/modal-manager.service';
-import {LoginModalComponent} from '../login-modal/login-modal.component';
 
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
 
+/**
+ * Register modal component
+ */
 @Component({
   selector: 'app-register-modal',
   templateUrl: './register-modal.component.html',
@@ -19,16 +22,16 @@ export class RegisterModalComponent implements OnInit {
   public authError$: Observable<any>;
   public userForm: FormGroup;
   public user: any = {
-    username: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
+    username: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
   };
   public formErrors = {
-    username: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
+    username: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
   };
 
   constructor( private store: Store<State>,
@@ -43,6 +46,9 @@ export class RegisterModalComponent implements OnInit {
     this.buildForm();
   }
 
+  /**
+   * Build reactive form
+   */
   buildForm() {
     this.userForm = this.fb.group({
       username: [this.user.username, [
@@ -71,8 +77,9 @@ export class RegisterModalComponent implements OnInit {
       });
   }
 
-
-
+  /**
+   * Register user
+   */
   register() {
     const payload = {
       data: {...this.userForm.value},

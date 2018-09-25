@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import {AuthHelper} from '../helpers/auth.helper';
+import { AuthHelper } from '../helpers/auth.helper';
 
+/**
+ *  Auth guard to check auth token
+ */
 @Injectable()
 export class AuthGuard implements CanActivate {
 

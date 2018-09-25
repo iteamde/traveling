@@ -15,8 +15,9 @@ import 'rxjs/add/operator/takeLast';
 import 'rxjs/add/operator/filter';
 
 
-
-
+/**
+ * Modal manager service
+ */
 @Injectable()
 export class ModalManager {
   private modalRef$: Observable<any>;
@@ -24,22 +25,22 @@ export class ModalManager {
 
   constructor(private dialog: MatDialog, private router: Router, private store: Store<State>) {
 
-    /**
-     *  Close all modals on router change if it is not instance of GalleryModalComponent
-     */
-
+    /** Close all modals on router change if it is not instance of GalleryModalComponent */
     this.modalRef$ = store.select(getOpenedModalRef);
     this.modalRef$.subscribe( res => {
-      if(res) this.closeSimpleModals =  res.componentInstance instanceof GalleryModalComponent ?  false  : true
+      if (res) this.closeSimpleModals =  res.componentInstance instanceof GalleryModalComponent ?  false  : true
     });
 
     this.router.events.filter(event => event instanceof NavigationStart).subscribe((res) => {
       return res && this.closeSimpleModals && this.dialog.closeAll();
     });
-
   }
 
-
+  /**
+   * Open component in modal from life cycle hook (LCH)
+   * @param component
+   * @param data
+   */
   openModalFromLCH(component, data?) {
     setTimeout(() => {
       this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component, {data})}));
@@ -47,11 +48,18 @@ export class ModalManager {
   }
 
 
+  /**
+   * Open component in modal
+   * @param component
+   * @param data
+   */
   openModal(component, data?) {
     this.store.dispatch(new OpenModalAction({ref: this.dialog.open(component,  {data})}));
   }
 
-
+  /**
+   * Close all modals
+   */
   closeAll() {
     this.dialog.closeAll();
   }

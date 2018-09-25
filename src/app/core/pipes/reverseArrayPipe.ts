@@ -1,5 +1,8 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
+/**
+ * Reverse current array
+ */
 @Pipe({
   name: 'reverseArr',
   pure: true

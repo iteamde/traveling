@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
+/**
+ * Custom calendar component
+ */
 @Component({
   selector: 'app-custom-calendar',
   templateUrl: './custom-calendar.component.html',
@@ -29,28 +32,47 @@ export class CustomCalendarComponent implements OnInit {
     this.beginOfMonth = this.getBeginOfMonth(this.month.indexOf(this.currentMonth), this.currentYear);
     console.log(this.beginOfMonth)
     this.previousDays = this.beginOfMonth < 7 ? Array.from(Array(this.beginOfMonth).keys()) : [];
-    //this.previousDays = Array.from(Array(this.beginOfMonth).keys());
   }
 
-
+  /**
+   * Get the first day (day of week) of month within specific year
+   * @param month
+   * @param year
+   * @returns {number}
+   */
   getBeginOfMonth(month, year) {
     return new Date(year, month, 1).getDay();
   }
 
 
+  /**
+   * Get quantity of days in current month within specific year
+   * @param month
+   * @param year
+   * @returns {number}
+   */
   getDaysInMonth(month, year) {
     return new Date(year, month + 1, 0).getDate();
   }
 
+  /**
+   * Get current year
+   * @returns {number}
+   */
   getCurrentYear() {
     return new Date().getFullYear();
   }
-
+  /**
+   * Decrement year
+   */
   decrementYear() {
     this.currentYear--;
     this.getPreviousDays();
   }
 
+  /**
+   * Increment year
+   */
   incrementYear() {
     if (this.currentYear < this.getCurrentYear()) {
       this.currentYear++;
@@ -58,11 +80,18 @@ export class CustomCalendarComponent implements OnInit {
     }
   }
 
+  /**
+   * Get current month
+   * @returns {string}
+   */
   getCurrentMonth() {
     const monthIndex = new Date().getMonth();
     return this.month[monthIndex];
   }
 
+  /**
+   * Decrement month
+   */
   decrementMonth() {
     if (this.currentMonth !== 'January') {
       this.currentMonth = this.month[this.month.indexOf(this.currentMonth) - 1];
@@ -70,6 +99,9 @@ export class CustomCalendarComponent implements OnInit {
     }
   }
 
+  /**
+   * Increment month
+   */
   incrementMonth() {
     if (this.currentMonth !== 'December') {
       this.currentMonth = this.month[this.month.indexOf(this.currentMonth) + 1];

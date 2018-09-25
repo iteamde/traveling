@@ -1,8 +1,11 @@
-import {Inject, Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export const TOKEN_NAME = 'currentUser';
 export const ABOUT_USER = 'aboutUser';
 
+/**
+ * Auth helper service
+ */
 @Injectable()
 export class AuthHelper {
 
@@ -26,7 +29,9 @@ export class AuthHelper {
     localStorage.setItem(ABOUT_USER, JSON.stringify(user)); // ave user info TODO: just for now because auth is not completed
   }
 
-
+  /**
+   * Delete auth token from local storage
+   */
   public clearAuthToken() {
     localStorage.removeItem(TOKEN_NAME);
   }

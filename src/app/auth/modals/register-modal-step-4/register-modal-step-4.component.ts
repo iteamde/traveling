@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Registration component (step-4)
+ */
 @Component({
   selector: 'app-register-modal-step-4',
   templateUrl: './register-modal-step-4.component.html',

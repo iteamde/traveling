@@ -1,6 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 
+/**
+ * Confirm modal component
+ */
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',

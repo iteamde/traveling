@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
+
 import {getCountryHolidays, State} from '../../../core/reducers';
 
+import {Store} from '@ngrx/store';
+
+/**
+ * Holidays list component
+ * Holds info about holidays
+ */
 @Component({
   selector: 'app-holidays-list',
   templateUrl: './holidays-list.component.html',

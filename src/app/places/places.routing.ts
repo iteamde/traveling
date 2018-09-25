@@ -6,6 +6,7 @@ import {ModalWrapperComponent} from '../core/components/modal-wrapper/modal-wrap
 import {getPlacesNearby, getPlacesImg, getPlacesPlans, getPlaceReviews, getPlaces} from '../core/reducers';
 import {WriteReviewModalComponent} from './components/write-review-modal/write-review-modal.component';
 
+/** define places routes */
 export const PlacesRoutes  = [
   {
     path: '',

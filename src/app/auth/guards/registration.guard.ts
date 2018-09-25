@@ -10,7 +10,9 @@ import 'rxjs/add/operator/skipUntil';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 
-
+/**
+ *  Registration guard service
+ */
 @Injectable()
 export class RegistrationGuard implements CanActivate {
   protected registrationStep$: Observable<number>;
@@ -41,7 +43,6 @@ export class RegistrationGuard implements CanActivate {
    */
   canActivate(next: ActivatedRouteSnapshot,
               state: RouterStateSnapshot):  Observable<boolean> {
-
 
       return this.registrationStep$.map(res => {
          if ( res  ===  this.relation[state.url]) {

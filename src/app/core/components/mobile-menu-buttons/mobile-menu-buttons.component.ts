@@ -1,18 +1,17 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {NavigationStart, Router} from '@angular/router';
+
 import {State} from '../../reducers';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {getOpenLeftMobileMenu, getOpenMobileSideBar} from '../../reducers';
-import {
-  CloseLeftMobileMenu,
-  CloseMobileSideBar,
-  OpenLeftMobileMenu,
-  OpenMobileSideBar
-} from '../../actions/core.actions';
-import {NavigationStart, Router} from '@angular/router';
+import {CloseLeftMobileMenu, CloseMobileSideBar, OpenLeftMobileMenu, OpenMobileSideBar} from '../../actions/core.actions';
 
+import {Store} from '@ngrx/store';
 import 'rxjs/add/operator/filter';
 
+/**
+ * Mobile menu buttons
+ */
 @AutoUnsubscribe({includeArrays: true})
 @Component({
   selector: 'app-mobile-menu-buttons',
@@ -21,11 +20,10 @@ import 'rxjs/add/operator/filter';
 })
 export class MobileMenuButtonsComponent implements OnInit, OnDestroy {
 
-  // array of subscriptions for unsubscribe
+  // array of subscriptions to unsubscribe
   public subscriptions$ = [];
   public showLeftMobileMenu: boolean;
   public showMobileSideBar: boolean;
-
 
   constructor(private store: Store<State>, private router: Router) {
 
@@ -39,11 +37,16 @@ export class MobileMenuButtonsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // if navigate to another route -> close both mobile sidebar and menu
     this.subscriptions$[2] = this.router.events
       .filter(event => event instanceof NavigationStart)
       .subscribe(res => this.closeAllMenus());
   }
 
+  /**
+   * Show or hide mobile menu
+   * @param e event
+   */
   toggleSideMobileMenu(e) {
     e.stopPropagation();
     if (!this.showLeftMobileMenu) {
@@ -52,6 +55,10 @@ export class MobileMenuButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Show or hide mobile sidebar
+   * @param e
+   */
   toggleMobileSideBar(e) {
     e.stopPropagation();
     if (this.showMobileSideBar) {
@@ -62,12 +69,16 @@ export class MobileMenuButtonsComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Hide both mobile sidebar and menu
+   */
   closeAllMenus() {
     this.store.dispatch(new CloseLeftMobileMenu);
     this.store.dispatch(new CloseMobileSideBar);
   }
 
   ngOnDestroy() {
+    // unsubscribe of all subscriptions
     this.subscriptions$.forEach(item => item.unsubscribe());
   }
 

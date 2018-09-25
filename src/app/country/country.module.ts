@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from '@angular/router';
 
-import {MatSliderModule} from '@angular/material/slider';
-import {EffectsModule} from '@ngrx/effects';
-
 import { CountryComponent } from './country.component';
 import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
@@ -23,12 +20,13 @@ import { PlacesListComponent } from './components/places-list/places-list.compon
 import { HolidaysListComponent } from './components/holidays-list/holidays-list.component';
 import { CountryBudgetBoxComponent } from './components/country-budget-box/country-budget-box.component';
 import { CountryAccordionModalComponent } from './modals/country-accordion-modal/country-accordion-modal.component';
-import { CountryWeatherComponent } from './country-weather/country-weather.component';
+import { CountryWeatherComponent } from './components/country-weather/country-weather.component';
 import {ConvertService} from '../core/services/convert.service';
 import {CountryEffects} from './effects/country.effects';
 import {CountryRoutes} from './country.routing';
 
-
+import {MatSliderModule} from '@angular/material/slider';
+import {EffectsModule} from '@ngrx/effects';
 
 
 @NgModule({
@@ -54,8 +52,7 @@ import {CountryRoutes} from './country.routing';
     HolidaysListComponent,
     CountryBudgetBoxComponent,
     CountryAccordionModalComponent,
-    CountryWeatherComponent,
-
+    CountryWeatherComponent
   ],
   providers: [
     CountryService,

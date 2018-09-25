@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * 'Sign up is done' component
+ */
 @Component({
   selector: 'app-signup-done',
   templateUrl: './signup-done.component.html',

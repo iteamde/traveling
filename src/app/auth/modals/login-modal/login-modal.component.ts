@@ -1,15 +1,20 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+
 import {FacebookService} from '../../services/facebook.service';
 import {emailValidator} from '../../../core/validators/custom-validators';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../../core/services/validation';
-import {Observable} from 'rxjs/Observable';
 import {getErrorFromServer, getLoginStatus, State} from '../../../core/reducers';
-import {Store} from '@ngrx/store';
 import {LoginAction, SetRegistrationStep} from '../../actions/auth.actions';
-import {ActivatedRoute} from '@angular/router';
 import {ApiService} from '../../../core/services/api.service';
 
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+
+/**
+ * Login modal component
+ */
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',
@@ -48,6 +53,9 @@ export class LoginModalComponent implements OnInit {
     this.facebookService.FBLoadStatus$().subscribe(res => console.log(res));
   }
 
+  /**
+   * Build reactive form
+   */
   buildForm() {
     this.userForm = this.fb.group({
       email: [this.user.email, [
@@ -68,22 +76,36 @@ export class LoginModalComponent implements OnInit {
       });
   }
 
+  /**
+   * Facebook login
+   */
   facebookLogin() {
     this.facebookService.login()
       .then(res => this.store.dispatch(new LoginAction({data: res, queryUrl: 'users/create/facebook'})));
   }
-
+  /**
+   * Twitter login
+   */
   twitterLogin() {
     this.popupCenter('http://uat.travooo.com/api/users/create/twitter/login', 'Twitter', '900', '600');
   }
 
+  /**
+   * User login
+   */
   login() {
     this.store.dispatch(new LoginAction({data: this.userForm.value, queryUrl: 'users/login', returnUrl : this.returnUrl}));
   }
 
-
+  /**
+   * Set new popup window
+   * @param url
+   * @param title
+   * @param w
+   * @param h
+   */
   popupCenter(url, title, w, h) {
-// Fixes dual-screen position Most browsers Firefox
+    // Fixes dual-screen position Most browsers Firefox
     const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
     const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
 
@@ -94,12 +116,10 @@ export class LoginModalComponent implements OnInit {
     const top = ((height / 2) - (h / 2)) + dualScreenTop;
     const newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 
-// Puts focus on the newWindow
+    // Puts focus on the newWindow
     if (window.focus) {
       newWindow.focus();
     }
-
-
     newWindow.onfocus = function () {
       console.log('HEre is this', this);
     };

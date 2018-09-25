@@ -1,6 +1,10 @@
 import {AfterViewInit, Component, OnInit, Renderer2, ViewChild, ViewChildren} from '@angular/core';
+
 import * as Hammer from 'hammerjs';
 
+/**
+ * Country weather component
+ */
 @Component({
   selector: 'app-country-weather',
   templateUrl: './country-weather.component.html',
@@ -8,9 +12,11 @@ import * as Hammer from 'hammerjs';
 })
 export class CountryWeatherComponent implements OnInit, AfterViewInit {
 
-
+  /** reference to html component */
   @ViewChild('carousel') carousel;
+  /** reference to html component */
   @ViewChild('carouselContainer') carouselContainer;
+  /** reference to html component */
   @ViewChildren('carouselItem') carouselItem;
 
   public carouselItemWidth = 0;
@@ -45,18 +51,21 @@ export class CountryWeatherComponent implements OnInit, AfterViewInit {
 
 
   constructor(private renderer: Renderer2) {
-
   }
 
   ngOnInit() {
-
   }
 
+  /**
+   * Slide weather carousel forward
+   */
   moveForward() {
     if (this.leftPosition < 0) this.leftPosition += this.carouselItemWidth;
     this.renderer.setStyle(this.carousel.nativeElement, 'left', `${this.leftPosition}px`);
   }
-
+  /**
+   * Slide weather carousel backward
+   */
   moveBackward() {
     if (this.leftPosition > this.carouselOffset) this.leftPosition -= this.carouselItemWidth;
     this.renderer.setStyle(this.carousel.nativeElement, 'left', `${this.leftPosition}px`);
@@ -76,7 +85,6 @@ export class CountryWeatherComponent implements OnInit, AfterViewInit {
     Hammer(this.carouselContainer.nativeElement).on('swipeleft', () => this.moveBackward());
 
     Hammer(this.carouselContainer.nativeElement).on('swiperight', () => this.moveForward());
-
 
   }
 

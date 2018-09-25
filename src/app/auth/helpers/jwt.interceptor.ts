@@ -38,7 +38,7 @@ export class JwtInterceptor implements HttpInterceptor {
    * Intercept each http request
    *
    * @param request to be transform
-   * @param next to be transform
+   * @param next to send the newly created request
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     /** UI helpers */

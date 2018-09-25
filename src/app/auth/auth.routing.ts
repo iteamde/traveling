@@ -11,7 +11,7 @@ import {RegisterModalStep4Component} from './modals/register-modal-step-4/regist
 import {RegisterModalStep5Component} from './modals/register-modal-step-5/register-modal-step-5.component';
 import {SignupDoneComponent} from './modals/signup-done/signup-done.component';
 
-
+/** define routes for Auth component */
 export const AuthRoutes = [
     {
       path: '',

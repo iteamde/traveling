@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Error component
+ */
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',

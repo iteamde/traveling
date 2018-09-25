@@ -1,12 +1,18 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ModalManager} from '../../services/modal-manager.service';
 import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
-import {Store} from '@ngrx/store';
+import {MatDialog} from '@angular/material';
+
+import {ModalManager} from '../../services/modal-manager.service';
 import {State} from '../../reducers';
 import {RemoveErrorAction} from '../../actions/error.actions';
-import {MatDialog} from '@angular/material';
-import {of} from 'rxjs/observable/of';
 
+import {of} from 'rxjs/observable/of';
+import {Store} from '@ngrx/store';
+
+/**
+ * Wrapper for modals component
+ * Store common logic for modals
+ */
 @Component({
   selector: 'app-modal-wrapper',
   templateUrl: './modal-wrapper.component.html',
