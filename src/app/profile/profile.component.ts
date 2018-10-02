@@ -2,6 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {getOpenMobileSideBar, getProfileActiveTab, State} from '../core/reducers';
 import {Store} from '@ngrx/store';
 
+/**
+ * Profile component
+ * Holds main info about user
+ */
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,8 +18,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public openMobileSideBar;
 
   constructor(private store: Store<State>) { }
-
-
 
   ngOnInit() {
     this.subscriptions$[0] = this.store.select(getProfileActiveTab)
