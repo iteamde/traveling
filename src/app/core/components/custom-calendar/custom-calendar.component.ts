@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 /**
  * Custom calendar component
@@ -8,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './custom-calendar.component.html',
   styleUrls: ['./custom-calendar.component.scss']
 })
-export class CustomCalendarComponent implements OnInit {
+export class CustomCalendarComponent {
 
   public currentYear;
   public currentMonth;
@@ -24,13 +24,8 @@ export class CustomCalendarComponent implements OnInit {
     this.getPreviousDays();
   }
 
-  ngOnInit() {
-
-  }
-
   getPreviousDays() {
     this.beginOfMonth = this.getBeginOfMonth(this.month.indexOf(this.currentMonth), this.currentYear);
-    console.log(this.beginOfMonth)
     this.previousDays = this.beginOfMonth < 7 ? Array.from(Array(this.beginOfMonth).keys()) : [];
   }
 
@@ -43,7 +38,6 @@ export class CustomCalendarComponent implements OnInit {
   getBeginOfMonth(month, year) {
     return new Date(year, month, 1).getDay();
   }
-
 
   /**
    * Get quantity of days in current month within specific year
@@ -107,6 +101,5 @@ export class CustomCalendarComponent implements OnInit {
       this.currentMonth = this.month[this.month.indexOf(this.currentMonth) + 1];
       this.getPreviousDays();
     }
-
   }
 }

@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {Component} from '@angular/core';
+
 import {getPlaceFollowers, State} from '../../../core/reducers';
+
+import {Store} from '@ngrx/store';
 
 /**
  * Followers list
@@ -11,17 +13,13 @@ import {getPlaceFollowers, State} from '../../../core/reducers';
   templateUrl: './followers-list.component.html',
   styleUrls: ['./followers-list.component.scss']
 })
-export class FollowersListComponent implements OnInit {
+export class FollowersListComponent {
   public data: any;
   public stats: any;
 
   constructor(private store: Store<State>) {
     this.data = this.store.select(getPlaceFollowers);
     // this.stats = this.store.select(getCountryStats);
-  }
-
-  ngOnInit() {
-
   }
 
 }

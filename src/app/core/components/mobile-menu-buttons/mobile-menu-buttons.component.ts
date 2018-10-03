@@ -43,6 +43,11 @@ export class MobileMenuButtonsComponent implements OnInit, OnDestroy {
       .subscribe(res => this.closeAllMenus());
   }
 
+  ngOnDestroy() {
+    // unsubscribe of all subscriptions
+    this.subscriptions$.forEach(item => item.unsubscribe());
+  }
+
   /**
    * Show or hide mobile menu
    * @param e event
@@ -75,11 +80,6 @@ export class MobileMenuButtonsComponent implements OnInit, OnDestroy {
   closeAllMenus() {
     this.store.dispatch(new CloseLeftMobileMenu);
     this.store.dispatch(new CloseMobileSideBar);
-  }
-
-  ngOnDestroy() {
-    // unsubscribe of all subscriptions
-    this.subscriptions$.forEach(item => item.unsubscribe());
   }
 
 }

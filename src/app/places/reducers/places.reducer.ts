@@ -1,10 +1,8 @@
 import * as places from '../actions/places.actions';
 
-
 export interface State {
   places: any;
 }
-
 
 export const INIT_STATE: State = {
   places: null,

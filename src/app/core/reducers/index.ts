@@ -1,7 +1,6 @@
 import {ActionReducerMap} from '@ngrx/store';
 import {createSelector} from 'reselect';
 
-
 /**
  * Import from reducers
  */
@@ -12,7 +11,6 @@ import * as fromTripPlanner from '../../trip-planner/reducers/trip-planner.reduc
 import * as fromCountry from '../../country/reducers/country.reducer';
 import * as fromPlaces from '../../places/reducers/places.reducer';
 import * as fromProfile from '../../profile/reducer/profile.reducer';
-
 
 /**
  * Top level state declaration
@@ -26,7 +24,6 @@ export interface State {
   places: fromPlaces.State;
   profile: fromProfile.State;
 }
-
 
 /**
  * Map of the reducers
@@ -79,7 +76,6 @@ export const getUserId = createSelector(getAuthState, fromAuth.getUserId);
 export const getTripId = createSelector(getTripPlannerState, fromTripPlanner.getTripId);
 export const getCitiesInfo = createSelector(getTripPlannerState, fromTripPlanner.getCitiesInfo);
 export const getAlreadySpent = createSelector(getTripPlannerState, fromTripPlanner.getAlreadySpent);
-
 
 /**
  * Trip module selectors

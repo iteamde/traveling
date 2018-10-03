@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddCityToTripModalComponent} from '../../modals/add-city-to-trip-modal/add-city-to-trip-modal.component';
 import {ModalManager} from '../../../core/services/modal-manager.service';
@@ -16,7 +16,7 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
   styleUrls: ['./trip-planner-info.component.scss'],
   templateUrl: './trip-planner-info.component.html',
 })
-export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
+export class TripPlannerInfoComponent implements  OnInit {
   public data = {
     cities : [],
   };
@@ -26,8 +26,6 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
   public citiesInfo$;
   public alreadySpent$;
 
-
-
   constructor(private route: ActivatedRoute,
               private modalManager: ModalManager,
               private router: Router,
@@ -36,7 +34,6 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
             this.routeParams = this.route.snapshot.params;
             this.citiesInfo$ = this.store.select(getCitiesInfo);
             this.alreadySpent$ = this.store.select(getAlreadySpent);
-
   }
 
   ngOnInit() {
@@ -47,16 +44,12 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
     // TODO REMOVE THIS WORST CODE EVER
     this.transformBackendData(dataFromBack);
 
-
     this.store.dispatch(new SetCityInfoAction({cities: this.data.cities , activeCity: this.data.cities[0]}));
-
 
     this.citiesInfo$.subscribe( res => {
       this.data.cities = res.cities;
-      console.log("It`s city info", res);
     });
   }
-
 
   openCityModal() {
     this.modalManager.openModalFromLCH(AddCityToTripModalComponent, this.routeParams );
@@ -82,7 +75,6 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
     this.store.dispatch(new CancelTripAction({details: {}, url: `trips/${this.routeParams.id}/cancel`}));
   }
 
-
   transformBackendData(dataFromBack) {
     let cCity;
     dataFromBack.places.forEach((place) => {
@@ -91,7 +83,6 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
         country: {},
         places: [],
       };
-
 
       this.data.cities.forEach( (city) => {
         if (city.id === place.city.id) {
@@ -118,10 +109,6 @@ export class TripPlannerInfoComponent implements  OnInit, OnDestroy {
         cCity.places.push(place);
         this.data.cities.push(cCity);
       }
-
     });
-  }
-
-  ngOnDestroy() {
   }
 }

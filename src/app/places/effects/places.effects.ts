@@ -3,7 +3,6 @@ import {Actions, Effect} from '@ngrx/effects';
 
 import {PlacesService} from '../services/places.service';
 import {AllowSpinnerService} from '../../core/services/allowSpinner.service';
-
 import * as error from '../../core/actions/error.actions';
 import * as places from '../actions/places.actions';
 
@@ -14,7 +13,6 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PlacesEffects {
 
-
   /**
    * Follow place
    */
@@ -23,7 +21,6 @@ export class PlacesEffects {
     .switchMap((action: places.FollowPlacesAction) => this.placesService.followPlaces(action.payload)
       .map( res => res.success ? new places.FollowSuccessAction(action.payload) : new error.AddErrorAction(res.data)));
 
-
   /**
    * Unfollow place
    */
@@ -31,8 +28,6 @@ export class PlacesEffects {
   unfollow$ = this.actions$.ofType(places.UNFOLLOW_PLACES)
     .switchMap((action: places.UnfollowPlacesAction) => this.placesService.unfollowPlaces(action.payload)
       .map( res => res.success ? new places.UnfollowSuccessAction(action.payload) : new error.AddErrorAction(res.data)));
-
-
 
   // bottom 2 effect after this comment are to add or delete your card at followers-list
   // when there will be authorization we can do it with user_id and follow_status in template
@@ -47,7 +42,6 @@ export class PlacesEffects {
         .map( res => res.success ? new places.SetPlacesInfoAction({followers: res}) : new error.AddErrorAction(res.data))
     });
 
-
   /**
    * FollowSuccess place
    */
@@ -58,8 +52,6 @@ export class PlacesEffects {
     return this.placesService.checkFollowers(action.payload)
         .map( res => res.success ? new places.SetPlacesInfoAction({followers: res}) : new error.AddErrorAction(res.data))
     });
-
-
 
   /**
    * Default constructor

@@ -1,5 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+
 import {getOpenMobileSideBar, getProfileActiveTab, State} from '../core/reducers';
+
 import {Store} from '@ngrx/store';
 
 /**

@@ -70,6 +70,9 @@ export class LoginModalComponent implements OnInit {
 
     });
 
+    /**
+     * Get form errors
+     */
     this.userForm.valueChanges
       .subscribe(() => {
         this.formErrors = this.validation.onValueChange(this.userForm, this.formErrors, false);

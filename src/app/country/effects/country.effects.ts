@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect} from '@ngrx/effects';
+
+import {CountryService} from '../services/country.service';
 import * as error from '../../core/actions/error.actions';
 import * as country from '../actions/country.actions';
+
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
-import {CountryService} from '../services/country.service';
+
 
 
 @Injectable()
@@ -17,7 +20,6 @@ export class CountryEffects {
   follow$ = this.actions$.ofType(country.FOLLOW_COUNTRY)
     .switchMap((action: country.FollowCountryAction) => this.countryService.followCountry(action.payload)
       .map( res => res.success ? new country.FollowSuccessAction() : new error.AddErrorAction(res.data)));
-
 
   /**
    * Unfollow country

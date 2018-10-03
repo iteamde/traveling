@@ -46,15 +46,11 @@ export class ModalWrapperComponent implements OnInit, OnDestroy {
 
     this.routeParams = this.route.snapshot.params;
 
-
     this.subscription$ = this.router.events.filter(event => event instanceof NavigationStart)
       .switchMap(() => of(this.route.snapshot.data.skipClose)).subscribe((res) => {
       this.store.dispatch(new RemoveErrorAction());
-      console.log('Router DATA', res);
       return !res && this.dialog.closeAll();
     });
-
-
   }
 
   ngOnInit() {
@@ -68,12 +64,12 @@ export class ModalWrapperComponent implements OnInit, OnDestroy {
      );
   }
 
-  close() {
-    this.router.navigate([ '../../' ], { relativeTo: this.route });
-  }
-
   ngOnDestroy() {
     this.subscription$.unsubscribe();
+  }
+
+  close() {
+    this.router.navigate([ '../../' ], { relativeTo: this.route });
   }
 
 }

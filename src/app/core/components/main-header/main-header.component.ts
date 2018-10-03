@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * Main header of app
@@ -9,12 +9,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.scss']
 })
-export class MainHeaderComponent implements OnInit {
+export class MainHeaderComponent  {
   public isMenuOpen = false;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

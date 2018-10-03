@@ -1,19 +1,19 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
-import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+
 
 import {PlacesService} from './services/places.service';
 import {CountryService} from '../country/services/country.service';
 import {getCountry, getPlaces, State, getOpenMobileSideBar} from '../core/reducers';
 import {SetCountryInfoAction} from '../country/actions/country.actions';
 import {SetPlacesInfoAction} from './actions/places.actions';
-
 import {FollowersListComponent} from './components/followers-list/followers-list.component';
 import {TrendingPlacesListComponent} from './components/trending-places-list/trending-places-list.component';
 import {AllowSpinnerService} from '../core/services/allowSpinner.service';
 
 import 'rxjs/add/operator/filter';
+import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
+import {Store} from '@ngrx/store';
 
 /**
  * Places component
@@ -53,9 +53,7 @@ export class PlacesComponent implements OnInit, OnDestroy {
       this.getData();
       window.scrollTo(0, 0);
     });
-
   }
-
 
   ngOnInit() {
     this.getDataForPlaceCountry();
@@ -86,14 +84,12 @@ export class PlacesComponent implements OnInit, OnDestroy {
     this.store.dispatch(new SetPlacesInfoAction(this.route.snapshot.data.places));
 
     this.subscriptions$[0] = this.store.select(getPlaces).subscribe(res => {
-      console.log('PLACES DATA:', res);
       this.data = res;
       this.init();
     });
 
     // Get data for footer of places and trending places of component country
     this.subscriptions$[1] = this.store.select(getCountry).subscribe(res => {
-      console.log('Country', res);
       this.countryData = res;
       this.showComponent = true;
     });

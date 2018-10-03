@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import {getCountryInfo, State} from '../../../core/reducers';
 import {CountryService} from '../../services/country.service';
@@ -14,7 +14,7 @@ import {Store} from '@ngrx/store';
   templateUrl: './country-accordion-modal.component.html',
   styleUrls: ['./country-accordion-modal.component.scss']
 })
-export class CountryAccordionModalComponent implements OnInit {
+export class CountryAccordionModalComponent {
   public data: any;
   public openedList: any;
   public isCountry: boolean;
@@ -35,10 +35,6 @@ export class CountryAccordionModalComponent implements OnInit {
       currencies: false,
     };
   }
-
-  ngOnInit() {
-  }
-
   // close() {
   //   this.modal.closeAll();
   // }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Country middle banner component
@@ -9,13 +9,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   templateUrl: './country-middle-banner.component.html',
   styleUrls: ['./country-middle-banner.component.scss']
 })
-export class CountryMiddleBannerComponent implements OnInit {
+export class CountryMiddleBannerComponent {
   /** main data of current country */
   @Input() data;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

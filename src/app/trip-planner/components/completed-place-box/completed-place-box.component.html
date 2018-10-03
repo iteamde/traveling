@@ -8,10 +8,12 @@
                {{city.trans[0].title}}
               </span>
         </div>
-        <div class="trip-side-layer-wrap"   dnd-sortable-container [sortableData]="city.places" [dropZones]="[city.trans[0].title]" [dragEnabled]="dragOperation">
+        <div class="trip-side-layer-wrap" dnd-sortable-container [sortableData]="city.places"
+             [dropZones]="[city.trans[0].title]" [dragEnabled]="dragOperation">
           <div class="trip-side-layer" >
-            <div class="trip-side-wrapper" (mouseenter)="setDragOperation(true)" (mouseleave)="setDragOperation(false)" *ngFor="let place of city.places; let x = index" dnd-sortable [sortableIndex]="x"
-                 (onDragStart)="itemDragged()"   (onDropSuccess)="itemSwapped(city.places)">
+            <div class="trip-side-wrapper" (mouseenter)="setDragOperation(true)" (mouseleave)="setDragOperation(false)"
+                 *ngFor="let place of city.places; let x = index" dnd-sortable [sortableIndex]="x"
+                 (onDragStart)="itemDragged()" (onDropSuccess)="itemSwapped(city.places)">
               <div class="trip-side-row" *ngIf="place.saved">
                 <a href="#" class="drag-icon">
                   <i class="trav-ellipsis-v-icon"></i>
@@ -37,12 +39,10 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>

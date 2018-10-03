@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Component that contains info about country or city
@@ -8,17 +8,13 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './country-about-box.component.html',
   styleUrls: ['./country-about-box.component.scss']
 })
-export class CountryAboutBoxComponent implements OnInit {
+export class CountryAboutBoxComponent {
+
   /** main info about country or city */
   @Input() info;
   /** if component is country component */
   @Input() isCountry;
 
   constructor() {
-
   }
-  ngOnInit() {
-
-  }
-
 }

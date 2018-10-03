@@ -11,7 +11,6 @@ export const SET_PASSWORD = '[Auth] set password';
 export const SET_PASSWORD_SUCCESS = '[Auth] set password success';
 export const CLEAR_PASSWORD_STATUS = '[Auth] clear password status';
 
-
 /**
  * Registers new user. (Currently just with given email and password)
  */
@@ -91,9 +90,6 @@ export class ResetPasswordSuccessAction implements Action {
 
   constructor(public payload) {}
 }
-
-
-
 
 export type Actions = RegisterAction
   | SetRegistrationStep

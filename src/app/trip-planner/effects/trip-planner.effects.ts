@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect} from '@ngrx/effects';
+
 import * as error from '../../core/actions/error.actions';
 import * as tripPlanner from '../actions/trip-planner.actions';
-
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
 import {TripPlannerService} from '../services/trip-planner.service';
 import {go} from '../../core/actions/router.actions';
 import {CloseOpenedModalAction} from '../../core/actions/core.actions';
 
+import {Actions, Effect} from '@ngrx/effects';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TripPlannerEffects {
@@ -93,7 +93,6 @@ export class TripPlannerEffects {
           new tripPlanner.SaveCitySuccessAction(action.payload) :
           new error.AddErrorAction(response.data && response.data.message)));
 
-
   /**
    * Remove city info  from trip
    */
@@ -134,7 +133,5 @@ export class TripPlannerEffects {
    */
   constructor(private actions$: Actions,
               private tripPlannerService: TripPlannerService,
-  ) {
-
-  }
+  ) {}
 }

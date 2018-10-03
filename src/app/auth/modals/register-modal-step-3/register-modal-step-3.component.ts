@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * Register modal component (step-3)
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './register-modal-step-3.component.html',
   styleUrls: ['./register-modal-step-3.component.css']
 })
-export class RegisterModalStep3Component implements OnInit {
+export class RegisterModalStep3Component {
 
   public settings: any = {
     queryUrl: 'users/set/fav_countries',
@@ -19,9 +19,5 @@ export class RegisterModalStep3Component implements OnInit {
   };
 
   constructor() {}
-
-  ngOnInit() {
-
-  }
 
 }

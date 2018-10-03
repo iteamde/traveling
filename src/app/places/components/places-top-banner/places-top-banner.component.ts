@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Places top banner component
@@ -9,14 +9,10 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './places-top-banner.component.html',
   styleUrls: ['./places-top-banner.component.scss']
 })
-export class PlacesTopBannerComponent implements OnInit {
+export class PlacesTopBannerComponent {
 
   /** main info about current place */
   @Input() data;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

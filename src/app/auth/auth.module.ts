@@ -9,7 +9,6 @@ import { RegisterModalStep2Component } from './modals/register-modal-step-2/regi
 import {CoreModule} from '../core/core.module';
 import {ValidationService} from '../core/services/validation';
 import { RegisterModalStep3Component } from './modals/register-modal-step-3/register-modal-step-3.component';
-import {ScrollEventModule} from 'ngx-scroll-event';
 import { SearchBoxComponent } from './helpers/search-box/search-box.component';
 import { RegisterModalStep4Component } from './modals/register-modal-step-4/register-modal-step-4.component';
 import { RegisterModalStep5Component } from './modals/register-modal-step-5/register-modal-step-5.component';
@@ -21,40 +20,42 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import {AuthGuard} from './guards/can-activate.guard';
 import {AuthHelper} from './helpers/auth.helper';
 
+import {ScrollEventModule} from 'ngx-scroll-event';
+
 @NgModule({
   declarations: [
-    AuthComponent,
-    LoginModalComponent,
-    RegisterModalComponent,
     RegisterModalStep2Component,
     RegisterModalStep3Component,
-    SearchBoxComponent,
     RegisterModalStep4Component,
     RegisterModalStep5Component,
-    SignupDoneComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    RegisterModalComponent,
+    ResetPasswordComponent,
+    LoginModalComponent,
+    SignupDoneComponent,
+    SearchBoxComponent,
+    AuthComponent
   ],
   imports: [
     ReactiveFormsModule,
+    ScrollEventModule,
     SharedModule,
-    CoreModule,
-    ScrollEventModule
+    CoreModule
   ],
   providers: [
-    AuthGuard,
     ValidationService,
-    FacebookService,
     RegistrationGuard,
+    FacebookService,
+    AuthGuard,
     AuthHelper
   ],
   entryComponents: [
-    RegisterModalComponent,
-    LoginModalComponent,
     RegisterModalStep2Component,
     RegisterModalStep3Component,
     RegisterModalStep4Component,
     RegisterModalStep5Component,
+    RegisterModalComponent,
+    LoginModalComponent,
     SignupDoneComponent
   ]
 })

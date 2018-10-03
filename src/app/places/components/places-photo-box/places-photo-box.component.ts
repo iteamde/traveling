@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
 
 /**
@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   templateUrl: './places-photo-box.component.html',
   styleUrls: ['./places-photo-box.component.scss']
 })
-export class PlacesPhotoBoxComponent implements OnInit {
+export class PlacesPhotoBoxComponent {
 
   /** main data of current place */
   @Input() data;
@@ -18,9 +18,6 @@ export class PlacesPhotoBoxComponent implements OnInit {
   @Input() info;
 
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   /**
    * Open image gallery of current place

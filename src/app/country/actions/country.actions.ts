@@ -22,7 +22,6 @@ export class SetCountryInfoAction implements Action {
 
 export class FollowSuccessAction implements Action {
   readonly type = FOLLOW_SUCCESS;
-
 }
 
 export class UnfollowCountryAction implements Action {
@@ -34,7 +33,6 @@ export class UnfollowCountryAction implements Action {
 
 export class UnfollowSuccessAction implements Action {
   readonly type = UNFOLLOW_SUCCESS;
-
 }
 
 export type Actions

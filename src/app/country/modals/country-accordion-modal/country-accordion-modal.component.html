@@ -6,23 +6,21 @@
     <div class="modal-custom-block">
       <div class="post-block post-modal-language-style">
         <div class="post-lang-top">
-
           <div class="top-txt" *ngIf="isCountry && (data | async).region.trans[0]?.title">
             <h3 class="ttl">{{(data | async).trans[0]?.title}}</h3>
             <p>Country in
               <a href="#" class="link">{{(data | async)?.region.trans[0]?.title}}</a>
             </p>
           </div>
-
           <div class="top-txt" *ngIf="!isCountry && (data | async).country.trans[0].title">
             <h3 class="ttl">{{(data | async).trans[0].title}}</h3>
             <p>City in
-              <a [routerLink]="['/country', (data | async).countries_id]" class="link">{{(data | async).country.trans[0]?.title}}</a>
+              <a [routerLink]="['/country', (data | async).countries_id]" class="link">
+                {{(data | async).country.trans[0]?.title}}
+              </a>
             </p>
           </div>
-
         </div>
-
         <div class="post-lang-inner">
           <div class="lang-row" *ngIf="(data | async).languages.length">
             <div class="lang-label" (click)="openedList.languages = !openedList.languages">
@@ -102,11 +100,7 @@
               </div>
             </div>
           </div>
-
-
         </div>
-
-
       </div>
     </div>
   </div>

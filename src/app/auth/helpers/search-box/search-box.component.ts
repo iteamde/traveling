@@ -49,6 +49,9 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
     this.getItems(false);
   }
 
+  ngOnDestroy() {
+    this.searchItemSubscription$.unsubscribe();
+  }
 
   /**
    * Select favorite city or place
@@ -123,10 +126,6 @@ export class SearchBoxComponent implements OnInit , OnDestroy{
    */
   isSelected(item) {
     return this.choosenItems.filter( obj => obj['id'] === item['id']).length;
-  }
-
-  ngOnDestroy() {
-    this.searchItemSubscription$.unsubscribe();
   }
 
 }

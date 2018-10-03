@@ -1,4 +1,4 @@
-<div class="lg-outer main-gallery-block  lg-slide lg-grab lg-show-after-load lg-pull-caption-up lg-has-thumb lg-visible lg-thumb-open"
+<div class="lg-outer main-gallery-block lg-slide lg-grab lg-show-after-load lg-pull-caption-up lg-has-thumb lg-visible lg-thumb-open"
       [ngClass]="{'lg-dropdown-active': isActiveSocialShare}">
   <div class="lg" style="width:100%; height:100%">
     <div class="lg-inner" #img>
@@ -39,15 +39,31 @@
                     <div class="top-gallery-content gallery-comment-top">
                       <div class="top-info-layer">
                         <div class="top-avatar-wrap">
-                          <img src="http://placehold.it/50x50" *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length" alt="" class="mCS_img_loaded">
-                          <img src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/' + medias[currentIndex].users[0].id + '/' + medias[currentIndex].users[0].profile_picture }}"
-                               *ngIf="medias[currentIndex].users && medias[currentIndex].users.length" alt="" class="mCS_img_loaded">
+                          <img src="http://placehold.it/50x50"
+                               *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length"
+                               alt="" class="mCS_img_loaded">
+                          <img
+                            src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/' + medias[currentIndex]
+                            .users[0].id + '/' + medias[currentIndex]
+                            .users[0].profile_picture }}"
+                            *ngIf="medias[currentIndex].users && medias[currentIndex].users.length"
+                            alt="" class="mCS_img_loaded">
                         </div>
                         <div class="top-info-txt">
                           <div class="preview-txt">
-                            <a class="dest-name" *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length">Hardcoded on front</a>
-                            <a class="dest-name" *ngIf="medias[currentIndex].users && medias[currentIndex].users.length">{{medias[currentIndex].users[0].name}}</a>
-                            <p class="dest-place" *ngIf="medias[currentIndex].uploaded_at">uploaded a <b>photo</b> <span class="date">{{ medias[currentIndex].uploaded_at | timeAgo}}</span></p>
+                            <a class="dest-name"
+                               *ngIf="!medias[currentIndex].users || !medias[currentIndex].users.length">
+                              Hardcoded on front
+                            </a>
+                            <a class="dest-name"
+                               *ngIf="medias[currentIndex].users && medias[currentIndex].users.length">
+                              {{medias[currentIndex].users[0].name}}
+                            </a>
+                            <p class="dest-place" *ngIf="medias[currentIndex].uploaded_at">
+                              uploaded a
+                              <b>photo</b>
+                              <span class="date">{{ medias[currentIndex].uploaded_at | timeAgo}}</span>
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -78,7 +94,9 @@
                         <div class="post-comment-row" *ngFor="let comment of medias[currentIndex].reactions.comments">
                           <div class="post-com-avatar-wrap">
                             <img src="http://placehold.it/45x45" *ngIf="!comment.user || !comment.user.profile_picture" >
-                            <img src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/' + comment.users_id + '/' + comment.user.profile_picture }}" *ngIf="comment.user && comment.user.profile_picture">
+                            <img src="{{'https://s3.amazonaws.com/travooo-images2/users/profile/'
+                            + comment.users_id + '/' + comment.user.profile_picture }}"
+                                 *ngIf="comment.user && comment.user.profile_picture">
                           </div>
                           <div class="post-comment-text">
                             <div class="post-com-name-layer">
@@ -86,7 +104,10 @@
                               <a  class="comment-nickname">@{{comment.user.username}}</a>
                             </div>
                             <div class="comment-txt">
-                              <p><b>{{comment.reply_to.id ? comment.reply_to.user.name + ", " : ''}}</b>{{comment.comment}}</p>
+                              <p>
+                                <b>{{comment.reply_to.id ? comment.reply_to.user.name + ", " : ''}}</b>
+                                {{comment.comment}}
+                              </p>
                             </div>
                             <div class="comment-bottom-info">
                                <div class="com-reaction pull-left" (click)="likeComment(comment)">
@@ -94,7 +115,10 @@
                                  <span>{{comment.likes.length}}</span>
                                </div>
                               <div class="com-time pull-left" >{{comment.created_at | timeAgo}}</div>
-                              <div class="com-time reply-to pull-right" (click)="setReplyTo(comment.id, comment.user.name)">reply</div>
+                              <div class="com-time reply-to pull-right"
+                                   (click)="setReplyTo(comment.id, comment.user.name)">
+                                reply
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -138,7 +162,8 @@
       <span id="lg-share" class="lg-icon" (click)="isActiveSocialShare = !isActiveSocialShare"></span>
       <ul class="lg-dropdown" style="position: absolute;">
         <li>
-          <a id="lg-share-facebook"  class="text-left" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{pageUrlEncoded}}">
+          <a id="lg-share-facebook"
+             class="text-left" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{pageUrlEncoded}}">
             <span class="lg-icon"></span>
             <span class="lg-dropdown-text">Facebook</span>
           </a>
@@ -169,11 +194,14 @@
         <i class="trav-angle-right"></i></button>
     </div>
 
-    <div class="lg-thumb-outer lg-grab" style="height: 180px;" [ngStyle]="{'z-index': showMobileComment ? '0' : '1080', 'opacity': showMobileComment ? '0' : '1' }">
+    <div class="lg-thumb-outer lg-grab" style="height: 180px;"
+         [ngStyle]="{'z-index': showMobileComment ? '0' : '1080', 'opacity': showMobileComment ? '0' : '1' }">
       <div class="lg-thumb lg-group" #imgGroup >
 
         <div class="lg-actions bottom-slider-btn">
-          <button (click)="prevPartOfSlide()" [ngStyle]="{'visibility': startPoint > 0 ? 'visible' : 'hidden' }"  class="lg-prev lg-icon">
+          <button (click)="prevPartOfSlide()"
+                  [ngStyle]="{'visibility': startPoint > 0 ? 'visible' : 'hidden' }"
+                  class="lg-prev lg-icon">
             <i class="trav-angle-left"></i>
           </button>
         </div>
@@ -186,10 +214,11 @@
         </div>
 
         <div class="lg-actions bottom-slider-btn">
-          <button (click)="nextPartOfSlide()" [ngStyle]="{'visibility': (endPoint < medias.length - 1) ? 'visible' : 'hidden' }" class="lg-next lg-icon">
+          <button (click)="nextPartOfSlide()"
+                  [ngStyle]="{'visibility': (endPoint < medias.length - 1) ? 'visible' : 'hidden' }"
+                  class="lg-next lg-icon">
             <i class="trav-angle-right"></i></button>
         </div>
-
       </div>
     </div>
   </div>

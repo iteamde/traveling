@@ -8,10 +8,7 @@ export interface State {
   cityName: string;
   citiesInfo: any;
   alreadySpend: number;
-
-
 }
-
 
 export const INIT_STATE: State = {
   trip_id: null,

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {getCountryPlaces, getCountryStats, getPlacesMedia, State} from '../../../core/reducers';
@@ -14,7 +14,7 @@ import {Store} from '@ngrx/store';
   templateUrl: './places-list.component.html',
   styleUrls: ['./places-list.component.scss']
 })
-export class PlacesListComponent implements OnInit, OnDestroy {
+export class PlacesListComponent implements OnDestroy {
   public data: any;
   public stats: any;
   public subscriptions$ = [];
@@ -28,8 +28,8 @@ export class PlacesListComponent implements OnInit, OnDestroy {
     this.subscriptions$[0] = this.store.select(getPlacesMedia).subscribe(res => this.placeMediaId = res[0].id);
   }
 
-  ngOnInit() {
-
+  ngOnDestroy() {
+    this.unSubscribe();
   }
 
   /**
@@ -50,10 +50,6 @@ export class PlacesListComponent implements OnInit, OnDestroy {
     if (this.placeMediaId) {
       this.router.navigate([`${this.router.url}/place-media/${this.placeMediaId}`]);
     }
-  }
-
-  ngOnDestroy() {
-    this.unSubscribe();
   }
 
   /**

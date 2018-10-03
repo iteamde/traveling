@@ -9,8 +9,7 @@ export const ABOUT_USER = 'aboutUser';
 @Injectable()
 export class AuthHelper {
 
-  constructor( ) {
-  }
+  constructor( ) {}
 
   /**
    * Returns authentication token stored at local storage

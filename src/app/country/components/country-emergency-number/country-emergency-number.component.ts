@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Country emergency numbers
@@ -9,13 +9,10 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './country-emergency-number.component.html',
   styleUrls: ['./country-emergency-number.component.scss']
 })
-export class CountryEmergencyNumberComponent implements OnInit {
+export class CountryEmergencyNumberComponent {
   /** main info about country or city */
   @Input() info;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

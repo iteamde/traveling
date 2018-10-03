@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Places footer component
@@ -9,14 +9,10 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './places-footer.component.html',
   styleUrls: ['./places-footer.component.scss']
 })
-export class PlacesFooterComponent implements OnInit {
+export class PlacesFooterComponent {
 
   /** info about country of current place */
   @Input() countryData;
 
   constructor() {}
-
-  ngOnInit() {
-  }
-
 }

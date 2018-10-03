@@ -5,15 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './trip-planner.component.html',
   styleUrls: ['trip-planner.component.scss']
 })
-export class TripPlannerComponent implements OnInit {
-
+export class TripPlannerComponent {
 
   constructor() {
   }
-
-  ngOnInit() {
-
-  }
-
-
 }

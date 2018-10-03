@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
 
 import {ApiService} from '../../core/services/api.service';
 
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class PlacesService {
@@ -11,7 +11,6 @@ export class PlacesService {
   constructor(
     private api: ApiService,
     private router: Router) {
-
   }
 
   /**
@@ -174,7 +173,6 @@ export class PlacesService {
         numOfFollowers: res[3].data.followers,
         trendingPlaces: res[4].data
       };
-
       return countryInfo;
     });
   }

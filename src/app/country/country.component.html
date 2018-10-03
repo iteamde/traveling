@@ -95,21 +95,26 @@
 
                 <div class="post-map-inner">
                   <!--<img src="http://placehold.it/595x360" alt="map">-->
-                  <agm-map *ngIf="data.info?.lat && data.info?.lng" [latitude]="+data.info.lat" [longitude]="+data.info.lng"></agm-map>
+                  <agm-map *ngIf="data.info?.lat && data.info?.lng"
+                           [latitude]="+data.info.lat" [longitude]="+data.info.lng">
+                  </agm-map>
 
                   <div class="post-top-map-tabs">
 
-                    <div class="map-tab" data-tab="atmTxt" (click)="setCurrentTab(0)" [ngClass]="{'current' : activeTab === 0 }">
+                    <div class="map-tab" data-tab="atmTxt" (click)="setCurrentTab(0)"
+                         [ngClass]="{'current' : activeTab === 0 }">
                       <div class="tab-icon"><i class="trav-atms-icon"></i></div>
                       <div class="tab-txt">ATMs</div>
                     </div>
 
-                    <div class="map-tab" data-tab="wifiTxt" (click)="setCurrentTab(1)" [ngClass]="{'current' : activeTab === 1 }">
+                    <div class="map-tab" data-tab="wifiTxt" (click)="setCurrentTab(1)"
+                         [ngClass]="{'current' : activeTab === 1 }">
                       <div class="tab-icon"><i class="trav-internet-icon"></i></div>
                       <div class="tab-txt">Internet</div>
                     </div>
 
-                    <div class="map-tab" data-tab="socketTxt" (click)="setCurrentTab(2)" [ngClass]="{'current' : activeTab === 2 }">
+                    <div class="map-tab" data-tab="socketTxt" (click)="setCurrentTab(2)"
+                         [ngClass]="{'current' : activeTab === 2 }">
                       <div class="tab-icon"><i class="trav-sockets-icon"></i></div>
                       <div class="tab-txt">Sockets</div>
                     </div>
@@ -148,7 +153,9 @@
           </div>
 
 
-          <app-country-budget-box *ngIf="data.info.trans[0]?.other && showComponent" [data]="data.info.trans[0].other"></app-country-budget-box>
+          <app-country-budget-box *ngIf="data.info.trans[0]?.other && showComponent"
+                                  [data]="data.info.trans[0].other">
+          </app-country-budget-box>
 
           <div class="post-block post-tips-list-block">
             <div class="post-top-layer">
@@ -489,7 +496,9 @@
               <div class="flight-note">
                 <h4 class="note-ttl">Note:</h4>
                 <div class="note-txt">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae massa sed lacus vulputate volutpat in at mauris.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Duis vitae massa sed lacus vulputate volutpat in at mauris.
+                  </p>
                 </div>
               </div>
             </div>
@@ -662,7 +671,9 @@
               <div class="post-country-inner">
                 <div class="post-txt-wrap">
                   <a href="#" class="question-link">Not in Morocco?</a>
-                  <p class="post-txt">New York is 7h 48min away from Rabat in direct fligth time, excluding any potentional layovers.</p>
+                  <p class="post-txt">New York is 7h 48min away from Rabat in
+                    direct fligth time, excluding any potentional layovers.
+                  </p>
                 </div>
                 <div class="post-map-block">
                   <div class="post-map-inner">
@@ -728,7 +739,9 @@
 
             <div class="aside-footer">
               <ul class="aside-foot-menu">
-                <li *ngFor="let item of ['Privacy', 'Terms', 'Advertising', 'Cookies', 'More']"><a href="#">{{item}}</a></li>
+                <li *ngFor="let item of ['Privacy', 'Terms', 'Advertising', 'Cookies', 'More']">
+                  <a href="#">{{item}}</a>
+                </li>
               </ul>
               <p class="copyright">Travooo &copy; 2017</p>
             </div>

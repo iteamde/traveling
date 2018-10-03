@@ -38,11 +38,9 @@ export class WriteReviewModalComponent implements OnInit, OnDestroy {
 
     // get info for current user from local storage
     this.currentUser = JSON.parse(localStorage.getItem('aboutUser'));
-
   }
 
   ngOnInit() {
-    console.log(this.data)
     this.urlTo = this.router.url.split('/').slice(1, 3).join('/');
     this.placesId = +this.router.url.split('/')[2];
   }
@@ -119,7 +117,6 @@ export class WriteReviewModalComponent implements OnInit, OnDestroy {
     this.toastr.success(success || 'Succesfully Add Review');
   }
 
-
   /**
    * Cancel review
    */
@@ -142,7 +139,6 @@ export class WriteReviewModalComponent implements OnInit, OnDestroy {
       this.endPoint = this.data.data.reviews.reviews.length;
     }
   }
-
 
   ngOnDestroy() {
     if (this.subscriptions$.length) {

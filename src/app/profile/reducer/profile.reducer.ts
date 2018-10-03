@@ -1,6 +1,5 @@
 import * as profile from '../actions/profile.actions';
 
-
 export interface State {
   profile: {
     activeTab: string
@@ -13,7 +12,6 @@ export const INIT_STATE: State = {
   }
 };
 
-
 export function reducer(state: State = INIT_STATE, action: profile.Actions) {
 
   switch (action.type) {
@@ -25,7 +23,6 @@ export function reducer(state: State = INIT_STATE, action: profile.Actions) {
       return state;
   }
 }
-
 
 export const getProfile = (state: State) => state.profile;
 export const getActiveTab = (state: State) => state.profile.activeTab;

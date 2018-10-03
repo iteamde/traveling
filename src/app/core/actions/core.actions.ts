@@ -20,12 +20,9 @@ export class OpenModalAction implements Action {
   constructor(public payload) {}
 }
 
-
 export class CloseOpenedModalAction implements Action {
   readonly type = CLOSE_OPENED_MODAL;
-
 }
-
 
 export class OpenLeftMobileMenu implements Action {
   readonly type = OPEN_LEFT_MOBILE_MENU;

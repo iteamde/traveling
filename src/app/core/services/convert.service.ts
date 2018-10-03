@@ -55,5 +55,4 @@ export class ConvertService {
     obj[current[0]] = current[1];
     return obj;
   }
-
 }

@@ -40,7 +40,6 @@ const  validationMessages = {
   date: {
     required: 'Date is required',
   },
-
 };
 
 /**

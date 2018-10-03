@@ -5,8 +5,7 @@ import {ApiService} from '../../core/services/api.service';
 @Injectable()
 export class TripPlannerService {
 
-  constructor(
-    private api: ApiService
+  constructor(private api: ApiService
   ) {}
 
   /**
@@ -54,7 +53,6 @@ export class TripPlannerService {
     return this.api.post(url, details);
   }
 
-
   /**
    * Create trip plan - step 2 submit
    * @param tripId
@@ -72,5 +70,4 @@ export class TripPlannerService {
   addPlace(tripId, details): Observable<any> {
     return this.api.post( `trips/${tripId}/add_place` , details);
   }
-
 }

@@ -1,11 +1,11 @@
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
 import {Injectable} from '@angular/core';
 import {Router, UrlTree} from '@angular/router';
 import {Location} from '@angular/common';
+
 import {Effect, Actions} from '@ngrx/effects';
 import * as RouterActions from '../actions/router.actions';
-
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RouterEffects {
@@ -42,7 +42,6 @@ export class RouterEffects {
       urlTree.queryParams = action.payload;
       this.router.navigateByUrl(urlTree);
     });
-
 
   /**
    * Default constructor

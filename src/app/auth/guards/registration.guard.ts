@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 
-import {Observable} from 'rxjs/Observable';
-import {Store} from '@ngrx/store';
 import {State} from '../../core/reducers/index';
 import {getRegistationStep} from '../../core/reducers';
 
+import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
 import 'rxjs/add/operator/skipUntil';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -31,7 +31,8 @@ export class RegistrationGuard implements CanActivate {
    * @param store
    * @param router
    */
-  constructor(private store: Store<State>, private router: Router) {
+  constructor(private store: Store<State>,
+              private router: Router) {
     this.registrationStep$ = store.select(getRegistationStep);
   }
 

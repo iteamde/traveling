@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {FollowCountryAction, UnfollowCountryAction} from '../../../country/actions/country.actions';
 import {getCountryId, getFollowStatus, State} from '../../reducers';
@@ -16,7 +16,7 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
   templateUrl: './follow-button.component.html',
   styleUrls: ['./follow-button.component.scss']
 })
-export class FollowButtonComponent implements OnInit, OnDestroy {
+export class FollowButtonComponent {
   public id: number;
   public isFollowed: boolean;
   private subscriptions;
@@ -27,21 +27,12 @@ export class FollowButtonComponent implements OnInit, OnDestroy {
     ];
   }
 
-  ngOnInit() {
-  }
-
   /**
    * Follow or unfollow  action
    */
   toggleFollow() {
-    console.log(this.isFollowed)
     this.isFollowed ?
       this.store.dispatch(new UnfollowCountryAction(this.id)) :
       this.store.dispatch(new FollowCountryAction(this.id));
   }
-
-  ngOnDestroy() {
-
-  }
-
 }

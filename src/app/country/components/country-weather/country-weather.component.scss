@@ -1,7 +1,6 @@
 :host {
 
   .weather-carousel-control {
-
     a:hover {
       cursor: pointer;
     }
@@ -9,7 +8,6 @@
 
   #weatherHourCarousel{
     overflow-x: hidden;
-
     .move-block {
       display: flex;
       position: relative;

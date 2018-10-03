@@ -29,8 +29,6 @@
 
   <!--END AGM DIRECTIONS FROM YOUR CITY YO FIRST PLACE -->
 
-
-
   <template *ngFor="let city of cities; let i = index">
 
     <template *ngIf="(i + 1) < cities.length && !isModeAllowed(cities[i+1].transportation) && cities[i+1].places.length">
@@ -57,9 +55,6 @@
 
       <!--END AGM DIRECTIONS FROM FIRST CITY LAST PLACE TO @ CITY FIRST PLACE -->
     </template>
-
-
-
 
     <!--START AGM DIRECTIONS BETWEEN PLACES INSIDE CITY -->
     <template   *ngFor="let place of city.places; let j = index" >

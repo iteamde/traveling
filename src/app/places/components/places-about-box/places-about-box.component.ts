@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * About place component
@@ -9,15 +9,11 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './places-about-box.component.html',
   styleUrls: ['./places-about-box.component.scss']
 })
-export class PlacesAboutBoxComponent implements OnInit {
+export class PlacesAboutBoxComponent {
 
   /** main info about current place */
   @Input() info;
 
   constructor() {
   }
-
-  ngOnInit() {
-  }
-
 }

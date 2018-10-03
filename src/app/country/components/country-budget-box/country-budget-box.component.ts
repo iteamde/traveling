@@ -9,14 +9,9 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './country-budget-box.component.html',
   styleUrls: ['./country-budget-box.component.scss']
 })
-export class CountryBudgetBoxComponent implements OnInit {
+export class CountryBudgetBoxComponent {
   /** main info about country or city */
   @Input() data;
 
-
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

@@ -19,7 +19,6 @@
     </div>
   </div>
 
-
   <div class="check-block-wrap" detect-scroll (onScroll)="handleScroll($event)" [bottomOffset]="1" [topOffset]="0">
     <div class="check-block" [ngClass]="{'checked-block': item.selected || isSelected(item)}"
          [ngStyle]="{'background-image': item.cover_image || 'url(http://placehold.it/181x181)'}"

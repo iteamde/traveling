@@ -5,14 +5,11 @@ import * as auth from '../actions/auth.actions';
 import * as error from '../../core/actions/error.actions';
 import {go} from '../../core/actions/router.actions';
 import {ApiService} from '../../core/services/api.service';
+import {AuthHelper} from '../helpers/auth.helper';
 
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-
-import {AuthHelper} from '../helpers/auth.helper';
-
-
 
 @Injectable()
 export class AuthEffects {
@@ -75,8 +72,6 @@ export class AuthEffects {
   constructor(private actions$: Actions,
               private apiService: ApiService,
               private authHelper: AuthHelper
-  ) {
-  }
-
+  ) {}
 
 }

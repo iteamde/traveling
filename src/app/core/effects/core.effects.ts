@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect} from '@ngrx/effects';
+
 import * as CoreActions from '../actions/core.actions';
 import {Store} from '@ngrx/store';
 import {getOpenedModalRef, State} from '../reducers';
+import {Actions, Effect} from '@ngrx/effects';
 
 @Injectable()
 export class CoreEffects {
@@ -14,5 +15,4 @@ export class CoreEffects {
   constructor(private actions$: Actions,
               private store: Store<State>) {
   }
-
 }

@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
 import {Store} from '@ngrx/store';
@@ -11,16 +11,13 @@ import {SetCountryInfoAction} from './actions/country.actions';
 import {PlacesListComponent} from './components/places-list/places-list.component';
 import {HolidaysListComponent} from './components/holidays-list/holidays-list.component';
 
-
-
-
 @AutoUnsubscribe({includeArrays: true})
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.scss']
 })
-export class CountryComponent implements OnInit, OnDestroy {
+export class CountryComponent implements OnInit {
 
   public data;
   public countryMediaData;
@@ -43,12 +40,8 @@ export class CountryComponent implements OnInit, OnDestroy {
               private convertService: ConvertService,
               private countryService: CountryService,
               private store: Store<State>) {
-
     this.getData();
-    console.log('constructor COUNTRY');
-
   }
-
 
   ngOnInit() {
     this.openMobileSideBar = this.store.select(getOpenMobileSideBar);
@@ -69,13 +62,11 @@ export class CountryComponent implements OnInit, OnDestroy {
      * Get data for component (country or city)
      */
     this.subscription$.push(this.store.select(getCountry).subscribe(res => {
-      console.log('Country', res);
       this.data = res;
       this.init();
       this.showComponent = true;
     }));
   }
-
 
   init() {
     /**
@@ -111,11 +102,6 @@ export class CountryComponent implements OnInit, OnDestroy {
         id: res.medias[0] && res.medias[0].id,
       }))
     };
-
-  }
-
-  ngOnDestroy() {
-
   }
 
   setCurrentTab(num) {
@@ -131,7 +117,5 @@ export class CountryComponent implements OnInit, OnDestroy {
    */
   addTrip() {
     this.router.navigate(['/trip/new'], {queryParams: {city: this.data.info.trans[0].title.toLowerCase()}});
-
   }
-
 }

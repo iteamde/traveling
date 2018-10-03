@@ -34,9 +34,9 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
   private x = 0;
   private isViewInitialized = false;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private compiler: Compiler,
-              private cdRef: ChangeDetectorRef) {
-  }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver,
+              private compiler: Compiler,
+              private cdRef: ChangeDetectorRef) {}
 
   updateComponent() {
     if (!this.isViewInitialized) {
@@ -70,7 +70,6 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
     const containerWidth = this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slide-wrap')[0].offsetWidth;
     const fullWidth = (this.settings.width + 20) * this.settings.count - 20;
 
-
     /**
      *  Hammer -> for swiping img-sliders on mobile  devices
      */
@@ -84,7 +83,6 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
     prev.onclick = () => {
       moveBackvard();
     };
-
 
     const moveForvard = () => {
       switch (true) {
@@ -100,7 +98,6 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
       }
       return this.transform(ul, this.x);
     }
-
 
 
     const moveBackvard = () => {
@@ -121,7 +118,6 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
     this.target.element.nativeElement.nextSibling.getElementsByClassName('post-slider')[0].style.width = fullWidth + 'px';
   }
 
-
   ngOnDestroy() {
     if (this.cmpRef) {
       this.cmpRef.destroy();
@@ -129,15 +125,13 @@ export class SliderWrapperComponent implements AfterViewInit, OnDestroy, OnChang
   }
 
   /**
-   * Set css transfom property for sliding
+   * Set css transform property for sliding
    * @param ul
    * @param x
    */
   transform(ul, x) {
     ul.style.transform = `translateX(${x}px)`;
   }
-
-
 }
 
 

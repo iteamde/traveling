@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {State, getUserId} from '../../../core/reducers/index';
+import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+import {State} from '../../../core/reducers/index';
 import {CreateTripAction} from '../../actions/trip-planner.actions';
-import {Observable} from 'rxjs/Observable';
 import {ValidationService} from '../../../core/services/validation';
 import {IMyDpOptions} from 'mydatepicker';
 import {getErrorFromServer} from '../../../core/reducers';
-import {CountryService} from '../../../country/services/country.service';
-import {ActivatedRoute} from '@angular/router';
 
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-create-trip-plan-modal',
@@ -19,7 +19,6 @@ import {ActivatedRoute} from '@angular/router';
 
 export class CreateTripPlanModalComponent implements OnInit {
   public privacy = 1;
-
 
   /**
    * Trip planner error
@@ -47,17 +46,12 @@ export class CreateTripPlanModalComponent implements OnInit {
    * @param store
    * @param fb
    */
-
   constructor(private store: Store<State>,
               private fb: FormBuilder,
               private route: ActivatedRoute,
-              public validation: ValidationService) {
-
-  }
+              public validation: ValidationService) {}
 
   ngOnInit() {
-
-    // console.log('SNAPSHOT', this.route.snapshot.queryParamMap.get('city'));
     this.cityName = this.route.snapshot.queryParamMap.get('city') ?
                     this.route.snapshot.queryParamMap.get('city') : '';
 
@@ -76,13 +70,10 @@ export class CreateTripPlanModalComponent implements OnInit {
 
   }
 
-
   /**
    * Next step button clicked
    */
   submit() {
     this.store.dispatch(new CreateTripAction({user_id: 1, cityName: this.cityName, ...this.form.value,  ...{date : this.form.get('date').value.jsdate}}));
-
   }
-
 }

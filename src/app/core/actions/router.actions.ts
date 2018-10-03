@@ -13,9 +13,7 @@ export class GoAction implements Action {
     path: any[];
     query?: object;
     extras?: NavigationExtras;
-  }) {
-
-  }
+  }) {}
 }
 
 /**

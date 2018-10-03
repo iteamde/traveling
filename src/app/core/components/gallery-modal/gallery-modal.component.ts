@@ -21,7 +21,7 @@ import * as Hammer from 'hammerjs';
   templateUrl: './gallery-modal.component.html',
   styleUrls: ['./gallery-modal.component.scss']
 })
-export class GalleryModalComponent implements OnInit, OnDestroy, AfterViewInit {
+export class GalleryModalComponent implements OnInit, AfterViewInit {
   public currentIndex = 0;
   public medias;
   public currentComment: string;
@@ -54,7 +54,6 @@ export class GalleryModalComponent implements OnInit, OnDestroy, AfterViewInit {
     this.checkWindowWidth();
     this.medias = this.data.data;
     this.url = this.router.url.substr(0, this.router.url.lastIndexOf('/') + 1);
-
   }
 
   ngAfterViewInit() {
@@ -75,7 +74,6 @@ export class GalleryModalComponent implements OnInit, OnDestroy, AfterViewInit {
        if (this.startPoint > 0)  return this.prevPartOfSlide();
      });
   }
-
 
   ngOnInit() {
     this.currentIndex = findIndex(this.medias, {id: +this.data.params.mediaId});
@@ -294,9 +292,5 @@ export class GalleryModalComponent implements OnInit, OnDestroy, AfterViewInit {
     this.medias[this.currentIndex].reactions.comments.push(commentModel);
     this.currentComment = '';
     this.replayTo.id = 0;
-  }
-
-  ngOnDestroy() {
-
   }
 }

@@ -17,7 +17,7 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
   templateUrl: 'add-city-to-trip-modal.component.html',
   styleUrls: ['add-city-to-trip-modal.component.scss']
 })
-export class AddCityToTripModalComponent implements OnInit, OnDestroy {
+export class AddCityToTripModalComponent implements OnInit {
   public trip_id: number;
 
   public closeLink: string;
@@ -54,19 +54,16 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
               private tripPlannerService: TripPlannerService,
               @Inject(MAT_DIALOG_DATA) public routeParams: any,
               private route: Router,
-              )
-  {
+              ) {
     this.closeLink = this.route.routerState.snapshot.url.endsWith('info') ? this.route.routerState.snapshot.url : 'trip/new';
     this.error$ = store.select(getErrorFromServer);
   }
 
   ngOnInit() {
-
     this.store.select(getTripPlannerState).subscribe(res => {
       console.log('getTripPlannerState', res)
       this.cityName = res.cityName;
     });
-
 
     this.tripPlannerService.getCities(this.cityName ? this.cityName : '')
     .subscribe(res => this.cities = JSON.parse(res.data));
@@ -74,8 +71,6 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
     this.cityForm = this.fb.group({
       city:  ''
     });
-
-
 
     this.searchCitySubscription$ = this.cityForm.valueChanges
       .debounceTime(500)
@@ -102,8 +97,4 @@ export class AddCityToTripModalComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(new AddCityAction(this.routeParams.id, transformedCity, urlTo ));
   }
-  ngOnDestroy() {
-
-  }
-
 }

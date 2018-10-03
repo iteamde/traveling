@@ -28,7 +28,9 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   };
   public subscriptions$ = [];
 
-  constructor(private store: Store<State>, private fb: FormBuilder, public validation: ValidationService) {
+  constructor(public validation: ValidationService,
+              private store: Store<State>,
+              private fb: FormBuilder) {
     this.resetPasswordStatus$ = store.select(getResetPasswordStatus);
     this.errorFromServer$ = store.select(getErrorFromServer);
   }
@@ -36,6 +38,11 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.store.dispatch(new ClearPasswordStatus());
     this.buildForm();
+  }
+
+  ngOnDestroy() {
+    /** unsubscribe of all subscriptions */
+    this.subscriptions$.forEach(item => item.unsubscribe);
   }
 
   /**
@@ -60,10 +67,5 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy {
    */
   reset() {
     this.store.dispatch(new ResetPasswordAction({data: this.userForm.value, queryUrl: 'users/forgot'}));
-  }
-
-  ngOnDestroy() {
-    /** unsubscribe of all subscriptions */
-    this.subscriptions$.forEach(item => item.unsubscribe);
   }
 }

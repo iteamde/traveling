@@ -13,7 +13,7 @@ import {Store} from '@ngrx/store';
   templateUrl: './place-details-box.component.html',
   styleUrls: ['./place-details-box.component.scss']
 })
-export class PlaceDetailsBoxComponent implements OnInit {
+export class PlaceDetailsBoxComponent {
   @Input() cities;
   @Input() trip_id;
   @Input() alreadySpent;
@@ -27,9 +27,6 @@ export class PlaceDetailsBoxComponent implements OnInit {
   };
   constructor(private atp: AmazingTimePickerService,
               private store: Store<State>) { }
-
-  ngOnInit() {
-  }
 
   open(x) {
     const amazingTimePicker = this.atp.open({

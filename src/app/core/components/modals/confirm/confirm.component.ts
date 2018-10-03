@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 
 /**
@@ -9,13 +9,9 @@ import {MAT_DIALOG_DATA} from '@angular/material';
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss']
 })
-export class ConfirmComponent implements OnInit {
+export class ConfirmComponent {
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  ngOnInit() {
-
-  }
 
   onSuccess() {
     if (this.data.onSuccess) this.data.onSuccess();
@@ -24,5 +20,4 @@ export class ConfirmComponent implements OnInit {
   onReject() {
     if (this.data.onReject) this.data.onReject();
   }
-
 }

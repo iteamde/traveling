@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Country index component
@@ -9,16 +9,12 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './country-indexes-box.component.html',
   styleUrls: ['./country-indexes-box.component.scss']
 })
-export class CountryIndexesBoxComponent implements OnInit {
+export class CountryIndexesBoxComponent {
   /** main info about country or city */
   @Input() info;
   /** if component is country component */
   @Input() isCountry;
 
   constructor() { }
-
-  ngOnInit() {
-
-  }
 
 }

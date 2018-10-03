@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * Registration component (step-4)
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './register-modal-step-4.component.html',
   styleUrls: ['./register-modal-step-4.component.css']
 })
-export class RegisterModalStep4Component implements OnInit {
+export class RegisterModalStep4Component {
 
   public settings: any = {
     queryUrl: 'users/set/fav_places',
@@ -19,8 +19,4 @@ export class RegisterModalStep4Component implements OnInit {
   };
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

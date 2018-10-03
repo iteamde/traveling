@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Country top banner component
@@ -9,13 +9,9 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './country-top-banner.component.html',
   styleUrls: ['./country-top-banner.component.scss']
 })
-export class CountryTopBannerComponent implements OnInit {
+export class CountryTopBannerComponent {
   /** main data of current country */
   @Input() data;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

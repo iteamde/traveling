@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 /**
  * Registration modal component (staep-5)
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './register-modal-step-5.component.html',
   styleUrls: ['./register-modal-step-5.component.css']
 })
-export class RegisterModalStep5Component implements OnInit {
+export class RegisterModalStep5Component {
 
   public settings: any = {
     queryUrl: 'users/set/travel_styles',
@@ -19,8 +19,4 @@ export class RegisterModalStep5Component implements OnInit {
   };
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

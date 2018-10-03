@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener} from '@angular/core';
 
 import {State} from '../../../core/reducers';
 import {getOpenLeftMobileMenu} from '../../../core/reducers';
@@ -14,16 +14,13 @@ import {Store} from '@ngrx/store';
   templateUrl: './left-outside-menu.component.html',
   styleUrls: ['./left-outside-menu.component.scss']
 })
-export class LeftOutsideMenuComponent implements OnInit {
+export class LeftOutsideMenuComponent {
 
   /** observable to show or hide mobile menu */
   public showComponent;
 
   constructor(private store: Store<State>, private eRef: ElementRef) {
     this.showComponent = this.store.select(getOpenLeftMobileMenu);
-  }
-
-  ngOnInit() {
   }
 
   /** attach event listener on click to document */

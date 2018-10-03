@@ -1,12 +1,14 @@
 <div class="top-banner-wrap">
   <div class="top-banner-block"
-       [ngStyle]="{'background-image': 'url(https://s3.amazonaws.com/travooo-images2/th1100/' + data.media[0]?.url + '), url(https://s3.amazonaws.com/travooo-images2/' + data.media[0]?.url + ')'}" >
+       [ngStyle]="{'background-image': 'url(https://s3.amazonaws.com/travooo-images2/th1100/'
+        + data.media[0]?.url + '), url(https://s3.amazonaws.com/travooo-images2/' + data.media[0]?.url + ')'}" >
 
     <div class="top-banner-text">
       <div class="place-info-block">
         <div class="place-title">{{ data.info.place.trans[0]?.title }}<span> #{{data.info.place?.id}} </span></div>
         <div class="place-placement">
-          <span class="event-tag">{{data.info.place?.place_type | removeUnderscore}}</span>{{data.info.place.trans[0]?.address}}
+          <span class="event-tag">{{data.info.place?.place_type | removeUnderscore}}</span>
+          {{data.info.place.trans[0]?.address}}
         </div>
         <div class="follow-block-info">
           <ul class="foot-avatar-list">

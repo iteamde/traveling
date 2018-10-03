@@ -10,9 +10,10 @@
       </div>
       <div class="post-event-main">
         <div class="flag-wrap" *ngIf="countryData.info?.iso_code">
-          <img src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/th180/' + countryData.info?.iso_code.toLowerCase() + '.png'}}"
-               src-fallback="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + countryData.info?.iso_code.toLowerCase() + '.png'}}"
-               alt="flag">
+          <img
+            src="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/th180/' + countryData.info?.iso_code.toLowerCase() + '.png'}}"
+            src-fallback="{{'https://s3-us-west-2.amazonaws.com/travooo-assets/images/countryflags/medium/' + countryData.info?.iso_code.toLowerCase() + '.png'}}"
+            alt="flag">
         </div>
         <div class="post-placement-info">
           <h2 *ngIf="countryData.info.trans[0]?.title" class="place-name">{{countryData.info.trans[0]?.title}}</h2>

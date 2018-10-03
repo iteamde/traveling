@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * 'Sign up is done' component
@@ -8,11 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './signup-done.component.html',
   styleUrls: ['./signup-done.component.css']
 })
-export class SignupDoneComponent implements OnInit {
+export class SignupDoneComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

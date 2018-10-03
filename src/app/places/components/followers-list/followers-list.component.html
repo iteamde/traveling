@@ -1,6 +1,9 @@
 <div class="post-block">
   <div class="post-side-top">
-    <h3 class="side-ttl">People following this place <span class="count">{{(data | async)?.data.length}}</span></h3>
+    <h3 class="side-ttl">
+      People following this place
+      <span class="count">{{(data | async)?.data.length}}</span>
+    </h3>
     <!--<p>{{(data | async).data | json}}</p>-->
     <div class="side-right-control">
       <a  class="slide-link slide-prev"><i class="trav-angle-left"></i></a>
@@ -15,7 +18,8 @@
           <div class="follow-card-inner">
             <div class="image-wrap">
               <img *ngIf="!item.followers[0]?.profile_picture" src="http://placehold.it/42x42" alt="">
-              <img *ngIf="item.followers[0]?.profile_picture" src="{{'https://s3.amazonaws.com/travooo-images2/' + item.followers[0].profile_picture}}" alt="">
+              <img *ngIf="item.followers[0]?.profile_picture"
+                   src="{{'https://s3.amazonaws.com/travooo-images2/' + item.followers[0].profile_picture}}" alt="">
             </div>
             <div class="post-slider-caption">
               <p class="post-card-name" *ngIf="item.followers[0]?.name">{{item.followers[0]?.name}}</p>

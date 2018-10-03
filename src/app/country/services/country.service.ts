@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {ApiService} from '../../core/services/api.service';
 import { Router} from '@angular/router';
+
+import {ApiService} from '../../core/services/api.service';
+
+import {Observable} from 'rxjs/Observable';
 
 
 

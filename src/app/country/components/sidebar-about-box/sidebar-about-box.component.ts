@@ -13,11 +13,10 @@ import {Store} from '@ngrx/store';
   templateUrl: './sidebar-about-box.component.html',
   styleUrls: ['./sidebar-about-box.component.scss']
 })
-export class SidebarAboutBoxComponent implements OnInit {
+export class SidebarAboutBoxComponent {
 
   /** main data of current country or city */
   @Input() data;
-
   constructor(private store: Store<State>, private eRef: ElementRef) { }
 
   /** attach event listener on click to document */
@@ -25,8 +24,5 @@ export class SidebarAboutBoxComponent implements OnInit {
   // check if click was out current component -> close menu
   clickOut(e) {
     if (!this.eRef.nativeElement.contains(e.target)) this.store.dispatch(new CloseMobileSideBar);
-  }
-
-  ngOnInit() {
   }
 }

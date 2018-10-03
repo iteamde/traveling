@@ -1,5 +1,6 @@
 <div class="box2-wrapper" *ngFor="let city of cities; let i = index">
-  <div class="trip-side-block add-place box2" *ngIf="city.saved && city.places.length && city.hasSavedPlace != city.places.length" >
+  <div class="trip-side-block add-place box2"
+       *ngIf="city.saved && city.places.length && city.hasSavedPlace != city.places.length" >
     <div class="trip-place-name" >
       <span class="name">{{city.trans[0].title}}</span>
     </div>
@@ -52,7 +53,8 @@
                   <div class="field-ttl">Minutes</div>
                   <div class="time-count">
                     <span class="click" (click)="placeTimeDec(place, 'minute')">-</span>
-                    <input type="number" name="minute" min="0" max="59" [value]="place.pivot.minute" [(ngModel)]="place.pivot.minute">
+                    <input type="number" name="minute" min="0" max="59"
+                           [value]="place.pivot.minute" [(ngModel)]="place.pivot.minute">
                     <span class="click" (click)="placeTimeInc(place, 'minute')">+</span>
                   </div>
                 </div>
@@ -92,7 +94,9 @@
           </div>
         </div>
         <div class="add-footer">
-          <button type="button" class="btn btn-transp btn-cancel" (click)="removePlace(city, i , place, j)">Delete</button>
+          <button type="button" class="btn btn-transp btn-cancel" (click)="removePlace(city, i , place, j)">
+            Delete
+          </button>
           <button type="button" class="btn btn-light-primary btn-bordered"
                   [disabled]="isDisabled(place)"
                   (click)="savePlace(city, i , place, j)">Save</button>

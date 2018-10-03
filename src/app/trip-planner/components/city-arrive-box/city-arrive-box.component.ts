@@ -9,19 +9,17 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './city-arrive-box.component.html',
   styleUrls: ['./city-arrive-box.component.scss']
 })
-export class CityArriveBoxComponent implements OnInit {
+export class CityArriveBoxComponent {
   @Input() cities;
   @Input() trip_id;
 
-  constructor( private store: Store<State>, private toastr: ToastrService) {
-  }
-
-  ngOnInit() {
+  constructor( private store: Store<State>,
+               private toastr: ToastrService) {
   }
 
   saveCity(city, index) {
     if (!city.places.length) return this.toastr.error('Please add a place before save');
-    
+
     const payload = {
       helper: {property: 'saved', value: true, index: index},
       data: {city_id: city.id, transportation: city.transportation },

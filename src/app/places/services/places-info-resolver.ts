@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Resolve, Router, ActivatedRouteSnapshot} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
 
 import {PlacesService} from './places.service';
 
 import 'rxjs/add/observable/forkJoin';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class PlacesInfoResolver implements Resolve<any> {
@@ -51,8 +51,6 @@ export class PlacesInfoResolver implements Resolve<any> {
         nearby: res[8].data,
         followers: res[9]
       };
-
-      console.log(places)
       return places;
     });
   }

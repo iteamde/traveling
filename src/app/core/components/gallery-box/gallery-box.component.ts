@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
 
 /**
@@ -9,14 +9,11 @@ import {Router} from '@angular/router';
   templateUrl: './gallery-box.component.html',
   styleUrls: ['./gallery-box.component.scss']
 })
-export class GalleryBoxComponent implements OnInit {
+export class GalleryBoxComponent {
   /** info about parent(country, city, place) component */
   @Input() info;
 
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   /**
    * Open modal image gallery component by navigate by url

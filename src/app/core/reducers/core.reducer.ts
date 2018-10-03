@@ -6,7 +6,6 @@ import {
 
 import * as core from '../actions/core.actions';
 
-
 export interface State {
   openedModalRef: any;
   openLeftMobileMenu: boolean;

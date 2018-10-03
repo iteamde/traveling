@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ApiService} from '../../../core/services/api.service';
 
 @Component({
@@ -6,17 +6,13 @@ import {ApiService} from '../../../core/services/api.service';
   templateUrl: './completed-place-box.component.html',
   styleUrls: ['./completed-place-box.component.scss']
 })
-export class CompletedPlaceBoxComponent implements OnInit {
+export class CompletedPlaceBoxComponent {
   @Input() cities;
   @Input() trip_id;
   public dragOperation = false;
   private isDragling = false;
 
   constructor(private api: ApiService) { }
-
-  ngOnInit() {
-  }
-
 
   setDragOperation(e) {
     if (this.isDragling) return;

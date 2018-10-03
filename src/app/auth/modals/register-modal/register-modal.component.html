@@ -13,7 +13,9 @@
         <p *ngIf="formErrors.username" class="sub-ttl error-message">{{ formErrors.username }}</p>
         <p *ngIf="formErrors.email" class="sub-ttl error-message">{{ formErrors.email }}</p>
         <p *ngIf="formErrors.password" class="sub-ttl error-message">{{ formErrors.password }}</p>
-        <p *ngIf="formErrors.password_confirmation" class="sub-ttl error-message">{{ formErrors.password_confirmation }}</p>
+        <p *ngIf="formErrors.password_confirmation" class="sub-ttl error-message">
+          {{ formErrors.password_confirmation }}
+        </p>
         <div *ngIf="(authError$ | async)">
           <p   class="sub-ttl error-message">{{ (authError$ | async).message }}</p>
         </div>
@@ -22,7 +24,8 @@
       <form class="login-form" [formGroup]="userForm" (ngSubmit)="userForm.valid && register()" >
         <div class="step-1">
           <div class="form-group" [ngClass]="{ 'has-danger': formErrors.username }">
-            <input type="text" id="username" class="form-control" formControlName="username"  placeholder="Username" /></div>
+            <input type="text" id="username" class="form-control" formControlName="username"  placeholder="Username" />
+          </div>
 
           <div class="form-group" [ngClass]="{ 'has-danger': formErrors.email }">
             <input id="email" type="text" class="form-control" formControlName="email" placeholder="Email"  />
@@ -31,11 +34,14 @@
             <input id="password" type="password" class="form-control" formControlName="password" placeholder="Password" />
           </div>
           <div class="form-group" [ngClass]="{ 'has-danger': formErrors.password_confirmation }">
-            <input id="password_confirmation" type="password" class="form-control" formControlName="password_confirmation" placeholder="Password confirmation" />
+            <input id="password_confirmation" type="password" class="form-control"
+                   formControlName="password_confirmation" placeholder="Password confirmation" />
           </div>
           <div class="form-margin"></div>
           <div class="form-group">
-            <button type="submit" (click)="validation.onValueChange(userForm, formErrors, true)" class="btn btn-success">Continue</button>
+            <button type="submit" (click)="validation.onValueChange(userForm, formErrors, true)" class="btn btn-success">
+              Continue
+            </button>
           </div>
           <div class="form-group">
             <p class="simple-txt">Or</p>

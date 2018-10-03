@@ -100,7 +100,6 @@ export class AddPlaceSuccessAction implements Action {
   constructor(public payload) { }
 }
 
-
 export class SetCityInfoAction implements Action {
   readonly type = SET_CITY_INFO;
 
@@ -122,6 +121,7 @@ export class SaveCitySuccessAction implements Action {
 
   constructor(public payload) { }
 }
+
 export class DeleteCityAction implements Action {
   readonly type = DELETE_CITY;
 

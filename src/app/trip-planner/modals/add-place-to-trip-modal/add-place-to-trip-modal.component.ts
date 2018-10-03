@@ -18,7 +18,7 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
   templateUrl: './add-place-to-trip-modal.component.html',
   styleUrls: ['add-place-to-trip-modal.component.scss']
 })
-export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
+export class AddPlaceToTripModalComponent implements OnInit {
 
   public trip_id: number;
   public city_id: number;
@@ -56,9 +56,6 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-
-
     this.citiesInfo$.subscribe(res => {
       this.cities = res.cities;
       this.city_id = (res.activeCity && res.activeCity.id);
@@ -92,8 +89,5 @@ export class AddPlaceToTripModalComponent implements OnInit, OnDestroy {
     tCity.places.push(place);
     let helper = {item: tCity, index: this.city_index};
     this.store.dispatch(new AddPlaceAction( this.routeParams.id, {place_id : place.id}, `/trip/${this.routeParams.id}/info`, helper));
-  }
-
-  ngOnDestroy() {
   }
 }

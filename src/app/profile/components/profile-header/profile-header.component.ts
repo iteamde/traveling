@@ -1,7 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+
 import {getProfileActiveTab, State} from '../../../core/reducers/index';
-import {Store} from '@ngrx/store';
 import {SetActiveTabAction} from '../../actions/profile.actions';
+
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-profile-header',
@@ -29,7 +31,6 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
     {title: 'Interests', name: 'interests', count: 17}
   ];
 
-
   constructor(private store: Store<State>) {
   }
 
@@ -38,11 +39,11 @@ export class ProfileHeaderComponent implements OnInit, OnDestroy {
       .subscribe(res => this.activeTab = res);
   }
 
-  setActiveTab(name) {
-    this.store.dispatch(new SetActiveTabAction(name));
-  }
-
   ngOnDestroy() {
     this.subscriptions$.forEach(item => item.unsubscribe());
+  }
+
+  setActiveTab(name) {
+    this.store.dispatch(new SetActiveTabAction(name));
   }
 }

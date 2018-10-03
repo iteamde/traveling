@@ -28,7 +28,6 @@ export function nameValidator(control: AbstractControl): { [key: string]: any } 
 
   const nameRegex = /^[a-zA-Z]+$/;
   const value = control.value;
-
   const result = nameRegex.test(value);
 
   if (result) {

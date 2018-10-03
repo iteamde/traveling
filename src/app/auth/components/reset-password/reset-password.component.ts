@@ -31,7 +31,10 @@ export class ResetPasswordComponent implements OnInit {
     password_confirmation: '',
   };
 
-  constructor(private store: Store<State>, private fb: FormBuilder , public validation: ValidationService, private route: ActivatedRoute) {
+  constructor(private store: Store<State>,
+              private fb: FormBuilder,
+              public validation: ValidationService,
+              private route: ActivatedRoute) {
     this.route.queryParams.subscribe((params: Params) => {
       this.token = params['token'];
     });

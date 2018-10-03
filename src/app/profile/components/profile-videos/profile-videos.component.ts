@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-profile-videos',
   templateUrl: './profile-videos.component.html',
   styleUrls: ['./profile-videos.component.scss']
 })
-export class ProfileVideosComponent implements OnInit {
+export class ProfileVideosComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

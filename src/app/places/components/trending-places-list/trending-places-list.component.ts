@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import { getCountryTrendingPlaces, State} from '../../../core/reducers';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+
+import { getCountryTrendingPlaces, State} from '../../../core/reducers';
+
+import {Store} from '@ngrx/store';
 
 /**
  * Trending places component
@@ -12,15 +14,13 @@ import {Router} from '@angular/router';
   templateUrl: './trending-places-list.component.html',
   styleUrls: ['./trending-places-list.component.scss']
 })
-export class TrendingPlacesListComponent implements OnInit {
+export class TrendingPlacesListComponent {
   public data: any;
   public stats: any;
-  constructor(private store: Store<State>, private router: Router) {
+  constructor(private store: Store<State>,
+              private router: Router) {
     this.data = this.store.select(getCountryTrendingPlaces);
     // this.stats = this.store.select(getCountryStats);
-  }
-
-  ngOnInit() {
   }
 
   /**

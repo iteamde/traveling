@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
 
 /**
@@ -10,15 +10,12 @@ import {Router} from '@angular/router';
   templateUrl: './user-rating-box.component.html',
   styleUrls: ['./user-rating-box.component.scss']
 })
-export class UserRatingBoxComponent implements OnInit {
+export class UserRatingBoxComponent {
 
   /** main idata of current place */
   @Input() data;
 
   constructor(private router: Router) {}
-
-  ngOnInit() {
-  }
 
   /**
    * Open modal to write review to current place

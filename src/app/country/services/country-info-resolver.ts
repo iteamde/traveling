@@ -9,6 +9,7 @@ import 'rxjs/add/observable/forkJoin';
 
 @Injectable()
 export class CountryInfoResolver implements Resolve<any> {
+
   constructor(private countryService: CountryService,
               private router: Router) {
   }

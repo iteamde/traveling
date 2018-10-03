@@ -23,7 +23,8 @@
           </div>
           <div class="form-group flex-custom">
             <div class="flex-input"  [ngClass]="{ 'has-danger': formErrors.name }">
-              <input class="form-control" type="text" name="name" formControlName="name" placeholder="Full Name" aria-describedby="full name" />
+              <input class="form-control" type="text" name="name" formControlName="name"
+                     placeholder="Full Name" aria-describedby="full name" />
             </div>
             <div class="form-group"  [ngClass]="{ 'has-danger': formErrors.age }">
               <select class="custom-select form-control" id="age" formControlName="age" [ngStyle]="{'height':'52px'}">
@@ -43,7 +44,9 @@
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" (click)="validation.onValueChange(userForm, formErrors, true)" class="btn btn-info">Sign Up</button>
+            <button type="submit" (click)="validation.onValueChange(userForm, formErrors, true)" class="btn btn-info">
+              Sign Up
+            </button>
           </div>
           <div class="form-group">
             <button type="button"  routerLink="signup" class="btn btn-transp">

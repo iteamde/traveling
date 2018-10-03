@@ -8,7 +8,6 @@ export interface State {
   resetPasswordStatus: string;
 }
 
-
 export const INIT_STATE: State = {
   user: null,
   registrationStep: 0,

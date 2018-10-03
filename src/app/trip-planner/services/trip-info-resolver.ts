@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Resolve} from '@angular/router';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import {TripPlannerService} from './trip-planner.service';
 
+import {TripPlannerService} from './trip-planner.service';
 
 @Injectable()
 export class TripInfoResolver implements Resolve<any> {

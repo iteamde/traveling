@@ -1,15 +1,12 @@
 @media (max-width: 767px) {
 
   :host {
-
     .top-profile-layer {
-
       .top-profile-picture {
         .update-picture-link {
           z-index: 50;
         }
       }
-
       .top-profile-info {
         .profile-name-block {
           .name-ttl .tag {
@@ -18,7 +15,6 @@
           }
         }
       }
-
       .top-details-wrap {
         flex-wrap: wrap;
 
@@ -27,7 +23,6 @@
           justify-content: center;
           margin: 10px 0;
         }
-
         .detail-list {
           flex-wrap: wrap;
           justify-content: center;

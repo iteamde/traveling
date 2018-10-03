@@ -1,9 +1,8 @@
 import {PlacesComponent} from './places.component';
-import {AuthGuard} from '../auth/guards/can-activate.guard';
 import {PlacesInfoResolver} from './services/places-info-resolver';
 import {GalleryModalComponent} from '../core/components/gallery-modal/gallery-modal.component';
 import {ModalWrapperComponent} from '../core/components/modal-wrapper/modal-wrapper.component';
-import {getPlacesNearby, getPlacesImg, getPlacesPlans, getPlaceReviews, getPlaces} from '../core/reducers';
+import {getPlacesNearby, getPlacesImg, getPlacesPlans, getPlaces} from '../core/reducers';
 import {WriteReviewModalComponent} from './components/write-review-modal/write-review-modal.component';
 
 /** define places routes */

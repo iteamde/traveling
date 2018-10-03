@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {LatLngBounds} from '@agm/core';
 import {getCitiesInfo, State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
@@ -11,18 +11,20 @@ declare var google: any;
   templateUrl: './trip-planner-map.component.html',
   styleUrls: ['./trip-planner-map.component.scss']
 })
-export class TripPlannerMapComponent implements OnInit, OnDestroy {
+export class TripPlannerMapComponent {
   @Input() cities;
   public storeMap;
   public currentLocation = {
     lat : 0,
     lng: 0
   };
+
   public directionOptions = {
     markerOptions: {
       icon: 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png',
     },
   };
+
   public transportationTable = {
     plane: 'PLANE',
     car: 'DRIVING',
@@ -38,10 +40,6 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-
-  }
-
   isModeAllowed(transportation) {
     if(!transportation) return false;
     return !['PLANE', 'SHIP'].includes(this.transportationTable[transportation]);
@@ -54,8 +52,6 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
   dirChange(event){
     console.log("DIRCHANGE!!!", event);
   }
-
-
 
   // AGM MAP CENTER HELPER
   storeMapReady(map) {
@@ -70,16 +66,9 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
           this.currentLocation.lng = +pos.coords.longitude;
           this.currentLocation.lat = +pos.coords.latitude;
           this.storeMap.fitBounds(this.findStoresBounds());
-
         });
-
-
-
-
-
       }
     this.storeMap.fitBounds(this.findStoresBounds());
-
   }
 
   public findStoresBounds(){
@@ -94,10 +83,4 @@ export class TripPlannerMapComponent implements OnInit, OnDestroy {
     }
     return bounds;
   }
-
-  ngOnDestroy() {
-  }
-
-
-
 }

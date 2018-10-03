@@ -13,7 +13,6 @@ import {DndModule} from 'ng2-dnd';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import {TripInfoResolver} from './services/trip-info-resolver';
 import {ConfirmComponent} from '../core/components/modals/confirm/confirm.component';
-import {AgmCoreModule} from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { CityArriveBoxComponent } from './components/city-arrive-box/city-arrive-box.component';
 import { PlaceDetailsBoxComponent } from './components/place-details-box/place-details-box.component';

@@ -1,4 +1,5 @@
 import {PreloadingStrategy, Route} from '@angular/router';
+
 import {Observable} from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import {timer} from 'rxjs/observable/timer';

@@ -9,7 +9,10 @@
         <h3 class="place-title">{{data.title}}</h3>
         <div class="clearfix">
           <div class="add-footer pull-right">
-            <button type="button" class="btn btn-light-primary btn-bordered"  mat-button  [mat-dialog-close]="true" (click)="onReject()"> No</button>
+            <button type="button" class="btn btn-light-primary btn-bordered"
+                    mat-button  [mat-dialog-close]="true" (click)="onReject()">
+              No
+            </button>
             <button type="button" class="btn btn-transp btn-cancel"  (click)="onSuccess()">Yes</button>
           </div>
         </div>

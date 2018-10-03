@@ -13,9 +13,15 @@
       <div class="row-txt">
         <div class="index-slider-wrap">
           <div class="counter">
-            <span id="current">{{isCountry ? info.trans[0].pollution_index : info.trans[0].indexes.pollution}}</span>/100<span></span>
+            <span id="current">
+              {{isCountry ? info.trans[0].pollution_index : info.trans[0].indexes.pollution}}
+            </span>
+            /100
+            <span></span>
           </div>
-          <mat-slider min="0" max="100" disabled="true"  value="{{isCountry ? info.trans[0].pollution_index : info.trans[0].indexes.pollution}}"></mat-slider>
+          <mat-slider min="0" max="100" disabled="true"
+                      value="{{isCountry ? info.trans[0].pollution_index : info.trans[0].indexes.pollution}}">
+          </mat-slider>
         </div>
       </div>
     </div>
@@ -37,7 +43,9 @@
           <div class="counter">
             <span>{{isCountry ? info.trans[0].crime_rate : info.trans[0].indexes.crime_rate}}</span>/100<span></span>
           </div>
-          <mat-slider min="0" max="100" disabled="true"  value="{{isCountry ? info.trans[0].crime_rate : info.trans[0].indexes.crime_rate}}"></mat-slider>
+          <mat-slider min="0" max="100" disabled="true"
+                      value="{{isCountry ? info.trans[0].crime_rate : info.trans[0].indexes.crime_rate}}">
+          </mat-slider>
         </div>
       </div>
     </div>
@@ -46,7 +54,9 @@
       <div class="row-txt">
         <div class="index-slider-wrap">
           <div class="counter">
-            <span>{{isCountry ? info.trans[0].quality_of_life : info.trans[0].indexes.quality_of_life}}</span>/100<span></span>
+            <span>{{isCountry ? info.trans[0].quality_of_life : info.trans[0].indexes.quality_of_life}}</span>
+            /100
+            <span></span>
           </div>
           <mat-slider min="0" max="100" disabled="true"  value="{{info.trans[0].quality_of_life}}"></mat-slider>
         </div>

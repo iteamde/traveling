@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {getFollowPlacesStatus, getPlacesId, State} from '../../../core/reducers';
 import {FollowPlacesAction, UnfollowPlacesAction} from '../../actions/places.actions';
@@ -15,7 +15,7 @@ import {AutoUnsubscribe} from 'ngx-auto-unsubscribe';
   templateUrl: './follow-place-button.component.html',
   styleUrls: ['./follow-place-button.component.scss']
 })
-export class FollowPlaceButtonComponent implements OnInit, OnDestroy {
+export class FollowPlaceButtonComponent {
   public id: number;
   public isFollowed: boolean;
   private subscriptions;
@@ -25,9 +25,6 @@ export class FollowPlaceButtonComponent implements OnInit, OnDestroy {
       this.store.select(getPlacesId).subscribe(id => this.id = id),
       this.store.select(getFollowPlacesStatus).subscribe(status => this.isFollowed = status)
     ];
-  }
-
-  ngOnInit() {
   }
 
   /**
@@ -40,9 +37,4 @@ export class FollowPlaceButtonComponent implements OnInit, OnDestroy {
       this.store.dispatch(new UnfollowPlacesAction(this.id)) :
       this.store.dispatch(new FollowPlacesAction(this.id));
   }
-
-  ngOnDestroy() {
-
-  }
-
 }

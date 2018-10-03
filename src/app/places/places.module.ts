@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from '@angular/router';
 
-import {EffectsModule} from '@ngrx/effects';
-
 import {PlacesComponent} from './places.component';
 import {CoreModule} from '../core/core.module';
 import {SharedModule} from '../shared/shared.module';
@@ -25,6 +23,8 @@ import {PlacesEffects} from './effects/places.effects';
 import {PlacesRoutes} from './places.routing';
 import {CountryService} from '../country/services/country.service';
 
+import {EffectsModule} from '@ngrx/effects';
+
 
 @NgModule({
   imports: [
@@ -32,8 +32,7 @@ import {CountryService} from '../country/services/country.service';
     CommonModule,
     SharedModule,
     RouterModule.forChild(PlacesRoutes),
-    EffectsModule.forFeature([PlacesEffects]),
-
+    EffectsModule.forFeature([PlacesEffects])
   ],
   declarations: [
     PlacesComponent,
@@ -49,7 +48,6 @@ import {CountryService} from '../country/services/country.service';
     PlacesFooterComponent,
     WriteReviewModalComponent,
     FollowHeaderComponent
-
   ],
   providers: [
     PlacesService,
@@ -60,7 +58,6 @@ import {CountryService} from '../country/services/country.service';
     FollowersListComponent,
     TrendingPlacesListComponent,
     WriteReviewModalComponent
-
   ]
 })
 

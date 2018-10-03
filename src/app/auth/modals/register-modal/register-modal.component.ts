@@ -55,7 +55,6 @@ export class RegisterModalComponent implements OnInit {
         Validators.required,
         Validators.minLength(8),
         nameValidator
-
       ]],
       email: [this.user.email, [
         Validators.required,
