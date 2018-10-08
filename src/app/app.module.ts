@@ -20,6 +20,11 @@ import {StoreModule} from '@ngrx/store';
 import { ToastrModule } from 'ngx-toastr';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {EffectsModule} from '@ngrx/effects';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {CheckForUpdateService} from './shared/services/check-for-update.service';
+import {LogUpdateService} from './shared/services/log-update.service';
+import {PromptUpdateService} from './shared/services/prompt-update.service';
 
 const effectsArr = [
   AuthEffects,
@@ -41,6 +46,7 @@ const effectsArr = [
     EffectsModule.forRoot(effectsArr),
     Ng4LoadingSpinnerModule.forRoot(),
     ToastrModule.forRoot({positionClass : 'toast-top-right'}),
+    ServiceWorkerModule.register('/ngsw-worker.js'),
   ],
   providers: [
     ApiService,
@@ -50,7 +56,10 @@ const effectsArr = [
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }
+    },
+    CheckForUpdateService,
+    LogUpdateService,
+    PromptUpdateService,
     ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { State} from '../../../core/reducers';
 import {Store} from '@ngrx/store';
 import {DeleteCityAction, SaveCityAction, SetActiveCityAction} from '../../actions/trip-planner.actions';

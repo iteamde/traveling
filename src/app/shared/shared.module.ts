@@ -1,12 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
 import {MaterialModule} from '../material.module';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 import {FormsModule} from '@angular/forms';
-import { ScrollEventModule } from 'ngx-scroll-event';
+import {ScrollEventModule} from 'ngx-scroll-event';
 import {MyDatePickerModule} from 'mydatepicker';
-import { ImgFallbackModule } from 'ngx-img-fallback';
+import {ImgFallbackModule} from 'ngx-img-fallback';
+import {SwUpdate} from '@angular/service-worker';
+
 
 @NgModule({
 
@@ -35,7 +37,8 @@ import { ImgFallbackModule } from 'ngx-img-fallback';
         disableClose: true,
         closeOnNavigation: true
       }
-    }
+    },
+    SwUpdate
   ]
 })
 
